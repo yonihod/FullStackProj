@@ -1,0 +1,13 @@
+# Project exclude paths
+/node_modules/
+/public/acorn-globals/node_modules/
+/public/clean-css/node_modules/
+/public/constantinople/node_modules/
+/public/is-expression/node_modules/
+/public/mongodb/node_modules/
+/public/mongoose/node_modules/
+/public/mquery/node_modules/
+/public/pug-filters/node_modules/
+/public/require_optional/node_modules/
+/public/send/node_modules/
+/public/with/node_modules/
