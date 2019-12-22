@@ -6,7 +6,7 @@
   "scripts": {
     "newinstall": "yarn install --modules-folder ./public"
   },
-  "author": "Yoni Hodeffi",
+  "author": "Yoni Hodeffi Alon Ziner",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
