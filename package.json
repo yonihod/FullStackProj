@@ -4,12 +4,14 @@
   "description": "Fullstack course project",
   "main": "app.js",
   "scripts": {
-    "newinstall": "yarn install --modules-folder ./public"
+    "newinstall": "yarn install --modules-folder ./public",
+    "newinstall": "yarn add bootstrap"
   },
   "author": "Yoni Hodeffi Alon Ziner",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.4.1",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
     "mongoose": "^5.8.2",
