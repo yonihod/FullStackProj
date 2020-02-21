@@ -1,12 +1,12 @@
 {
   "name": "fullstackproj",
   "version": "1.0.0",
-  "description": "Fullstack course project",
+  "description": "Fullstack project",
   "main": "app.js",
   "scripts": {
     "newinstall": "yarn install --modules-folder ./public"
   },
-  "author": "Yoni Hodeffi Alon Ziner",
+  "author": "Yoni Hodeffi, Alon Ziner, Chen Eini, Kamil, Or",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
