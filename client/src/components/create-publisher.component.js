@@ -1,11 +1,14 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
+import PublisherService from '../services/publishers';
 
 export default class CreatePublisher extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
+
+        PublisherService.getPublishers();
 
         // Setting up functions
         this.onChangePublisherName = this.onChangePublisherName.bind(this);
@@ -34,7 +37,7 @@ export default class CreatePublisher extends Component {
     }
 
     onSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
 
         console.log(`Publisher successfully created!`);
         console.log(`Name: ${this.state.name}`);
@@ -45,7 +48,7 @@ export default class CreatePublisher extends Component {
     }
 
     render() {
-        return (<div class="form-wrapper">
+        return (<div className="form-wrapper">
             <Form>
                 <Form.Group controlId="Name">
                     <Form.Label>Name</Form.Label>
