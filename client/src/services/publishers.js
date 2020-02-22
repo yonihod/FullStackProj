@@ -1,16 +1,16 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export default class PublishersService {
     static PUBLISHERS_API = `${process.env.REACT_APP_API_URL}/publishers`;
 
     static getPublishers() {
-        return fetch(this.PUBLISHERS_API)
-            .then((response) => response.json())
-            .then((data) => {
-                return data;
-            })
-            .catch((err) => {
-                return err;
-            })
+         return axios.get(this.PUBLISHERS_API)
+            .then( (response)=> {
+                console.log(response.data);
+                console.log('Received Publisher')
+                return response.data
+            }).catch( (error) => {
+            console.log(error)
+        });
     }
 }
