@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+
 
 export default class CreatePublisher extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
 
         // Setting up functions
         this.onChangePublisherName = this.onChangePublisherName.bind(this);
@@ -34,12 +36,18 @@ export default class CreatePublisher extends Component {
     }
 
     onSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
 
         console.log(`Publisher successfully created!`);
         console.log(`Name: ${this.state.name}`);
         console.log(`Email: ${this.state.email}`);
         console.log(`Roll no: ${this.state.rollno}`);
+        const publisherObj = {
+            name: this.state.name,
+            email: this.state.email,
+            rollno: this.state.rollno
+        };
+        axios.post('http://localhost:4000/publisher/create-publisher',publisherObj).then(res=>console.log(res.data));
 
         this.setState({name: '', email: '', rollno: ''})
     }
