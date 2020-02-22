@@ -2,9 +2,8 @@
   "name": "fullstackproj",
   "version": "1.0.0",
   "description": "Fullstack project",
-  "main": "app.js",
   "scripts": {
-    "newinstall": "yarn install --modules-folder ./public",
+    "start": "",
     "newinstall": "yarn add bootstrap"
   },
   "author": "Yoni Hodeffi, Alon Ziner, Chen Eini, Kamil, Or",
