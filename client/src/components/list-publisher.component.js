@@ -19,7 +19,7 @@ export default class PublisherList extends Component {
                 publishers: res
             });
         }).catch(err => {
-            console.log('There has ben an error loading publishers in list-publisher-componenet: ' + err);
+            console.log('There has ben an error loading publishers in list-publisher-component: ' + err);
         });
     }
     // func to populate publishers row

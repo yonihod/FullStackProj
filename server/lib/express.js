@@ -52,8 +52,13 @@ function initViewEngine(app) {
     app.set('view engine', 'jade');
 }
 
+function initDatabase(app) {
+    const mongoose = require("./mongoose")
+}
+
 function init() {
     const app = express();
+    initDatabase(app);
     initViewEngine(app);
     initAppMiddlewares(app);
     initServerRoutes(app);

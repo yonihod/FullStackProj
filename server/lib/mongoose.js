@@ -1,5 +1,6 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fullStack');
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
 let db = mongoose.connection;
 
 db.once('open',()=> {
@@ -10,4 +11,3 @@ db.once('open',()=> {
 db.on('error',() => {
     console.log('err');
 });
-
