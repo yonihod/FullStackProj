@@ -11,5 +11,8 @@
 /public/require_optional/node_modules/
 /public/send/node_modules/
 /public/with/node_modules/
-/server/node_modules
+.idea
 /client/node_modules
+/client/build
+/client/.idea
+/server/node_modules
