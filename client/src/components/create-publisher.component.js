@@ -53,7 +53,7 @@ export default class CreatePublisher extends Component {
     }
 
     render() {
-        return (<div class="form-wrapper">
+        return (<div className="form-wrapper">
             <Form>
                 <Form.Group controlId="Name">
                     <Form.Label>Name</Form.Label>
