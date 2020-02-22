@@ -1,19 +1,16 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const glob = require('glob');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const createError = require('http-errors');
-const indexRouter = require('../routes/index');
-const usersRouter = require('../routes/users');
-const publishersRouter = require('../routes/publishers');
 
 function initServerRoutes(app) {
-    //require(path)(app)
-    indexRouter(app);
-    publishersRouter(app);
-    usersRouter(app);
+    glob.sync('./routes/*.js').forEach(function (file) {
+        require(path.resolve(file))(app);
+    });
 }
 
 function initAppMiddlewares(app) {
