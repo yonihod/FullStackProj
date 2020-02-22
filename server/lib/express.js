@@ -1,18 +1,16 @@
 const express = require('express');
-const cors = require('cors');
 const path = require('path');
+const bodyParser = require('body-parser');
+const glob = require('glob');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
 const createError = require('http-errors');
-const usersRouter = require('../routes/users');
-const publishersRouter = require('../routes/publishers')
-const indexRouter = require('../routes/index');
 
 function initServerRoutes(app) {
-    indexRouter(app);
-    publishersRouter(app);
-    usersRouter(app);
+    glob.sync('./routes/*.js').forEach(function (file) {
+        require(path.resolve(file))(app);
+    });
 }
 
 function initAppMiddlewares(app) {
@@ -23,9 +21,7 @@ function initAppMiddlewares(app) {
     app.use(express.static(path.resolve('public')));
     app.use(cors());
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({
-        extended: false
-    }));
+    app.use(bodyParser.urlencoded({extended: false}));
 }
 
 function initErrorHandling(app) {
@@ -67,4 +63,6 @@ function init() {
     return app;
 }
 
-module.exports.init = init;
+module.exports = {
+    init
+};
