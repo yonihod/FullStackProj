@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import PublishersService from "../services/publishers";
 
 
 export default class CreatePublisher extends Component {
@@ -9,6 +10,11 @@ export default class CreatePublisher extends Component {
     constructor(props) {
         super(props);
 
+        PublishersService.getPublishers().then(data => {
+            console.log(data);
+        }).catch(err => {
+            console.log(err);
+        })
         // Setting up functions
         this.onChangePublisherName = this.onChangePublisherName.bind(this);
         this.onChangePublisherEmail = this.onChangePublisherEmail.bind(this);
