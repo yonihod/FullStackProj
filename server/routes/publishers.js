@@ -4,9 +4,6 @@ module.exports = (app) => {
             res.json([{
                 id: 1,
                 name: 'Chen'
-            }, {
-                id: 2,
-                name: 'Dor'
             }])
         });
 };

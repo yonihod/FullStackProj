@@ -1,7 +1,7 @@
 require('dotenv').config();
 
-const { init } = require('./lib/express');
-const port = process.env.PORT || 8001;
+const {init} = require('./lib/express');
+const port = process.env.PORT || 8000;
 const app = init();
 
 app.set('port', port);

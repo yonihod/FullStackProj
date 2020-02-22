@@ -9,13 +9,13 @@ const usersRouter = require('../routes/users');
 const publishersRouter = require('../routes/publishers')
 const indexRouter = require('../routes/index');
 
-function initServerRoutes() {
+function initServerRoutes(app) {
     indexRouter(app);
     publishersRouter(app);
     usersRouter(app);
 }
 
-function initAppMiddlewares() {
+function initAppMiddlewares(app) {
     app.use(logger('dev'));
     app.use(express.json());
     app.use(express.urlencoded({extended: false}));
@@ -28,7 +28,7 @@ function initAppMiddlewares() {
     }));
 }
 
-function initErrorHandling() {
+function initErrorHandling(app) {
     // catch 404 and forward to error handler
     app.use(function (req, res, next) {
         next(createError(404));
@@ -46,7 +46,7 @@ function initErrorHandling() {
     });
 }
 
-function initViewEngine() {
+function initViewEngine(app) {
     // view engine setup
     app.set('views', path.resolve('views'));
     app.set('view engine', 'jade');
@@ -54,10 +54,10 @@ function initViewEngine() {
 
 function init() {
     const app = express();
-    initViewEngine();
-    initAppMiddlewares();
-    initServerRoutes();
-    initErrorHandling();
+    initViewEngine(app);
+    initAppMiddlewares(app);
+    initServerRoutes(app);
+    initErrorHandling(app);
 
     return app;
 }
