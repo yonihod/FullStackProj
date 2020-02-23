@@ -17,4 +17,4 @@ let publisherSchema = mongoose.Schema({
     }
 });
 
-let Publisher = module.exports = mongoose.model('Publisher',publisherSchema);
+module.exports = mongoose.model('Publisher',publisherSchema);
