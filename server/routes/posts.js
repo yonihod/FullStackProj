@@ -1,32 +1,34 @@
-const User = require('../models/user');
+const Post = require('../models/post');
 
 module.exports = (app) => {
-    app.route('/users')
+    app.route('/posts')
         .get((req, res) => {
-            User.find().populate('skills').then((data) => {
+            Post.find().populate('user').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);
             });
         })
         .post((req, res) => {
-            User.create(req.body).then((data) => {
+            // TODO
+            // post.user = getCurrentUserId
+            Post.create(req.body).then((data) => {
                 res.status(201).json(data);
             }).catch(err => {
                 console.log(err);
             });
         });
 
-    app.route('/users/:id')
+    app.route('/posts/:id')
         .get((req, res) => {
-            User.findById(req.params.id).populate('skills posts').then((data) => {
+            Post.findById(req.params.id).populate('user').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);
             });
         })
         .put((req, res) => {
-            User.findByIdAndUpdate(req.params.id, req.body, {
+            Post.findByIdAndUpdate(req.params.id, req.body, {
                 new: true,
                 upsert: true
             }).then(data => {
@@ -36,7 +38,7 @@ module.exports = (app) => {
             });
         })
         .delete((req, res) => {
-            User.findByIdAndRemove(req.params.id).then(data => {
+            Post.findByIdAndRemove(req.params.id).then(data => {
                 res.status(200).json(data);
             }).catch(err => {
                 console.log(err);

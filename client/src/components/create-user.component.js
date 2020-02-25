@@ -1,24 +1,24 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
+import UserService from "../services/users";
 import axios from 'axios';
-import PublishersService from "../services/publishers";
 
-
-export default class CreatePublisher extends Component {
+export default class CreateUser extends Component {
 
     constructor(props) {
         super(props);
 
-        PublishersService.getPublishers().then(data => {
+        UserService.getUsers().then(data => {
             console.log(data);
         }).catch(err => {
             console.log(err);
-        })
+        });
+
         // Setting up functions
-        this.onChangePublisherName = this.onChangePublisherName.bind(this);
-        this.onChangePublisherEmail = this.onChangePublisherEmail.bind(this);
-        this.onChangePublisherRollno = this.onChangePublisherRollno.bind(this);
+        this.onChangeUserName = this.onChangeUserName.bind(this);
+        this.onChangeUserEmail = this.onChangeUserEmail.bind(this);
+        this.onChangeUserRollno = this.onChangeUserRollno.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         // Setting up state
@@ -29,31 +29,33 @@ export default class CreatePublisher extends Component {
         }
     }
 
-    onChangePublisherName(e) {
+    onChangeUserName(e) {
         this.setState({name: e.target.value})
     }
 
-    onChangePublisherEmail(e) {
+    onChangeUserEmail(e) {
         this.setState({email: e.target.value})
     }
 
-    onChangePublisherRollno(e) {
+    onChangeUserRollno(e) {
         this.setState({rollno: e.target.value})
     }
 
     onSubmit(e) {
         e.preventDefault();
 
-        console.log(`Publisher successfully created!`);
+        console.log(`User successfully created!`);
         console.log(`Name: ${this.state.name}`);
         console.log(`Email: ${this.state.email}`);
         console.log(`Roll no: ${this.state.rollno}`);
-        const publisherObj = {
+
+        const user = {
             name: this.state.name,
             email: this.state.email,
             rollno: this.state.rollno
         };
-        axios.post('http://localhost:4000/publisher/create-publisher',publisherObj).then(res=>console.log(res.data));
+
+        UserService.AddUser(user);
 
         this.setState({name: '', email: '', rollno: ''})
     }
@@ -77,7 +79,7 @@ export default class CreatePublisher extends Component {
                 </Form.Group>
 
                 <Button variant="danger" size="lg" block="block" type="submit">
-                    Create Publisher
+                    Create User
                 </Button>
             </Form>
         </div>);

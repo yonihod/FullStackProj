@@ -1,9 +1,9 @@
-const Publisher = require('../models/publisher');
+const Skill = require('../models/skill');
 
 module.exports = (app) => {
-    app.route('/publishers')
+    app.route('/skills')
         .get((req, res) => {
-            Publisher.find().then((data) => {
+            Skill.find().then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err)
@@ -14,7 +14,7 @@ module.exports = (app) => {
 
         });
 
-    app.route('/publishers/:id')
+    app.route('/skills/:id')
         .get((req, res) => {
 
         })

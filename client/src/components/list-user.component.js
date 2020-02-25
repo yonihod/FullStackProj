@@ -1,32 +1,33 @@
-import React, { Component } from "react";
-import axios from 'axios';
+import React, {Component} from "react";
 import Table from 'react-bootstrap/Table';
-import PublisherTableRow from './PublisherTableRow'
-import PublishersService from "../services/publishers";
+import UserTableRow from './UserTableRow'
+import UserService from "../services/users";
 
-export default class PublisherList extends Component {
+export default class UserList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          publishers: []
+            users: []
         };
     }
+
     // action when comp is loaded (inserted into the v-dom tree)
     componentDidMount() {
         // we get the data from server
-        PublishersService.getPublishers().then(res => {
+        UserService.getUsers().then(res => {
             this.setState({
-                publishers: res
+                users: res
             });
         }).catch(err => {
-            console.log('There has ben an error loading publishers in list-publisher-component: ' + err);
+            console.log('There has been an error loading users in list-user-component: ' + err);
         });
     }
-    // func to populate publishers row
+
+    // func to populate user row
     DataTable() {
-        if(this.state.publishers) {
-            return this.state.publishers.map((res, i) => {
-                return <PublisherTableRow obj={res} key={i}/>;
+        if (this.state.users) {
+            return this.state.users.map((res, i) => {
+                return <UserTableRow obj={res} key={i}/>;
             });
         }
     }
@@ -44,7 +45,7 @@ export default class PublisherList extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                        {this.DataTable()}
+                    {this.DataTable()}
                     </tbody>
                 </Table>
             </div>

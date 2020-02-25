@@ -25,10 +25,15 @@ function initAppMiddleware(app) {
 }
 
 function initServerRoutes(app) {
-    for (const file of glob.sync('./routes/*.js')) {
+    for (const file of glob.sync(path.resolve('routes/*.js'))) {
         require(path.resolve(file))(app);
     }
 }
+
+// function initSeedData() {
+//     const user = require('../models/user');
+//     const skill = require('../models/skill');
+// }
 
 function initErrorHandling(app) {
     // catch 404 and forward to error handler
