@@ -25,4 +25,4 @@ let postSchema = Schema({
     }
 });
 
-module.exports = mongoose.model('Post',postSchema);
+module.exports = mongoose.model('Post', postSchema);
