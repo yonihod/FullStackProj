@@ -17,19 +17,14 @@ const NavBar = () => {
             <Nav><Link to={"/create-post"} className="nav-link">Create a post</Link></Nav>
             <Nav><Link to={"/about-us"} className="nav-link">About</Link></Nav>
             <Nav className="ml-auto">
-                <div>
-                    {!isAuthenticated && (<button onClick={() => loginWithRedirect({})}>Log in</button>)}
-                    {isAuthenticated &&
-                    <button onClick={() => logout({returnTo: 'http://localhost:3002'})}>Log out</button>}
-                    {isAuthenticated && (
-                        <span>
-                            <Link to="/">Home</Link>&nbsp;
-                            <Link to="/profile">Profile</Link>
-                         </span>
-                    )}
-                </div>
-                <Link to={"/register"} className="nav-link">Register</Link>
-                <Link to={"/login"} className="nav-link">Login</Link>
+                {!isAuthenticated && (<button onClick={() => loginWithRedirect({})}>Log in</button>)}
+                {isAuthenticated && <button onClick={() => logout({returnTo: 'http://localhost:3002'})}>Log out</button>}
+                {isAuthenticated && (
+                    <span>
+                        <Link to="/">Home</Link>
+                        <Link to="/profile">Profile</Link>
+                    </span>
+                )}
             </Nav>
         </Navbar>
     );
