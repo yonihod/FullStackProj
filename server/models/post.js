@@ -18,15 +18,14 @@ let postSchema = Schema({
         required: true,
         default: Date.now
     },
-    user: {
+    dueDate: {
+        type: Date,
+        required: true,
+    },
+    owner: {
         type: ObjectId,
         ref: 'User',
         required: true
-    },
-    endDate: {
-        type: Date,
-        required: true,
-        //default: Date.now
     }
 });
 
