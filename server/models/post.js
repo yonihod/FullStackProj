@@ -20,7 +20,7 @@ let postSchema = Schema({
     },
     dueDate: {
         type: Date,
-        required: true,
+        required: false,
     },
     owner: {
         type: ObjectId,
