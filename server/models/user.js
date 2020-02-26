@@ -12,11 +12,11 @@ const userSchema = mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        // required: true
     },
     address: {
         type: String,
-        required: true
+        // required: true
     },
     skills: [{
         type: ObjectId,

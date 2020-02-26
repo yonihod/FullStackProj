@@ -30,10 +30,26 @@ function initServerRoutes(app) {
     }
 }
 
-// function initSeedData() {
-//     const user = require('../models/user');
-//     const skill = require('../models/skill');
-// }
+async function initSeedData() {
+    try {
+        const user = require('../models/user');
+        const skill = require('../models/skill');
+
+        await skill.deleteMany();
+        await user.deleteMany();
+
+        const insertedSkills = await skill.insertMany([{name: 'web developer'}, {name: 'ios developer'}, {name: 'designer'}]);
+        const skillsIds = insertedSkills.map(x => x._id);
+
+        await user.insertMany([
+            {name: 'Chen1', email: 'Chen1@gmail.com', skills: skillsIds},
+            {name: 'Chen2', email: 'Chen2@gmail.com'}
+        ]);
+
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 function initErrorHandling(app) {
     // catch 404 and forward to error handler
@@ -60,6 +76,11 @@ function init() {
     initAppMiddleware(app);
     initServerRoutes(app);
     initErrorHandling(app);
+
+    // temporary for tests
+    initSeedData().then(() => {
+        console.log("we have seed data")
+    });
 
     return app;
 }
