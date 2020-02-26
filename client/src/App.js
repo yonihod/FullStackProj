@@ -8,11 +8,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
 import Home from "./components/common/Home";
-import ListPost from "./components/post/ListPost";
+import ListPosts from "./components/post/ListPost";
+import SinglePost from "./components/post/SinglePost";
 import CreatePost from "./components/post/CreatePost";
 import About from "./components/common/About";
 import Register from "./components/common/Register";
 import Login from "./components/common/Login";
+
 
 export default class App extends Component {
     render() {
@@ -36,7 +38,8 @@ export default class App extends Component {
                     <div className="wrapper">
                         <Switch>
                             <Route exact path="/" component={Home}/>
-                            <Route path="/posts" component={ListPost}/>
+                            <Route path="/posts/:id" component={SinglePost}/>
+                            <Route exact path="/posts" component={ListPosts}/>
                             <Route path="/create-post" component={CreatePost}/>
                             <Route path="/about-us" component={About}/>
                             <Route path="/register" component={Register}/>
