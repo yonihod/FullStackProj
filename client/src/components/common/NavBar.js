@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.css";
 import {useAuth0} from "../../react-auth0-spa";
-import {Switch, Route, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const NavBar = () => {
     const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
@@ -19,7 +19,14 @@ const NavBar = () => {
             <Nav className="ml-auto">
                 <div>
                     {!isAuthenticated && (<button onClick={() => loginWithRedirect({})}>Log in</button>)}
-                    {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+                    {isAuthenticated &&
+                    <button onClick={() => logout({returnTo: 'http://localhost:3002'})}>Log out</button>}
+                    {isAuthenticated && (
+                        <span>
+                            <Link to="/">Home</Link>&nbsp;
+                            <Link to="/profile">Profile</Link>
+                         </span>
+                    )}
                 </div>
                 <Link to={"/register"} className="nav-link">Register</Link>
                 <Link to={"/login"} className="nav-link">Login</Link>
