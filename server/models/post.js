@@ -22,6 +22,11 @@ let postSchema = Schema({
         type: ObjectId,
         ref: 'User',
         required: true
+    },
+    endDate: {
+        type: Date,
+        required: true,
+        //default: Date.now
     }
 });
 
