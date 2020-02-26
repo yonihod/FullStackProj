@@ -1,4 +1,5 @@
-import React, {Component} from "react";
+import React from "react";
 
-export default class Register extends Component {
+export default function Register() {
+    return (<div>Register</div>)
 }

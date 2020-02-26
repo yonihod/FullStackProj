@@ -8,7 +8,7 @@ export default class CreatePost extends Component {
     render() {
         return (
             <div>
-                Register
+                Create a Post
             </div>)
     }
 }
