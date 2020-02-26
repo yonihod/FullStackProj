@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Table from 'react-bootstrap/Table';
 import UserTableRow from './UserTableRow'
-import UserService from "../services/users";
+import UserService from "../../services/Users";
 
 export default class UserList extends Component {
     constructor(props) {

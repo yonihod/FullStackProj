@@ -9,12 +9,12 @@ import "./App.css";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import CreateUser from "./components/create-user.component";
-import UserList from "./components/list-user.component";
-import Login from "./components/login.component";
-import EditUser from "./components/edit-user.component";
-import Home from "./components/home.component";
-import About from "./components/about.component";
+import CreateUser from "./components/user/CreateUser";
+import UserList from "./components/user/ListUser";
+import Login from "./components/common/Login";
+import EditUser from "./components/user/EditUser";
+import Home from "./components/common/Home";
+import About from "./components/common/About";
 
 export default class App extends Component {
   render() {

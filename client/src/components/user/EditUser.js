@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
-import UserService from "../services/users";
+import UserService from "../../services/Users";
 
 export default class EditUser extends Component {
     constructor(props) {
