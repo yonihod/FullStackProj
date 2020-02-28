@@ -1,12 +1,14 @@
+import "./NavBar.css";
+import "bootstrap/dist/css/bootstrap.css";
+
 import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import "bootstrap/dist/css/bootstrap.css";
-import {useAuth0} from "../../react-auth0-spa";
+import {useAuth0} from "../../../react-auth0-spa";
 import {Link} from "react-router-dom";
 
 const NavBar = () => {
-    const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
+    const {isAuthenticated, loginWithRedirect, logout, user} = useAuth0();
 
     return (
         <Navbar bg="dark" variant="dark">
@@ -17,14 +19,9 @@ const NavBar = () => {
             <Nav><Link to={"/create-post"} className="nav-link">Create a post</Link></Nav>
             <Nav><Link to={"/about-us"} className="nav-link">About</Link></Nav>
             <Nav className="ml-auto">
-                {!isAuthenticated && (<button onClick={() => loginWithRedirect({})}>Log in</button>)}
-                {isAuthenticated && <button onClick={() => logout({returnTo: 'http://localhost:3002'})}>Log out</button>}
-                {isAuthenticated && (
-                    <span>
-                        <Link to="/">Home</Link>
-                        <Link to="/profile">Profile</Link>
-                    </span>
-                )}
+                {!isAuthenticated && <Link className="nav-link" to="/" onClick={() => loginWithRedirect({})}>Log in</Link>}
+                {isAuthenticated && <Link title={user.name} className="nav-link" to="/profile"><img src={user.picture} alt="Logo" className="avatar"/></Link> }
+                {isAuthenticated && <Link className="nav-link" to="/" onClick={() => logout({returnTo: ''})}>Log out</Link>}
             </Nav>
         </Navbar>
     );

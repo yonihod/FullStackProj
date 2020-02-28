@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
+import {useAuth0} from "../../react-auth0-spa";
 
-export default class Home extends Component {
-    render() {
+const Home = () => {
+    const {isAuthenticated, user} = useAuth0();
+    
         return (
             <div>
-                Welcome To Home Page!
+                Welcome {isAuthenticated ? user.given_name : "To Developi"}!
             </div>
         )
-    }
 }
+
+export default Home
