@@ -7,11 +7,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
 
-function initViewEngine(app) {
-    // view engine setup
-    app.set('views', path.resolve('views'));
-    app.set('view engine', 'jade');
-}
 
 function initAppMiddleware(app) {
     app.use(logger('dev'));
@@ -34,9 +29,11 @@ async function initSeedData() {
     try {
         const user = require('../models/user');
         const skill = require('../models/skill');
+        const post = require('../models/post');
 
         await skill.deleteMany();
         await user.deleteMany();
+        await post.deleteMany();
 
         const insertedSkills = await skill.insertMany([{name: 'web developer'}, {name: 'ios developer'}, {name: 'designer'}]);
         const skillsIds = insertedSkills.map(x => x._id);
@@ -44,6 +41,16 @@ async function initSeedData() {
         await user.insertMany([
             {name: 'Chen1', email: 'Chen1@gmail.com', skills: skillsIds},
             {name: 'Chen2', email: 'Chen2@gmail.com'}
+        ]);
+        await post.insertMany([
+            {title: 'How to detect that a screen is connected in cordova?',createdAt:Date.now,owner:'Kamil',
+                description: 'I am trying to detect if a display/screen/tv is connected to my X96 mini device which running Android and if it is even turned on.' +'The mini device has an HDMI connection to Screen.\n' +'\n' + 'Any help or hints pls.'},
+            {title: 'Failing at passing a host name variable to a role',createdAt:Date.now,owner:'Chen',
+                description: 'I am trying to pass two variables that contain host names to a role. Those host names will be user as hosts: values.I tried like this. - hosts: host1,'},
+            {title: 'How to detect that a screen is connected in cordova?',createdAt:Date.now,owner:'Or',
+                description: 'I am trying to detect if a display/screen/tv is connected to my X96 mini device which running Android and if it is even turned on.' +'The mini device has an HDMI connection to Screen.\n' +'\n' + 'Any help or hints pls.'},
+            {title: 'Best way to upload chunks one by one upto 1000 chunks using python',createdAt:Date.now,owner:'Alon',
+                description: 'we need to upload a large file so we are splitting the large file into chunks for Example we have 1000 chunks uploaded in python backend . Any help would be appreciated'}
         ]);
 
     } catch (err) {
@@ -72,14 +79,13 @@ function initErrorHandling(app) {
 function init() {
     const app = express();
 
-    initViewEngine(app);
     initAppMiddleware(app);
     initServerRoutes(app);
     initErrorHandling(app);
 
     // temporary for tests
     initSeedData().then(() => {
-        console.log("we have seed data")
+        console.log("Using Seed Data")
     });
 
     return app;

@@ -3,7 +3,7 @@ const Post = require('../models/post');
 module.exports = (app) => {
     app.route('/posts')
         .get((req, res) => {
-            Post.find().populate('user').then((data) => {
+            Post.find().populate('post').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);
@@ -21,7 +21,7 @@ module.exports = (app) => {
 
     app.route('/posts/:id')
         .get((req, res) => {
-            Post.findById(req.params.id).populate('user').then((data) => {
+            Post.findById(req.params.id).populate('post').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);
