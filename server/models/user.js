@@ -14,10 +14,6 @@ const userSchema = mongoose.Schema({
         type: String,
         // required: true
     },
-    address: {
-        type: String,
-        // required: true
-    },
     skills: [{
         type: ObjectId,
         ref: 'Skill'

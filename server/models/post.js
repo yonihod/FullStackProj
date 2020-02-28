@@ -14,16 +14,16 @@ let postSchema = Schema({
         trim: true
     },
     createdAt: {
-        type: String,
+        type: Date,
         required: true,
         default: Date.now
     },
     dueDate: {
-        type: String,
+        type: Date,
         required: false,
     },
     owner: {
-        type: String,
+        type: ObjectId,
         ref: 'User',
         required: true
     }
