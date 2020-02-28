@@ -43,13 +43,13 @@ async function initSeedData() {
             {name: 'Chen2', email: 'Chen2@gmail.com'}
         ]);
         await post.insertMany([
-            {title: 'How to detect that a screen is connected in cordova?',createdAt:Date.now,owner:'Kamil',
+            {title: 'How to detect that a screen is connected in cordova?',createdAt:Date.now(),owner:"507f1f77bcf86cd799439011",
                 description: 'I am trying to detect if a display/screen/tv is connected to my X96 mini device which running Android and if it is even turned on.' +'The mini device has an HDMI connection to Screen.\n' +'\n' + 'Any help or hints pls.'},
-            {title: 'Failing at passing a host name variable to a role',createdAt:Date.now,owner:'Chen',
+            {title: 'Failing at passing a host name variable to a role',createdAt:Date.now(),owner:"507f1f77bcf86cd799439012",
                 description: 'I am trying to pass two variables that contain host names to a role. Those host names will be user as hosts: values.I tried like this. - hosts: host1,'},
-            {title: 'How to detect that a screen is connected in cordova?',createdAt:Date.now,owner:'Or',
+            {title: 'How to detect that a screen is connected in cordova?',createdAt:Date.now(),owner:"507f1f77bcf86cd799439013",
                 description: 'I am trying to detect if a display/screen/tv is connected to my X96 mini device which running Android and if it is even turned on.' +'The mini device has an HDMI connection to Screen.\n' +'\n' + 'Any help or hints pls.'},
-            {title: 'Best way to upload chunks one by one upto 1000 chunks using python',createdAt:Date.now,owner:'Alon',
+            {title: 'Best way to upload chunks one by one upto 1000 chunks using python',createdAt:Date.now(),owner:"507f1f77bcf86cd799439014",
                 description: 'we need to upload a large file so we are splitting the large file into chunks for Example we have 1000 chunks uploaded in python backend . Any help would be appreciated'}
         ]);
 

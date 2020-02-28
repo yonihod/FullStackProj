@@ -3,7 +3,10 @@ import {Card,Button} from 'react-bootstrap'
 import {Link} from "react-router-dom";
 
 export default class PostBox extends Component {
-
+    constructor(props) {
+        super();
+        this.date = new Date(props.obj.createdAt);
+    }
     render() {
         return (
                 <Card className={"w-25 m-3"}>
@@ -12,10 +15,11 @@ export default class PostBox extends Component {
                         <Card.Title>
                             {this.props.obj.title}
                         </Card.Title>
+                        <Card.Subtitle>{this.date.toLocaleDateString('en-gb')}</Card.Subtitle>
                         <Card.Text>
                             {this.props.obj.description}
                         </Card.Text>
-                        <Link to="/posts/" params={{id:this.props.obj._id}}>
+                        <Link to={`posts/${this.props.obj._id}`}>
                             <Button variant={"primary"}>Explore</Button>
                         </Link>
                     </Card.Body>
