@@ -9,7 +9,7 @@ export default class PostBox extends Component {
     }
     render() {
         return (
-                <Card className={"w-25 m-3"}>
+                <Card className={"w-25 p-3"}>
                     <Card.Img variant={"top"} src="https://via.placeholder.com/250"/>
                     <Card.Body>
                         <Card.Title>

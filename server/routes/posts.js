@@ -10,8 +10,6 @@ module.exports = (app) => {
             });
         })
         .post((req, res) => {
-            // TODO
-            // post.user = getCurrentUserId
             Post.create(req.body).then((data) => {
                 res.status(201).json(data);
             }).catch(err => {
