@@ -10,7 +10,7 @@ export default class SinglePost extends Component {
             title: 'My Post Title',
             desc: 'My Post desc',
             owner: 'My Post owner',
-            due_date: 'My Post Date'
+            dueDate: 'My Post Date'
         };
 
         PostsService.getPost(props.match.params.id).then(data => {
@@ -18,9 +18,9 @@ export default class SinglePost extends Component {
             this.setState(
                 {
                     title: data.title,
-                    desc: data.desc,
-                    owner: data.owner,
-                    due_date: data.due_date
+                    desc: data.description,
+                    owner: data.owner.name,
+                    due_date: data.dueDate
                 })
         }).catch(err => {
             console.log(err);
@@ -32,7 +32,7 @@ export default class SinglePost extends Component {
             <div>
                 <h1>{this.state.title}</h1>
                 <div>
-                    <h4>{this.state.owner} / {this.state.due_date}</h4>
+                    <h4>{this.state.owner} / {this.state.dueDate}</h4>
                     {this.state.desc}
                 </div>
             </div>
