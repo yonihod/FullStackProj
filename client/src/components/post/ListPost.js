@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import PostsService from "../../services/Posts";
 import PostBox from "./PostBox";
-import UserTableRow from "../user/UserTableRow";
-import UserService from "../../services/Users";
 export default class ListPost extends Component {
 
     constructor(props) {
@@ -27,7 +25,7 @@ export default class ListPost extends Component {
     dataBox(){
         if(this.state.posts){
             return this.state.posts.map((res,i)=>{
-                if(res != undefined) {
+                if(res !== undefined) {
                     return <PostBox obj={res} key={i}/>
                 }
             })
