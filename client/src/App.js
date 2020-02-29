@@ -14,6 +14,7 @@ import SinglePost from "./components/post/SinglePost";
 import CreatePost from "./components/post/CreatePost";
 import About from "./components/common/About/About";
 import NavBar from "./components/common/navbar/NavBar";
+import Footer from "./components/common/Footer";
 
 function App() {
     const {loading} = useAuth0();
@@ -22,25 +23,28 @@ function App() {
         return <div>Loading...</div>;
     }
 
-    return <div className="App">
-        <Router history={history}>
-            <header>
-                <NavBar/>
-            </header>
-        <Container>
-            <div className="wrapper">
-                <Switch>
-                    <Route exact path="/" component={Home}/>
-                    <Route exact path="/posts" component={ListPosts}/>
-                    <Route path="/posts/:id" component={SinglePost}/>
-                    <Route path="/create-post" component={CreatePost}/>
-                    <Route path="/about-us" component={About}/>
-                    <Route path="/profile" component={Profile}/>
-                </Switch>
-            </div>
-        </Container>
-        </Router>
-    </div>;
+    return (
+        <div className="App">
+            <Router history={history}>
+                <header>
+                    <NavBar/>
+                </header>
+            <Container>
+                <div className="wrapper">
+                    <Switch>
+                        <Route exact path="/" component={Home}/>
+                        <Route path="/posts/:id" component={SinglePost}/>
+                        <Route path="/posts" component={ListPosts}/>
+                        <Route path="/create-post" component={CreatePost}/>
+                        <Route path="/about-us" component={About}/>
+                        <Route path="/profile" component={Profile}/>
+                    </Switch>
+                </div>
+            </Container>
+                <Footer/>
+                </Router>
+        </div>
+    );
 }
 
 export default App;

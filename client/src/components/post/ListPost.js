@@ -10,7 +10,6 @@ export default class ListPost extends Component {
 
         this.state = {
             posts: [],
-            done: props.location.state.done
         }
     }
 
