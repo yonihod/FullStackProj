@@ -39,8 +39,11 @@ export default class CreatePost extends Component {
         console.log(this.state);
 
         PostsService.AddPost(post).then( (res) => {
-            this.setState({title: '',createdAt: '', description: '', dueDate: '',owner: '', done: true, opened: false});
-            // this.props.history.push('/posts');
+            this.setState({title: '',createdAt: '', description: '', dueDate: '',owner: '', done: true});
+            this.props.history.push({
+                pathname:'/posts',
+                state:{done:true}
+            });
         }).catch( (err) => {
             console.log(err)
         });
@@ -51,12 +54,6 @@ export default class CreatePost extends Component {
             <div className={"w-50 mt-4 ml-auto mr-auto"}>
                 <h1>Submit Form</h1>
                 <div className="form-wrapper">
-                    <div>
-                        {this.state.done ? (
-                            <Success/>
-                        ) : null}
-                    </div>
-
                     {!this.state.done && (<Form onSubmit={this.handleSubmit.bind(this)}>
                         <Form.Group controlId="title">
                             <Form.Label>Title</Form.Label>
