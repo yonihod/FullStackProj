@@ -24,9 +24,9 @@ let postSchema = Schema({
     },
     owner: {
         type: ObjectId,
-        ref: 'users',
+        ref: 'User',
         required: true
     }
 });
 
-module.exports = mongoose.model('posts', postSchema);
+module.exports = mongoose.model('Post', postSchema);
