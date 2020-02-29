@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import PostsService from "../../services/Posts";
+import Success from "./Success";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
+import {withRouter} from 'react-router-dom';
 
 export default class CreatePost extends Component {
     constructor(props) {
@@ -10,64 +12,72 @@ export default class CreatePost extends Component {
         this.state = {
             title: "",
             description: "",
-            duoDate: "",
+            dueDate: "",
             owner: "5e5a3bfdd9b5a3209db11284",
-            createdAt: ""
-        }
+            createdAt: "",
+            done: false
+        };
     }
-    change = e => {
+
+    handleChange = e => {
         this.setState({
             [e.target.name] : e.target.value
         })
     };
 
-    onSubmit = e => {
+    handleSubmit = e => {
         e.preventDefault();
         // need to inject owner here (current active user)
         this.state.createdAt = Date.now();
         const post = {
             title: this.state.title,
             description: this.state.description,
-            duoDate: this.state.duoDate,
+            dueDate: this.state.dueDate,
             owner: this.state.owner,
             createdAt: this.state.createdAt
         };
         console.log(this.state);
 
         PostsService.AddPost(post).then( (res) => {
-            this.setState({title: '',createdAt: '', description: '', duoDate: '',owner: ''});
+            this.setState({title: '',createdAt: '', description: '', dueDate: '',owner: '', done: true, opened: false});
+            // this.props.history.push('/posts');
         }).catch( (err) => {
             console.log(err)
         });
     };
-
 
     render() {
         return (
             <div className={"w-50 mt-4 ml-auto mr-auto"}>
                 <h1>Submit Form</h1>
                 <div className="form-wrapper">
-                    <Form>
+                    <div>
+                        {this.state.done ? (
+                            <Success/>
+                        ) : null}
+                    </div>
+
+                    {!this.state.done && (<Form onSubmit={this.handleSubmit.bind(this)}>
                         <Form.Group controlId="title">
                             <Form.Label>Title</Form.Label>
-                            <Form.Control value = {this.state.title} onChange= {e=>this.change(e)} name="title" type="text"/>
+                            <Form.Control value = {this.state.title} onChange= {e=>this.handleChange(e)} name="title" type="text"/>
                         </Form.Group>
 
-                        <Form.Group controlId="duoDate">
-                            <Form.Label>Duo Date (Optional) </Form.Label>
-                            <Form.Control value = {this.state.duoDate} onChange= {e=>this.change(e)} name="duoDate" type="date"/>
+                        <Form.Group controlId="dueDate">
+                            <Form.Label>Due Date (Optional) </Form.Label>
+                            <Form.Control value = {this.state.dueDate} onChange= {e=>this.handleChange(e)} name="dueDate" type="date"/>
                         </Form.Group>
 
                         <Form.Group controlId="description">
                             <Form.Label>Description</Form.Label>
-                            <Form.Control value = {this.state.description} onChange= {e=>this.change(e)} name="description" as="textarea" rows={"4"}/>
+                            <Form.Control value = {this.state.description} onChange= {e=>this.handleChange(e)} name="description" as="textarea" rows={"4"}/>
                         </Form.Group>
 
-
-                        <Button onClick={(e)=>this.onSubmit(e)} variant="danger" size="lg" block="block" type="submit">
+                        <Button type="submit" variant="danger" size="lg" block="block">
                             Create Post
                         </Button>
-                    </Form>
+
+                    </Form>)}
                 </div>
             </div>
         );
