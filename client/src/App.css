@@ -48,12 +48,11 @@
   color: #ffffff;
 }
 .home h1 {
-  position: absolute;
+  position: relative;
   left: 0;
   z-index: 1;
   color: #ffffff;
   width: 100%;
-  background: linear-gradient(to bottom, #343a40, transparent 90%);
   padding-bottom: 30px;
   border-radius: 0 0 5px 5px;
   font-family: 'Dancing Script';
