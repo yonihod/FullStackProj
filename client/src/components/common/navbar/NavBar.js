@@ -20,8 +20,8 @@ const NavBar = () => {
             <Nav><Link to={"/about-us"} className="nav-link">About</Link></Nav>
             <Nav className="ml-auto">
                 {!isAuthenticated && <Link className="nav-link" to="/" onClick={() => loginWithRedirect({})}>Log in</Link>}
-                {isAuthenticated && <Link title={user.name} className="nav-link" to="/profile"><img src={user.picture} alt="Logo" className="avatar"/></Link> }
-                {isAuthenticated && <Link className="nav-link" to="/" onClick={() => logout({returnTo: ''})}>Log out</Link>}
+                {isAuthenticated && <Link title={user.name} className="nav-link" to="/profile"><img src={user.picture} alt="Logo" className="avatar"/></Link>}
+                {isAuthenticated && <Link className="nav-link" to="/" onClick={() => logout({returnTo: window.location.origin})}>Log out</Link>}
             </Nav>
         </Navbar>
     );
