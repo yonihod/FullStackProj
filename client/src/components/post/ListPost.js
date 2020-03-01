@@ -7,9 +7,13 @@ export default class ListPost extends Component {
 
     constructor(props) {
         super(props);
-
+        var done = false;
+        if(typeof props.location !== 'undefined' && typeof  props.location.state != 'undefined' && typeof props.location.state.done != "undefined"){
+            done = props.location.state.done;
+        }
         this.state = {
             posts: [],
+            done: done
         }
     }
 
