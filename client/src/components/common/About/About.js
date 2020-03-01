@@ -1,12 +1,15 @@
 import React, {Component} from 'react'
-import "./About.css";
 import Map from "../Map/Map";
+import HeadImg from '../../../images/about.jpeg';
+
+
 
 export default class about extends Component {
     render() {
         return (
             <div className={"about"}>
-                <section>
+                <section className="head">
+
                     <h1 className="title m-4">Welcome To DEVELOPI!</h1>
                     <p className="body_text">
                         Our product is a combination of existing solutions, focusing on one niche so it would be more
@@ -16,7 +19,7 @@ export default class about extends Component {
                         Fiverr and Stackoverflow.
                     </p>
                 </section>
-                <section id="our-team">
+                <div id="our-team">
                     <h1 className={"m-4"}>Our Team</h1>
                     <div id="team-container">
                         <div>
@@ -40,7 +43,7 @@ export default class about extends Component {
                             <img src="/Blank-Silhouette.jpg" alt=""/>
                         </div>
                     </div>
-                </section>
+                </div>
                 <section>
                     <h3 className="title">The Map!</h3>
                     <Map style={"margin:auto; width:100%"}/>
