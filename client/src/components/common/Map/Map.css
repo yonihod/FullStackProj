@@ -1,4 +1,12 @@
 .MapStyle {
-    width: 50%;
-    height: 336px;
+    margin: 20px auto 100px auto !important;
+    position: relative !important;
+    width: 400px !important;
+    transition: width 1s, height 4s;
+    padding-bottom: 20%;
+}
+.MapStyle:hover {
+    width: 800px !important;
+    height: 100% !important;
+    padding-bottom: 40%;
 }

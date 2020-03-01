@@ -3,4 +3,10 @@
     width: 35px;
     height: 35px;
     border-radius: 50%;
-  }
+}
+.navbar {
+    z-index: 1;
+}
+.nav-link {
+    text-transform: capitalize;
+}

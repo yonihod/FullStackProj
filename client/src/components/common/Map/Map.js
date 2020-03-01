@@ -26,7 +26,6 @@ class MapContainer extends Component {
             <Map className="MapStyle"
                 google={this.props.google}
                 zoom={8}
-                style={Map.css}
                 initialCenter={{lat: 47.444, lng: -122.176}}
             >
                 {this.displayMarkers()}

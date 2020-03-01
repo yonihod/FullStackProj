@@ -13,4 +13,4 @@ let skillSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('skills', skillSchema);
+module.exports = mongoose.model('Skill', skillSchema);
