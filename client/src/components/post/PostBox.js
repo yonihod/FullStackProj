@@ -6,7 +6,7 @@ export default class PostBox extends Component {
 
     render() {
         return (
-                <Card className={"w-25 p-3"}>
+                <Card className={"w-25 m-2"}>
                     <Card.Img variant={"top"} src="https://via.placeholder.com/250"/>
                     <Card.Body>
                         <Card.Title>
@@ -16,8 +16,7 @@ export default class PostBox extends Component {
                             {this.props.obj.description}
                         </Card.Text>
                         <Link to={`/posts/${this.props.obj._id}`}>
-                            <Button variant={"primary"}>Explore</Button>
-
+                            <Button className="explore" variant={"primary"}>Explore</Button>
                         </Link>
 
                     </Card.Body>
