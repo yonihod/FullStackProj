@@ -40,6 +40,7 @@ export default class CreateUser extends Component {
         this.setState({rollno: e.target.value})
     }
 
+
     onSubmit(e) {
         e.preventDefault();
 
@@ -80,6 +81,7 @@ export default class CreateUser extends Component {
                 <Button variant="danger" size="lg" block="block" type="submit">
                     Create User
                 </Button>
+
             </Form>
         </div>);
     }

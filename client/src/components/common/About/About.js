@@ -8,14 +8,15 @@ export default class about extends Component {
     render() {
         return (
             <div className={"about"}>
-                <section className="head">
 
+                <section className="head">
                     <h1 className="title m-4">Welcome To DEVELOPI!</h1>
                     <p className="body_text">
-                        Our product is a combination of existing solutions, focusing on one niche so it would be more
+                        Our product is a combination of existing solutions,<br/>
+                        focusing on one niche so it would be more<br/>
                         suitable for developers and answer their needs.
                         <br/>
-                        The existing solutions that correspond with our product are mainly :
+                        The existing solutions that correspond with our product are mainly :<br/>
                         Fiverr and Stackoverflow.
                     </p>
                 </section>
@@ -45,7 +46,7 @@ export default class about extends Component {
                     </div>
                 </div>
                 <section>
-                    <h3 className="title">The Map!</h3>
+                    <h3 className="Map_title">The Map!</h3>
                     <Map style={"margin:auto; width:100%"}/>
                 </section>
             </div>

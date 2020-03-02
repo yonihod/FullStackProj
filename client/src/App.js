@@ -38,9 +38,11 @@ function App() {
                         <Route path="/create-post" component={CreatePost}/>
                         <Route path="/about-us" component={About}/>
                         <Route path="/profile" component={Profile}/>
+
                     </Switch>
                 </div>
             </Container>
+
                 <Footer/>
                 </Router>
         </div>

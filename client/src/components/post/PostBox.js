@@ -17,7 +17,9 @@ export default class PostBox extends Component {
                         </Card.Text>
                         <Link to={`/posts/${this.props.obj._id}`}>
                             <Button variant={"primary"}>Explore</Button>
+
                         </Link>
+
                     </Card.Body>
                 </Card>
             );

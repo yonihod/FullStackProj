@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PostsService from "../../services/Posts";
+import { FacebookProvider, ShareButton } from 'react-facebook';
+import getCurrentHref from "react-facebook/dist/utils/getCurrentHref";
 
 export default class SinglePost extends Component {
     constructor(props) {
@@ -35,7 +37,14 @@ export default class SinglePost extends Component {
                     <h4>{this.state.owner} / {this.state.dueDate}</h4>
                     {this.state.desc}
                 </div>
+                <FacebookProvider appId="508196770093253">
+                    <ShareButton href={getCurrentHref()}>
+                        Share post
+                    </ShareButton>
+                </FacebookProvider>
             </div>
+
+
         );
     }
 }
