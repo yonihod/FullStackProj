@@ -1,14 +1,12 @@
 import React, {Component} from 'react'
 import Map from "../Map/Map";
-import HeadImg from '../../../images/about.jpeg';
-
-
+import image from "../../../images/about_us.jpg";
 
 export default class about extends Component {
     render() {
         return (
             <div className={"about"}>
-
+                <img src={image} className="about_img"/>
                 <section className="head">
                     <h1 className="title m-4">Welcome To DEVELOPI!</h1>
                     <p className="body_text">
