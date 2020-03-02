@@ -37,11 +37,7 @@
     transform: rotate(360deg);
   }
 }
-#cards-container {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -109,4 +105,29 @@
 .about #our-team #team-container > div img {
   max-width: 100%;
 }
+
+#cards-container {
+  padding-top: 25%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.posts_img{
+  width: 100%;
+  height: 500px;
+  position:absolute;
+  right:0;
+}
+
+.Writer{
+  position: relative;
+  padding-top: 20%;
+  right: 28.5rem;
+}
+
+.Writer h1{
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;}
+
+
 /*# sourceMappingURL=App.css.map */
