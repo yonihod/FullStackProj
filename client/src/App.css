@@ -82,10 +82,11 @@
 }
 
 .about .body_text {
-  font-family: 'Droid Sans', sans-serif; font-size: 15px; font-weight: 400;
-
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
   position: relative;
-    right: 30rem;
+  right: 30rem;
 
 }
 
