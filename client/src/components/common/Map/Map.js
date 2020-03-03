@@ -22,26 +22,27 @@ class MapContainer extends Component {
             console.log(data);
             this.setState(
                 {addresses : data})
+
         }).catch(err => {
             console.log(err);
         });
-    }
 
-    displayMarkers = () => {
-        if (this.props.addresses) {
-            return this.state.addresses.map((data, index) => {
-                if (data !== undefined) {
-                    return <Marker key={index} id={index} position={{
-                        lat: this.state.addresses.lat,
-                        lng: this.state.addresses.lng
-                    }}
-                                   onClick={() => console.log(this.state.name)}/>
-                }})
-        }};
+       Marker.displayMarkers=(data) => {
+           if (this.props.addresses) {
+               return this.state.addresses.map((data, index) => {
+                   if (data !== undefined) {
+                       return <Marker key={index} id={index} position={{
+                           lat: this.state.addresses.lat,
+                           lng: this.state.addresses.lng
+                       }}
+                                      onClick={() => console.log(this.state.name)}/>
+                   }})
+           }};
+    }
 
     render(){
         return (
-            <Map className="MapStyle"
+            <Map className="MapStyle">
                  google={this.state.google}
                  zoom={8}
                  initialCenter={{lat: this.state.addresses.lat, lng: this.state.addresses.lng}}
