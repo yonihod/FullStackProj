@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
+import React, { Component } from 'react'
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 
 import "./Map.css";
@@ -8,45 +8,42 @@ import PostsService from "../../../services/Posts";
 import PostBox from "../../post/PostBox";
 
 class MapContainer extends Component {
-
     constructor(props) {
         super(props);
 
         this.state = {
-        addresses: []
+            addresses: []
         };
     }
 
-   componentDidMount(): void {
+    componentDidMount() {
         AddressesService.getAddresses().then(data => {
-            console.log(data);
-            this.setState(
-                {addresses : data})
-
+            this.setState({ addresses: data })
         }).catch(err => {
             console.log(err);
         });
-
-       Marker.displayMarkers=(data) => {
-           if (this.props.addresses) {
-               return this.state.addresses.map((data, index) => {
-                   if (data !== undefined) {
-                       return <Marker key={index} id={index} position={{
-                           lat: this.state.addresses.lat,
-                           lng: this.state.addresses.lng
-                       }}
-                                      onClick={() => console.log(this.state.name)}/>
-                   }})
-           }};
     }
 
-    render(){
+    displayMarkers = () => {
+        if (this.state.addresses) {
+            return this.state.addresses.map((data, index) => {
+                if (data !== undefined) {
+                    return <Marker key={index} id={index} position={{
+                        lat: this.state.addresses[index].lat,
+                        lng: this.state.addresses[index].lng
+                    }}
+                    onClick={() => console.log(this.state.name)} />
+                }
+            })
+        }
+    };
+
+    render() {
         return (
-            <Map className="MapStyle">
-                 google={this.state.google}
-                 zoom={8}
-                 initialCenter={{lat: this.state.addresses.lat, lng: this.state.addresses.lng}}
-            >
+            <Map className="MapStyle"
+                google={this.props.google}
+                zoom={8}
+                initialCenter={{ lat: 31.970004, lng: 34.770976 }}>
                 {this.displayMarkers()}
             </Map>
         );
