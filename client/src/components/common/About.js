@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Map from "../Map/Map";
+import Map from "./Map/Map";
 
 export default class about extends Component {
     render() {
