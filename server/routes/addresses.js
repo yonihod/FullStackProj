@@ -17,9 +17,9 @@ module.exports = (app) => {
             });
         });
 
-    app.route('/address/:id')
+    app.route('/address/:name')
         .get((req, res) => {
-            Address.findById(req.params.id).populate('skills posts').then((data) => {
+            Address.findById(req.params.name).populate('skills posts').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);

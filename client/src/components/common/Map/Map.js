@@ -32,7 +32,7 @@ class MapContainer extends Component {
                         lat: this.state.addresses[index].lat,
                         lng: this.state.addresses[index].lng
                     }}
-                    onClick={() => console.log(this.state.name)} />
+                    onClick={() => console.log(this.state.addresses[index].name)} />
                 }
             })
         }
