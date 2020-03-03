@@ -2,13 +2,15 @@ import React, {Component} from 'react'
 import PostsService from "../../services/Posts";
 import PostBox from "./PostBox";
 import Success from "./Success";
+import "../../App.css";
+import Typist from 'react-typist';
 
 export default class ListPost extends Component {
 
     constructor(props) {
         super(props);
         var done = false;
-        if(typeof props.location !== 'undefined' && typeof  props.location.state != 'undefined' && typeof props.location.state.done != "undefined"){
+        if (typeof props.location !== 'undefined' && typeof props.location.state != 'undefined' && typeof props.location.state.done != "undefined") {
             done = props.location.state.done;
         }
         this.state = {
@@ -16,7 +18,6 @@ export default class ListPost extends Component {
             done: done
         }
     }
-
 
     componentDidMount() {
 
@@ -41,10 +42,17 @@ export default class ListPost extends Component {
 
     render() {
         return (
-            <div>
+            <div className={"post-page"}>
                 {this.state.done ? <Success/> : null}
-                <h1>Posts</h1>
-                <div id={'cards-container'}>
+                <img src="/posts_people.jpg" className="posts_img"/>
+                <div className="Writer">
+                    <Typist>
+                    <h1>Choose your task</h1> <br/>
+                    <h4>A single place, millions of creative talents<br/>Improve your quality of life with style</h4>
+                </Typist>
+                </div>
+
+                <div id="cards-container">
                     {this.dataBox()}
                 </div>
             </div>

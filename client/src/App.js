@@ -12,7 +12,7 @@ import Home from "./components/common/Home";
 import ListPosts from "./components/post/ListPost";
 import SinglePost from "./components/post/SinglePost";
 import CreatePost from "./components/post/CreatePost";
-import About from "./components/common/About/About";
+import About from "./components/common/About";
 import NavBar from "./components/common/navbar/NavBar";
 import Footer from "./components/common/Footer";
 
@@ -38,9 +38,11 @@ function App() {
                         <Route path="/create-post" component={CreatePost}/>
                         <Route path="/about-us" component={About}/>
                         <Route path="/profile" component={Profile}/>
+
                     </Switch>
                 </div>
             </Container>
+
                 <Footer/>
                 </Router>
         </div>

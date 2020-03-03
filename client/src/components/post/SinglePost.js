@@ -39,7 +39,10 @@ export default class SinglePost extends Component {
                     <h3>Tags:</h3>
                     {this.state.tags.map(t => <li key={t}>{t}</li>)}
                 </div>
+
             </div>
+
+
         );
     }
 }
