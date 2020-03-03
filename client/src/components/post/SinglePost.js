@@ -10,7 +10,8 @@ export default class SinglePost extends Component {
             title: 'My Post Title',
             desc: 'My Post desc',
             owner: 'My Post owner',
-            dueDate: 'My Post Date'
+            dueDate: 'My Post Date',
+            tags: ['My Tags', 'Second Tag']
         };
 
         PostsService.getPost(props.match.params.id).then(data => {
@@ -19,8 +20,9 @@ export default class SinglePost extends Component {
                 {
                     title: data.title,
                     desc: data.description,
-                    owner: data.owner.name,
-                    due_date: data.dueDate
+                    owner: data.owner?.name,
+                    due_date: data.dueDate,
+                    tags: data.tags
                 })
         }).catch(err => {
             console.log(err);
@@ -34,6 +36,8 @@ export default class SinglePost extends Component {
                 <div>
                     <h4>{this.state.owner} / {this.state.dueDate}</h4>
                     {this.state.desc}
+                    <h3>Tags:</h3>
+                    {this.state.tags.map(t => <li key={t}>{t}</li>)}
                 </div>
             </div>
         );

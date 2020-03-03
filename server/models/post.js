@@ -22,6 +22,10 @@ let postSchema = Schema({
         type: Date,
         required: false,
     },
+    tags: {
+        type: [String],
+        required: false,
+    },
     owner: {
         type: ObjectId,
         ref: 'User',
