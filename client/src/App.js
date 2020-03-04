@@ -15,6 +15,7 @@ import CreatePost from "./components/post/CreatePost";
 import About from "./components/common/About";
 import NavBar from "./components/common/navbar/NavBar";
 import Footer from "./components/common/Footer";
+import EditPost from "./components/post/EditPost";
 
 function App() {
     const {loading} = useAuth0();
@@ -36,9 +37,9 @@ function App() {
                         <Route path="/posts/:id" component={SinglePost}/>
                         <Route path="/posts" component={ListPosts}/>
                         <Route path="/create-post" component={CreatePost}/>
+                        <Route path="/edit-post/:id" component={EditPost}/>
                         <Route path="/about-us" component={About}/>
                         <Route path="/profile" component={Profile}/>
-
                     </Switch>
                 </div>
             </Container>

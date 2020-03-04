@@ -21,7 +21,7 @@ export default class SinglePost extends Component {
                     title: data.title,
                     desc: data.description,
                     owner: data.owner?.name,
-                    due_date: data.dueDate,
+                    dueDate: data.dueDate,
                     tags: data.tags
                 })
         }).catch(err => {

@@ -65,6 +65,26 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+.post-page #cards-container .card {
+  position: relative;
+}
+.post-page #cards-container .card .manage-post {
+  width: 90px;
+  position: absolute;
+  right: 0;
+  background: darkgray;
+  transition: padding-left 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+  padding: 0;
+}
+.post-page #cards-container .card .manage-post a {
+  color: #000000;
+}
+.post-page #cards-container .card .manage-post i {
+  padding: 5px;
+  margin-left: 5px;
+}
 .post-page #cards-container .card .card-body {
   position: relative;
 }
@@ -86,6 +106,12 @@
   -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+}
+.post-page #cards-container .card:hover .manage-post {
+  width: 90px;
+  opacity: 1;
+  pointer-events: initial;
+  padding: 0 10px;
 }
 .about .head h1 {
   color: white;

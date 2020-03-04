@@ -44,10 +44,10 @@ module.exports = (app) => {
             });
         })
         .put((req, res) => {
-            Post.findByIdAndUpdate(req.params.id, req.body, {
+            Post.findByIdAndUpdate({_id:req.params.id}, req.body, {
                 new: true,
                 upsert: true
-            }).then(data => {
+            }).populate("owner").then(data => {
                 res.status(200).json(data);
             }).catch(err => {
                 console.log(err);
