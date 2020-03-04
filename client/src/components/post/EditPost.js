@@ -1,7 +1,46 @@
-import React, {Component} from "react";
+import React, {Component,useState} from "react";
 import PostsService from "../../services/Posts";
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button';
+import {Button,Modal} from 'react-bootstrap';
+
+function  Delete(id) {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const confirmDelete = () => {
+        debugger;
+        PostsService.DeletePost(id.value).then(()=>{
+            handleClose();
+            this.props.history.push({
+                pathname:'/posts',
+                state:{done:true}
+            });
+        }).catch( (err) => {
+            console.log(err)
+        });
+    }
+
+    return (
+        <>
+            <Button onClick={handleShow} className="delete" size={"lg"} variant={'danger'}>
+                <i className={"fa fa-trash-alt"}></i>
+            </Button>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Delete</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are you sure you want to delete this post?</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={confirmDelete}>
+                        Yes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
+}
 
 export default class EditPost extends Component {
     constructor(props) {
@@ -71,8 +110,9 @@ export default class EditPost extends Component {
 
     render() {
         return (
-            <div className={"w-50 mt-4 ml-auto mr-auto"}>
-                <h1>Edit Form</h1>
+            <div className={"w-50 mt-4 ml-auto mr-auto edit-post"}>
+                <h1>Edit Post</h1>
+                <Delete value={this.state.id}/>
                 <div className="form-wrapper">
                     {!this.state.done && (<Form onSubmit={this.handleSubmit.bind(this)}>
                         <Form.Group controlId="title">

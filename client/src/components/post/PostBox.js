@@ -11,7 +11,7 @@ export default class PostBox extends Component {
                         <Link to={`/edit-post/${this.props.obj._id}`}>
                             <i className={"fa fa-edit"}></i>
                         </Link>
-                        <Link data-value={this.props.obj._id} onClick={ () => this.toggleModal()}>
+                        <Link to={`/edit-post/${this.props.obj._id}`}>
                             <i className={"fa fa-trash-alt"}></i>
                         </Link>
                     </div>
