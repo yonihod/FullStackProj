@@ -9,7 +9,6 @@ function  Delete(id) {
     const handleShow = () => setShow(true);
 
     const confirmDelete = () => {
-        debugger;
         PostsService.DeletePost(id.value).then(()=>{
             handleClose();
             this.props.history.push({
