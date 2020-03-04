@@ -32,7 +32,7 @@ class MapContainer extends Component {
                         lat: this.state.addresses[index].lat,
                         lng: this.state.addresses[index].lng
                     }}
-                    onClick={() => console.log(this.state.addresses[index].name)} />
+                                   onClick={() => console.log(this.state.addresses[index].name)} />
                 }
             })
         }
@@ -41,9 +41,9 @@ class MapContainer extends Component {
     render() {
         return (
             <Map className="MapStyle"
-                google={this.props.google}
-                zoom={8}
-                initialCenter={{ lat: 31.970004, lng: 34.770976 }}>
+                 google={this.props.google}
+                 zoom={8}
+                 initialCenter={{ lat: 31.970004, lng: 34.770976 }}>
                 {this.displayMarkers()}
             </Map>
         );
@@ -52,4 +52,3 @@ class MapContainer extends Component {
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyANXoJgfGOa7RzybrEblW5oi9Tcze7MVnU'
 })(MapContainer);
-
