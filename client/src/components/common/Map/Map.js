@@ -4,8 +4,6 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 import "./Map.css";
 import AddressesService from "../../../services/Addresses";
-import PostsService from "../../../services/Posts";
-import PostBox from "../../post/PostBox";
 
 class MapContainer extends Component {
     constructor(props) {
