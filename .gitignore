@@ -16,3 +16,4 @@
 /client/build
 /client/.idea
 /server/node_modules
+/server/config.js
