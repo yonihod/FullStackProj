@@ -10,12 +10,22 @@ export default class ListPost extends Component {
     constructor(props) {
         super(props);
         var done = false;
+        var alertType = 'success';
+        var msg = "";
         if (typeof props.location !== 'undefined' && typeof props.location.state != 'undefined' && typeof props.location.state.done != "undefined") {
             done = props.location.state.done;
         }
+        if (typeof props.location !== 'undefined' && typeof props.location.state != 'undefined' && typeof props.location.state.alertType != "undefined") {
+            alertType = props.location.state.alertType;
+        }
+        if (typeof props.location !== 'undefined' && typeof props.location.state != 'undefined' && typeof props.location.state.msg != "undefined") {
+            msg = props.location.state.msg;
+        }
         this.state = {
             posts: [],
-            done: done
+            done: done,
+            alertType : alertType,
+            msg : msg
         }
     }
 
@@ -43,7 +53,7 @@ export default class ListPost extends Component {
     render() {
         return (
             <div className={"post-page"}>
-                {this.state.done ? <Success/> : null}
+                {this.state.done ? <Success value={this.state}/> : null}
                 <img src="/posts_people.jpg" className="posts_img"/>
                 <div className="Writer">
                     <Typist>

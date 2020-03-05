@@ -44,7 +44,7 @@ export default class CreatePost extends Component {
             this.setState({title: '',createdAt: '', description: '', dueDate: '',owner: '', done: true});
             this.props.history.push({
                 pathname:'/posts',
-                state:{done:true}
+                state:{done:true,msg:"Post Created Successfully",alertType:"success"}
             });
         }).catch( (err) => {
             console.log(err)

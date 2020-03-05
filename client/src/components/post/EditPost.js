@@ -3,22 +3,19 @@ import PostsService from "../../services/Posts";
 import Form from 'react-bootstrap/Form'
 import {Button,Modal} from 'react-bootstrap';
 
-function  Delete(id) {
+function  Delete(prop) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const confirmDelete = () => {
-        PostsService.DeletePost(id.value).then(()=>{
+        PostsService.DeletePost(prop.value).then(()=>{
             handleClose();
-            this.props.history.push({
-                pathname:'/posts',
-                state:{done:true}
-            });
+            prop.onChange();
         }).catch( (err) => {
             console.log(err)
         });
-    }
+    };
 
     return (
         <>
@@ -107,11 +104,28 @@ export default class EditPost extends Component {
         });
     };
 
+    handleDelete = () => {
+        this.setState( {
+            id: "",
+            title: "",
+            description: "",
+            dueDate: "",
+            tags: "",
+            owner: "",
+            createdAt: "",
+            done: true
+        });
+        this.props.history.push({
+            pathname:'/posts',
+            state:{done:true,alertType: "danger", msg: "Post Deleted Successfully"}
+        });
+    };
+
     render() {
         return (
             <div className={"w-50 mt-4 ml-auto mr-auto edit-post"}>
                 <h1>Edit Post</h1>
-                <Delete value={this.state.id}/>
+                <Delete value={this.state.id} onChange={this.handleDelete}/>
                 <div className="form-wrapper">
                     {!this.state.done && (<Form onSubmit={this.handleSubmit.bind(this)}>
                         <Form.Group controlId="title">

@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
 
+@keyframes fadeOut {
+  0% {
+    visibility: visible;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
 .App {
   text-align: center;
 }
@@ -72,6 +83,26 @@
   .Writer h1{
     color: white;
     text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
+  }
+
+  .success,.danger {
+    position: absolute;
+    top: 150px;
+    right: 50px;
+    height: 50px;
+    width: 200px;
+    line-height: 50px;
+    color: #ffffff;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2s;
+    animation: 3.5s fadeOut;
+  }
+  .success {
+    background: yellowgreen;
+  }
+  .danger {
+    background: #dc3545;
   }
 
   .posts_img {
