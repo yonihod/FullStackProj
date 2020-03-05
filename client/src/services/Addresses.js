@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default class UserService {
+export default class AddressesService {
     static Addresses_API = `${process.env.REACT_APP_API_URL}/addresses`;
 
     static getAddresses() {
@@ -21,7 +21,7 @@ export default class UserService {
             });
     }
 
-    static AddAddress(address) {
+    static addAddress(address) {
         return axios.post(this.Addresses_API, address)
             .then((response) => {
                 return response.data;
