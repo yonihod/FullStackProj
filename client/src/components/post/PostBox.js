@@ -7,6 +7,14 @@ export default class PostBox extends Component {
     render() {
         return (
                 <Card className={"w-25 m-2"}>
+                    <div className={"manage-post"}>
+                        <Link to={`/edit-post/${this.props.obj._id}`}>
+                            <i className={"fa fa-edit"}></i>
+                        </Link>
+                        <Link to={`/edit-post/${this.props.obj._id}`}>
+                            <i className={"fa fa-trash-alt"}></i>
+                        </Link>
+                    </div>
                     <Card.Img variant={"top"} src="https://via.placeholder.com/250"/>
                     <Card.Body>
                         <Card.Title>

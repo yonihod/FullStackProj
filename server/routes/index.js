@@ -1,5 +1,6 @@
+const path = require('path');
 module.exports = (app) => {
     app.route('/').get((req, res) => {
-        res.render('index', {title: 'Express'});
-    })
+        res.redirect(process.env.CLIENT_URL);
+    });
 };

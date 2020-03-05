@@ -16,6 +16,6 @@ const Home = () => {
                 </aside>
             </div>
         )
-}
+};
 
 export default Home

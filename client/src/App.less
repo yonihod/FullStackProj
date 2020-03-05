@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
 
+@keyframes fadeOut {
+  0% {
+    visibility: visible;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
 .App {
   text-align: center;
 }
@@ -28,6 +39,9 @@
 .App-link {
   color: #61dafb;
 }
+.form-wrapper {
+  text-align: left;
+}
 
 .footer {
   position: fixed;
@@ -55,16 +69,40 @@
     min-height: 100%;
   }
 }
-.post-page {
-  .Writer{
-    position: relative;
-    padding-top: 20%;
-    right: 28.5rem;
+.edit-post {
+  h1,.delete {
+    display: inline-block;
   }
+  .delete {
+    margin-left: 2rem;
+    vertical-align: top;
+  }
+}
+.post-page {
 
   .Writer h1{
     color: white;
     text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
+  }
+
+  .success,.danger {
+    position: absolute;
+    top: 150px;
+    right: 50px;
+    height: 50px;
+    width: 200px;
+    line-height: 50px;
+    color: #ffffff;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2s;
+    animation: 3.5s fadeOut;
+  }
+  .success {
+    background: yellowgreen;
+  }
+  .danger {
+    background: #dc3545;
   }
 
   .posts_img {
@@ -75,6 +113,24 @@
     justify-content: center;
     flex-wrap: wrap;
     .card {
+      position: relative;
+      .manage-post {
+        a {
+          color: #000000;
+        }
+        width: 90px;
+        position: absolute;
+        right: 0;
+        background: darkgray;
+        transition: padding-left 0.5s ease;
+        opacity: 0;
+        pointer-events: none;
+        padding: 0;
+        i {
+          padding: 5px;
+          margin-left: 5px;
+        }
+      }
       .card-body {
         position: relative;
         .card-text {
@@ -96,19 +152,30 @@
         -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
         -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
         box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
+        .manage-post {
+          width: 90px;
+          opacity: 1;
+          pointer-events: initial;
+          padding: 0 10px;
+        }
       }
     }
   }
 }
 .about {
-  .head{
-    position: relative;
-    padding-top: 20%;
-    right: 28.5rem;
-  }
-  .head h1{
-    color: white;
-    text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
+  .head {
+    h1{
+      color: white;
+      text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
+    }
+    .body_text {
+      column-count: 2;
+      column-rule: lightgray;
+      column-gap: normal;
+      text-align: left;
+      padding: 10px;
+      margin-top: 20px;
+    }
   }
   .about_img {
     max-width: 100%;
