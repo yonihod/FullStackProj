@@ -10,15 +10,15 @@ export default class Skills extends Component {
         };
     }
 
-    componentDidMount() {
-        UserService.getUser(this.props.match.params.id).then(res => {
-            this.setState({
-                skills: JSON.parse(res).skills
-            });
-        }).catch(err => {
-            console.log('There has been an error loading skills in skills-component: ' + err);
-        });
-    }
+    // componentDidMount() {
+    //     UserService.getUser(this.props.match.params.id).then(res => {
+    //         this.setState({
+    //             skills: JSON.parse(res).skills
+    //         });
+    //     }).catch(err => {
+    //         console.log('There has been an error loading skills in skills-component: ' + err);
+    //     });
+    // }
 
     render() {
         return (
