@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import {useAuth0} from "../../../react-auth0-spa";
+import {useAuth0} from "../../../reactAuth0";
 import {Link} from "react-router-dom";
 
 const NavBar = () => {
