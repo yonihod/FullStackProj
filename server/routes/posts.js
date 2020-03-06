@@ -1,11 +1,12 @@
 const Post = require('../models/post');
-var natural = require('natural');
+const {io} = require('../lib/socketio');
+const natural = require('natural');
 
 function classify(title) {
     return new Promise((resolve, reject) => {
         natural.BayesClassifier.load('machine-learning/classifier.json', null, function (err, classifier) {
             let data = classifier.getClassifications(title.toLowerCase())
-                .filter(x => /*x.value > 0.0001 &&*/ x.label !== '') // filter blank tags and option to recive tags with a certain precision
+                .filter(x => /*x.value > 0.0001 &&*/ x.label !== '') // filter blank tags and option to receive tags with a certain precision
                 .sort((x, y) => y.value - x.value)
                 .slice(0, 3);
 
@@ -28,6 +29,7 @@ module.exports = (app) => {
                 req.body.tags = tags.map(x => x.label);
 
                 Post.create(req.body).then((data) => {
+                    io().emit('newPost', data);
                     res.status(201).json(data);
                 }).catch(err => {
                     console.log(err);
@@ -44,7 +46,7 @@ module.exports = (app) => {
             });
         })
         .put((req, res) => {
-            Post.findByIdAndUpdate({_id:req.params.id}, req.body, {
+            Post.findByIdAndUpdate({_id: req.params.id}, req.body, {
                 new: true,
                 upsert: true
             }).populate("owner").then(data => {
