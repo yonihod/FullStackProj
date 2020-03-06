@@ -11,7 +11,7 @@ const addressesSchema = mongoose.Schema({
     },
     lng: {
         type: String,
-        // required: true
+        required: true
     }
 })
 

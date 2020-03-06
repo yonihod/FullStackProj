@@ -57,7 +57,7 @@ export default class ListPost extends Component {
         return (
             <div className={"post-page"}>
                 {this.state.done ? <Success value={this.state}/> : null}
-                <img src="/posts_people.jpg" className="posts_img"/>
+                <img src="/posts-people.jpg" className="posts_img"/>
                 <div className="Writer">
                     <Typist>
                         <h1>Choose your task</h1> <br/>

@@ -6,6 +6,6 @@ exports.io = function () {
     return io;
 };
 
-exports.initSocket = function(server) {
+exports.initSocket = function (server) {
     return io = socketIo(server);
 };

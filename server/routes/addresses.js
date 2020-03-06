@@ -3,7 +3,7 @@ const Address = require('../models/address');
 module.exports = (app) => {
     app.route('/addresses')
         .get((req, res) => {
-            Address.find().populate('skills').then((data) => {
+            Address.find().then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);
@@ -19,7 +19,7 @@ module.exports = (app) => {
 
     app.route('/address/:id')
         .get((req, res) => {
-            Address.findById(req.params.id).populate('skills posts').then((data) => {
+            Address.findById(req.params.id).then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);
