@@ -1,9 +1,7 @@
 import React, {Component} from "react";
 import PostsService from "../../services/Posts";
-import Success from "./Success";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
-import {withRouter} from 'react-router-dom';
 
 export default class CreatePost extends Component {
     constructor(props) {
@@ -13,6 +11,7 @@ export default class CreatePost extends Component {
             title: "",
             description: "",
             dueDate: "",
+            tags:[],
             owner: "5e5a3bfdd9b5a3209db11284",
             createdAt: "",
             done: false
@@ -33,6 +32,7 @@ export default class CreatePost extends Component {
             title: this.state.title,
             description: this.state.description,
             dueDate: this.state.dueDate,
+            tags: this.state.tags,
             owner: this.state.owner,
             createdAt: this.state.createdAt
         };
@@ -42,7 +42,7 @@ export default class CreatePost extends Component {
             this.setState({title: '',createdAt: '', description: '', dueDate: '',owner: '', done: true});
             this.props.history.push({
                 pathname:'/posts',
-                state:{done:true}
+                state:{done:true,msg:"Post Created Successfully",alertType:"success"}
             });
         }).catch( (err) => {
             console.log(err)

@@ -29,4 +29,21 @@ export default class PostsService {
                 console.log(error)
             });
     }
+
+    static EditPost(postId,post) {
+        return axios.put(`${this.POSTS_API}/${postId}`, post)
+            .then((response) => {
+                return response.data;
+            }).catch((error) => {
+                console.log(error)
+            });
+    }
+    static DeletePost(postId) {
+        return axios.delete(`${this.POSTS_API}/${postId}`, postId)
+            .then((response) => {
+                return response.data;
+            }).catch((error) => {
+                console.log(error)
+            });
+    }
 }

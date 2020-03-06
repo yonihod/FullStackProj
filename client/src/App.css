@@ -1,10 +1,19 @@
-
 @font-face {
   font-family: 'Dancing Script';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/dancingscript/v14/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7BMSo3Sup5.ttf) format('truetype');
+}
+@keyframes fadeOut {
+  0% {
+    visibility: visible;
+    opacity: 1;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
 }
 .App {
   text-align: center;
@@ -30,18 +39,8 @@
 .App-link {
   color: #61dafb;
 }
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-#cards-container {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+.form-wrapper {
+  text-align: left;
 }
 .footer {
   position: fixed;
@@ -67,28 +66,109 @@
   min-width: 100%;
   min-height: 100%;
 }
-.about {
-  background-image: url("images/about.jpeg");
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: 150% 50%;
+.edit-post h1,
+.edit-post .delete {
+  display: inline-block;
 }
-
-.about .title {
-  font-size: 40px;
-  color: #00B7FF;
+.edit-post .delete {
+  margin-left: 2rem;
+  vertical-align: top;
 }
-
-.about .body_text {
+.post-page .Writer h1 {
+  color: white;
+  text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
+}
+.post-page .success,
+.post-page .danger {
+  position: absolute;
+  top: 150px;
+  right: 50px;
+  height: 50px;
+  width: 200px;
+  line-height: 50px;
+  color: #ffffff;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 2s;
+  animation: 6s fadeOut;
+}
+.post-page .success {
+  background: yellowgreen;
+}
+.post-page .danger {
+  background: #dc3545;
+}
+.post-page .posts_img {
+  max-width: 100%;
+}
+.post-page #cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.post-page #cards-container .card {
+  position: relative;
+}
+.post-page #cards-container .card .manage-post {
+  width: 90px;
+  position: absolute;
+  right: 0;
+  background: darkgray;
+  transition: padding-left 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+  padding: 0;
+}
+.post-page #cards-container .card .manage-post a {
+  color: #000000;
+}
+.post-page #cards-container .card .manage-post i {
+  padding: 5px;
+  margin-left: 5px;
+}
+.post-page #cards-container .card .card-body {
+  position: relative;
+}
+.post-page #cards-container .card .card-body .card-text {
+  height: 150px;
+  overflow: hidden;
+}
+.post-page #cards-container .card .card-body a {
+  display: block;
+  height: 40px ;
+}
+.post-page #cards-container .card .card-body a .explore {
+  position: absolute;
+  left: 50%;
+  margin-left: -39px;
+  bottom: 5px;
+}
+.post-page #cards-container .card:hover {
+  -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+}
+.post-page #cards-container .card:hover .manage-post {
+  width: 90px;
+  opacity: 1;
+  pointer-events: initial;
+  padding: 0 10px;
+}
+.about .head h1 {
+  color: white;
+  text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
+}
+.about .head .body_text {
   column-count: 2;
-  column-gap: 1rem;
-  column-rule: 1px solid lightgrey;
+  column-rule: lightgray;
+  column-gap: normal;
   text-align: left;
-  border: 1px solid lightgrey;
-  padding: 2rem;
-  height: 300px;
+  padding: 10px;
+  margin-top: 20px;
 }
-
+.about .about_img {
+  max-width: 100%;
+}
 .about #our-team h1 {
   font-family: 'Dancing Script';
   text-shadow: 2px 2px springgreen;

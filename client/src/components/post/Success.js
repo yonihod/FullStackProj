@@ -1,9 +1,10 @@
 import React from 'react'
 
-function Success(){
+function Success(props){
+    setTimeout( ()=>{})
     return(
-        <div>
-            Submitted successfully!
+        <div className={props.value.alertType}>
+            {props.value.msg}
         </div>
     );
 }
