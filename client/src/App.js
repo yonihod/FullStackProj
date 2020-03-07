@@ -12,6 +12,7 @@ import NavBar from "./components/common/navbar/NavBar";
 import PrivateRoute from "./components/common/privateRoute/PrivateRoute";
 import Home from "./components/common/Home";
 import Profile from "./components/user/Profile";
+import ListUsers from "./components/user/ListUser";
 import ListPosts from "./components/post/ListPost";
 import EditPost from "./components/post/EditPost";
 import CreatePost from "./components/post/CreatePost";
@@ -43,6 +44,7 @@ function App() {
                             <Route exact path="/" component={Home}/>
                             <Route path="/posts/:id" component={SinglePost}/>
                             <Route path="/posts" component={ListPosts}/>
+                            <Route path="/service-providers" component={ListUsers}/>
                             <PrivateRoute authed={isAuthenticated} path="/create-post" component={CreatePost}/>
                             <PrivateRoute authed={isAuthenticated} path="/edit-post/:id" component={EditPost}/>
                             <Route path="/about-us" component={About}/>
