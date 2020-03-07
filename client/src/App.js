@@ -22,7 +22,7 @@ import Footer from "./components/common/Footer";
 import Spinner from "react-bootstrap/Spinner"
 
 function App() {
-    const {isAuthenticated, loading} = useAuth0();
+    const {isAuthenticated, loading, user} = useAuth0();
 
     if (loading) {
         return   (
@@ -45,7 +45,7 @@ function App() {
                             <Route path="/posts/:id" component={SinglePost}/>
                             <Route path="/posts" component={ListPosts}/>
                             <Route path="/service-providers" component={ListUsers}/>
-                            <PrivateRoute authed={isAuthenticated} path="/create-post" component={CreatePost}/>
+                            <PrivateRoute authed={isAuthenticated} path="/create-post" component={CreatePost} user={user}/>
                             <PrivateRoute authed={isAuthenticated} path="/edit-post/:id" component={EditPost}/>
                             <Route path="/about-us" component={About}/>
                             <PrivateRoute authed={isAuthenticated} path="/profile" component={Profile}/>
