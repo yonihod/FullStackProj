@@ -1,5 +1,5 @@
 import React from 'react'
-import {useAuth0} from "../../react-auth0-spa";
+import {useAuth0} from "../../reactAuth0";
 
 const Home = () => {
     const {isAuthenticated, user} = useAuth0();

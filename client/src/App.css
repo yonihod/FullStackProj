@@ -15,8 +15,14 @@
     opacity: 0;
   }
 }
+html,
+body {
+  height: 100%;
+}
 .App {
   text-align: center;
+  position: relative;
+  min-height: 100vh;
 }
 #logo {
   height: 10vmin;
@@ -42,10 +48,15 @@
 .form-wrapper {
   text-align: left;
 }
+.wrapper {
+  padding-bottom: 2.5rem;
+}
 .footer {
-  position: fixed;
   bottom: 0;
+  position: absolute;
+  height: 2.5rem;
   color: #ffffff;
+  line-height: 2.5rem;
 }
 .home h1 {
   position: relative;
@@ -79,7 +90,8 @@
   text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
 }
 .post-page .success,
-.post-page .danger {
+.post-page .danger,
+.post-page .warning {
   position: absolute;
   top: 150px;
   right: 50px;
@@ -90,13 +102,17 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 2s;
-  animation: 3.5s fadeOut;
+  animation: 8s fadeOut;
 }
 .post-page .success {
-  background: yellowgreen;
+  background: #28a745;
 }
 .post-page .danger {
   background: #dc3545;
+}
+.post-page .warning {
+  background: #ffc107;
+  color: #212529;
 }
 .post-page .posts_img {
   max-width: 100%;
@@ -135,7 +151,7 @@
 }
 .post-page #cards-container .card .card-body a {
   display: block;
-  height: 40px ;
+  height: 40px;
 }
 .post-page #cards-container .card .card-body a .explore {
   position: absolute;

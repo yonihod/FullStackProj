@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import {useAuth0} from "../../react-auth0-spa";
+import {useAuth0} from "../../reactAuth0";
 import { Link } from 'react-router-dom';
 import Skills from "./Skills";
 

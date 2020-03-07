@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PostsService from "../../services/Posts";
+import SocketService from '../../services/Socket';
 import PostBox from "./PostBox";
 import Success from "./Success";
 import "../../App.css";
@@ -24,17 +25,19 @@ export default class ListPost extends Component {
         this.state = {
             posts: [],
             done: done,
-            alertType : alertType,
-            msg : msg
+            alertType: alertType,
+            msg: msg
         }
     }
 
     componentDidMount() {
 
+        SocketService.on('newPost', data => {
+            this.setState({posts: [...this.state.posts, data]});
+        });
+
         PostsService.getPosts().then(res => {
-            this.setState({
-                posts: res
-            });
+            this.setState({posts: res});
         }).catch(err => {
             console.log(err)
         })
@@ -54,12 +57,13 @@ export default class ListPost extends Component {
         return (
             <div className={"post-page"}>
                 {this.state.done ? <Success value={this.state}/> : null}
-                <img src="/posts_people.jpg" className="posts_img"/>
+                <img src="/posts-people.jpg" className="posts_img"/>
                 <div className="Writer">
                     <Typist>
-                    <h1>Choose your task</h1> <br/>
-                    <h4>A single place, millions of creative talents<br/>Improve your quality of life with style</h4>
-                </Typist>
+                        <h1>Choose your task</h1> <br/>
+                        <h4>A single place, millions of creative talents<br/>Improve your quality of life with style
+                        </h4>
+                    </Typist>
                 </div>
 
                 <div id="cards-container">

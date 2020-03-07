@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const http = require('http');
 const glob = require('glob');
 const cors = require('cors');
 const logger = require('morgan');
@@ -42,16 +43,16 @@ function initErrorHandling(app) {
     });
 }
 
-function init() {
+function initApp() {
     const app = express();
 
     initAppMiddleware(app);
     initServerRoutes(app);
     initErrorHandling(app);
 
-    return app;
+    return http.Server(app);
 }
 
 module.exports = {
-    init
+    initApp
 };

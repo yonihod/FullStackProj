@@ -1,9 +1,7 @@
 import React, {Component} from "react";
 import PostsService from "../../services/Posts";
-import Success from "./Success";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
-import {withRouter} from 'react-router-dom';
 
 export default class CreatePost extends Component {
     constructor(props) {

@@ -10,3 +10,6 @@
 .nav-link {
     text-transform: capitalize;
 }
+.user-bar {
+    align-items: center;
+}

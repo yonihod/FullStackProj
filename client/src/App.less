@@ -11,8 +11,14 @@
   }
 }
 
+html, body {
+  height: 100%;
+}
+
 .App {
   text-align: center;
+  position: relative;
+  min-height: 100vh;
 }
 
 #logo {
@@ -39,15 +45,21 @@
 .App-link {
   color: #61dafb;
 }
+
 .form-wrapper {
   text-align: left;
 }
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  color: #ffffff;
+.wrapper {
+  padding-bottom: 2.5rem;
 }
+.footer {
+  bottom: 0;
+  position: absolute;
+  height: 2.5rem;
+  color: #ffffff;
+  line-height: 2.5rem;
+}
+
 .home {
   h1 {
     position: relative;
@@ -69,8 +81,9 @@
     min-height: 100%;
   }
 }
+
 .edit-post {
-  h1,.delete {
+  h1, .delete {
     display: inline-block;
   }
   .delete {
@@ -78,14 +91,15 @@
     vertical-align: top;
   }
 }
+
 .post-page {
 
-  .Writer h1{
+  .Writer h1 {
     color: white;
     text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
   }
 
-  .success,.danger {
+  .success, .danger, .warning {
     position: absolute;
     top: 150px;
     right: 50px;
@@ -96,13 +110,17 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 2s;
-    animation: 3.5s fadeOut;
+    animation: 8s fadeOut;
   }
   .success {
-    background: yellowgreen;
+    background: #28a745;
   }
   .danger {
     background: #dc3545;
+  }
+  .warning {
+    background: #ffc107;
+    color: #212529;
   }
 
   .posts_img {
@@ -139,7 +157,7 @@
         }
         a {
           display: block;
-          height: 40px ;
+          height: 40px;
           .explore {
             position: absolute;
             left: 50%;
@@ -149,9 +167,9 @@
         }
       }
       &:hover {
-        -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
-        box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
         .manage-post {
           width: 90px;
           opacity: 1;
@@ -162,9 +180,10 @@
     }
   }
 }
+
 .about {
   .head {
-    h1{
+    h1 {
       color: white;
       text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
     }
@@ -190,13 +209,13 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      >div {
+      > div {
         width: 15%;
         margin-right: 1rem;
         &:hover {
-          -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
-          -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
-          box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.75);
+          -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+          -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
         }
         img {
           max-width: 100%;
