@@ -5,7 +5,7 @@
 // If not: they are redirected to the login page.
 import React from 'react'
 import { useAuth0 } from "../../../reactAuth0";
-import { Redirect, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
 
@@ -17,7 +17,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             {...rest}
             render={props =>
                 isAuthenticated ? (
-                    <Component {...props} />
+                    <Component {...rest} />
                 ) : (
                         loginWithRedirect({})
                     )
