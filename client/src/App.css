@@ -213,4 +213,7 @@ body {
 .about #our-team #team-container > div img {
   max-width: 100%;
 }
+.profile h1 {
+  color: #ffc107;
+}
 /*# sourceMappingURL=App.css.map */
