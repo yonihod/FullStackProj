@@ -21,6 +21,8 @@ body {
 }
 .App {
   text-align: center;
+  position: relative;
+  min-height: 100vh;
 }
 #logo {
   height: 10vmin;
