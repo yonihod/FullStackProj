@@ -84,6 +84,37 @@ body {
   min-width: 100%;
   min-height: 100%;
 }
+.profile h1 {
+  position: relative;
+  left: 0;
+  z-index: 1;
+  color: #ffffff;
+  width: 100%;
+  padding-bottom: 30px;
+  border-radius: 0 0 5px 5px;
+  font-family: 'Dancing Script';
+  font-size: 4rem;
+  text-shadow: 4px 2px crimson;
+}
+.profile h2 {
+  font-size: 2rem;
+}
+.profile header {
+  margin: 0 1.5% 24px 1.5%;
+}
+.profile aside {
+  float: left;
+  width: 50%;
+}
+.profile #right {
+  float: right;
+  width: 50%;
+}
+.profile section {
+  margin: 0 1.5% 24px 1.5%;
+  float: left;
+  width: 40%;
+}
 .edit-post h1,
 .edit-post .delete {
   display: inline-block;
