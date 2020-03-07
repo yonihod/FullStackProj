@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PostsService from "../../services/Posts";
 import TwitterService from "../../services/Twitter"
-import {Button, Spinner} from 'react-bootstrap';
+import {Button, Spinner,Badge} from 'react-bootstrap';
 
 export default class SinglePost extends Component {
     constructor(props) {
@@ -80,10 +80,11 @@ export default class SinglePost extends Component {
                 </div>
                 <h1>{this.state.title}</h1>
                 <div>
+                    {this.state.tags.map(t => <Badge className="mr-1" variant={"primary"} key={t}>{t}</Badge>)}
+                </div>
+                <div>
                     <h4>{this.state.owner} / {this.state.dueDate}</h4>
                     {this.state.desc}
-                    <h3>Tags:</h3>
-                    {this.state.tags.map(t => <li key={t}>{t}</li>)}
                 </div>
             </div>
         );

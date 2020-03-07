@@ -54,7 +54,8 @@ export default class CreatePost extends Component {
             <div className={"w-50 mt-4 ml-auto mr-auto"}>
                 <h1>Submit Form</h1>
                 <div className="form-wrapper">
-                    {!this.state.done && (<Form onSubmit={this.handleSubmit.bind(this)}>
+                    {!this.state.done && (
+                      <Form onSubmit={this.handleSubmit.bind(this)}>
                         <Form.Group controlId="title">
                             <Form.Label>Title</Form.Label>
                             <Form.Control value = {this.state.title} onChange= {e=>this.handleChange(e)} name="title" type="text"/>
@@ -73,8 +74,8 @@ export default class CreatePost extends Component {
                         <Button type="submit" variant="danger" size="lg" block="block">
                             Create Post
                         </Button>
-
-                    </Form>)}
+                      </Form>)
+                    }
                 </div>
             </div>
         );

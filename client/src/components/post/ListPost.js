@@ -5,6 +5,7 @@ import PostBox from "./PostBox";
 import Success from "./Success";
 import "../../App.css";
 import Typist from 'react-typist';
+import {InputGroup,FormControl,Dropdown,DropdownButton} from "react-bootstrap"
 
 export default class ListPost extends Component {
 
@@ -26,7 +27,8 @@ export default class ListPost extends Component {
             posts: [],
             done: done,
             alertType: alertType,
-            msg: msg
+            msg: msg,
+            search: ""
         }
     }
 
@@ -43,31 +45,67 @@ export default class ListPost extends Component {
         })
     }
 
-    dataBox() {
+    onChange = e => {
+        this.setState({search: e.target.value })
+    };
+
+    renderPost = (post,index) => {
         if (this.state.posts) {
-            return this.state.posts.map((res, i) => {
-                if (res !== undefined) {
-                    return <PostBox obj={res} key={i}/>
-                }
-            })
+            return <PostBox obj={post} key={index}/>
         }
-    }
+    };
+    sortByDueDate = () => {
+        if(this.state.posts) {
+            this.setState({posts: this.state.posts.sort( (date1,date2) => {
+                    let date1_ = new Date(date1.dueDate) , date2_ = new Date(date2.dueDate);
+                    return date1 - date2;
+                })})
+        }
+    };
+    sortByCreatedDate = () => {
+        if(this.state.posts) {
+            this.setState({posts: this.state.posts.sort( (date1,date2) => {
+                    let date1_ = new Date(date1.createdAt) , date2_ = new Date(date2.createdAt);
+                    return date1 - date2;
+                })})
+        }
+    };
 
     render() {
+
+        const {search} = this.state;
+        const filteredPosts = this.state.posts.filter( (post =>{
+            return post.title.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+                   post.description.toLowerCase().indexOf(search.toLowerCase()) !== -1
+        }));
+        
         return (
             <div className={"post-page"}>
                 {this.state.done ? <Success value={this.state}/> : null}
-                <img src="/posts-people.jpg" className="posts_img"/>
-                <div className="Writer">
+                <div className="Writer mt-5">
                     <Typist>
                         <h1>Choose your task</h1> <br/>
                         <h4>A single place, millions of creative talents<br/>Improve your quality of life with style
                         </h4>
                     </Typist>
                 </div>
+                <div className="m-3">
+                    <InputGroup size="lg" onChange={this.onChange}>
+                        <DropdownButton as={InputGroup.Prepend} variant="outline-secondary" id="input-group-dropdown" title={<i className={"fa fa-search"}/>}>
+                            <Dropdown.Item onClick={this.sortByDueDate} href="#">Sort By Due Date</Dropdown.Item>
+                            <Dropdown.Item onClick={this.sortByCreatedDate} href="#">Sort By Created At</Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item href="#">Advanced Search</Dropdown.Item>
+                        </DropdownButton>
+                        <FormControl aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
+                    </InputGroup>
+                </div>
+
 
                 <div id="cards-container">
-                    {this.dataBox()}
+                    {filteredPosts.map ((post,index)=>{
+                        return this.renderPost(post,index)
+                    })}
                 </div>
             </div>
         );
