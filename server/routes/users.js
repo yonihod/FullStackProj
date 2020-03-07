@@ -41,5 +41,32 @@ module.exports = (app) => {
             }).catch(err => {
                 console.log(err);
             });
+        });
+
+    app.route('/users/:email')
+        .get((req, res) => {
+            User.findOne({email: req.params.email}).populate('skills posts').then((data) => {
+                res.status(200).json(data);
+            }).catch((err) => {
+                console.log(err);
+            });
         })
+        .put((req, res) => {
+            User.findOneAndUpdate({email: req.params.email}, req.body, {
+                new: true,
+                upsert: true
+            }).then(data => {
+                res.status(200).json(data);
+            }).catch(err => {
+                console.log(err);
+            });
+        })
+        .delete((req, res) => {
+            User.findOneAndRemove({email: req.params.email}).then(data => {
+                res.status(200).json(data);
+            }).catch(err => {
+                console.log(err);
+            });
+        })
+
 };
