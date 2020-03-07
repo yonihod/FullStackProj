@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
 
 import "./Map.css";
@@ -8,11 +8,34 @@ import AddressesService from "../../../services/Addresses";
 class MapContainer extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            addresses: []
+            addresses: [],
+            activeMarker: {},
+            selectedPlace: {},
+            showingInfoWindow: false
         };
     }
+
+    onMarkerClick = (props, marker) =>
+        this.setState({
+        activeMarker: marker,
+        selectedPlace: props,
+        showingInfoWindow: true
+    });
+
+    onInfoWindowClose = () =>
+        this.setState({
+        activeMarker: null,
+        showingInfoWindow: false
+    });
+
+    onMapClicked = () => {
+        if (this.state.showingInfoWindow)
+            this.setState({
+                activeMarker: null,
+                showingInfoWindow: false
+            });
+    };
 
     componentDidMount() {
         AddressesService.getAddresses().then(data => {
@@ -21,29 +44,57 @@ class MapContainer extends Component {
             console.log(err);
         });
     }
-
     displayMarkers = () => {
         if (this.state.addresses) {
             return this.state.addresses.map((data, index) => {
                 if (data !== undefined) {
-                    return <Marker key={index} id={index} position={{
-                        lat: this.state.addresses[index].lat,
-                        lng: this.state.addresses[index].lng
-                    }}
-                                   onClick={() => console.log(this.state.addresses[index].name)} />
+                    return (
+                            <Marker
+                                name = {this.state.addresses[index].name}
+                                key={index}
+                                id={"marker"+index}
+                                position={{lat: this.state.addresses[index].lat, lng: this.state.addresses[index].lng}}
+                                onClick={this.onMarkerClick}
+                            />
+                    )
+                }
+            })
+        }
+    };
+    displayInfoWindows = () => {
+        if (this.state.addresses) {
+            return this.state.addresses.map((data, index) => {
+                if (data !== undefined) {
+                    return (
+                        <InfoWindow key={index}
+                                    marker={this.state.activeMarker}
+                                    onClose={this.onInfoWindowClose}
+                                    visible={this.state.showingInfoWindow}
+                        >
+                            <div>
+                                <h7>{this.state.selectedPlace.name}</h7>
+                            </div>
+                        </InfoWindow>
+                    )
                 }
             })
         }
     };
 
     render() {
+        if (!this.props.loaded) return <div>Loading...</div>;
         return (
-            <Map className="MapStyle"
-                 google={this.props.google}
-                 zoom={8}
-                 initialCenter={{ lat: 31.970004, lng: 34.770976 }}>
-                {this.displayMarkers()}
-            </Map>
+            <div className={"map-container"}>
+                <Map className="MapStyle"
+                     google={this.props.google}
+                     zoom={8}
+                     onClick = {this.onMapClicked}
+                     initialCenter={{ lat: 31.970004, lng: 34.770976 }}>
+                    {this.displayMarkers()}
+                    {this.displayInfoWindows()}
+                </Map>
+            </div>
+
         );
     }
 }
