@@ -7,7 +7,7 @@ const PostBox = (props) => {
     const { user } = useAuth0();
     
     function isBelongToUser(userEmail) {
-        return userEmail === user.email;
+        return userEmail === (user?.email)
     }
 
     return (
@@ -35,6 +35,6 @@ const PostBox = (props) => {
             </Card.Body>
         </Card>
     );
-}
+};
 
 export default PostBox;
