@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 import Skills from "./Skills";
 
 const Profile = () => {
+
     const {loading, user} = useAuth0();
+
+
 
     if (loading) {
         return <div>Loading...</div>;
@@ -18,14 +21,23 @@ const Profile = () => {
     }
 
     return (
-        <Fragment>
-            <h1>User Profile</h1>
-            <h2>{user.name}</h2>
-            <p>{user.email}</p>
-            <p>{user.skills}</p>
-            <code>{JSON.stringify(user, null, 2)}</code>
-            <Skills/>
-        </Fragment>
+        <div className={"profile"}>
+            <h1>
+                Profile
+            </h1>
+            <aside>
+                {/*<img src={user.picture} alt="Profile"/>*/}
+                <h2>{user.name}</h2>
+                {user.email}
+            </aside>
+            <div>
+                <Skills email={user.email}/>
+            </div>
+            <p>
+                <code>{JSON.stringify(user, null, 2)}</code>
+            </p>
+        </div>
+
     );
 };
 
