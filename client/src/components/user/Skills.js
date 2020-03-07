@@ -8,25 +8,30 @@ export default class Skills extends Component {
         this.state = {
             skills: []
         };
+        console.log(this.props.email);
     }
 
-    // componentDidMount() {
-    //     UserService.getUser(this.props.match.params.id).then(res => {
-    //         this.setState({
-    //             skills: JSON.parse(res).skills
-    //         });
-    //     }).catch(err => {
-    //         console.log('There has been an error loading skills in skills-component: ' + err);
-    //     });
-    // }
+    componentDidMount() {
+        UserService.getUserByEmail(this.props.email).then(res => {
+            console.log(res);
+            this.setState({
+                skills: res.skills
+            });
+        }).catch(err => {
+            console.log('There has been an error loading skills in skills-component: ' + err);
+        });
+    }
+
+
 
     render() {
         return (
             <div>
                 <ul>
-                    {this.state.skills.map(skill => {
-                        return <li>{skill[0]}</li>
-                    })}
+                    {/*{this.state.skills.map(skill => {*/}
+                    {/*    return <li>{skill[0]}</li>*/}
+                    {/*})}*/}
+                    {this.state.skills}
                 </ul>
             </div>
         );
