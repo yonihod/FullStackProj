@@ -15,6 +15,10 @@
     opacity: 0;
   }
 }
+html,
+body {
+  height: 100%;
+}
 .App {
   text-align: center;
 }
@@ -42,10 +46,15 @@
 .form-wrapper {
   text-align: left;
 }
+.wrapper {
+  padding-bottom: 2.5rem;
+}
 .footer {
-  position: fixed;
   bottom: 0;
+  position: absolute;
+  height: 2.5rem;
   color: #ffffff;
+  line-height: 2.5rem;
 }
 .home h1 {
   position: relative;
