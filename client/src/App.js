@@ -9,8 +9,10 @@ import history from "./utils/history";
 import {useAuth0} from "./reactAuth0";
 
 import NavBar from "./components/common/navbar/NavBar";
+import PrivateRoute from "./components/common/privateRoute/PrivateRoute";
 import Home from "./components/common/Home";
 import Profile from "./components/user/Profile";
+import ListUsers from "./components/user/ListUser";
 import ListPosts from "./components/post/ListPost";
 import EditPost from "./components/post/EditPost";
 import CreatePost from "./components/post/CreatePost";
@@ -20,7 +22,7 @@ import Footer from "./components/common/Footer";
 import Spinner from "react-bootstrap/Spinner"
 
 function App() {
-    const {loading} = useAuth0();
+    const {isAuthenticated, loading, user} = useAuth0();
 
     if (loading) {
         return   (
@@ -42,10 +44,11 @@ function App() {
                             <Route exact path="/" component={Home}/>
                             <Route path="/posts/:id" component={SinglePost}/>
                             <Route path="/posts" component={ListPosts}/>
-                            <Route path="/create-post" component={CreatePost}/>
-                            <Route path="/edit-post/:id" component={EditPost}/>
+                            <Route path="/service-providers" component={ListUsers}/>
+                            <PrivateRoute authed={isAuthenticated} path="/create-post" component={CreatePost} user={user}/>
+                            <PrivateRoute authed={isAuthenticated} path="/edit-post/:id" component={EditPost}/>
                             <Route path="/about-us" component={About}/>
-                            <Route path="/profile" component={Profile}/>
+                            <PrivateRoute authed={isAuthenticated} path="/profile" component={Profile}/>
                         </Switch>
                     </div>
                 </Container>

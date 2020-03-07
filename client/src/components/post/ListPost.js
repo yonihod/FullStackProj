@@ -28,7 +28,8 @@ export default class ListPost extends Component {
             done: done,
             alertType: alertType,
             msg: msg,
-            search: ""
+            search: "",
+            orderBy:""
         }
     }
 
@@ -50,29 +51,30 @@ export default class ListPost extends Component {
     };
 
     renderPost = (post,index) => {
-        if (this.state.posts) {
+        if (this.state.posts.size >0) {
             return <PostBox obj={post} key={index}/>
         }
     };
-    sortByDueDate = () => {
-        if(this.state.posts) {
-            this.setState({posts: this.state.posts.sort( (date1,date2) => {
-                    let date1_ = new Date(date1.dueDate) , date2_ = new Date(date2.dueDate);
-                    return date1 - date2;
-                })})
+    sortByDueDate = (date1,date2) => {
+        if(this.state.posts.size > 0) {
+            let date1_ = new Date(date1.dueDate) , date2_ = new Date(date2.dueDate);
+            return date1 - date2;
         }
     };
-    sortByCreatedDate = () => {
+
+    sortByCreatedAt = (date1,date2) => {
         if(this.state.posts) {
-            this.setState({posts: this.state.posts.sort( (date1,date2) => {
-                    let date1_ = new Date(date1.createdAt) , date2_ = new Date(date2.createdAt);
-                    return date1 - date2;
-                })})
+            let date1_ = new Date(date1.createdAt), date2_ = new Date(date2.createdAt);
+            return date1 - date2;
         }
     };
+
+    orderBy = ( (order) => {
+       this.setState({orderBy:order})
+    });
 
     render() {
-
+        const {orderBy} = this.state;
         const {search} = this.state;
         const filteredPosts = this.state.posts.filter( (post =>{
             return post.title.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
@@ -92,8 +94,8 @@ export default class ListPost extends Component {
                 <div className="m-3">
                     <InputGroup size="lg" onChange={this.onChange}>
                         <DropdownButton as={InputGroup.Prepend} variant="outline-secondary" id="input-group-dropdown" title={<i className={"fa fa-search"}/>}>
-                            <Dropdown.Item onClick={this.sortByDueDate} href="#">Sort By Due Date</Dropdown.Item>
-                            <Dropdown.Item onClick={this.sortByCreatedDate} href="#">Sort By Created At</Dropdown.Item>
+                            <Dropdown.Item onClick={this.orderBy(this.sortByDueDate())} href="#">Sort By Due Date</Dropdown.Item>
+                            <Dropdown.Item onClick={this.orderBy(this.sortByCreatedAt())} href="#">Sort By Created At</Dropdown.Item>
                             <Dropdown.Divider />
                             <Dropdown.Item href="#">Advanced Search</Dropdown.Item>
                         </DropdownButton>

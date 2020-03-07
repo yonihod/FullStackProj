@@ -2,17 +2,19 @@ import React, {Component} from "react";
 import PostsService from "../../services/Posts";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
+import UserService from "../../services/Users";
 
 export default class CreatePost extends Component {
     constructor(props) {
         super(props);
+        this.user = props.user;
         // assign owner dynamically when we finish with users
         this.state = {
             title: "",
             description: "",
             dueDate: "",
             tags:[],
-            owner: "5e5a3bfdd9b5a3209db11284",
+            owner: "",
             createdAt: "",
             done: false
         };
@@ -48,6 +50,30 @@ export default class CreatePost extends Component {
             console.log(err)
         });
     };
+
+    componentDidMount() {
+        UserService.getUserByEmail(this.user.email)
+            .then(res => {
+                if (res === null) {
+                    // for old users that are not in the DB
+                    const user = {
+                        name: this.user.name,
+                        email: this.user.email,
+                        password: 'required'
+                    };
+
+                    UserService.AddUser(user).then((u) => {
+                        this.setState({ owner: u._id })
+                    })
+                }
+                else {
+                    this.setState({ owner: res._id })
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
 
     render() {
         return (

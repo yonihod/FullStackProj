@@ -11,9 +11,7 @@ export default class UserList extends Component {
         };
     }
 
-    // action when comp is loaded (inserted into the v-dom tree)
     componentDidMount() {
-        // we get the data from server
         UserService.getUsers().then(res => {
             this.setState({
                 users: res
@@ -23,7 +21,6 @@ export default class UserList extends Component {
         });
     }
 
-    // func to populate user row
     DataTable() {
         if (this.state.users) {
             return this.state.users.map((res, i) => {
@@ -40,8 +37,8 @@ export default class UserList extends Component {
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Roll No</th>
-                        <th>Action</th>
+                        <th>Skills</th>
+                        <th>Rating</th>
                     </tr>
                     </thead>
                     <tbody>
