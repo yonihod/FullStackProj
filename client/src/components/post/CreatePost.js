@@ -7,7 +7,7 @@ import UserService from "../../services/Users";
 export default class CreatePost extends Component {
     constructor(props) {
         super(props);
-        this.userEmail = props.user.email;
+        this.user = props.user;
         // assign owner dynamically when we finish with users
         this.state = {
             title: "",
@@ -52,11 +52,27 @@ export default class CreatePost extends Component {
     };
 
     componentDidMount() {
-        UserService.getUserByEmail(this.userEmail)
-        .then(res => { this.setState({ owner: res._id }) })
-        .catch(err => {
-            console.log(err);
-        });
+        UserService.getUserByEmail(this.user.email)
+            .then(res => {
+                if (res === null) {
+                    // for old users that are not in the DB
+                    const user = {
+                        name: this.user.name,
+                        email: this.user.email,
+                        password: 'required'
+                    };
+
+                    UserService.AddUser(user).then((u) => {
+                        this.setState({ owner: u._id })
+                    })
+                }
+                else {
+                    this.setState({ owner: res._id })
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     render() {
