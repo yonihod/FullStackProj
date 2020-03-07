@@ -97,7 +97,7 @@ export default class EditPost extends Component {
         PostsService.EditPost(this.state.id,post).then( (res) => {
             this.props.history.push({
                 pathname:'/posts',
-                state:{done:true}
+                state:{done:true,alertType: "success", msg: "Post Edited Successfully"}
             });
         }).catch( (err) => {
             console.log(err)
