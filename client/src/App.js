@@ -17,12 +17,17 @@ import CreatePost from "./components/post/CreatePost";
 import SinglePost from "./components/post/SinglePost";
 import About from "./components/common/About";
 import Footer from "./components/common/Footer";
+import Spinner from "react-bootstrap/Spinner"
 
 function App() {
     const {loading} = useAuth0();
 
     if (loading) {
-        return <div>Loading...</div>;
+        return   (
+            <div className={"spinner"}>
+                <Spinner animation="border" variant="primary" />
+            </div>
+            );
     }
 
     return (
