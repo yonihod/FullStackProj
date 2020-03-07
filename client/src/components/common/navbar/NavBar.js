@@ -20,7 +20,7 @@ const NavBar = () => {
             <Nav><Link to={"/posts"} className="nav-link">Posts</Link></Nav>
             <Nav><Link to={"/create-post"} className="nav-link">Create a post</Link></Nav>
             <Nav><Link to={"/about-us"} className="nav-link">About</Link></Nav>
-            <Nav className="ml-auto">
+            <Nav className="user-bar ml-auto">
                 {!isAuthenticated && <Link className="nav-link" to="/" onClick={() => loginWithRedirect({})}>Log in</Link>}
                 {isAuthenticated && <Link title={user.name} className="nav-link" to="/profile"><img src={user.picture} alt="Logo" className="avatar"/></Link>}
                 {isAuthenticated && <Link className="nav-link" to="/" onClick={() => logout({returnTo: window.location.origin})}>Log out</Link>}
