@@ -55,7 +55,7 @@ export default class EditPost extends Component {
     }
 
     componentDidMount() {
-        PostsService.getPost(this.props.match.params.id).then(data => {
+        PostsService.getPost(this.props.computedMatch.params.id).then(data => {
             console.log(data);
             let dueDate = (typeof  data.dueDate !=='undefined') ? new Date(data.dueDate).toISOString().slice(0,10) : "";
             this.setState(

@@ -30,7 +30,7 @@ export default class EditUser extends Component {
     }
 
     componentDidMount() {
-        UserService.getUser(this.props.match.params.id).then((res) => {
+        UserService.getUser(this.props.computedMatch.params.id).then((res) => {
             console.log(res.data);
         }).catch((err) => {
             console.log(err)
