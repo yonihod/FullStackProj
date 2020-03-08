@@ -12,7 +12,8 @@ const PostBox = (props) => {
 
     return (
         <Card className={"w-25 m-2"}>
-            {isBelongToUser(props.obj?.owner?.email) && <div className={"manage-post"}>
+            {isBelongToUser(props.obj?.owner?.email) &&
+            <div className={"manage-post"}>
                 <Link to={`/edit-post/${props.obj._id}`}>
                     <i className={"fa fa-edit"}></i>
                 </Link>
