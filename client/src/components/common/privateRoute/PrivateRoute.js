@@ -5,7 +5,7 @@
 // If not: they are redirected to the login page.
 import React from 'react'
 import { useAuth0 } from "../../../reactAuth0";
-import { Route } from 'react-router-dom'
+import { Route,withRouter } from 'react-router-dom'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
 
@@ -26,4 +26,4 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     )
 };
 
-export default PrivateRoute
+export default withRouter(PrivateRoute)

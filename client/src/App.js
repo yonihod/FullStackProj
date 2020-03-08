@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import React from "react";
 import Container from "react-bootstrap/Container";
-import {Router, Route, Switch} from "react-router-dom";
+import {Router, Route, Switch, useHistory} from "react-router-dom";
 
 import history from "./utils/history";
 import {useAuth0} from "./reactAuth0";
@@ -46,7 +46,7 @@ function App() {
                             <Route path="/posts" component={ListPosts}/>
                             <Route path="/service-providers" component={ListUsers}/>
                             <PrivateRoute authed={isAuthenticated} path="/create-post" component={CreatePost} user={user}/>
-                            <PrivateRoute authed={isAuthenticated} path="/edit-post/:id" component={EditPost}/>
+                            <PrivateRoute authed={isAuthenticated} currentUser={user} path="/edit-post/:id" component={EditPost}/>
                             <Route path="/about-us" component={About}/>
                             <PrivateRoute authed={isAuthenticated} path="/profile" component={Profile}/>
                         </Switch>
