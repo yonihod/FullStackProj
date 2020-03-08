@@ -81,7 +81,7 @@ export default class ListPost extends Component {
         }
     };
 
-    seOrderBy = ( (order) => {
+    setOrderBy = ( (order) => {
        this.setState({orderBy:order})
     });
 
@@ -106,16 +106,14 @@ export default class ListPost extends Component {
                 <div className="m-3">
                     <InputGroup size="lg" onChange={this.onChange}>
                         <DropdownButton as={InputGroup.Prepend} variant="outline-secondary" id="input-group-dropdown" title={<i className={"fa fa-search"}/>}>
-                            <Dropdown.Item onClick={() => this.seOrderBy(this.sortByDueDate)} href="#">Sort By Due Date</Dropdown.Item>
-                            <Dropdown.Item onClick={() => this.seOrderBy(this.sortByCreatedAt)} href="#">Sort By Created At</Dropdown.Item>
+                            <Dropdown.Item onClick={() => this.setOrderBy(this.sortByDueDate)} href="#">Sort By Due Date</Dropdown.Item>
+                            <Dropdown.Item onClick={() => this.setOrderBy(this.sortByCreatedAt)} href="#">Sort By Created At</Dropdown.Item>
                             <Dropdown.Divider />
                             <Dropdown.Item href="#">Advanced Search</Dropdown.Item>
                         </DropdownButton>
                         <FormControl aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
                     </InputGroup>
                 </div>
-
-
                 <div id="cards-container">
                     {filteredPosts.map ((post,index)=>{
                         return this.renderPost(post,index)

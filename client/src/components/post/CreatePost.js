@@ -100,6 +100,9 @@ export default class CreatePost extends Component {
                                 <Form.Control value={this.state.dueDate}
                                               isInvalid={this.state.dueDate && this.state.dueDate < new Date(Date.now()).toISOString().slice(0, 10)}
                                               onChange={e => this.handleChange(e)} name="dueDate" type="date"/>
+                                <Form.Control.Feedback type="invalid">
+                                    Please provide a valid date.
+                                </Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group controlId="description">
                                 <Form.Label>Description</Form.Label>
