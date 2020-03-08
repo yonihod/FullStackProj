@@ -132,7 +132,12 @@ body {
   color: #fff;
   border-radius: 5px;
 }
-.post-page .Writer h1 {
+.post-page .writer{
+  position: relative;
+  padding-top: 20%;
+  right: 28.5rem;
+}
+.post-page .writer h1 {
   color: white;
   text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
 }
@@ -163,12 +168,20 @@ body {
 }
 .post-page .posts_img {
   max-width: 100%;
+  width: 100%;
+  height: 6%;
+  left:0.01rem;
+  position: absolute;
+}
+.post-page .m-3{
+  padding-top: 40%;
 }
 .post-page #cards-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .post-page #cards-container .card {
   position: relative;
 }
@@ -217,26 +230,29 @@ body {
   pointer-events: initial;
   padding: 0 10px;
 }
+.about .head{
+  position: relative;
+  padding-top: 20%;
+  right: 28.5rem;
+}
 .about .head h1 {
   color: white;
   text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
 }
-.about .head .body_text {
-  column-count: 2;
-  column-rule: lightgray;
-  column-gap: normal;
-  text-align: left;
-  padding: 10px;
-  margin-top: 20px;
-}
+
 .about .about_img {
   max-width: 100%;
+  width: 100%;
+  height: 40%;
+  left:0.01rem;
+  position: absolute;
 }
 .about #our-team h1 {
   font-family: 'Dancing Script';
   text-shadow: 2px 2px springgreen;
 }
 .about #our-team #team-container {
+  padding-top: 10%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
