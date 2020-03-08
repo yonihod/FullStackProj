@@ -1,16 +1,16 @@
-import React, {Component,useState} from "react";
+import React, {Component, useState} from "react";
 import PostsService from "../../services/Posts";
 import Form from 'react-bootstrap/Form'
-import {Button,Modal} from 'react-bootstrap';
+import {Button, Modal} from 'react-bootstrap';
 
-function  Delete(prop) {
+function Delete(prop) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const confirmDelete = () => {
-            handleClose();
-            prop.onChange();
+        handleClose();
+        prop.onChange();
     };
 
     return (
@@ -54,7 +54,7 @@ export default class EditPost extends Component {
     componentDidMount() {
         PostsService.getPost(this.props.computedMatch.params.id).then(data => {
             console.log(data);
-            let dueDate = (typeof  data.dueDate !=='undefined') ? new Date(data.dueDate).toISOString().slice(0,10) : "";
+            let dueDate = (typeof data.dueDate !== 'undefined') ? new Date(data.dueDate).toISOString().slice(0, 10) : "";
             this.setState(
                 {
                     id: data._id,
@@ -73,12 +73,12 @@ export default class EditPost extends Component {
 
     handleChange = e => {
         this.setState({
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     };
 
     handleSubmit = e => {
-        if(this.userHasWritePrivileges()) {
+        if (this.userHasWritePrivileges()) {
             e.preventDefault();
             // need to inject owner here (current active user)
             this.state.updatedAt = Date.now();
@@ -104,8 +104,8 @@ export default class EditPost extends Component {
     };
 
     handleDelete = () => {
-        if(this.userHasWritePrivileges()) {
-            PostsService.DeletePost(this.state.id).then( (res) => {
+        if (this.userHasWritePrivileges()) {
+            PostsService.DeletePost(this.state.id).then((res) => {
                 console.log(res);
                 debugger;
                 this.setState({
@@ -128,8 +128,8 @@ export default class EditPost extends Component {
         }
     };
 
-    userHasWritePrivileges  = () => {
-      this.setState({canWrite: this.props?.currentUser?.email === this.state?.owner?.email })
+    userHasWritePrivileges = () => {
+        this.setState({canWrite: this.props?.currentUser?.email === this.state?.owner?.email})
         return this.state.canWrite;
     };
 
@@ -142,17 +142,20 @@ export default class EditPost extends Component {
                     {!this.state.done && (<Form onSubmit={this.handleSubmit.bind(this)}>
                         <Form.Group controlId="title">
                             <Form.Label>Title</Form.Label>
-                            <Form.Control value = {this.state.title} onChange= {e=>this.handleChange(e)} name="title" type="text"/>
+                            <Form.Control value={this.state.title} onChange={e => this.handleChange(e)} name="title"
+                                          type="text"/>
                         </Form.Group>
 
                         <Form.Group controlId="dueDate">
                             <Form.Label>Due Date (Optional) </Form.Label>
-                            <Form.Control data-date-format="DD MMMM YYYY" value = {this.state.dueDate} onChange= {e=>this.handleChange(e)} name="dueDate" type="date"/>
+                            <Form.Control data-date-format="DD MMMM YYYY" value={this.state.dueDate}
+                                          onChange={e => this.handleChange(e)} name="dueDate" type="date"/>
                         </Form.Group>
 
                         <Form.Group controlId="description">
                             <Form.Label>Description</Form.Label>
-                            <Form.Control value = {this.state.description} onChange= {e=>this.handleChange(e)} name="description" as="textarea" rows={"4"}/>
+                            <Form.Control value={this.state.description} onChange={e => this.handleChange(e)}
+                                          name="description" as="textarea" rows={"4"}/>
                         </Form.Group>
 
                         <Button type="submit" variant="danger" size="lg" block="block">
