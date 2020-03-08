@@ -12,10 +12,8 @@ const NavBar = () => {
 
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand>
-                <Link to={"/"}>
-                    <img id="logo" src="/developi-logo.png" alt="logo"/>
-                </Link>
+            <Navbar.Brand className={"brand"}>
+                <Link to={"/"}><img id="logo" src="/logo.png" alt="logo"/></Link>
             </Navbar.Brand>
             <Nav><Link to={"/posts"} className="nav-link">Posts</Link></Nav>
             <Nav><Link to={"/create-post"} className="nav-link">Create a post</Link></Nav>
