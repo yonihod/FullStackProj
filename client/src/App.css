@@ -132,10 +132,22 @@ body {
   color: #fff;
   border-radius: 5px;
 }
+
+.post-page .m-3{
+  padding-top: 17%;
+}
+
+.post-page .Writer {
+  position: relative;
+  padding-top: 20%;
+  right: 28.5rem;
+
+}
 .post-page .Writer h1 {
   color: white;
   text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
 }
+
 .post-page .success,
 .post-page .danger,
 .post-page .warning {
@@ -162,7 +174,10 @@ body {
   color: #212529;
 }
 .post-page .posts_img {
-  max-width: 100%;
+  width: 100%;
+  height: 6%;
+  left:0.01rem;
+  position: absolute;
 }
 .post-page #cards-container {
   display: flex;
@@ -217,26 +232,29 @@ body {
   pointer-events: initial;
   padding: 0 10px;
 }
-.about .head h1 {
+
+.about .head{
+  position: relative;
+  padding-top: 20%;
+  right: 28.5rem;
+}
+.about .head h2 {
   color: white;
   text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
 }
-.about .head .body_text {
-  column-count: 2;
-  column-rule: lightgray;
-  column-gap: normal;
-  text-align: left;
-  padding: 10px;
-  margin-top: 20px;
-}
+
 .about .about_img {
-  max-width: 100%;
+  width: 100%;
+  height: 40%;
+  left:0.01rem;
+  position: absolute;
 }
 .about #our-team h1 {
   font-family: 'Dancing Script';
   text-shadow: 2px 2px springgreen;
 }
 .about #our-team #team-container {
+  padding-top: 10%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

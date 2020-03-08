@@ -7,7 +7,7 @@ export default class about extends Component {
             <div className={"about"}>
                 <img src="/about-us.jpg" className="about_img"/>
                 <section className="head">
-                    <h1>Welcome To DEVELOPI!</h1>
+                    <h2>Welcome To DEVELOPI!</h2>
                     <p className="body_text">
                         Our product is a combination of existing solutions,<br/>
                         focusing on one niche so it would be more<br/>
