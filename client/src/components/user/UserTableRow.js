@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 
 export default class UserTableRow extends Component {
 
@@ -9,15 +7,8 @@ export default class UserTableRow extends Component {
             <tr>
                 <td>{this.props.obj.name}</td>
                 <td>{this.props.obj.email}</td>
-                <td>{this.props.obj.rollno}</td>
-                <td>
-                    <Link className="edit-link" to={"/edit-user/" + this.props.obj._id}>
-                        <Button size={"sm"} variant={"link"}>
-                            Edit
-                        </Button>
-                    </Link>
-                    <Button size={"sm"} variant={"danger"}> Delete </Button>
-                </td>
+                <td>{this.props.obj.skills.map(x => x.name + " ")}</td>
+                <td>{Math.floor(Math.random() * 10) + 1}</td>
             </tr>
         )
     }

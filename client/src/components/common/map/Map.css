@@ -1,11 +1,11 @@
 .MapStyle {
     position: relative !important;
-    width: 800px !important;
-    transition: padding-bottom 1s, height 4s;
+    width: 1200px !important;
+    height: 100% !important;
+    transition: padding-bottom 1s, height 1s;
     padding-bottom: 30%;
 }
 .MapStyle:hover {
-    width: 800px !important;
     height: 100% !important;
     padding-bottom: 56.25%;
 }
@@ -13,6 +13,7 @@
     display: flex;
     justify-content: center;
     flex-direction: row-reverse;
+    margin: 10px 0 20px 0;
 }
 .single-address {
     background: lightgray;

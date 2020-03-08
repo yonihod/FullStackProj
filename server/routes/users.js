@@ -43,12 +43,12 @@ module.exports = (app) => {
             });
         });
 
-    app.route('/users/:email')
+    app.route('/users/email/:email')
         .get((req, res) => {
             User.findOne({email: req.params.email}).populate('skills posts').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
-                console.log(err);
+                console.log("server " + err);
             });
         })
         .put((req, res) => {
@@ -68,5 +68,4 @@ module.exports = (app) => {
                 console.log(err);
             });
         })
-
 };

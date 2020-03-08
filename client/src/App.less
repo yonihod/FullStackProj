@@ -15,6 +15,14 @@ html, body {
   height: 100%;
 }
 
+.spinner {
+  margin: auto;
+  font-size: 100px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
 .App {
   text-align: center;
   position: relative;
@@ -49,9 +57,11 @@ html, body {
 .form-wrapper {
   text-align: left;
 }
+
 .wrapper {
   padding-bottom: 2.5rem;
 }
+
 .footer {
   bottom: 0;
   position: absolute;
@@ -82,6 +92,44 @@ html, body {
   }
 }
 
+.profile {
+  h1 {
+    position: relative;
+    left: 0;
+    z-index: 1;
+    color: #ffffff;
+    width: 100%;
+    padding-bottom: 30px;
+    border-radius: 0 0 5px 5px;
+    font-family: 'Dancing Script';
+    font-size: 4rem;
+    text-shadow: 4px 2px crimson
+  }
+  h2{
+    font-size: 2rem;
+  }
+  header{
+    margin: 0 1.5% 24px 1.5%;
+  }
+  aside {
+    float: left;
+    width: 50%;
+  }
+  #right{
+    float: right;
+    width: 50%;
+  }
+  //img{
+  //  float: left;
+  //  width: auto;
+  //}
+  section {
+    margin: 0 1.5% 24px 1.5%;
+    float: left;
+    width: 40%;
+  }
+}
+
 .edit-post {
   h1, .delete {
     display: inline-block;
@@ -90,6 +138,18 @@ html, body {
     margin-left: 2rem;
     vertical-align: top;
   }
+  .form-wrapper {
+    .danger {
+      text-align: center;
+      font-weight: 600;
+      margin-top: 20px;
+      padding: 1.5rem;
+      background: #dc3545;
+      color: #fff;
+      border-radius: 5px;
+    }
+  }
+
 }
 
 .post-page {
@@ -226,4 +286,8 @@ html, body {
   }
 }
 
-
+.profile{
+  h1{
+    color: #ffc107;
+  }
+}

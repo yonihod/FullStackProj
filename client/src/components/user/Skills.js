@@ -5,36 +5,44 @@ import UserService from "../../services/Users";
 export default class Skills extends Component {
     constructor(props) {
         super(props);
+        let skills = [];
+        let email = '';
+
+        if(props !== undefined ){
+            email = props.email;
+        }
+
         this.state = {
-            skills: []
+            email: email,
+            skills: skills
         };
-        console.log(this.props.email);
+
     }
 
     componentDidMount() {
-        UserService.getUserByEmail(this.props.email).then(res => {
-            console.log(res);
+        UserService.getUserByEmail(this.state.email).then(res => {
             this.setState({
                 skills: res.skills
             });
         }).catch(err => {
             console.log('There has been an error loading skills in skills-component: ' + err);
         });
+
     }
 
 
 
     render() {
+        const skills =  this.state.skills.map(function(object, i) {
+            return <div>{object.name}</div>;
+        });
+
         return (
             <div>
                 <ul>
-                    {/*{this.state.skills.map(skill => {*/}
-                    {/*    return <li>{skill[0]}</li>*/}
-                    {/*})}*/}
-                    {this.state.skills}
+                    {skills}
                 </ul>
             </div>
         );
     }
-
-    }
+}

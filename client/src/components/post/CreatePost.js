@@ -2,17 +2,19 @@ import React, {Component} from "react";
 import PostsService from "../../services/Posts";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
+import UserService from "../../services/Users";
 
 export default class CreatePost extends Component {
     constructor(props) {
         super(props);
+        this.user = props.user;
         // assign owner dynamically when we finish with users
         this.state = {
             title: "",
             description: "",
             dueDate: "",
             tags:[],
-            owner: "5e5a3bfdd9b5a3209db11284",
+            owner: "",
             createdAt: "",
             done: false
         };
@@ -49,12 +51,37 @@ export default class CreatePost extends Component {
         });
     };
 
+    componentDidMount() {
+        UserService.getUserByEmail(this.user.email)
+            .then(res => {
+                if (res === null) {
+                    // for old users that are not in the DB
+                    const user = {
+                        name: this.user.name,
+                        email: this.user.email,
+                        password: 'required'
+                    };
+
+                    UserService.AddUser(user).then((u) => {
+                        this.setState({ owner: u._id })
+                    })
+                }
+                else {
+                    this.setState({ owner: res._id })
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
     render() {
         return (
             <div className={"w-50 mt-4 ml-auto mr-auto"}>
                 <h1>Submit Form</h1>
                 <div className="form-wrapper">
-                    {!this.state.done && (<Form onSubmit={this.handleSubmit.bind(this)}>
+                    {!this.state.done && (
+                      <Form onSubmit={this.handleSubmit.bind(this)}>
                         <Form.Group controlId="title">
                             <Form.Label>Title</Form.Label>
                             <Form.Control value = {this.state.title} onChange= {e=>this.handleChange(e)} name="title" type="text"/>
@@ -73,8 +100,8 @@ export default class CreatePost extends Component {
                         <Button type="submit" variant="danger" size="lg" block="block">
                             Create Post
                         </Button>
-
-                    </Form>)}
+                      </Form>)
+                    }
                 </div>
             </div>
         );

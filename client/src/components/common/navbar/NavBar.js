@@ -19,6 +19,7 @@ const NavBar = () => {
             </Navbar.Brand>
             <Nav><Link to={"/posts"} className="nav-link">Posts</Link></Nav>
             <Nav><Link to={"/create-post"} className="nav-link">Create a post</Link></Nav>
+            <Nav><Link to={"/service-providers"} className="nav-link">Service providers</Link></Nav>
             <Nav><Link to={"/about-us"} className="nav-link">About</Link></Nav>
             <Nav className="user-bar ml-auto">
                 {!isAuthenticated && <Link className="nav-link" to="/" onClick={() => loginWithRedirect({})}>Log in</Link>}

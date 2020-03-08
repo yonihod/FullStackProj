@@ -9,12 +9,8 @@ function  Delete(prop) {
     const handleShow = () => setShow(true);
 
     const confirmDelete = () => {
-        PostsService.DeletePost(prop.value).then(()=>{
             handleClose();
             prop.onChange();
-        }).catch( (err) => {
-            console.log(err)
-        });
     };
 
     return (
@@ -50,12 +46,13 @@ export default class EditPost extends Component {
             tags: "",
             owner: "",
             createdAt: "",
-            done: false
+            done: false,
+            canWrite: true
         };
     }
 
     componentDidMount() {
-        PostsService.getPost(this.props.match.params.id).then(data => {
+        PostsService.getPost(this.props.computedMatch.params.id).then(data => {
             console.log(data);
             let dueDate = (typeof  data.dueDate !=='undefined') ? new Date(data.dueDate).toISOString().slice(0,10) : "";
             this.setState(
@@ -81,51 +78,66 @@ export default class EditPost extends Component {
     };
 
     handleSubmit = e => {
-        e.preventDefault();
-        // need to inject owner here (current active user)
-        this.state.updatedAt = Date.now();
-        const post = {
-            title: this.state.title,
-            description: this.state.description,
-            dueDate: this.state.dueDate,
-            tags: this.state.tags,
-            owner: this.state.owner._id,
-            createdAt: this.state.createdAt
-        };
-        console.log(this.state);
+        if(this.userHasWritePrivileges()) {
+            e.preventDefault();
+            // need to inject owner here (current active user)
+            this.state.updatedAt = Date.now();
+            const post = {
+                title: this.state.title,
+                description: this.state.description,
+                dueDate: this.state.dueDate,
+                tags: this.state.tags,
+                owner: this.state.owner._id,
+                createdAt: this.state.createdAt
+            };
+            console.log(this.state);
 
-        PostsService.EditPost(this.state.id,post).then( (res) => {
-            this.props.history.push({
-                pathname:'/posts',
-                state:{done:true,alertType: "success", msg: "Post Edited Successfully"}
+            PostsService.EditPost(this.state.id, post).then((res) => {
+                this.props.history.push({
+                    pathname: '/posts',
+                    state: {done: true, alertType: "success", msg: "Post Edited Successfully"}
+                });
+            }).catch((err) => {
+                console.log(err)
             });
-        }).catch( (err) => {
-            console.log(err)
-        });
+        }
     };
 
     handleDelete = () => {
-        this.setState( {
-            id: "",
-            title: "",
-            description: "",
-            dueDate: "",
-            tags: "",
-            owner: "",
-            createdAt: "",
-            done: true
-        });
-        this.props.history.push({
-            pathname:'/posts',
-            state:{done:true,alertType: "danger", msg: "Post Deleted Successfully"}
-        });
+        if(this.userHasWritePrivileges()) {
+            PostsService.DeletePost(this.state.id).then( (res) => {
+                console.log(res);
+                debugger;
+                this.setState({
+                    id: "",
+                    title: "",
+                    description: "",
+                    dueDate: "",
+                    tags: "",
+                    owner: "",
+                    createdAt: "",
+                    done: true
+                });
+                this.props.history.push({
+                    pathname: '/posts',
+                    state: {done: true, alertType: "danger", msg: "Post Deleted Successfully"}
+                });
+            }).catch((err) => {
+                console.log(err)
+            });
+        }
+    };
+
+    userHasWritePrivileges  = () => {
+      this.setState({canWrite: this.props?.currentUser?.email === this.state?.owner?.email })
+        return this.state.canWrite;
     };
 
     render() {
         return (
             <div className={"w-50 mt-4 ml-auto mr-auto edit-post"}>
                 <h1>Edit Post</h1>
-                <Delete value={this.state.id} onChange={this.handleDelete}/>
+                <Delete currentUser={this.props.currentUser} value={this.state.id} onChange={this.handleDelete}/>
                 <div className="form-wrapper">
                     {!this.state.done && (<Form onSubmit={this.handleSubmit.bind(this)}>
                         <Form.Group controlId="title">
@@ -148,6 +160,7 @@ export default class EditPost extends Component {
                         </Button>
 
                     </Form>)}
+                    {this.state.canWrite ? null : <div className={"danger"}>You do not have write privileges </div>}
                 </div>
             </div>
         );
