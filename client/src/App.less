@@ -29,6 +29,14 @@ html, body {
   min-height: 100vh;
 }
 
+.navbar-brand {
+  padding: 0 !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #f3f3f3d1 !important;
+}
+
 #logo {
   height: 10vmin;
   pointer-events: none;
@@ -81,8 +89,9 @@ html, body {
     border-radius: 0 0 5px 5px;
     font-family: 'Dancing Script';
     font-size: 6.5rem;
-    text-shadow: 4px 2px crimson
+    text-shadow: 4px 2px #2cb5a8d9;
   }
+
   #home-video {
     position: fixed;
     right: 0;
@@ -105,24 +114,25 @@ html, body {
     font-size: 4rem;
     text-shadow: 4px 2px crimson
   }
-  h2{
+
+  h2 {
     font-size: 2rem;
   }
-  header{
+
+  header {
     margin: 0 1.5% 24px 1.5%;
   }
+
   aside {
     float: left;
     width: 50%;
   }
-  #right{
+
+  #right {
     float: right;
     width: 50%;
   }
-  //img{
-  //  float: left;
-  //  width: auto;
-  //}
+
   section {
     margin: 0 1.5% 24px 1.5%;
     float: left;
@@ -134,10 +144,12 @@ html, body {
   h1, .delete {
     display: inline-block;
   }
+
   .delete {
     margin-left: 2rem;
     vertical-align: top;
   }
+
   .form-wrapper {
     .danger {
       text-align: center;
@@ -149,12 +161,10 @@ html, body {
       border-radius: 5px;
     }
   }
-
 }
 
 .post-page {
-
-  .Writer h1 {
+  .writer h1 {
     color: white;
     text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
   }
@@ -172,12 +182,15 @@ html, body {
     transition: opacity 2s;
     animation: 8s fadeOut;
   }
+
   .success {
     background: #28a745;
   }
+
   .danger {
     background: #dc3545;
   }
+
   .warning {
     background: #ffc107;
     color: #212529;
@@ -186,16 +199,20 @@ html, body {
   .posts_img {
     max-width: 100%;
   }
+
   #cards-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+
     .card {
       position: relative;
+
       .manage-post {
         a {
           color: #000000;
         }
+
         width: 90px;
         position: absolute;
         right: 0;
@@ -204,20 +221,25 @@ html, body {
         opacity: 0;
         pointer-events: none;
         padding: 0;
+
         i {
           padding: 5px;
           margin-left: 5px;
         }
       }
+
       .card-body {
         position: relative;
+
         .card-text {
           height: 150px;
           overflow: hidden;
         }
+
         a {
           display: block;
           height: 40px;
+
           .explore {
             position: absolute;
             left: 50%;
@@ -226,10 +248,12 @@ html, body {
           }
         }
       }
+
       &:hover {
-        -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
-        -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
-        box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
+        box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
+
         .manage-post {
           width: 90px;
           opacity: 1;
@@ -247,6 +271,7 @@ html, body {
       color: white;
       text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
     }
+
     .body_text {
       column-count: 2;
       column-rule: lightgray;
@@ -256,6 +281,7 @@ html, body {
       margin-top: 20px;
     }
   }
+
   .about_img {
     max-width: 100%;
   }
@@ -265,18 +291,22 @@ html, body {
       font-family: 'Dancing Script';
       text-shadow: 2px 2px springgreen;
     }
+
     #team-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+
       > div {
         width: 15%;
         margin-right: 1rem;
+
         &:hover {
-          -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
-          -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+          -webkit-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
+          -moz-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
+          box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
         }
+
         img {
           max-width: 100%;
         }
@@ -285,8 +315,8 @@ html, body {
   }
 }
 
-.profile{
-  h1{
+.profile {
+  h1 {
     color: #ffc107;
   }
 }

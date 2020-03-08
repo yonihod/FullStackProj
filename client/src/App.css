@@ -31,6 +31,12 @@ body {
   position: relative;
   min-height: 100vh;
 }
+.navbar-brand {
+  padding: 0 !important;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: #f3f3f3d1 !important;
+}
 #logo {
   height: 10vmin;
   pointer-events: none;
@@ -75,7 +81,7 @@ body {
   border-radius: 0 0 5px 5px;
   font-family: 'Dancing Script';
   font-size: 6.5rem;
-  text-shadow: 4px 2px crimson;
+  text-shadow: 4px 2px #2cb5a8d9;
 }
 .home #home-video {
   position: fixed;
@@ -132,7 +138,7 @@ body {
   color: #fff;
   border-radius: 5px;
 }
-.post-page .Writer h1 {
+.post-page .writer h1 {
   color: white;
   text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
 }
@@ -207,9 +213,9 @@ body {
   bottom: 5px;
 }
 .post-page #cards-container .card:hover {
-  -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
 }
 .post-page #cards-container .card:hover .manage-post {
   width: 90px;
@@ -246,9 +252,9 @@ body {
   margin-right: 1rem;
 }
 .about #our-team #team-container > div:hover {
-  -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
 }
 .about #our-team #team-container > div img {
   max-width: 100%;
