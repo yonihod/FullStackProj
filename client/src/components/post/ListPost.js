@@ -29,7 +29,7 @@ export default class ListPost extends Component {
             alertType: alertType,
             msg: msg,
             search: "",
-            orderBy:""
+            orderBy: undefined
         }
     }
 
@@ -58,18 +58,30 @@ export default class ListPost extends Component {
     sortByDueDate = (date1,date2) => {
         if(this.state.posts.length) {
             let date1_ = new Date(date1.dueDate) , date2_ = new Date(date2.dueDate);
-            return date1 - date2;
+            if(isNaN(date1_)){
+                date1_ = 0;
+            }
+            if(isNaN(date2_)){
+                date2_ = 0
+            }
+            return date2_-date1_;
         }
     };
 
     sortByCreatedAt = (date1,date2) => {
         if(this.state.posts.length) {
-            let date1_ = new Date(date1.createdAt), date2_ = new Date(date2.createdAt);
-            return date1 - date2;
+            let date1_ = new Date(date1.createdAt).getTime(), date2_ = new Date(date2.createdAt).getTime();
+            if(isNaN(date1_)){
+                date1_ = 0;
+            }
+            if(isNaN(date2_)){
+                date2_ = 0
+            }
+            return date1_ - date2_;
         }
     };
 
-    orderBy = ( (order) => {
+    seOrderBy = ( (order) => {
        this.setState({orderBy:order})
     });
 
@@ -79,7 +91,7 @@ export default class ListPost extends Component {
         const filteredPosts = this.state.posts.filter( (post =>{
             return post.title.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
                    post.description.toLowerCase().indexOf(search.toLowerCase()) !== -1
-        }));
+        })).sort(orderBy);
         
         return (
             <div className={"post-page"}>
@@ -94,8 +106,8 @@ export default class ListPost extends Component {
                 <div className="m-3">
                     <InputGroup size="lg" onChange={this.onChange}>
                         <DropdownButton as={InputGroup.Prepend} variant="outline-secondary" id="input-group-dropdown" title={<i className={"fa fa-search"}/>}>
-                            <Dropdown.Item onClick={() => this.orderBy(this.sortByDueDate)} href="#">Sort By Due Date</Dropdown.Item>
-                            <Dropdown.Item onClick={() => this.orderBy(this.sortByCreatedAt)} href="#">Sort By Created At</Dropdown.Item>
+                            <Dropdown.Item onClick={() => this.seOrderBy(this.sortByDueDate)} href="#">Sort By Due Date</Dropdown.Item>
+                            <Dropdown.Item onClick={() => this.seOrderBy(this.sortByCreatedAt)} href="#">Sort By Created At</Dropdown.Item>
                             <Dropdown.Divider />
                             <Dropdown.Item href="#">Advanced Search</Dropdown.Item>
                         </DropdownButton>
