@@ -57,6 +57,7 @@ body {
 }
 .navbar-dark .navbar-nav .nav-link {
   color: #f3f3f3d1 !important;
+  cursor: pointer;
 }
 .form-wrapper {
   text-align: left;
