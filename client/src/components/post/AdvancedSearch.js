@@ -30,6 +30,10 @@ export default function AdvancedSearch(props) {
         toggleAdvancedSearch(props?.show);
     });
 
+    const close = () => {
+        props.close();
+    };
+
     const onDatesChange = ({ startDate, endDate }) => {
         console.log(({ startDate, endDate }));
     };
@@ -38,6 +42,9 @@ export default function AdvancedSearch(props) {
         <div id={"advanced-search-container"} className={`${toggle ? "toggle-advanced-search" : ""} w-100 p-3 m-auto`}>
             <div className={"advanced-search text-left p-3 pt-4 pb-4 border"}>
             <h5 className={"text-center"}>Advanced Search</h5>
+            <button type="button" className="close" aria-label="Close" onClick={() => close()}>
+                <span aria-hidden="true">&times;</span>
+            </button>
             <div className={"search-wrapper"}>
                 <div className={"w-50"}>
                     <label htmlFor="title">Title:</label>

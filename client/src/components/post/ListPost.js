@@ -101,6 +101,7 @@ export default class ListPost extends Component {
         return (
             <div className={"post-page"}>
                 {this.state.done ? <Success value={this.state}/> : null}
+                <img src="/posts-people.jpg" className="posts_img"/>
                 <div className={"writer-container"}>
                     <div className="writer">
                         <Typist>
@@ -121,7 +122,7 @@ export default class ListPost extends Component {
                         <FormControl aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
                     </InputGroup>
                 </div>
-                    <AdvancedSearch show={this.state.toggleAdvancedSearch}/>
+                    <AdvancedSearch close={()=> {this.setState({toggleAdvancedSearch: !this.state.toggleAdvancedSearch})}} show={this.state.toggleAdvancedSearch}/>
                 <div id="cards-container">
                     {filteredPosts.map ((post,index)=>{
                         return this.renderPost(post,index)

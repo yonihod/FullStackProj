@@ -185,10 +185,29 @@ html, body {
       }
     }
     .advanced-search {
+      position: relative;
       transition: opacity 0.2s, visibility 0.2s, height 1s ease;
       visibility: hidden;
       height: 0;
       opacity: 0;
+      .close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: #dc3545;
+        height: 1.5rem;
+        width: 1.5rem;
+        color: #ffff;
+        opacity: 1;
+        border-radius: 50%;
+        border: none;
+        span {
+          vertical-align: text-top;
+          line-height: 1.2rem;
+          margin-left: 1px;
+          border: none;
+        }
+      }
     }
   }
   .writer-container {
@@ -240,7 +259,7 @@ html, body {
     max-width: 100%;
     width: 80%;
     left: calc(50% - 80% / 2 );
-    max-height: 550px;
+    max-height: 500px;
     position: absolute;
   }
 
