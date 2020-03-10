@@ -173,6 +173,8 @@ body {
   opacity: 1;
   border-radius: 50%;
   border: none;
+  outline: none !important;
+  box-shadow: none;
 }
 .post-page #advanced-search-container .advanced-search .close span {
   vertical-align: text-top;
