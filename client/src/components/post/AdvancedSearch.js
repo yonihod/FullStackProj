@@ -45,21 +45,21 @@ export default function AdvancedSearch(props) {
                         <InputGroup.Prepend>
                             <InputGroup.Checkbox aria-label="select this to update query" />
                         </InputGroup.Prepend>
-                        <FormControl aria-label="Text input with checkbox" />
+                        <FormControl placeholder="Your question" aria-label="Text input with checkbox" />
                     </InputGroup>
-                    <label htmlFor="service-provider">Service Provider:</label>
+                    <label htmlFor="service-provider">Post Publisher:</label>
                     <InputGroup id="service-provider" className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Checkbox aria-label="select this to update query" />
                         </InputGroup.Prepend>
-                        <FormControl aria-label="Text input with checkbox" />
+                        <FormControl placeholder={"Search for specific publisher here..."} aria-label="Text input with checkbox" />
                     </InputGroup>
                     <label htmlFor="tags">Tags:</label>
                     <InputGroup id="tags" className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Checkbox aria-label="select this to update query" />
                         </InputGroup.Prepend>
-                        <FormControl aria-label="Text input with checkbox" />
+                        <FormControl placeholder="Javascript, Python, .NET etc..." aria-label="Text input with checkbox" />
                     </InputGroup>
                 </div>
                 <div className={"duo-date"}>

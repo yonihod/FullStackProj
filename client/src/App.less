@@ -178,14 +178,14 @@ html, body {
   #advanced-search-container {
     &.toggle-advanced-search {
       .advanced-search {
-        height: 500px;
+        height: 400px;
         visibility: visible;
         opacity: 1;
-        transition: all 0.5s ease;
+        transition: opacity 1.5s, visibility 1.5s, height 1s ease;
       }
     }
     .advanced-search {
-      transition: opacity 0.2s, visibility 0.1s, height 0.5s;
+      transition: opacity 0.2s, visibility 0.2s, height 1s ease;
       visibility: hidden;
       height: 0;
       opacity: 0;
