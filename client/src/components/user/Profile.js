@@ -7,8 +7,8 @@ import PostBox from "../post/PostBox";
 
 const Profile = () => {
 
-    const [posts, setPosts] = useState(0);
-
+    //const [posts, setPosts] = useState(0);
+    const [userFromDB, setUserFromDB] = useState(0);
     const {loading, user} = useAuth0();
 
     if (loading) {
@@ -23,14 +23,15 @@ const Profile = () => {
     }
 
     UserService.getUserByEmail(user.email).then(res =>{
-       setPosts(res.posts);
+      // setPosts(res.posts);
+       setUserFromDB(res);
     }).catch(err=> {
         console.log(err)
     });
 
     const dataBox = () => {
-        if (posts) {
-            return posts.map((res, i) => {
+        if (userFromDB.posts) {
+            return userFromDB.posts.map((res, i) => {
                 if (res !== undefined) {
                     return <PostBox obj={res} key={i}/>
                 }
@@ -38,38 +39,23 @@ const Profile = () => {
         }
     };
 
-    // const filteredPosts = this.state.posts.filter( (post =>{
-    //     return post.title.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
-    //         post.description.toLowerCase().indexOf(search.toLowerCase()) !== -1
-    // }));
-
-    // const renderPost = (post,index) => {
-    //     if (this.state.posts) {
-    //         return <PostBox obj={post} key={index}/>
-    //     }
-    // };
-
     return (
         <div className="profile">
             <header>
                 <img src={user.picture} alt="Profile"/>
                 <p>
-                    <h2>{user.name}</h2>
-                    {user.email}
+                    <h2>{userFromDB.name}</h2>
+                    {userFromDB.email}
                 </p>
             </header>
-            <aside id="right">
-                {/*<ListPost email={user.email}/>*/}
+            <div class="flex-container">
                 <div id="cards-container">
                     {dataBox()}
                 </div>
-            </aside>
-            <section>
-                <Skills email={user.email}/>
-            </section>
-            {/*<p>*/}
-            {/*    <code>{JSON.stringify(user, null, 2)}</code>*/}
-            {/*</p>*/}
+                <div>
+                    <Skills email={user.email}/>
+                </div>
+            </div>
         </div>
 
     );
