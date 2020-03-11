@@ -7,7 +7,7 @@ export default class UserTableRow extends Component {
             <tr>
                 <td>{this.props.obj.name}</td>
                 <td>{this.props.obj.email}</td>
-                <td>{this.props.obj.skills.map(x => x.name + " ")}</td>
+                <td>{this.props.obj.skills.map(x => x.name).join(', ')}</td>
                 <td>{Math.floor(Math.random() * 10) + 1}</td>
             </tr>
         )
