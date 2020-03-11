@@ -12,19 +12,17 @@ const NavBar = () => {
 
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand>
-                <Link to={"/"}>
-                    <img id="logo" src="/developi-logo.png" alt="logo"/>
-                </Link>
+            <Navbar.Brand className={"brand"}>
+                <Link to={"/"}><img id="logo" src="/logo.png" alt="logo"/></Link>
             </Navbar.Brand>
             <Nav><Link to={"/posts"} className="nav-link">Posts</Link></Nav>
             <Nav><Link to={"/create-post"} className="nav-link">Create a post</Link></Nav>
             <Nav><Link to={"/service-providers"} className="nav-link">Service providers</Link></Nav>
             <Nav><Link to={"/about-us"} className="nav-link">About</Link></Nav>
             <Nav className="user-bar ml-auto">
-                {!isAuthenticated && <Link className="nav-link" to="/" onClick={() => loginWithRedirect({})}>Log in</Link>}
+                {!isAuthenticated && <div className="nav-link" onClick={() => loginWithRedirect({})}>Log in</div>}
                 {isAuthenticated && <Link title={user.name} className="nav-link" to="/profile"><img src={user.picture} alt="Logo" className="avatar"/></Link>}
-                {isAuthenticated && <Link className="nav-link" to="/" onClick={() => logout({returnTo: window.location.origin})}>Log out</Link>}
+                {isAuthenticated && <div className="nav-link" onClick={() => logout({returnTo: window.location.origin})}>Log out</div>}
             </Nav>
         </Navbar>
     );

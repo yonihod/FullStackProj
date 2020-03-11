@@ -6,6 +6,7 @@ import Success from "./Success";
 import "../../App.css";
 import Typist from 'react-typist';
 import {InputGroup,FormControl,Dropdown,DropdownButton} from "react-bootstrap"
+import AdvancedSearch from "./AdvancedSearch"
 
 export default class ListPost extends Component {
 
@@ -29,7 +30,8 @@ export default class ListPost extends Component {
             alertType: alertType,
             msg: msg,
             search: "",
-            orderBy: undefined
+            orderBy: undefined,
+            toggleAdvancedSearch: false
         }
     }
 
@@ -81,41 +83,46 @@ export default class ListPost extends Component {
         }
     };
 
-    seOrderBy = ( (order) => {
+    setOrderBy = ( (order) => {
        this.setState({orderBy:order})
     });
 
     render() {
         const {orderBy} = this.state;
         const {search} = this.state;
-        const filteredPosts = this.state.posts.filter( (post =>{
-            return post.title.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
-                   post.description.toLowerCase().indexOf(search.toLowerCase()) !== -1
-        })).sort(orderBy);
+        var filteredPosts = [];
+        if(this.state?.posts && this.state.posts.length) {
+            var filteredPosts = this.state.posts.filter((post => {
+                return post.title.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+                    post.description.toLowerCase().indexOf(search.toLowerCase()) !== -1
+            })).sort(orderBy);
+        }
         
         return (
             <div className={"post-page"}>
                 {this.state.done ? <Success value={this.state}/> : null}
-                <div className="Writer mt-5">
-                    <Typist>
-                        <h1>Choose your task</h1> <br/>
-                        <h4>A single place, millions of creative talents<br/>Improve your quality of life with style
-                        </h4>
-                    </Typist>
+                <img src="/posts-people.jpg" className="posts_img"/>
+                <div className={"writer-container"}>
+                    <div className="writer">
+                        <Typist>
+                            <h1>Choose your task</h1> <br/>
+                            <h4>A single place, millions of creative talents<br/>Improve your quality of life with style
+                            </h4>
+                        </Typist>
+                    </div>
                 </div>
                 <div className="m-3">
                     <InputGroup size="lg" onChange={this.onChange}>
                         <DropdownButton as={InputGroup.Prepend} variant="outline-secondary" id="input-group-dropdown" title={<i className={"fa fa-search"}/>}>
-                            <Dropdown.Item onClick={() => this.seOrderBy(this.sortByDueDate)} href="#">Sort By Due Date</Dropdown.Item>
-                            <Dropdown.Item onClick={() => this.seOrderBy(this.sortByCreatedAt)} href="#">Sort By Created At</Dropdown.Item>
+                            <Dropdown.Item onClick={() => this.setOrderBy(this.sortByDueDate)} href="#">Sort By Due Date</Dropdown.Item>
+                            <Dropdown.Item onClick={() => this.setOrderBy(this.sortByCreatedAt)} href="#">Sort By Created At</Dropdown.Item>
                             <Dropdown.Divider />
-                            <Dropdown.Item href="#">Advanced Search</Dropdown.Item>
+                            <Dropdown.Item onClick={() => {this.setState({toggleAdvancedSearch: !this.state.toggleAdvancedSearch})}} href="#">Advanced Search</Dropdown.Item>
                         </DropdownButton>
                         <FormControl aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
                     </InputGroup>
                 </div>
-
-
+                    <AdvancedSearch close={()=> {this.setState({toggleAdvancedSearch: !this.state.toggleAdvancedSearch})}} show={this.state.toggleAdvancedSearch}/>
                 <div id="cards-container">
                     {filteredPosts.map ((post,index)=>{
                         return this.renderPost(post,index)
