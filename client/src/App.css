@@ -15,6 +15,16 @@
     opacity: 0;
   }
 }
+@keyframes fadeIn {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
 html,
 body {
   height: 100%;
@@ -190,13 +200,10 @@ body {
   margin-top: 2rem;
 }
 .post-page .writer-container {
-  width: 80%;
-  position: relative;
+  margin: 2rem 0 1rem 0;
 }
 .post-page .writer-container .writer {
-  top: 80px;
-  left: -50px;
-  position: absolute;
+  height: 180px;
 }
 .post-page .writer-container .writer h1 {
   color: white;
@@ -227,9 +234,6 @@ body {
   background: #ffc107;
   color: #212529;
 }
-.post-page .m-3 {
-  padding-top: 40%;
-}
 .post-page .posts_img {
   max-width: 100%;
   width: 80%;
@@ -247,24 +251,34 @@ body {
   position: relative;
 }
 .post-page #cards-container .card .manage-post {
-  width: 90px;
   position: absolute;
-  right: 0;
-  background: darkgray;
-  transition: padding-left 0.5s ease;
+  left: 2px;
+  top: 2px;
   opacity: 0;
   pointer-events: none;
-  padding: 0;
+  display: flex;
+  animation: 1s fadeIn;
+  transition: 0.5s ease;
 }
 .post-page #cards-container .card .manage-post a {
-  color: #000000;
+  color: #fff;
+  padding: 0 5px;
+  border-radius: 5px;
 }
-.post-page #cards-container .card .manage-post i {
-  padding: 5px;
-  margin-left: 5px;
+.post-page #cards-container .card .manage-post a.edit {
+  background: #ffc107;
+}
+.post-page #cards-container .card .manage-post a.delete {
+  background: #dc3545;
+}
+.post-page #cards-container .card .manage-post a:last-child {
+  margin-left: 2px;
 }
 .post-page #cards-container .card .card-body {
   position: relative;
+}
+.post-page #cards-container .card .card-body .card-title {
+  margin-top: 0.75rem;
 }
 .post-page #cards-container .card .card-body .card-text {
   height: 150px;
@@ -286,10 +300,9 @@ body {
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
 }
 .post-page #cards-container .card:hover .manage-post {
-  width: 90px;
   opacity: 1;
   pointer-events: initial;
-  padding: 0 10px;
+  z-index: 1;
 }
 .about .head {
   position: relative;
