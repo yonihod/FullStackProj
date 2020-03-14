@@ -21,7 +21,6 @@ const PostBox = (props) => {
                     <i className={"fa fa-trash-alt"}></i>
                 </Link>
             </div>}
-            <Card.Img variant={"top"} src="https://via.placeholder.com/250" />
             <Card.Body>
                 <Card.Title>
                     {props.obj.title}

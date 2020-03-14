@@ -178,18 +178,21 @@ html, body {
   #advanced-search-container {
     &.toggle-advanced-search {
       .advanced-search {
-        height: 500px;
+        height: 500px !important;
         visibility: visible;
         opacity: 1;
-        transition: opacity 1.5s, visibility 1.5s, height 1s ease;
+        transition: opacity 1s, visibility 0.5s, height 0.5s ease;
+        padding: initial !important;
       }
     }
     .advanced-search {
       position: relative;
       transition: opacity 0.2s, visibility 0.2s, height 1s ease;
       visibility: hidden;
-      height: 0;
+      height: 0 !important;
+      padding: 0 !important;
       opacity: 0;
+      padding: 0;
       .close {
         position: absolute;
         top: 1rem;
@@ -209,6 +212,10 @@ html, body {
           margin-left: 1px;
           border: none;
         }
+      }
+      #advanced-submit-button {
+        margin-right: 2rem;
+        margin-top: 2rem;
       }
     }
   }

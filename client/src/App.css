@@ -150,17 +150,20 @@ body {
   justify-content: space-around;
 }
 .post-page #advanced-search-container.toggle-advanced-search .advanced-search {
-  height: 500px;
+  height: 500px !important;
   visibility: visible;
   opacity: 1;
-  transition: opacity 1.5s, visibility 1.5s, height 1s ease;
+  transition: opacity 1s, visibility 0.5s, height 0.5s ease;
+  padding: initial !important;
 }
 .post-page #advanced-search-container .advanced-search {
   position: relative;
   transition: opacity 0.2s, visibility 0.2s, height 1s ease;
   visibility: hidden;
-  height: 0;
+  height: 0 !important;
+  padding: 0 !important;
   opacity: 0;
+  padding: 0;
 }
 .post-page #advanced-search-container .advanced-search .close {
   position: absolute;
@@ -181,6 +184,10 @@ body {
   line-height: 1.2rem;
   margin-left: 1px;
   border: none;
+}
+.post-page #advanced-search-container .advanced-search #advanced-submit-button {
+  margin-right: 2rem;
+  margin-top: 2rem;
 }
 .post-page .writer-container {
   width: 80%;

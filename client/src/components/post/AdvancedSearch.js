@@ -67,7 +67,7 @@ export default function AdvancedSearch(props) {
     };
 
     return(
-        <div id={"advanced-search-container"} className={`${toggle ? "toggle-advanced-search" : ""} w-100 p-3 m-auto`}>
+        <div id={"advanced-search-container"} className={`${toggle ? "toggle-advanced-search" : ""} w-100 m-auto`}>
             <div className={"advanced-search text-left p-3 pt-4 pb-4 border"}>
             <h5 className={"text-center"}>Advanced Search</h5>
             <button type="button" className="close" aria-label="Close" onClick={() => close()}>
