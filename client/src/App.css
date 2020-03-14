@@ -19,15 +19,6 @@ html,
 body {
   height: 100%;
 }
-#cards-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-.flex-container {
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-}
 .spinner {
   margin: auto;
   font-size: 100px;
@@ -100,16 +91,36 @@ body {
   min-width: 100%;
   min-height: 100%;
 }
+.profile h1 {
+  position: relative;
+  left: 0;
+  z-index: 1;
+  color: #ffffff;
+  width: 100%;
+  padding-bottom: 30px;
+  border-radius: 0 0 5px 5px;
+  font-family: 'Dancing Script';
+  font-size: 4rem;
+  text-shadow: 4px 2px crimson;
+}
 .profile h2 {
   font-size: 2rem;
 }
 .profile header {
   margin: 0 1.5% 24px 1.5%;
 }
-.profile .flex-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+.profile aside {
+  float: left;
+  width: 50%;
+}
+.profile #right {
+  float: right;
+  width: 50%;
+}
+.profile section {
+  margin: 0 1.5% 24px 1.5%;
+  float: left;
+  width: 40%;
 }
 .edit-post h1,
 .edit-post .delete {
@@ -139,7 +150,7 @@ body {
   justify-content: space-around;
 }
 .post-page #advanced-search-container.toggle-advanced-search .advanced-search {
-  height: 400px;
+  height: 500px;
   visibility: visible;
   opacity: 1;
   transition: opacity 1.5s, visibility 1.5s, height 1s ease;
@@ -310,5 +321,8 @@ body {
 }
 .about #our-team #team-container > div img {
   max-width: 100%;
+}
+.profile h1 {
+  color: #ffc107;
 }
 /*# sourceMappingURL=App.css.map */

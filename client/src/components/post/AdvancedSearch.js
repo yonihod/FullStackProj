@@ -21,11 +21,13 @@ function reducer(state, action) {
 
 export default function AdvancedSearch(props) {
 
-    const [query , updateQuery] = useState([]);
+    const [title,updateTitle] = useState({"enable":false,"value": "" });
+    const [tags,updateTags] = useState({"enable":false,"value": "" });
+    const [owner,updateOwner] = useState({"enable":false,"value": "" });
+    const [desc,updateDesc] = useState({"enable":false,"value": "" });
     const [state, dispatch] = useReducer(reducer, initialState);
     const [toggle,toggleAdvancedSearch] = useState(props?.show);
-    let tags = "";
-    let  duoDate = "";
+
     useEffect( ()=> {
         toggleAdvancedSearch(props?.show);
     });
@@ -36,6 +38,32 @@ export default function AdvancedSearch(props) {
 
     const onDatesChange = ({ startDate, endDate }) => {
         console.log(({ startDate, endDate }));
+    };
+
+    const handleChange = (e,f) =>{
+        f({"enable": true, "value": e.target.value});
+    };
+
+    const handleSearch = () => {
+      // prep query to send to father component
+        let query = {};
+        if(title?.enable && title.value !== ""){
+            query['title'] ={$regex:title.value,$options:"$i"}
+
+        }
+        if(tags?.enable && tags.value !== ""){
+            query['tags'] = {$regex:tags.value,$options:"$i"}
+
+        }
+        if(owner?.enable && owner.value !== ""){
+            query['owner'] = {$regex:owner.value,$options:"$i"}
+
+        }
+        if(desc?.enable && desc.value !== ""){
+            query['description'] = {$regex:desc.value,$options:"$i"}
+
+        }
+        props.search(query);
     };
 
     return(
@@ -50,23 +78,30 @@ export default function AdvancedSearch(props) {
                     <label htmlFor="title">Title:</label>
                     <InputGroup id="title" className="mb-3">
                         <InputGroup.Prepend>
-                            <InputGroup.Checkbox aria-label="select this to update query" />
+                            <InputGroup.Checkbox aria-label="select this to update query" onChange={()=>{updateTitle({ enable : !title.enable, value: title.value } )}}/>
                         </InputGroup.Prepend>
-                        <FormControl placeholder="Your question" aria-label="Text input with checkbox" />
+                        <FormControl placeholder="Your question" aria-label="Text input with checkbox" disabled={!title.enable} onChange={e => handleChange(e,updateTitle)}/>
+                    </InputGroup>
+                    <label htmlFor="title">Description:</label>
+                    <InputGroup id="title" className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Checkbox aria-label="select this to update query" onChange={()=>{updateDesc({ enable : !desc.enable, value: desc.value } )}}/>
+                        </InputGroup.Prepend>
+                        <FormControl placeholder="Search in text" aria-label="Text input with checkbox" disabled={!desc.enable} onChange={e => handleChange(e,updateDesc)}/>
                     </InputGroup>
                     <label htmlFor="service-provider">Post Publisher:</label>
                     <InputGroup id="service-provider" className="mb-3">
                         <InputGroup.Prepend>
-                            <InputGroup.Checkbox aria-label="select this to update query" />
+                            <InputGroup.Checkbox aria-label="select this to update query" onChange={()=>{updateOwner({ enable : !owner.enable, value: owner.value } )}}/>
                         </InputGroup.Prepend>
-                        <FormControl placeholder={"Search for specific publisher here..."} aria-label="Text input with checkbox" />
+                        <FormControl placeholder={"Search for specific publisher here..."} aria-label="Text input with checkbox" disabled={!owner.enable} onChange={e =>handleChange(e,updateOwner)}/>
                     </InputGroup>
                     <label htmlFor="tags">Tags:</label>
                     <InputGroup id="tags" className="mb-3">
                         <InputGroup.Prepend>
-                            <InputGroup.Checkbox aria-label="select this to update query" />
+                            <InputGroup.Checkbox aria-label="select this to update query" onChange={()=>{updateTags({ enable : !tags.enable, value: tags.value } )}}/>
                         </InputGroup.Prepend>
-                        <FormControl placeholder="Javascript, Python, .NET etc..." aria-label="Text input with checkbox" />
+                        <FormControl placeholder="Javascript, Python, .NET etc..." aria-label="Text input with checkbox" disabled={!tags.enable} onChange={e => handleChange(e,updateTags)}/>
                     </InputGroup>
                 </div>
                 <div className={"duo-date"}>
@@ -82,7 +117,7 @@ export default function AdvancedSearch(props) {
                 </div>
             </div>
             <div className={"text-right"}>
-                <Button id={"advanced-submit-button"} className={""} variant={"primary"} size={"lg"}><i className={"fa fa-search"}></i> Search</Button>
+                <Button id={"advanced-submit-button"} onClick={handleSearch} variant={"primary"} size={"lg"}><i className={"fa fa-search"}></i> Search</Button>
             </div>
         </div>
         </div>
