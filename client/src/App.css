@@ -15,18 +15,19 @@
     opacity: 0;
   }
 }
+@keyframes fadeIn {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
 html,
 body {
   height: 100%;
-}
-#cards-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-.flex-container {
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
 }
 .spinner {
   margin: auto;
@@ -104,16 +105,36 @@ body {
   min-width: 100%;
   min-height: 100%;
 }
+.profile h1 {
+  position: relative;
+  left: 0;
+  z-index: 1;
+  color: #ffffff;
+  width: 100%;
+  padding-bottom: 30px;
+  border-radius: 0 0 5px 5px;
+  font-family: 'Dancing Script';
+  font-size: 4rem;
+  text-shadow: 4px 2px crimson;
+}
 .profile h2 {
   font-size: 2rem;
 }
 .profile header {
   margin: 0 1.5% 24px 1.5%;
 }
-.profile .flex-container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+.profile aside {
+  float: left;
+  width: 50%;
+}
+.profile #right {
+  float: right;
+  width: 50%;
+}
+.profile section {
+  margin: 0 1.5% 24px 1.5%;
+  float: left;
+  width: 40%;
 }
 .edit-post h1,
 .edit-post .delete {
@@ -143,17 +164,20 @@ body {
   justify-content: space-around;
 }
 .post-page #advanced-search-container.toggle-advanced-search .advanced-search {
-  height: 400px;
+  height: 500px !important;
   visibility: visible;
   opacity: 1;
-  transition: opacity 1.5s, visibility 1.5s, height 1s ease;
+  transition: opacity 1s, visibility 0.5s, height 0.5s ease;
+  padding: initial !important;
 }
 .post-page #advanced-search-container .advanced-search {
   position: relative;
   transition: opacity 0.2s, visibility 0.2s, height 1s ease;
   visibility: hidden;
-  height: 0;
+  height: 0 !important;
+  padding: 0 !important;
   opacity: 0;
+  padding: 0;
 }
 .post-page #advanced-search-container .advanced-search .close {
   position: absolute;
@@ -175,14 +199,15 @@ body {
   margin-left: 1px;
   border: none;
 }
+.post-page #advanced-search-container .advanced-search #advanced-submit-button {
+  margin-right: 2rem;
+  margin-top: 2rem;
+}
 .post-page .writer-container {
-  width: 80%;
-  position: relative;
+  margin: 2rem 0 1rem 0;
 }
 .post-page .writer-container .writer {
-  top: 80px;
-  left: -50px;
-  position: absolute;
+  height: 180px;
 }
 .post-page .writer-container .writer h1 {
   color: white;
@@ -213,9 +238,6 @@ body {
   background: #ffc107;
   color: #212529;
 }
-.post-page .m-3 {
-  padding-top: 40%;
-}
 .post-page .posts_img {
   max-width: 100%;
   width: 80%;
@@ -233,24 +255,34 @@ body {
   position: relative;
 }
 .post-page #cards-container .card .manage-post {
-  width: 90px;
   position: absolute;
-  right: 0;
-  background: darkgray;
-  transition: padding-left 0.5s ease;
+  left: 2px;
+  top: 2px;
   opacity: 0;
   pointer-events: none;
-  padding: 0;
+  display: flex;
+  animation: 1s fadeIn;
+  transition: 0.5s ease;
 }
 .post-page #cards-container .card .manage-post a {
-  color: #000000;
+  color: #fff;
+  padding: 0 5px;
+  border-radius: 5px;
 }
-.post-page #cards-container .card .manage-post i {
-  padding: 5px;
-  margin-left: 5px;
+.post-page #cards-container .card .manage-post a.edit {
+  background: #ffc107;
+}
+.post-page #cards-container .card .manage-post a.delete {
+  background: #dc3545;
+}
+.post-page #cards-container .card .manage-post a:last-child {
+  margin-left: 2px;
 }
 .post-page #cards-container .card .card-body {
   position: relative;
+}
+.post-page #cards-container .card .card-body .card-title {
+  margin-top: 0.75rem;
 }
 .post-page #cards-container .card .card-body .card-text {
   height: 150px;
@@ -272,10 +304,9 @@ body {
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
 }
 .post-page #cards-container .card:hover .manage-post {
-  width: 90px;
   opacity: 1;
   pointer-events: initial;
-  padding: 0 10px;
+  z-index: 1;
 }
 .about .head {
   position: relative;
@@ -314,5 +345,8 @@ body {
 }
 .about #our-team #team-container > div img {
   max-width: 100%;
+}
+.profile h1 {
+  color: #ffc107;
 }
 /*# sourceMappingURL=App.css.map */

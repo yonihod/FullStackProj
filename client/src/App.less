@@ -10,6 +10,16 @@
     opacity: 0;
   }
 }
+@keyframes fadeIn {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
 
 html, body {
   height: 100%;
@@ -178,18 +188,21 @@ html, body {
   #advanced-search-container {
     &.toggle-advanced-search {
       .advanced-search {
-        height: 400px;
+        height: 500px !important;
         visibility: visible;
         opacity: 1;
-        transition: opacity 1.5s, visibility 1.5s, height 1s ease;
+        transition: opacity 1s, visibility 0.5s, height 0.5s ease;
+        padding: initial !important;
       }
     }
     .advanced-search {
       position: relative;
       transition: opacity 0.2s, visibility 0.2s, height 1s ease;
       visibility: hidden;
-      height: 0;
+      height: 0 !important;
+      padding: 0 !important;
       opacity: 0;
+      padding: 0;
       .close {
         position: absolute;
         top: 1rem;
@@ -210,15 +223,16 @@ html, body {
           border: none;
         }
       }
+      #advanced-submit-button {
+        margin-right: 2rem;
+        margin-top: 2rem;
+      }
     }
   }
   .writer-container {
-    width: 80%;
-    position: relative;
+    margin: 2rem 0 1rem 0;
     .writer {
-      top: 80px;
-      left: -50px;
-      position: absolute;
+      height: 180px;
       h1 {
         color: white;
         text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
@@ -253,10 +267,6 @@ html, body {
     color: #212529;
   }
 
-  .m-3 {
-    padding-top: 40%;
-  }
-
   .posts_img {
     max-width: 100%;
     width: 80%;
@@ -275,28 +285,35 @@ html, body {
       position: relative;
 
       .manage-post {
-        a {
-          color: #000000;
-        }
-
-        width: 90px;
         position: absolute;
-        right: 0;
-        background: darkgray;
-        transition: padding-left 0.5s ease;
+        left: 2px;
+        top: 2px;
         opacity: 0;
         pointer-events: none;
-        padding: 0;
-
-        i {
-          padding: 5px;
-          margin-left: 5px;
+        display: flex;
+        animation:  1s fadeIn;
+        transition: 0.5s ease;
+        a {
+          color: #fff;
+          padding: 0 5px;
+          border-radius: 5px;
+          &.edit {
+            background: #ffc107;
+          }
+          &.delete {
+            background: #dc3545;
+          }
+          &:last-child {
+            margin-left: 2px;
+          }
         }
       }
 
       .card-body {
         position: relative;
-
+        .card-title {
+          margin-top: 0.75rem;
+        }
         .card-text {
           height: 150px;
           overflow: hidden;
@@ -321,10 +338,9 @@ html, body {
         box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
 
         .manage-post {
-          width: 90px;
           opacity: 1;
           pointer-events: initial;
-          padding: 0 10px;
+          z-index: 1;
         }
       }
     }

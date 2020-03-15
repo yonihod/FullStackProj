@@ -14,14 +14,13 @@ const PostBox = (props) => {
         <Card className={"w-25 m-2"}>
             {isBelongToUser(props.obj?.owner?.email) &&
             <div className={"manage-post"}>
-                <Link to={`/edit-post/${props.obj._id}`}>
+                <Link className={"edit"} to={`/edit-post/${props.obj._id}`}>
                     <i className={"fa fa-edit"}></i>
                 </Link>
-                <Link to={`/edit-post/${props.obj._id}`}>
+                <Link className={"delete"} to={`/edit-post/${props.obj._id}`}>
                     <i className={"fa fa-trash-alt"}></i>
                 </Link>
             </div>}
-            <Card.Img variant={"top"} src="https://via.placeholder.com/250" />
             <Card.Body>
                 <Card.Title>
                     {props.obj.title}

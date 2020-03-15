@@ -15,10 +15,18 @@ function classify(title) {
     });
 }
 
+function isEmpty(obj) {
+    return !obj || Object.keys(obj).length === 0;
+}
+
 module.exports = (app) => {
     app.route('/posts')
         .get((req, res) => {
-            Post.find().populate('owner').then((data) => {
+            let filter = {};
+            if(typeof  req.query.filter !== 'undefined' && !isEmpty(req.query.filter)){
+                filter = JSON.parse(req.query.filter);
+            }
+            Post.find(filter).populate('owner').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);
