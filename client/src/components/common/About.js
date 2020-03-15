@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Map from "./map/Map";
+import Charts from './charts/Charts';
 
 export default class about extends Component {
     render() {
@@ -46,6 +47,9 @@ export default class about extends Component {
                     <h3 className="Map_title">The Map!</h3>
                     <Map style={"margin:auto; width:100%"}/>
                 </section>
+                <div className={'charts'}>
+                    <Charts />
+                </div>
             </div>
         )
     }

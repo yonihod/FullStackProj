@@ -93,6 +93,10 @@ body {
   font-size: 6.5rem;
   text-shadow: 4px 2px #2cb5a8d9;
 }
+.home .charts {
+  position: relative;
+  z-index: 2;
+}
 .home #home-video {
   position: fixed;
   right: 0;
