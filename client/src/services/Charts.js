@@ -29,7 +29,7 @@ export default class ChartsService {
             // final data
             const data = {
                 key: 'Most Common Posts Tags', values: mapped
-            }
+            };
 
             return data;
         }).catch(err => {
@@ -57,8 +57,7 @@ export default class ChartsService {
             // final data
             const data = {
                 key: 'Users Skills', values: mapped
-            }
-            debugger;
+            };
 
         }).catch(err => {
             console.log(err)
