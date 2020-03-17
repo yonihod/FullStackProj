@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import React from "react";
 import Container from "react-bootstrap/Container";
-import {Router, Route, Switch, useHistory} from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
 
 import history from "./utils/history";
 import {useAuth0} from "./reactAuth0";

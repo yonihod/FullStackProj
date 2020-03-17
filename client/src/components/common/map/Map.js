@@ -46,37 +46,33 @@ class MapContainer extends Component {
     }
     displayMarkers = () => {
         if (this.state.addresses) {
-            return this.state.addresses.map((data, index) => {
-                if (data !== undefined) {
-                    return (
-                            <Marker
-                                name = {this.state.addresses[index].name}
-                                key={index}
-                                id={"marker"+index}
-                                position={{lat: this.state.addresses[index].lat, lng: this.state.addresses[index].lng}}
-                                onClick={this.onMarkerClick}
-                            />
-                    )
-                }
+            return this.state.addresses.filter((address) => {return( typeof address !== 'undefined')}).map((data, index) => {
+                return (
+                        <Marker
+                            name = {this.state.addresses[index].name}
+                            key={index}
+                            id={"marker"+index}
+                            position={{lat: this.state.addresses[index].lat, lng: this.state.addresses[index].lng}}
+                            onClick={this.onMarkerClick}
+                        />
+                )
             })
         }
     };
     displayInfoWindows = () => {
         if (this.state.addresses) {
-            return this.state.addresses.map((data, index) => {
-                if (data !== undefined) {
-                    return (
-                        <InfoWindow key={index}
-                                    marker={this.state.activeMarker}
-                                    onClose={this.onInfoWindowClose}
-                                    visible={this.state.showingInfoWindow}
-                        >
-                            <div>
-                                <h7>{this.state.selectedPlace.name}</h7>
-                            </div>
-                        </InfoWindow>
-                    )
-                }
+            return this.state.addresses.filter((address) => {return( typeof address !== 'undefined')}).map((data, index) => {
+                return (
+                    <InfoWindow key={index}
+                                marker={this.state.activeMarker}
+                                onClose={this.onInfoWindowClose}
+                                visible={this.state.showingInfoWindow}
+                    >
+                        <div>
+                            <h6>{this.state.selectedPlace.name}</h6>
+                        </div>
+                    </InfoWindow>
+                )
             })
         }
     };

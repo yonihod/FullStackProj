@@ -81,7 +81,7 @@ export default class EditPost extends Component {
         if (this.userHasWritePrivileges()) {
             e.preventDefault();
             // need to inject owner here (current active user)
-            this.state.updatedAt = Date.now();
+            this.setState({updatedAt: Date.now()});
             const post = {
                 title: this.state.title,
                 description: this.state.description,

@@ -1,6 +1,5 @@
-import React, {Fragment, useState} from "react";
+import React, {useState} from "react";
 import {useAuth0} from "../../reactAuth0";
-import { Link } from 'react-router-dom';
 import Skills from "./Skills";
 import UserService from "../../services/Users";
 import PostBox from "../post/PostBox";
@@ -8,34 +7,29 @@ import PostBox from "../post/PostBox";
 const Profile = () => {
 
     //const [posts, setPosts] = useState(0);
-    const [userFromDB, setUserFromDB] = useState(0);
+    const [userFromDB, setUserFromDB] = useState([]);
     const {loading, user} = useAuth0();
+
+    if(userFromDB.length) {
+        UserService.getUserByEmail(user.email).then(res =>{
+            // setPosts(res.posts);
+            setUserFromDB(res);
+        }).catch(err=> {
+            console.log(err)
+        });
+    }
 
     if (loading) {
         return <div>Loading...</div>;
     }
 
-    if (!user) {
-        return (<div>
-            <div>User Not Found</div>
-            <Link to="/">Go to Home Page</Link>
-        </div>);
-    }
 
-    UserService.getUserByEmail(user.email).then(res =>{
-      // setPosts(res.posts);
-       setUserFromDB(res);
-    }).catch(err=> {
-        console.log(err)
-    });
 
     const dataBox = () => {
-        if (userFromDB.posts) {
-            return userFromDB.posts.map((res, i) => {
-                if (res !== undefined) {
-                    return <PostBox obj={res} key={i}/>
-                }
-            })
+        if (userFromDB.posts?.length) {
+            return userFromDB.posts.filter((post)=>{ return (post !== undefined) }).map((res, i) => {
+                return <PostBox obj={res} key={i}/>
+            });
         }
     };
 
@@ -43,12 +37,12 @@ const Profile = () => {
         <div className="profile">
             <header>
                 <img src={user.picture} alt="Profile"/>
-                <p>
-                    <h2>{userFromDB.name}</h2>
-                    {userFromDB.email}
-                </p>
+             <div>
+                 <h2>{userFromDB.name}</h2>
+                 <p>{userFromDB.email}</p>
+             </div>
             </header>
-            <div class="flex-container">
+            <div className="flex-container">
                 <div id="cards-container">
                     {dataBox()}
                 </div>

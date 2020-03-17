@@ -10,7 +10,7 @@ import { Route,withRouter } from 'react-router-dom'
 const PrivateRoute = ({ component: Component, ...rest }) => {
 
     // Add your own authentication on the below line.
-    const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+    const { isAuthenticated, loginWithRedirect} = useAuth0();
 
     return (
         <Route

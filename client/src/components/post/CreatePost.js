@@ -28,7 +28,7 @@ export default class CreatePost extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.state.createdAt = Date.now();
+        this.setState({createdAt: Date.now()});
         const post = {
             title: this.state.title,
             description: this.state.description,

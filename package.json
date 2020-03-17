@@ -2,6 +2,7 @@
   "name": "project-boost",
   "version": "1.0.0",
   "scripts": {
+    "run" : "concurrently \"cd server && npm start\" \"cd client && npm start\"",
     "build": "npm install && concurrently \"cd server && npm install\" \"cd client && npm install\"",
     "start": "npm run build && concurrently \"cd server && npm start\" \"cd client && npm start\""
   },

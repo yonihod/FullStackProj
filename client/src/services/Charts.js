@@ -8,7 +8,8 @@ export default class ChartsService {
             const d = res.filter(p => p.hasOwnProperty('tags') && p.tags.length > 0);
 
             // create object with all the tags and their count
-            const tagsWithCount = d.flatMap(p => p.tags).reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), Object.create(null));
+            const tagsWithCount = d.flatMap(p => p.tags).reduce((a, c) =>
+            (a[c] = (a[c] || 0) + 1, a), Object.create(null));
             
             // map the object to array
             var array = Object.keys(tagsWithCount).map(function (key) {

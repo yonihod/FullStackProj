@@ -1,6 +1,6 @@
 import React, {useState, useReducer, useEffect} from "react";
-import {InputGroup,FormControl,FormGroup,Button} from "react-bootstrap";
-import {DateRangeInput, DateSingleInput, Datepicker} from '@datepicker-react/styled'
+import {InputGroup,FormControl,Button} from "react-bootstrap";
+import {DateRangeInput} from '@datepicker-react/styled'
 
 const initialState = {
     startDate: null,

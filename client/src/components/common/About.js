@@ -6,7 +6,6 @@ export default class about extends Component {
     render() {
         return (
             <div className={"about"}>
-                <img src="/about-us.jpg" className="about_img"/>
                 <section className="head">
                     <h2>Welcome To DEVELOPI!</h2>
                     <p className="body_text">
@@ -45,7 +44,7 @@ export default class about extends Component {
                 </div>
                 <section>
                     <h3 className="Map_title">The Map!</h3>
-                    <Map style={"margin:auto; width:100%"}/>
+                    <Map/>
                 </section>
                 <div className={'charts'}>
                     <Charts />
