@@ -3,8 +3,8 @@ import axios from 'axios';
 export default class UserService {
     static USERS_API = `${process.env.REACT_APP_API_URL}/users`;
 
-    static getUsers() {
-        return axios.get(this.USERS_API)
+    static getUsers(filter) {
+        return axios.get(this.USERS_API,{ params : {filter:filter }})
             .then((response) => {
                 return response.data;
             }).catch((error) => {

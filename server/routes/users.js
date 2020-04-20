@@ -1,9 +1,17 @@
 const User = require('../models/user');
 
+function isEmpty(obj) {
+    return !obj || Object.keys(obj).length === 0;
+}
+
 module.exports = (app) => {
     app.route('/users')
         .get((req, res) => {
-            User.find().populate('skills').then((data) => {
+            let filter = {};
+            if(typeof  req.query.filter !== 'undefined' && !isEmpty(req.query.filter)){
+                filter = JSON.parse(req.query.filter);
+            }
+            User.find(filter).populate('skills').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);

@@ -94,10 +94,6 @@ body {
   font-size: 6.5rem;
   text-shadow: 4px 2px #2cb5a8d9;
 }
-.home .charts {
-  position: relative;
-  z-index: 2;
-}
 .home #home-video {
   position: fixed;
   right: 0;
@@ -348,5 +344,43 @@ body {
 }
 .profile h1 {
   color: #ffc107;
+}
+.list-users #advanced-search-container.toggle-advanced-search .advanced-search {
+  height: 500px !important;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s, visibility 0.5s, height 0.5s ease;
+}
+.list-users #advanced-search-container .advanced-search {
+  position: relative;
+  transition: opacity 0.2s, visibility 0.2s, height 1s ease;
+  visibility: hidden;
+  height: 0 !important;
+  opacity: 0;
+  padding: 0;
+}
+.list-users #advanced-search-container .advanced-search .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #dc3545;
+  height: 1.5rem;
+  width: 1.5rem;
+  color: #ffff;
+  opacity: 1;
+  border-radius: 50%;
+  border: none;
+  outline: none !important;
+  box-shadow: none;
+}
+.list-users #advanced-search-container .advanced-search .close span {
+  vertical-align: text-top;
+  line-height: 1.2rem;
+  margin-left: 1px;
+  border: none;
+}
+.list-users #advanced-search-container .advanced-search #advanced-submit-button {
+  margin-right: 2rem;
+  margin-top: 2rem;
 }
 /*# sourceMappingURL=App.css.map */

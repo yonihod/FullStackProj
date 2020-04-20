@@ -6,7 +6,7 @@ import Success from "./Success";
 import "../../App.css";
 import Typist from 'react-typist';
 import {InputGroup,FormControl,Dropdown,DropdownButton} from "react-bootstrap"
-import AdvancedSearch from "./AdvancedSearch"
+import PostAdvancedSearch from "./PostAdvancedSearch"
 
 export default class ListPost extends Component {
 
@@ -129,7 +129,7 @@ export default class ListPost extends Component {
                         <FormControl aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
                     </InputGroup>
                 </div>
-                    <AdvancedSearch
+                    <PostAdvancedSearch
                         close={ () => {this.setState({toggleAdvancedSearch: !this.state.toggleAdvancedSearch})}}
                         show={this.state.toggleAdvancedSearch}
                         search={ (filter) => this.handleAdvancedSearch(filter)}

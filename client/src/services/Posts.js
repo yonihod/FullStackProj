@@ -4,8 +4,7 @@ export default class PostsService {
     static POSTS_API = `${process.env.REACT_APP_API_URL}/posts`;
 
     static getPosts(filter) {
-        return axios.get(this.POSTS_API,
-            { params : {filter:filter }})
+        return axios.get(this.POSTS_API, { params : {filter:filter }})
             .then((response) => {
                 return response.data;
             }).catch((error) => {

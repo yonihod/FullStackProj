@@ -402,3 +402,48 @@ html, body {
     color: #ffc107;
   }
 }
+
+.list-users {
+  #advanced-search-container {
+    &.toggle-advanced-search {
+      .advanced-search {
+        height: 500px !important;
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 1s, visibility 0.5s, height 0.5s ease;
+      }
+    }
+    .advanced-search {
+      position: relative;
+      transition: opacity 0.2s, visibility 0.2s, height 1s ease;
+      visibility: hidden;
+      height: 0 !important;
+      opacity: 0;
+      padding: 0;
+      .close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: #dc3545;
+        height: 1.5rem;
+        width: 1.5rem;
+        color: #ffff;
+        opacity: 1;
+        border-radius: 50%;
+        border: none;
+        outline: none !important;
+        box-shadow: none;
+        span {
+          vertical-align: text-top;
+          line-height: 1.2rem;
+          margin-left: 1px;
+          border: none;
+        }
+      }
+      #advanced-submit-button {
+        margin-right: 2rem;
+        margin-top: 2rem;
+      }
+    }
+  }
+}
