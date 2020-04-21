@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Kalam');
 @keyframes fadeOut {
   0% {
     visibility: visible;
@@ -349,13 +349,24 @@ html, body {
 
 .about {
   .head {
-    position: relative;
-    padding-top: 20%;
-    right: 28.5rem;
+    padding-top: 40%;
+    background-image: url("./images/about-us.jpg");
+    background-position: right;
+    background-size: cover;
+    background-repeat: no-repeat;
 
     h1 {
+      left: 6.5rem;
+      top : 12rem;
+      position: absolute;
       color: white;
       text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
+    }
+    .body_text{
+      left: 5.5rem;
+      top : 16rem;
+      position: absolute;
+      color: navy;
     }
   }
 
@@ -369,12 +380,14 @@ html, body {
 
   #our-team {
     h1 {
+      padding-top: 2%;
       font-family: 'Dancing Script';
-      text-shadow: 2px 2px springgreen;
+      font-size: 40px;
+      text-shadow: 2px 2px deepskyblue;
     }
 
     #team-container {
-      padding-top: 10%;
+      padding-top: 1%;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -394,6 +407,16 @@ html, body {
         }
       }
     }
+  }
+  .Map_title{
+    padding-top: 7%;
+    font-family: 'Dancing Script';
+    font-size: 40px;
+    text-shadow: 2px 2px deepskyblue;
+  }
+
+  .charts{
+    padding-top: 7%;
   }
 }
 

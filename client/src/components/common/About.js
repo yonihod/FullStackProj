@@ -7,7 +7,8 @@ export default class about extends Component {
         return (
             <div className={"about"}>
                 <section className="head">
-                    <h2>Welcome To DEVELOPI!</h2>
+
+                    <h1>Welcome To DEVELOPI!</h1>
                     <p className="body_text">
                         Our product is a combination of existing solutions,<br/>
                         focusing on one niche so it would be more<br/>
@@ -43,7 +44,7 @@ export default class about extends Component {
                     </div>
                 </div>
                 <section>
-                    <h3 className="Map_title">The Map!</h3>
+                    <h3 className="Map_title">Visit Our Stores!</h3>
                     <Map/>
                 </section>
                 <div className={'charts'}>
