@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Map from "./map/Map";
 import Charts from './charts/Charts';
+import Canvas from "./privateRoute/Canvas";
 
 export default class about extends Component {
     render() {
@@ -47,9 +48,12 @@ export default class about extends Component {
                     <h3 className="Map_title">Visit Our Stores!</h3>
                     <Map/>
                 </section>
+
                 <div className={'charts'}>
                     <Charts />
                 </div>
+                <Canvas></Canvas>
+
             </div>
         )
     }
