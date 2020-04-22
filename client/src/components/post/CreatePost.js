@@ -14,7 +14,6 @@ export default class CreatePost extends Component {
             dueDate: "",
             tags: [],
             owner: "",
-            createdAt: "",
             validated: false,
             done: false
         };
@@ -28,14 +27,12 @@ export default class CreatePost extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.setState({createdAt: Date.now()});
         const post = {
             title: this.state.title,
             description: this.state.description,
             dueDate: this.state.dueDate,
             tags: this.state.tags,
-            owner: this.state.owner,
-            createdAt: this.state.createdAt
+            owner: this.state.owner
         };
         console.log(this.state);
 
@@ -46,7 +43,7 @@ export default class CreatePost extends Component {
         }
 
         PostsService.AddPost(post).then((res) => {
-            this.setState({title: '', createdAt: '', description: '', dueDate: '', owner: '', done: true});
+            this.setState({title: '', description: '', dueDate: '', owner: '', done: true});
             this.props.history.push({
                 pathname: '/posts',
                 state: {done: true, msg: "Post Created Successfully", alertType: "success"}

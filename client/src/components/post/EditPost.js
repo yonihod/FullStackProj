@@ -45,7 +45,6 @@ export default class EditPost extends Component {
             dueDate: "",
             tags: "",
             owner: "",
-            createdAt: "",
             done: false,
             canWrite: true
         };
@@ -62,7 +61,6 @@ export default class EditPost extends Component {
                     description: data.description,
                     owner: data.owner,
                     dueDate: dueDate,
-                    createdAt: data.createdAt,
                     tags: data.tags,
                     done: false
                 });
@@ -87,8 +85,7 @@ export default class EditPost extends Component {
                 description: this.state.description,
                 dueDate: this.state.dueDate,
                 tags: this.state.tags,
-                owner: this.state.owner._id,
-                createdAt: this.state.createdAt
+                owner: this.state.owner._id
             };
             console.log(this.state);
 
@@ -115,7 +112,6 @@ export default class EditPost extends Component {
                     dueDate: "",
                     tags: "",
                     owner: "",
-                    createdAt: "",
                     done: true
                 });
                 this.props.history.push({
