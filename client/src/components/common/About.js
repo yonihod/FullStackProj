@@ -4,6 +4,27 @@ import Charts from './charts/Charts';
 import Canvas from "./privateRoute/Canvas";
 
 export default class about extends Component {
+
+    componentDidMount(): void {
+        let c = document.getElementById("myCanvas");
+        let ctx = c.getContext("2d");
+
+
+        ctx.font = "20px Verdana";
+// Create gradient
+        let gradient = ctx.createLinearGradient(0, 0, c.width, 0);
+        gradient.addColorStop("0"," magenta");
+        gradient.addColorStop("0.5", "blue");
+        gradient.addColorStop("1.0", "red");
+// Fill with gradient
+        ctx.fillStyle = gradient;
+        ctx.fillText("Thank You For Interesting!", 10, 90);
+
+    }
+
+
+
+
     render() {
         return (
             <div className={"about"}>
@@ -52,7 +73,8 @@ export default class about extends Component {
                 <div className={'charts'}>
                     <Charts />
                 </div>
-                <Canvas></Canvas>
+                <canvas id="myCanvas"/>
+
 
             </div>
         )
