@@ -27,13 +27,15 @@ export default class Charts extends Component {
 
     componentDidMount() {
         ChartsService.getMostActiveUsers().then(data => {
-            this.setState({ pieData: data.data });
+            if (data)
+                this.setState({ pieData: data.data });
         }).catch(err => {
             console.log(err)
         });
 
         ChartsService.getMostPopularPosts().then(data => {
-            this.setState({ barsData: [data] });
+            if (data)
+                this.setState({ barsData: [data] });
         }).catch(err => {
             console.log(err)
         });
@@ -42,10 +44,10 @@ export default class Charts extends Component {
     render() {
         return (
             <>
-                {!!this.state && !!this.state.barsData &&
+                {this.state && this.state.barsData &&
                     <BarChart data={this.state.barsData} axisConfig={this.axisConfig} colorScale={this.colorScale} />
                 }
-                {!!this.state && !!this.state.pieData &&
+                {this.state && this.state.pieData &&
                     <div>
                         <h4>Most Active Users Posts</h4>
                         <PieChart data={this.state.pieData} colorScale={this.colorScale} />
