@@ -13,7 +13,7 @@ export default class SinglePost extends Component {
             desc: 'My Post desc',
             owner: 'My Post owner',
             dueDate: 'My Post Date',
-            tags: ['My Tags', 'Second Tag'],
+            tags: [],
             disableTwitterButton: false
         };
 
