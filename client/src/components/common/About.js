@@ -18,7 +18,7 @@ export default class about extends Component {
         gradient.addColorStop("1.0", "red");
 // Fill with gradient
         ctx.fillStyle = gradient;
-        ctx.fillText("Thank You For Interesting!", 10, 90);
+        ctx.fillText("Thank You For Your Interest!", 10, 90);
 
     }
 
@@ -74,8 +74,6 @@ export default class about extends Component {
                     <Charts />
                 </div>
                 <canvas id="myCanvas"/>
-
-
             </div>
         )
     }
