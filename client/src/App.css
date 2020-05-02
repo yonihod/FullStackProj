@@ -437,4 +437,24 @@ body {
   margin-right: 2rem;
   margin-top: 2rem;
 }
+.post-container {
+  margin: 5%;
+}
+.post-container .post-actions {
+  margin: 2% auto;
+}
+.post-container .post-actions .edit,
+.post-container .post-actions .delete {
+  color: #fff;
+  padding: 5px 5px;
+  border-radius: 5px;
+  width: 10px;
+  height: 10px;
+}
+.post-container .post-actions .edit {
+  background: #ffc107;
+}
+.post-container .post-actions .delete {
+  background: #dc3545;
+}
 /*# sourceMappingURL=App.css.map */

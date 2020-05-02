@@ -1,92 +1,97 @@
-import React, {Component} from 'react'
+import React, {useEffect, useState} from 'react'
+import {Link} from "react-router-dom";
+import {useAuth0} from "../../reactAuth0";
 import PostsService from "../../services/Posts";
 import TwitterService from "../../services/Twitter"
-import {Button, Spinner,Badge} from 'react-bootstrap';
+import {Button, Spinner, Badge} from 'react-bootstrap';
 
-export default class SinglePost extends Component {
-    constructor(props) {
-        super(props);
+const SinglePost = (props) => {
+    const {user} = useAuth0();
 
-        // Setting up state
-        this.state = {
-            title: 'My Post Title',
-            desc: 'My Post desc',
-            owner: 'My Post owner',
-            dueDate: 'My Post Date',
-            tags: [],
-            disableTwitterButton: false
-        };
+    const [post, setPost] = useState({
+        title: 'Post title',
+        desc: 'Post desc',
+        owner: 'Post owner',
+        dueDate: 'Post date',
+        tags: [],
+    });
 
+    const [disableTwitButton, setDisableTwitButton] = useState(false);
+
+    useEffect(() => {
         PostsService.getPost(props.match.params.id).then(data => {
-            console.log(data);
-            this.setState(
-                {
-                    title: data.title,
-                    desc: data.description,
-                    owner: data.owner?.name,
-                    dueDate: data.dueDate,
-                    tags: data.tags
-                })
+            setPost({
+                title: data.title,
+                desc: data.description,
+                owner: data.owner,
+                dueDate: data.dueDate,
+                tags: data.tags
+            })
         }).catch(err => {
-            console.log(err);
+            console.log(err)
         });
+    });
+
+    function isBelongToUser(userEmail) {
+        return user?.email === userEmail
     }
 
-    publish = () => {
-        this.setState({disableTwitterButton: true});
-        TwitterService.postTwit({title: this.state.title}).then((res) => {
-            console.log(res);
-            this.setState({disableTwitterButton: false});
-        });
-    };
-    spinner = () => {
-        if (this.state.disableTwitterButton) {
+    function postToTwitter() {
+        if (!disableTwitButton) {
+            return (
+                <span> Post To Twitter
+                    <span className={'ml-2'}><i className={"fab fa-twitter"}/></span>
+                </span>
+            );
+        }
+    }
+
+    function spinner() {
+        if (disableTwitButton) {
             return (
                 <span>
-                    <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                        className={"mr-2"}
-                    />
+                    <Spinner as="span" animation="border" size="sm" role="status"
+                             aria-hidden="true" className={"mr-2"}/>
                     Posting...
                 </span>
             );
         }
-    };
-    postToTwitter = () => {
-        if(!this.state.disableTwitterButton) {
-            return (
-                <span>
-                Post To Twitter
-                <span className={'ml-2'}>
-                    <i className={"fab fa-twitter"}/>
-                </span>
-            </span>
-            );
-        }
-    };
+    }
 
-    render() {
-        return (
+    function publish() {
+        setDisableTwitButton(true);
+        TwitterService.postTwit({title: post.title}).then((res) => {
+            setDisableTwitButton(false);
+        });
+    }
+
+    return (
+        <div className={"post-container"}>
             <div>
+                <h1>{post.title}</h1>
                 <div>
-                    <Button className={'m-2'} onClick={this.publish} disabled={this.state.disableTwitterButton}>
-                        {this.postToTwitter()}
-                        {this.spinner()}
+                    {post.tags.map(t => <Badge className="mr-1" variant={"primary"} key={t}>{t}</Badge>)}
+                </div>
+                <h4>Owner: {post.owner?.name}</h4>
+                <h4>Due Date: {post.dueDate}</h4>
+                <h4>Description: {post.desc}</h4>
+                <div>
+                    <Button className={'m-2'} onClick={publish} disabled={disableTwitButton}>
+                        {postToTwitter()}
+                        {spinner()}
                     </Button>
                 </div>
-                <h1>{this.state.title}</h1>
-                <div>
-                    {this.state.tags.map(t => <Badge className="mr-1" variant={"primary"} key={t}>{t}</Badge>)}
-                </div>
-                <div>
-                    <h4>{this.state.owner} / {this.state.dueDate}</h4>
-                    {this.state.desc}
-                </div>
             </div>
-        );
-    }
-}
+            {isBelongToUser(post.owner?.email) && <div className={"post-actions"}>
+                <Link className={"edit"} to={`/edit-post/${props.match.params.id}`}>
+                    <i className={"fa fa-edit"}/>
+                </Link>
+                <Link className={"delete"} to={`/edit-post/${props.match.params.id}`}>
+                    <i className={"fa fa-trash-alt"}/>
+                </Link>
+            </div>}
+        </div>
+    );
+};
+
+export default SinglePost;
