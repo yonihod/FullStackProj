@@ -243,16 +243,13 @@ body {
   visibility: visible;
   opacity: 1;
   transition: opacity 1s, visibility 0.5s, height 0.5s ease;
-  padding: initial !important;
 }
 .post-page #advanced-search-container .advanced-search {
   position: relative;
   transition: opacity 0.2s, visibility 0.2s, height 1s ease;
   visibility: hidden;
   height: 0 !important;
-  padding: 0 !important;
   opacity: 0;
-  padding: 0;
 }
 .post-page #advanced-search-container .advanced-search .close {
   position: absolute;
