@@ -314,21 +314,25 @@ body {
   z-index: 1;
 }
 .about .head {
-  padding-top: 40%;
+  padding-top: 5%;
   background-position: right;
   background-size: cover;
   background-repeat: no-repeat;
 }
+.about .head img {
+  height: 350px;
+  width: 1000px;
+}
 .about .head h1 {
   left: 6.5rem;
-  top: 12rem;
+  top: 9rem;
   position: absolute;
   color: white;
   text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
 }
 .about .head .body_text {
-  left: 5.5rem;
-  top: 16rem;
+  left: 9rem;
+  top: 13rem;
   position: absolute;
   color: navy;
 }
@@ -343,7 +347,7 @@ body {
   padding-top: 2%;
   font-family: 'Dancing Script';
   font-size: 40px;
-  text-shadow: 2px 2px deepskyblue;
+  text-shadow: 2px 2px #79d9f9;
 }
 .about #our-team #team-container {
   padding-top: 1%;
@@ -363,19 +367,18 @@ body {
 .about #our-team #team-container > div img {
   max-width: 100%;
 }
-.about .Map_title {
+.about .map-title {
   padding-top: 7%;
   font-family: 'Dancing Script';
   font-size: 40px;
-  text-shadow: 2px 2px deepskyblue;
+  text-shadow: 2px 2px #79d9f9;
 }
 .about .charts {
   padding-top: 7%;
 }
 .about #myCanvas {
-  width: 400px;
+  width: 300px;
   height: 100px;
-  border: 1px solid #d3d3d3;
 }
 .profile h1 {
   color: #ffc107;
