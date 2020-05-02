@@ -23,7 +23,7 @@ export default class about extends Component {
             <div className={"about"}>
                 <section className="head">
                     <img src={`${process.env.PUBLIC_URL}/about-us.jpg`}/>
-                    <h1>Welcome To DEVELOPI!</h1>
+                    <h1>Welcome To DEVELOPI</h1>
                     <p className="body_text">
                         Our product is a combination of existing solutions,<br/>
                         focusing on one niche so it would be more<br/>
@@ -34,34 +34,35 @@ export default class about extends Component {
                     <h1 className={"m-4"}>Our Team</h1>
                     <div id="team-container">
                         <div>
-                            <h3>Chen</h3>
-                            <img src="/chen.png" alt=""/>
+                            <h4>Or</h4>
+                            <img src="/or.jpg" alt=""/>
                         </div>
                         <div>
-                            <h3>Alon</h3>
-                            <img src="/alon.png" alt=""/>
+                            <h4>Alon</h4>
+                            <img src="/alon.jpg" alt=""/>
                         </div>
                         <div>
-                            <h3>Kamil</h3>
-                            <img src="/kamil.png" alt=""/>
+                            <h4>Chen</h4>
+                            <img src="/chen.jpg" alt=""/>
                         </div>
                         <div>
-                            <h3>Or</h3>
-                            <img src="/or.png" alt=""/>
+                            <h4>Kamil</h4>
+                            <img src="/kamil.jpg" alt=""/>
                         </div>
                         <div>
-                            <h3>Yoni</h3>
-                            <img src="/yoni.png" alt=""/>
+                            <h4>Yoni</h4>
+                            <img src="/yoni.jpg" alt=""/>
                         </div>
                     </div>
                 </div>
                 <section>
-                    <h3 className="map-title">Visit Our Stores!</h3>
+                    <h3 className="title">Visit Our Stores</h3>
                     <Map/>
                 </section>
-                <div className={'charts'}>
+                <section>
+                    <h3 className="title">Statistics</h3>
                     <Charts/>
-                </div>
+                </section>
                 <canvas id="myCanvas"/>
             </div>
         )
