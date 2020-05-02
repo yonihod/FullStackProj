@@ -35,23 +35,23 @@ export default class about extends Component {
                     <div id="team-container">
                         <div>
                             <h3>Chen</h3>
-                            <img src="/blank-user.jpg" alt=""/>
+                            <img src="/chen.png" alt=""/>
                         </div>
                         <div>
                             <h3>Alon</h3>
-                            <img src="/blank-user.jpg" alt=""/>
+                            <img src="/alon.png" alt=""/>
                         </div>
                         <div>
                             <h3>Kamil</h3>
-                            <img src="/blank-user.jpg" alt=""/>
+                            <img src="/kamil.png" alt=""/>
                         </div>
                         <div>
                             <h3>Or</h3>
-                            <img src="/blank-user.jpg" alt=""/>
+                            <img src="/or.png" alt=""/>
                         </div>
                         <div>
                             <h3>Yoni</h3>
-                            <img src="/blank-user.jpg" alt=""/>
+                            <img src="/yoni.png" alt=""/>
                         </div>
                     </div>
                 </div>
