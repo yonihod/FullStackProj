@@ -18,7 +18,7 @@ export default class UserList extends Component {
 
     componentDidMount() {
         UserService.getUsers().then(res => {
-            if(res){
+            if(res){ // filter only users who has skills
                 res = res.filter( user => {
                    return user?.skills && user.skills.length
                 });
@@ -51,7 +51,6 @@ export default class UserList extends Component {
 
     render() {
 
-        const {orderBy} = this.state;
         const {search} = this.state;
         var filteredUsers = [];
         if(this.state?.users && this.state.users.length) {
