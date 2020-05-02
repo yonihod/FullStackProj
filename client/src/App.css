@@ -315,7 +315,6 @@ body {
 }
 .about .head {
   padding-top: 40%;
-  background-image: url("./images/about-us.jpg");
   background-position: right;
   background-size: cover;
   background-repeat: no-repeat;
