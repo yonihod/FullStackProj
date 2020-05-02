@@ -1,57 +1,67 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useAuth0} from "../../reactAuth0";
-import Skills from "./Skills";
 import UserService from "../../services/Users";
 import PostBox from "../post/PostBox";
+import EditUser from "./EditUser";
+import {Badge} from "react-bootstrap";
 
 const Profile = () => {
 
-    //const [posts, setPosts] = useState(0);
     const [userFromDB, setUserFromDB] = useState([]);
     const {loading, user} = useAuth0();
 
-    if(userFromDB.length) {
-        UserService.getUserByEmail(user.email).then(res =>{
-            // setPosts(res.posts);
+    UserService.getUserByEmail(user.email).then(res => {
             setUserFromDB(res);
-        }).catch(err=> {
-            console.log(err)
+            return res;
+        }).catch(err => {
+            console.log(err);
+            return [];
         });
-    }
+
+
 
     if (loading) {
         return <div>Loading...</div>;
     }
 
 
-
     const dataBox = () => {
         if (userFromDB.posts?.length) {
-            return userFromDB.posts.filter((post)=>{ return (post !== undefined) }).map((res, i) => {
-                return <PostBox obj={res} key={i}/>
+            return userFromDB.posts.map((post,index)=> {
+                return <PostBox obj={post} key={index}/>;
             });
         }
     };
 
-    return (
+     return (
         <div className="profile">
             <header>
-                <img src={user.picture} alt="Profile"/>
-             <div>
-                 <h2>{userFromDB.name}</h2>
-                 <p>{userFromDB.email}</p>
-             </div>
+                <h1>My Profile</h1>
             </header>
             <div className="flex-container">
-                <div id="cards-container">
-                    {dataBox()}
+                <div id="user-details">
+                    <div className="profile-image">
+                        <img src={user.picture} alt="Profile"/>
+                    </div>
+                    <div>
+                        <h2>{userFromDB.name}</h2>
+                        <h4>{user.email}</h4>
+                        {userFromDB.skills?.length > 0  &&
+                        (<div id="tags">
+                            {userFromDB.skills.map(t => <Badge className="mr-1" variant={"primary"}
+                                                               key={t.name}>{t.name}</Badge>)}
+                        </div>)}
+                    </div>
                 </div>
                 <div>
-                    <Skills email={user.email}/>
+                    <h3>My Posts</h3>
+                    <div id="cards-container">
+                        <h1> </h1>
+                        {dataBox()}
+                    </div>
                 </div>
             </div>
         </div>
-
     );
 };
 
