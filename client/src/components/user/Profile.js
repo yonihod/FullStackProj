@@ -36,7 +36,7 @@ const Profile = () => {
      return (
         <div className="profile">
             <header>
-                <h1>My Profile</h1>
+                <h1>{userFromDB.name}'s Profile</h1>
             </header>
             <div className="flex-container">
                 <div className="profile-image">
