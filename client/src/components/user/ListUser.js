@@ -18,9 +18,14 @@ export default class UserList extends Component {
 
     componentDidMount() {
         UserService.getUsers().then(res => {
-            this.setState({
-                users: res
-            });
+            if(res){
+                res = res.filter( user => {
+                   return user?.skills && user.skills.length
+                });
+                this.setState({
+                    users: res
+                });
+            }
         }).catch(err => {
             console.log('There has been an error loading users in list-user-component: ' + err);
         });
@@ -52,7 +57,7 @@ export default class UserList extends Component {
         if(this.state?.users && this.state.users.length) {
             filteredUsers = this.state.users.filter((user => {
                 if(user.name.toLowerCase().indexOf(search.toLowerCase()) !== -1 || user.email.toLowerCase().indexOf(search.toLowerCase()) !== -1){
-                    return true;
+                    return true
                 }
                 if(user?.skills && user.skills.length){
                     for(let i=0; i<user.skills.length;i++){
