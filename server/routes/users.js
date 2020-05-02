@@ -4,18 +4,34 @@ function isEmpty(obj) {
     return !obj || Object.keys(obj).length === 0;
 }
 
+async function getUsers(filter) {
+    let users;
+    if(filter['skills']){
+        let skillsFilter = {$regex:filter['skills'], $options: 'i'};
+        delete filter.skills;
+        users = await User.find(filter).populate({
+            path: 'skills',
+            match: {name: skillsFilter}
+        });
+        users = users.filter(function (user) {
+            return user.skills.length;
+        })
+    }else {
+        users = await User.find(filter).populate('skills');
+    }
+
+    return users;
+}
+
 module.exports = (app) => {
     app.route('/users')
-        .get((req, res) => {
+        .get(async (req, res) => {
             let filter = {};
             if(typeof  req.query.filter !== 'undefined' && !isEmpty(req.query.filter)){
                 filter = JSON.parse(req.query.filter);
             }
-            User.find(filter).populate('skills').then((data) => {
-                res.status(200).json(data);
-            }).catch((err) => {
-                console.log(err);
-            });
+            const users = await getUsers(filter);
+            res.status(200).send(users);
         })
         .post((req, res) => {
             User.create(req.body).then((data) => {
