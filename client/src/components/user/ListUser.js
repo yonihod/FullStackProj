@@ -17,10 +17,14 @@ export default class UserList extends Component {
     }
 
     componentDidMount() {
+        this.getUsers();
+    }
+
+    getUsers = () => {
         UserService.getUsers().then(res => {
             if(res){ // filter only users who has skills
                 res = res.filter( user => {
-                   return user?.skills && user.skills.length
+                    return user?.skills && user.skills.length
                 });
                 this.setState({
                     users: res
@@ -29,7 +33,7 @@ export default class UserList extends Component {
         }).catch(err => {
             console.log('There has been an error loading users in list-user-component: ' + err);
         });
-    }
+    };
 
     renderUser = (user,index) => {
         if (this.state.users.length) {
@@ -41,7 +45,14 @@ export default class UserList extends Component {
         this.setState({search: e.target.value })
     };
 
+    onKeyPress  = e => {
+        if(!this.state.toggleAdvancedSearch && e.target.value === ""){
+            this.getUsers();
+        }
+    };
+
     handleAdvancedSearch = (filter) =>{
+        this.setState({toggleAdvancedSearch:false});
         UserService.getUsers(filter).then( (res) => {
             this.setState({users: res});
         }).catch( (err) => {
@@ -75,7 +86,7 @@ export default class UserList extends Component {
                         <DropdownButton as={InputGroup.Prepend} variant="outline-secondary" id="input-group-dropdown" title={<i className={"fa fa-search"}/>}>
                             <Dropdown.Item onClick={() => {this.setState({toggleAdvancedSearch: !this.state.toggleAdvancedSearch})}} href="#">Advanced Search</Dropdown.Item>
                         </DropdownButton>
-                        <FormControl aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
+                        <FormControl onKeyPress = {this.onKeyPress} aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
                     </InputGroup>
                 </div>
                 <UserAdvancedSearch
