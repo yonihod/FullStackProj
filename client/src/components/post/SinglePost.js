@@ -72,9 +72,11 @@ const SinglePost = (props) => {
                 <div>
                     {post.tags.map(t => <Badge className="mr-1" variant={"primary"} key={t}>{t}</Badge>)}
                 </div>
-                <h4>Owner: {post.owner?.name}</h4>
-                <h4>Due Date: {post.dueDate}</h4>
-                <h4>Description: {post.desc}</h4>
+                <div className={"post-details"}>
+                    <h4>Owner: {post.owner?.name}</h4>
+                    <h4>Due Date: {new Date(post.dueDate).toLocaleDateString()}</h4>
+                    <h4>Description: {post.desc}</h4>
+                </div>
                 <div>
                     <Button className={'m-2'} onClick={publish} disabled={disableTwitButton}>
                         {postToTwitter()}

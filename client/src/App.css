@@ -427,7 +427,10 @@ body {
   margin-top: 2rem;
 }
 .post-container {
-  margin: 5%;
+  margin: 2%;
+}
+.post-container .post-details {
+  margin-top: 2%;
 }
 .post-container .post-actions {
   margin: 2% auto;
@@ -435,7 +438,8 @@ body {
 .post-container .post-actions .edit,
 .post-container .post-actions .delete {
   color: #fff;
-  padding: 5px 5px;
+  padding: 1%;
+  margin: 1%;
   border-radius: 5px;
   width: 10px;
   height: 10px;
