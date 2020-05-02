@@ -24,15 +24,15 @@ export default function UserAdvancedSearch(props) {
         // prep query to send to father component
         let query = {};
         if (user?.enable && user.value !== "") {
-            query['name'] = {$regex: user.value, $options: "$i"}
+            query['name'] = user.value
 
         }
         if (skills?.enable && skills.value !== "") {
-            query['skills'] = {$regex: skills.value, $options: "$i"}
+            query['skills'] = skills.value
 
         }
         if (email?.enable && email.value !== "") {
-            query['email'] = {$regex: email.value, $options: "$i"}
+            query['email'] = email.value
 
         }
         props.search(query);
