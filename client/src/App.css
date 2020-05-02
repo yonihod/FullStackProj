@@ -246,14 +246,14 @@ body {
   display: flex;
   justify-content: space-around;
 }
-.profile .post-page #advanced-search-container.toggle-advanced-search .advanced-search {
+.post-page #advanced-search-container.toggle-advanced-search .advanced-search {
   height: 500px !important;
   visibility: visible;
   opacity: 1;
   transition: opacity 1s, visibility 0.5s, height 0.5s ease;
   padding: initial !important;
 }
-.profile .post-page #advanced-search-container .advanced-search {
+.post-page #advanced-search-container .advanced-search {
   position: relative;
   transition: opacity 0.2s, visibility 0.2s, height 1s ease;
   visibility: hidden;
@@ -262,7 +262,7 @@ body {
   opacity: 0;
   padding: 0;
 }
-.profile .post-page #advanced-search-container .advanced-search .close {
+.post-page #advanced-search-container .advanced-search .close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -276,29 +276,29 @@ body {
   outline: none !important;
   box-shadow: none;
 }
-.profile .post-page #advanced-search-container .advanced-search .close span {
+.post-page #advanced-search-container .advanced-search .close span {
   vertical-align: text-top;
   line-height: 1.2rem;
   margin-left: 1px;
   border: none;
 }
-.profile .post-page #advanced-search-container .advanced-search #advanced-submit-button {
+.post-page #advanced-search-container .advanced-search #advanced-submit-button {
   margin-right: 2rem;
   margin-top: 2rem;
 }
-.profile .post-page .writer-container {
+.post-page .writer-container {
   margin: 2rem 0 1rem 0;
 }
-.profile .post-page .writer-container .writer {
+.post-page .writer-container .writer {
   height: 180px;
 }
-.profile .post-page .writer-container .writer h1 {
+.post-page .writer-container .writer h1 {
   color: white;
   text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
 }
-.profile .post-page .success,
-.profile .post-page .danger,
-.profile .post-page .warning {
+.post-page .success,
+.post-page .danger,
+.post-page .warning {
   position: absolute;
   top: 150px;
   right: 50px;
@@ -311,97 +311,97 @@ body {
   transition: opacity 2s;
   animation: 8s fadeOut;
 }
-.profile .post-page .success {
+.post-page .success {
   background: #28a745;
 }
-.profile .post-page .danger {
+.post-page .danger {
   background: #dc3545;
 }
-.profile .post-page .warning {
+.post-page .warning {
   background: #ffc107;
   color: #212529;
 }
-.profile .post-page .posts_img {
+.post-page .posts_img {
   max-width: 100%;
   width: 80%;
   left: calc(50% - 80% / 2);
   max-height: 500px;
   position: absolute;
 }
-.profile .about .head {
+.about .head {
   padding-top: 5%;
   background-position: right;
   background-size: cover;
   background-repeat: no-repeat;
 }
-.profile .about .head img {
+.about .head img {
   height: 350px;
   width: 1000px;
 }
-.profile .about .head h1 {
+.about .head h1 {
   left: 6.5rem;
   top: 9rem;
   position: absolute;
   color: white;
   text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
 }
-.profile .about .head .body_text {
+.about .head .body_text {
   left: 9rem;
   top: 13rem;
   position: absolute;
   color: navy;
 }
-.profile .about .about_img {
+.about .about_img {
   max-width: 100%;
   width: 100%;
   height: 40%;
   left: 0.01rem;
   position: absolute;
 }
-.profile .about #our-team h1 {
+.about #our-team h1 {
   padding-top: 2%;
   font-family: 'Dancing Script';
   font-size: 40px;
   text-shadow: 2px 2px #79d9f9;
 }
-.profile .about #our-team #team-container {
+.about #our-team #team-container {
   padding-top: 1%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.profile .about #our-team #team-container > div {
+.about #our-team #team-container > div {
   width: 15%;
   margin-right: 1rem;
 }
-.profile .about #our-team #team-container > div:hover {
+.about #our-team #team-container > div:hover {
   -webkit-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
 }
-.profile .about #our-team #team-container > div img {
+.about #our-team #team-container > div img {
   max-width: 100%;
 }
-.profile .about .map-title {
+.about .map-title {
   padding-top: 7%;
   font-family: 'Dancing Script';
   font-size: 40px;
   text-shadow: 2px 2px #79d9f9;
 }
-.profile .about .charts {
+.about .charts {
   padding-top: 7%;
 }
-.profile .about #myCanvas {
+.about #myCanvas {
   width: 300px;
   height: 100px;
 }
-.profile .list-users #advanced-search-container.toggle-advanced-search .advanced-search {
+.list-users #advanced-search-container.toggle-advanced-search .advanced-search {
   height: 500px !important;
   visibility: visible;
   opacity: 1;
   transition: opacity 1s, visibility 0.5s, height 0.5s ease;
 }
-.profile .list-users #advanced-search-container .advanced-search {
+.list-users #advanced-search-container .advanced-search {
   position: relative;
   transition: opacity 0.2s, visibility 0.2s, height 1s ease;
   visibility: hidden;
@@ -409,7 +409,7 @@ body {
   opacity: 0;
   padding: 0;
 }
-.profile .list-users #advanced-search-container .advanced-search .close {
+.list-users #advanced-search-container .advanced-search .close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -423,13 +423,13 @@ body {
   outline: none !important;
   box-shadow: none;
 }
-.profile .list-users #advanced-search-container .advanced-search .close span {
+.list-users #advanced-search-container .advanced-search .close span {
   vertical-align: text-top;
   line-height: 1.2rem;
   margin-left: 1px;
   border: none;
 }
-.profile .list-users #advanced-search-container .advanced-search #advanced-submit-button {
+.list-users #advanced-search-container .advanced-search #advanced-submit-button {
   margin-right: 2rem;
   margin-top: 2rem;
 }
