@@ -113,7 +113,7 @@ export default class ListPost extends Component {
                     <div className="writer">
                         <Typist>
                             <h1>Choose your task</h1> <br/>
-                            <h4>A single place, millions of creative talents<br/>Improve your quality of life with style
+                            <h4>A single place, millions of creative development tasks<br/>Improve your skills and help others
                             </h4>
                         </Typist>
                     </div>

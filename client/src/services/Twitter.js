@@ -6,7 +6,6 @@ export default class TwitterService {
     static postTwit(post) {
         return axios.post(this.twitter_api, post)
             .then((response) => {
-                debugger;
                 return response.data;
             }).catch((error) => {
                 console.log(error)

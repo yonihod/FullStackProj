@@ -104,7 +104,6 @@ export default class EditPost extends Component {
         if (this.userHasWritePrivileges()) {
             PostsService.DeletePost(this.state.id).then((res) => {
                 console.log(res);
-                debugger;
                 this.setState({
                     id: "",
                     title: "",
