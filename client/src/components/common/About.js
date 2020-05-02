@@ -22,9 +22,6 @@ export default class about extends Component {
 
     }
 
-
-
-
     render() {
         return (
             <div className={"about"}>
