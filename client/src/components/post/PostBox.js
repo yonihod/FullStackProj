@@ -5,13 +5,13 @@ import { useAuth0 } from "../../reactAuth0";
 
 const PostBox = (props) => {
     const { user } = useAuth0();
-    
+    const classList = props?.classList ? props.classList : 'w-25 m-2';
     function isBelongToUser(userEmail) {
         return userEmail === (user?.email)
     }
 
     return (
-        <Card className={"w-25 m-2"}>
+        <Card className={classList}>
                 {isBelongToUser(props.obj?.owner?.email) &&
                 <div className={"manage-post"}>
                     <Link className={"edit"} to={`/edit-post/${props.obj._id}`}>

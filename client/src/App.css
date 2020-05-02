@@ -201,10 +201,8 @@ body {
   color: dodgerblue;
 }
 .profile img {
-  left: 6.5rem;
   width: 250px;
-  position: absolute;
-  border-color: blue;
+  border-color: dodgerblue;
   border-style: double;
 }
 .profile #tags {
@@ -212,12 +210,10 @@ body {
 }
 .profile .flex-container {
   display: flex;
-  width: 1400px;
-  flex-flow: row wrap;
   justify-content: space-between;
 }
-.profile .flex-container #cards-container {
-  width: 700px;
+.profile .flex-container #user-details {
+  padding: 0 1rem;
 }
 .profile .edit-post h1,
 .profile .edit-post .delete {
