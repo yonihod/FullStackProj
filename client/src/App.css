@@ -236,13 +236,13 @@ body {
   color: #fff;
   border-radius: 5px;
 }
-.profile .advanced-search {
+.advanced-search {
   background: #f5f5f5;
 }
-.profile .advanced-search .duo-date {
+.advanced-search .duo-date {
   z-index: 1;
 }
-.profile .advanced-search .search-wrapper {
+.advanced-search .search-wrapper {
   display: flex;
   justify-content: space-around;
 }

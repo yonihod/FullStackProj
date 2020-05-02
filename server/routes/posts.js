@@ -1,4 +1,5 @@
 const Post = require('../models/post');
+const User = require('../models/user');
 const {io} = require('../lib/socketio');
 const natural = require('natural');
 
@@ -37,6 +38,18 @@ module.exports = (app) => {
                 req.body.tags = tags.map(x => x.label);
 
                 Post.create(req.body).then((data) => {
+                    //push created posts to his posts array
+                    let postOwner = User.findById(req.body.owner).populate('posts').then( (postOwner) =>{
+                        User.findOneAndUpdate({_id: postOwner._id},
+                            {$push: {posts: data._id}},
+                            {upsert : true},function (error,success) {
+                            if(error){
+                                console.log(error)
+                            } else {
+                                console.log(success)
+                            }
+                        });
+                    });
                     io().emit('newPost', data);
                     res.status(201).json(data);
                 }).catch(err => {
