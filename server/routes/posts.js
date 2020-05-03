@@ -7,7 +7,7 @@ function classify(title) {
     return new Promise((resolve, reject) => {
         natural.BayesClassifier.load('machine-learning/classifier.json', null, function (err, classifier) {
             let data = classifier.getClassifications(title.toLowerCase())
-                .filter(x => /*x.value > 0.0001 &&*/ x.label !== '') // filter blank tags and option to receive tags with a certain precision
+                .filter(x => x.value > 0.0001 && x.label !== '') // filter blank tags and option to receive tags with a certain precision
                 .sort((x, y) => y.value - x.value)
                 .slice(0, 3);
 
