@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { BarChart, AreaChart, LineChart, PieChart } from 'react-charts-d3';
+import React, {Component} from 'react';
+import {BarChart, AreaChart, LineChart, PieChart} from 'react-charts-d3';
 import ChartsService from "../../../services/Charts";
 
 export default class Charts extends Component {
@@ -20,22 +20,22 @@ export default class Charts extends Component {
             yLabelPosition: 'top'
         };
         this.colorScale = {
-            from: '#a6cee3',
-            to: '#b15928'
+            from: '#74c7ba',
+            to: '#49515a'
         }
     }
 
     componentDidMount() {
         ChartsService.getMostActiveUsers().then(data => {
             if (data)
-                this.setState({ pieData: data.data });
+                this.setState({pieData: data.data});
         }).catch(err => {
             console.log(err)
         });
 
         ChartsService.getMostPopularPosts().then(data => {
             if (data)
-                this.setState({ barsData: [data] });
+                this.setState({barsData: [data]});
         }).catch(err => {
             console.log(err)
         });
@@ -45,13 +45,16 @@ export default class Charts extends Component {
         return (
             <>
                 {this.state && this.state.barsData &&
-                    <BarChart data={this.state.barsData} axisConfig={this.axisConfig} colorScale={this.colorScale} />
+                <div className="chart">
+                    <div>Most Common Posts Tags</div>
+                    <BarChart data={this.state.barsData} axisConfig={this.axisConfig} colorScale={this.colorScale}/>
+                </div>
                 }
                 {this.state && this.state.pieData &&
-                    <div>
-                        <h4>Most Active Users Posts</h4>
-                        <PieChart data={this.state.pieData} colorScale={this.colorScale} />
-                    </div>
+                <div className="chart">
+                    <div>Most Active Users By Posts Number</div>
+                    <PieChart data={this.state.pieData} colorScale={this.colorScale}/>
+                </div>
                 }
             </>
         );

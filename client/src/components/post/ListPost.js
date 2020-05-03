@@ -41,15 +41,25 @@ export default class ListPost extends Component {
             this.setState({posts: [...this.state.posts, data]});
         });
 
+        this.getPosts();
+    }
+
+    getPosts = () => {
         PostsService.getPosts().then(res => {
             this.setState({posts: res});
         }).catch(err => {
             console.log(err)
         })
-    }
+    };
 
     onChange = e => {
         this.setState({search: e.target.value })
+    };
+
+    onKeyPress  = e => {
+        if(!this.state.toggleAdvancedSearch && e.target.value === ""){
+            this.getPosts();
+        }
     };
 
     renderPost = (post,index) => {
@@ -88,6 +98,7 @@ export default class ListPost extends Component {
     });
 
     handleAdvancedSearch = (filter) =>{
+        this.setState({toggleAdvancedSearch:false});
         PostsService.getPosts(filter).then( (res) => {
             this.setState({posts: res});
         }).catch( (err) => {
@@ -112,7 +123,7 @@ export default class ListPost extends Component {
                 <div className={"writer-container"}>
                     <div className="writer">
                         <Typist>
-                            <h1>Choose your task</h1> <br/>
+                            <h1>Choose your next challenge</h1> <br/>
                             <h4>A single place, millions of creative development tasks<br/>Improve your skills and help others
                             </h4>
                         </Typist>
@@ -126,7 +137,7 @@ export default class ListPost extends Component {
                             <Dropdown.Divider />
                             <Dropdown.Item onClick={() => {this.setState({toggleAdvancedSearch: !this.state.toggleAdvancedSearch})}} href="#">Advanced Search</Dropdown.Item>
                         </DropdownButton>
-                        <FormControl aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
+                        <FormControl onKeyPress={this.onKeyPress} aria-label="Large" aria-describedby="inputGroup-sizing-sm" />
                     </InputGroup>
                 </div>
                     <PostAdvancedSearch

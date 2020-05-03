@@ -63,7 +63,17 @@ html, body {
 }
 
 .App-link {
-  color: #61dafb;
+  color: #3fb3a0;
+}
+
+.badge {
+  color: #49515a;
+  border: 1px solid #49515a;
+  padding: 5px;
+}
+
+.w-30 {
+  width: 30%;
 }
 
 .navbar-brand {
@@ -160,6 +170,7 @@ html, body {
 
   .card {
     position: relative;
+    color: #49515a;
 
     .manage-post {
       position: absolute;
@@ -198,11 +209,13 @@ html, body {
 
         .card-title {
           margin-top: 0.75rem;
+          color: #3fb3a0;
         }
 
         .card-text {
           height: 150px;
           overflow: hidden;
+          color: #49515a;
         }
 
         a {
@@ -244,7 +257,7 @@ html, body {
     border-radius: 0 0 5px 5px;
     font-family: 'Dancing Script';
     font-size: 6.5rem;
-    text-shadow: 4px 2px #2cb5a8d9
+    text-shadow: 4px 2px #3fb3a0
   }
 
   #home-video {
@@ -257,16 +270,11 @@ html, body {
 }
 
 .profile {
-
   header {
     margin: 0 1.5% 24px 1.5%;
 
     h1 {
-      position: relative;
-      top: 20px;
-      z-index: 1;
-      width: 100%;
-      padding-bottom: 30px;
+      padding-bottom: 1rem;
       font-size: 4rem;
       color: white;
       text-shadow: 1px 1px 2px blue, 0 0 25px dodgerblue, 0 0 5px deepskyblue;
@@ -280,9 +288,9 @@ html, body {
   }
 
   h3 {
-    font-size: 1.5rem;
     color: white;
     background-color: dodgerblue;
+    padding: 0.5rem;
   }
 
   h4 {
@@ -291,10 +299,8 @@ html, body {
   }
 
   img {
-    left: 6.5rem;
     width: 250px;
-    position: absolute;
-    border-color: blue;
+    border-color: dodgerblue;
     border-style: double;
   }
 
@@ -304,12 +310,10 @@ html, body {
 
   .flex-container {
     display: flex;
-    width: 1400px;
-    flex-flow: row wrap;
     justify-content: space-between;
 
-    #cards-container {
-      width: 700px;
+    #user-details {
+      padding: 0 1rem;
     }
   }
 
@@ -335,17 +339,31 @@ html, body {
       }
     }
   }
+}
 
-  .advanced-search {
-    background: #f5f5f5;
+.advanced-search {
+  background: #f5f5f5;
 
-    .duo-date {
-      z-index: 1;
-    }
+  .duo-date {
+    z-index: 1;
+  }
 
-    .search-wrapper {
-      display: flex;
-      justify-content: space-around;
+  .search-wrapper {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.writer-container {
+  margin: 2rem 0 1rem 0;
+
+  .writer {
+    height: 180px;
+    color: #49515a;
+
+    h1 {
+      color: white;
+      text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
     }
   }
 }
@@ -358,7 +376,6 @@ html, body {
         visibility: visible;
         opacity: 1;
         transition: opacity 1s, visibility 0.5s, height 0.5s ease;
-        padding: initial !important;
       }
     }
 
@@ -367,9 +384,7 @@ html, body {
       transition: opacity 0.2s, visibility 0.2s, height 1s ease;
       visibility: hidden;
       height: 0 !important;
-      padding: 0 !important;
       opacity: 0;
-      padding: 0;
 
       .close {
         position: absolute;
@@ -396,19 +411,6 @@ html, body {
       #advanced-submit-button {
         margin-right: 2rem;
         margin-top: 2rem;
-      }
-    }
-  }
-
-  .writer-container {
-    margin: 2rem 0 1rem 0;
-
-    .writer {
-      height: 180px;
-
-      h1 {
-        color: white;
-        text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
       }
     }
   }
@@ -452,79 +454,85 @@ html, body {
 .about {
   .head {
     padding-top: 5%;
+    padding-bottom: 5%;
     background-position: right;
     background-size: cover;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
 
     img {
-      height: 350px;
-      width: 1000px;
+      height: 360px;
+      width: 860px;
     }
 
     h1 {
-      left: 6.5rem;
-      top: 9rem;
+      left: 10rem;
+      top: 2rem;
+      font-size: 65px;
       position: absolute;
       color: white;
-      text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
+      text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
     }
 
     .body_text {
-      left: 9rem;
-      top: 13rem;
+      left: 13rem;
+      top: 14.5rem;
       position: absolute;
-      color: navy;
+      color: #49515a;
     }
-  }
-
-  .about_img {
-    max-width: 100%;
-    width: 100%;
-    height: 40%;
-    left: 0.01rem;
-    position: absolute;
   }
 
   #our-team {
     h1 {
-      padding-top: 2%;
+      color: #3fb3a0;
+      padding-top: 5%;
+      padding-bottom: 1%;
       font-family: 'Dancing Script';
       font-size: 40px;
-      text-shadow: 2px 2px #79d9f9;
+      text-shadow: 2px 2px #c7d8ea;
     }
 
     #team-container {
-      padding-top: 1%;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
 
+      h5 {
+        color: #49515a;
+      }
+
       > div {
         width: 15%;
-        margin-right: 1rem;
-
-        &:hover {
-          -webkit-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
-          -moz-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
-          box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
-        }
+        margin-right: 2rem;
 
         img {
-          max-width: 100%;
+          width: 180px;
+          height: 200px;
+          margin-right: 20px;
+          border-radius: 5%;
         }
       }
     }
   }
 
-  .map-title {
+  .title {
+    color: #3fb3a0;
     padding-top: 7%;
     font-family: 'Dancing Script';
     font-size: 40px;
-    text-shadow: 2px 2px #79d9f9;
+    text-shadow: 2px 2px #c7d8ea;
   }
 
-  .charts {
-    padding-top: 7%;
+  .chart {
+    padding-top: 2%;
+
+    div {
+      color: #4e555b;
+      font-size: 15px;
+      padding-bottom: 2%;
+      text-decoration: underline;
+    }
   }
 
   #myCanvas {
@@ -578,6 +586,53 @@ html, body {
         margin-right: 2rem;
         margin-top: 2rem;
       }
+    }
+  }
+}
+
+.post-container {
+  width: 70%;
+  margin: 2% auto;
+  text-align: left;
+
+  .post-title {
+    color: #3fb3a0;
+    font-size: 32px;
+    padding-bottom: 3%;
+  }
+
+  .post-details {
+    color: #4e555b;
+    font-size: 20px;
+    padding-bottom: 5%;
+  }
+
+  .end-alignment {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .twitter-btn {
+    background-color: #3fb3a0;
+    border-color: #3fb3a0;
+  }
+
+  .post-actions {
+    margin: 2% auto;
+
+    .edit, .delete {
+      color: #fff;
+      padding: 10px;
+      margin: 1%;
+      border-radius: 5px;
+    }
+
+    .edit {
+      background: #ffc107;
+    }
+
+    .delete {
+      background: #dc3545;
     }
   }
 }
