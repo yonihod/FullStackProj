@@ -7,6 +7,7 @@ import "../../App.css";
 import Typist from 'react-typist';
 import {InputGroup,FormControl,Dropdown,DropdownButton} from "react-bootstrap"
 import PostAdvancedSearch from "./PostAdvancedSearch"
+import Banner from './Banner';
 
 export default class ListPost extends Component {
 
@@ -120,6 +121,7 @@ export default class ListPost extends Component {
         return (
             <div className={"post-page"}>
                 {this.state.done ? <Success value={this.state}/> : null}
+                <Banner/>
                 <div className={"writer-container"}>
                     <div className="writer">
                         <Typist>

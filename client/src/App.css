@@ -385,6 +385,23 @@ body {
   max-height: 500px;
   position: absolute;
 }
+.post-page .banner {
+  background: rgba(63, 179, 160, 0.5);
+  color: white;
+  margin-top: 10px ;
+  align-items: center;
+  padding: 15px;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+.post-page .banner .banner-link {
+  background-color: white;
+  text-decoration: none;
+  padding: 5px;
+  color: #3fb3a0;
+  border-radius: 5px;
+}
 .about .head {
   padding-top: 5%;
   padding-bottom: 5%;
@@ -534,4 +551,3 @@ body {
 .post-container .post-actions .delete {
   background: #dc3545;
 }
-/*# sourceMappingURL=App.css.map */
