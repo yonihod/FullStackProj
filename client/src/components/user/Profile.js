@@ -53,7 +53,7 @@ const Profile = () => {
         setSkills(joined);
 
         console.log(joined);
-        UserService.EditUser(user.email, {skillID}).then((res) => {
+        UserService.EditUser(userFromDB._id, {_id: skillID}).then((res) => {
             console.log("added");
         }).catch((err) => {
             console.log(err)

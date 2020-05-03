@@ -41,8 +41,9 @@ export default class UserService {
             });
     }
 
-    static EditUser(email, user) {
-        return axios.put(`${this.USERS_API}/email/${email}`, user)
+    static EditUser(id, user) {
+        debugger;
+        return axios.put(`${this.USERS_API}/${id}`, user)
             .then((response) => {
                 return response.data;
             }).catch((error) => {
