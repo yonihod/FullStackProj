@@ -2,8 +2,10 @@ import React, {useEffect, useState} from "react";
 import {useAuth0} from "../../reactAuth0";
 import UserService from "../../services/Users";
 import PostBox from "../post/PostBox";
-import EditUser from "./EditUser";
 import {Badge} from "react-bootstrap";
+import Skills from "../user/Skills";
+import Spinner from "react-bootstrap/Spinner";
+
 
 const Profile = () => {
 
@@ -19,8 +21,12 @@ const Profile = () => {
     });
 
 
-    if (loading) {
-        return <div>Loading...</div>;
+    if (loading || userFromDB.length == 0) {
+        return (
+            <div className={"spinner"}>
+                <Spinner animation="border" variant="primary"/>
+            </div>
+        );
     }
 
 
@@ -35,31 +41,42 @@ const Profile = () => {
     return (
         <div className="profile">
             <header>
-                <h1>{userFromDB.name}'s Profile</h1>
+                <h1>My Profile</h1>
             </header>
             <div className="flex-container">
-                <div className="profile-image">
-                    <img src={user.picture} alt="Profile"/>
-                </div>
                 <div id="user-details">
+                    <div className="profile-image">
+                        <img src={user.picture} alt="Profile"/>
+                    </div>
                     <div>
                         <h2>{userFromDB.name}</h2>
                         <h4>{user.email}</h4>
                         {userFromDB.skills?.length > 0 &&
-                        (<div id="tags">
-                            {userFromDB.skills.map(t => <Badge className="mr-1 badge"
-                                                               key={t.name}>{t.name}</Badge>)}
-                        </div>)}
+                        (
+                            <div id="tags">
+                                {userFromDB.skills.map(t => <Badge className="mr-1" variant={"primary"}
+                                                                   key={t.name}>{t.name}</Badge>)}
+                            </div>
+                        )}
+                        {userFromDB.skills?.length == 0 &&
+                        (
+                            <div>No skills added yet</div>
+                        )}
+                        <div id="add-skills">
+                            Add Skills
+                            <Skills/>
+                        </div>
+                    </div>
+                </div>
+                <div className="user-posts">
+                    <h3>My Posts</h3>
+                    <div id="cards-container">
+                        <h1></h1>
+                        {dataBox()}
                     </div>
                 </div>
             </div>
-            <div className="user-posts">
-                <h3>My Recent Posts</h3>
-                <div id="cards-container">
-                    {dataBox()}
-                </div>
-            </div>
-
+            }
         </div>
     );
 };

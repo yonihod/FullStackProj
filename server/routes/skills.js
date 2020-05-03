@@ -10,18 +10,18 @@ module.exports = (app) => {
             });
 
         })
-        .post((req, res) => {
+        // .post((req, res) => {
 
-        });
+        // });
 
-    app.route('/skills/:id')
-        .get((req, res) => {
-
-        })
-        .put((req, res) => {
-
-        })
-        .delete((req, res) => {
-
-        })
+    // app.route('/skills/:id')
+    //     .get((req, res) => {
+    //
+    //     })
+    //     .put((req, res) => {
+    //
+    //     })
+    //     .delete((req, res) => {
+    //
+    //     })
 };
