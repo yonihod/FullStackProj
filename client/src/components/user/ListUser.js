@@ -20,8 +20,11 @@ export default class UserList extends Component {
         this.getUsers();
     }
 
-    getUsers = () => {
-        UserService.getUsers().then(res => {
+    getUsers = (filter) => {
+        if(typeof filter === 'undefined'){
+            filter = [];
+        }
+        UserService.getUsers(filter).then(res => {
             if(res){ // filter only users who has skills
                 res = res.filter( user => {
                     return user?.skills && user.skills.length
@@ -53,11 +56,7 @@ export default class UserList extends Component {
 
     handleAdvancedSearch = (filter) =>{
         this.setState({toggleAdvancedSearch:false});
-        UserService.getUsers(filter).then( (res) => {
-            this.setState({users: res});
-        }).catch( (err) => {
-            console.log(err)
-        })
+        this.getUsers(filter);
     };
 
     render() {
