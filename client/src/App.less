@@ -311,6 +311,7 @@ html, body {
   .flex-container {
     display: flex;
     justify-content: left;
+    flex-wrap: wrap;
 
     #user-details {
       padding: 0 1rem;
@@ -318,7 +319,8 @@ html, body {
   }
 
   .user-posts {
-    margin: 5% 0;
+    flex: 0 0 100%;
+    margin: 2rem 0;
   }
 
   .edit-post {

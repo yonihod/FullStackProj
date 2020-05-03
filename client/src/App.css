@@ -269,12 +269,14 @@ body {
 .profile .flex-container {
   display: flex;
   justify-content: left;
+  flex-wrap: wrap;
 }
 .profile .flex-container #user-details {
   padding: 0 1rem;
 }
 .profile .user-posts {
-  margin: 5% 0;
+  flex: 0 0 100%;
+  margin: 2rem 0;
 }
 .profile .edit-post h1,
 .profile .edit-post .delete {
