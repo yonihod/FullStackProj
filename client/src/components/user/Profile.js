@@ -33,7 +33,7 @@ const Profile = () => {
     const dataBox = () => {
         if (userFromDB.posts?.length) {
             return userFromDB.posts.map((post,index)=> {
-                return <PostBox obj={post} key={index} classList={"w-50"} />;
+                return <PostBox obj={post} key={index} classList={"w-25"} />;
             });
         }
     };
