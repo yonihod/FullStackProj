@@ -1,48 +1,79 @@
-import React, {Component} from "react";
-import UserService from "../../services/Users";
+import React, {Component, useState} from "react";
+import {Badge} from "react-bootstrap";
+import Autosuggest from 'react-autosuggest';
+import SkillsService from "../../services/Skills";
 
 
-export default class Skills extends Component {
-    constructor(props) {
-        super(props);
-        let skills = [];
-        let email = '';
 
-        if(props !== undefined ){
-            email = props.email;
+const Skills = () => {
+
+    const [skills, setSkills] = useState([]);
+    const [suggestions, setSuggestions] = useState([]);
+    const [value, setValue] = useState('');
+
+    SkillsService.getSkills().then(res => {
+        setSkills(res);
+        return res;
+    }).catch(err => {
+        console.log(err);
+        return [];
+    });
+
+
+    const escapeRegexCharacters = (str) => {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    const getSuggestions = (value) => {
+        const escapedValue = escapeRegexCharacters(value.trim());
+
+        if (escapedValue === '') {
+            return [];
         }
+        const regex = new RegExp('^' + escapedValue, 'i');
 
-        this.state = {
-            email: email,
-            skills: skills
-        };
-
+        return skills.filter(skill => regex.test(skill.name));
     }
 
-    componentDidMount() {
-        UserService.getUserByEmail(this.state.email).then(res => {
-            this.setState({
-                skills: res.skills
-            });
-        }).catch(err => {
-            console.log('There has been an error loading skills in skills-component: ' + err);
-        });
-
+    const getSuggestionValue = (suggestion) => {
+        return suggestion.name;
     }
 
-
-
-    render() {
-        const skills =  this.state.skills.map(function(object, i) {
-            return <div>{object.name}</div>;
-        });
-
+    const renderSuggestion = (suggestion) => {
         return (
-            <div>
-                <ul>
-                    {skills}
-                </ul>
-            </div>
+            <span>{suggestion.name}</span>
         );
     }
+
+    const onChange = (event, { newValue, method }) => {
+        setValue(newValue);
+    };
+
+    const onSuggestionsFetchRequested = ({ value }) => {
+            setSuggestions(getSuggestions(value));
+    };
+
+    const onSuggestionsClearRequested = () => {
+            setSuggestions([]);
+    };
+
+    const inputProps = {
+        placeholder: "blabbbb",
+        value,
+        onChange: onChange
+    };
+
+    return (
+        <div id="auto-suggest">
+            <Autosuggest
+                suggestions={suggestions}
+                onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                onSuggestionsClearRequested={onSuggestionsClearRequested}
+                getSuggestionValue={getSuggestionValue}
+                renderSuggestion={renderSuggestion}
+                inputProps={inputProps} />
+        </div>
+    );
 }
+
+export default Skills;
