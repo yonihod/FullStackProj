@@ -67,7 +67,7 @@ const SinglePost = (props) => {
             <div>
                 <h1 className={"post-title"}>{post.title}</h1>
                 <div>
-                    {post.tags.map(t => <Badge className="mr-1" variant={"primary"} key={t}>{t}</Badge>)}
+                    {post.tags.map(t => <Badge className="mr-1 badge" key={t}>{t}</Badge>)}
                 </div>
                 <div className={"post-details"}>
                     <div>Owner: {post.owner?.name}</div>

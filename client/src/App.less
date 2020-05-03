@@ -69,7 +69,7 @@ html, body {
 .badge {
   color: #49515a;
   border: 1px solid #49515a;
-  padding: 5px;
+  padding: 5px !important;
 }
 
 .w-30 {
@@ -210,50 +210,54 @@ html, body {
 
 .profile {
   header {
-    margin: 0 1.5% 24px 1.5%;
-
     h1 {
-      padding-bottom: 1rem;
-      font-size: 4rem;
+      text-align: left;
+      padding-top: 1rem;
+      padding-bottom: 3rem;
       color: white;
-      text-shadow: 1px 1px 2px blue, 0 0 25px dodgerblue, 0 0 5px deepskyblue;
+      text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
     }
   }
 
   h2 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: dodgerblue;
+    text-align: left;
+    color: #3fb3a0;
   }
 
   h3 {
     color: white;
-    background-color: dodgerblue;
+    background-color: #3fb3a0;
     padding: 0.5rem;
   }
 
   h4 {
-    font-size: 1.5rem;
-    color: dodgerblue;
+    text-align: left;
+    color: #3fb3a0;
   }
 
   img {
     width: 250px;
-    border-color: dodgerblue;
+    border-color: #3fb3a0;
     border-style: double;
+    border-radius: 4%;
   }
 
   #tags {
     font-size: 1.5rem;
+    text-align: left;
   }
 
   .flex-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
 
     #user-details {
       padding: 0 1rem;
     }
+  }
+
+  .user-posts {
+    margin: 5% 0;
   }
 
   .edit-post {
@@ -484,7 +488,7 @@ html, body {
   #advanced-search-container {
     &.toggle-advanced-search {
       .advanced-search {
-        height: 500px !important;
+        height: 400px !important;
         visibility: visible;
         opacity: 1;
         transition: opacity 1s, visibility 0.5s, height 0.5s ease;
@@ -515,15 +519,14 @@ html, body {
 
         span {
           vertical-align: text-top;
-          line-height: 1.2rem;
+          line-height: 1rem;
           margin-left: 1px;
           border: none;
         }
       }
 
       #advanced-submit-button {
-        margin-right: 2rem;
-        margin-top: 2rem;
+        margin-right: 1rem;
       }
     }
   }

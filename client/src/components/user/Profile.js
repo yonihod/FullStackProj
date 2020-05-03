@@ -11,13 +11,12 @@ const Profile = () => {
     const {loading, user} = useAuth0();
 
     UserService.getUserByEmail(user.email).then(res => {
-            setUserFromDB(res);
-            return res;
-        }).catch(err => {
-            console.log(err);
-            return [];
-        });
-
+        setUserFromDB(res);
+        return res;
+    }).catch(err => {
+        console.log(err);
+        return [];
+    });
 
 
     if (loading) {
@@ -27,13 +26,13 @@ const Profile = () => {
 
     const dataBox = () => {
         if (userFromDB.posts?.length) {
-            return userFromDB.posts.map((post,index)=> {
-                return <PostBox obj={post} key={index} classList={"w-50"} />;
+            return userFromDB.posts.map((post, index) => {
+                return <PostBox obj={post} key={index} classList={"w-30 m-2"}/>;
             });
         }
     };
 
-     return (
+    return (
         <div className="profile">
             <header>
                 <h1>{userFromDB.name}'s Profile</h1>
@@ -46,20 +45,21 @@ const Profile = () => {
                     <div>
                         <h2>{userFromDB.name}</h2>
                         <h4>{user.email}</h4>
-                        {userFromDB.skills?.length > 0  &&
+                        {userFromDB.skills?.length > 0 &&
                         (<div id="tags">
-                            {userFromDB.skills.map(t => <Badge className="mr-1" variant={"primary"}
+                            {userFromDB.skills.map(t => <Badge className="mr-1 badge"
                                                                key={t.name}>{t.name}</Badge>)}
                         </div>)}
                     </div>
                 </div>
-                <div>
-                    <h3>My Recent Posts</h3>
-                    <div id="cards-container">
-                        {dataBox()}
-                    </div>
+            </div>
+            <div className="user-posts">
+                <h3>My Recent Posts</h3>
+                <div id="cards-container">
+                    {dataBox()}
                 </div>
             </div>
+
         </div>
     );
 };
