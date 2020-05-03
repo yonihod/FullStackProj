@@ -66,24 +66,9 @@ const Skills = (props) => {
     };
 
     const onSuggestionSelected = (event, data) => {
-        props.updateSkills(data.suggestionValue);
+        props.updateSkills(data.suggestion);
         setValue('');
     };
-    // const onSuggestionSelected = (event, { suggestion, suggestionValue, suggestionIndex, sectionIndex, method }) =>{
-    //     // console.log(suggestionValue);
-    //     // //const newSkills = userSkills.concat({"_id": "5e5a4edd17e4c64fa4592e57", "name": "IOS Developer"});
-    //     // const newSkill = {_id: "5e5a4edd17e4c64fa4592e57", name: "IOS Developer"};
-    //     // setUserSkills(userSkills => userSkills.concat(newSkill));
-    //     // console.log(userSkills);
-    //     // UserService.EditUser(userEmail, {"skills": userSkills}).then((res) => {
-    //     //     console.log("added");
-    //     // }).catch((err) => {
-    //     //     console.log(err)
-    //     // });
-    //     props.updateSkills(data.suggestionValue);
-    //     setValue('');
-    // };
-
 
     const inputProps = {
         value,

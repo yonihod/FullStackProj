@@ -40,7 +40,8 @@ const Profile = () => {
     };
 
     const updateSkills = (newSkill) => {
-        let skill = {name: newSkill};
+        let skill = {name: newSkill.name};
+        let skillID = newSkill._id;
         let joined;
 
         if (skills) {
@@ -52,7 +53,7 @@ const Profile = () => {
         setSkills(joined);
 
         console.log(joined);
-        UserService.EditUser(user.email, {"skills": joined}).then((res) => {
+        UserService.EditUser(user.email, {skillID}).then((res) => {
             console.log("added");
         }).catch((err) => {
             console.log(err)
