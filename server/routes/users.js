@@ -6,8 +6,8 @@ function isEmpty(obj) {
 
 async function getUsers(filter) {
     let users;
-    if(filter['skills']){
-        let skillsFilter = {$regex:filter['skills'], $options: 'i'};
+    if (filter['skills']) {
+        let skillsFilter = {$regex: filter['skills'], $options: 'i'};
         delete filter.skills;
         users = await User.find(filter).populate({
             path: 'skills',
@@ -16,7 +16,7 @@ async function getUsers(filter) {
         users = users.filter(function (user) {
             return user.skills.length;
         })
-    }else {
+    } else {
         users = await User.find(filter).populate('skills');
     }
 
@@ -27,7 +27,7 @@ module.exports = (app) => {
     app.route('/users')
         .get(async (req, res) => {
             let filter = {};
-            if(typeof  req.query.filter !== 'undefined' && !isEmpty(req.query.filter)){
+            if (typeof req.query.filter !== 'undefined' && !isEmpty(req.query.filter)) {
                 filter = JSON.parse(req.query.filter);
             }
             const users = await getUsers(filter);
@@ -79,7 +79,7 @@ module.exports = (app) => {
             User.findOneAndUpdate({email: req.params.email}, req.body, {
                 new: true,
                 upsert: true
-            }).then(data => {
+            }).populate('skills posts').then(data => {
                 res.status(200).json(data);
             }).catch(err => {
                 console.log(err);

@@ -40,26 +40,15 @@ const Profile = () => {
     };
 
     const updateSkills = (newSkill) => {
-        let skill = {name: newSkill.name};
-        let skillID = newSkill._id;
-        let joined;
+        let user = userFromDB;
+        user.skills.push(newSkill);
 
-        if (skills) {
-            joined = skills.concat(skill);
-        } else {
-            joined = [skill];
-        }
-
-        setSkills(joined);
-
-        console.log(joined);
-        UserService.EditUser(user.email, {skillID}).then((res) => {
-            console.log("added");
-
-        }).catch((err) => {
-            console.log(err)
+        UserService.EditUser(user.email, user).then(res => {
+            setUserFromDB(res);
+            setSkills(res.skills);
+        }).catch(err => {
+            console.log(err);
         });
-
     };
 
     return (
