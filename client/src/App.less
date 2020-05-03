@@ -63,7 +63,17 @@ html, body {
 }
 
 .App-link {
-  color: #61dafb;
+  color: #3fb3a0;
+}
+
+.badge {
+  color: #49515a;
+  border: 1px solid #49515a;
+  padding: 5px;
+}
+
+.w-30 {
+  width: 30%;
 }
 
 .navbar-brand {
@@ -91,7 +101,6 @@ html, body {
   line-height: 2.5rem;
 }
 
-
 #cards-container {
   display: flex;
   justify-content: center;
@@ -100,6 +109,7 @@ html, body {
 
   .card {
     position: relative;
+    color: #49515a;
 
     .manage-post {
       position: absolute;
@@ -138,11 +148,13 @@ html, body {
 
         .card-title {
           margin-top: 0.75rem;
+          color: #3fb3a0;
         }
 
         .card-text {
           height: 150px;
           overflow: hidden;
+          color: #49515a;
         }
 
         a {
@@ -184,7 +196,7 @@ html, body {
     border-radius: 0 0 5px 5px;
     font-family: 'Dancing Script';
     font-size: 6.5rem;
-    text-shadow: 4px 2px #2cb5a8d9
+    text-shadow: 4px 2px #3fb3a0
   }
 
   #home-video {
@@ -197,7 +209,6 @@ html, body {
 }
 
 .profile {
-
   header {
     margin: 0 1.5% 24px 1.5%;
 
@@ -282,6 +293,20 @@ html, body {
   }
 }
 
+.writer-container {
+  margin: 2rem 0 1rem 0;
+
+  .writer {
+    height: 180px;
+    color: #49515a;
+
+    h1 {
+      color: white;
+      text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
+    }
+  }
+}
+
 .post-page {
   #advanced-search-container {
     &.toggle-advanced-search {
@@ -329,19 +354,6 @@ html, body {
     }
   }
 
-  .writer-container {
-    margin: 2rem 0 1rem 0;
-
-    .writer {
-      height: 180px;
-
-      h1 {
-        color: white;
-        text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
-      }
-    }
-  }
-
   .success, .danger, .warning {
     position: absolute;
     top: 150px;
@@ -381,43 +393,40 @@ html, body {
 .about {
   .head {
     padding-top: 5%;
+    padding-bottom: 5%;
     background-position: right;
     background-size: cover;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
 
     img {
-      height: 380px;
-      width: 1100px;
+      height: 360px;
+      width: 860px;
     }
 
     h1 {
-      left: 12rem;
-      top: 9rem;
+      left: 10rem;
+      top: 2rem;
+      font-size: 65px;
       position: absolute;
       color: white;
-      text-shadow: 1px 1px 2px dodgerblue, 0 0 25px blue, 0 0 5px deepskyblue;
+      text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
     }
 
     .body_text {
-      left: 14rem;
-      top: 13rem;
+      left: 13rem;
+      top: 14.5rem;
       position: absolute;
-      color: #3794f7;
+      color: #49515a;
     }
-  }
-
-  .about_img {
-    max-width: 100%;
-    width: 100%;
-    height: 40%;
-    left: 0.01rem;
-    position: absolute;
   }
 
   #our-team {
     h1 {
-      color: #3794f7;
-      padding-top: 4%;
+      color: #3fb3a0;
+      padding-top: 5%;
+      padding-bottom: 1%;
       font-family: 'Dancing Script';
       font-size: 40px;
       text-shadow: 2px 2px #c7d8ea;
@@ -428,6 +437,10 @@ html, body {
       flex-wrap: wrap;
       justify-content: center;
 
+      h5 {
+        color: #49515a;
+      }
+
       > div {
         width: 15%;
         margin-right: 2rem;
@@ -436,13 +449,14 @@ html, body {
           width: 180px;
           height: 200px;
           margin-right: 20px;
+          border-radius: 5%;
         }
       }
     }
   }
 
   .title {
-    color: #3794f7;
+    color: #3fb3a0;
     padding-top: 7%;
     font-family: 'Dancing Script';
     font-size: 40px;
@@ -516,10 +530,30 @@ html, body {
 }
 
 .post-container {
-  margin: 2%;
+  width: 70%;
+  margin: 2% auto;
+  text-align: left;
+
+  .post-title {
+    color: #3fb3a0;
+    font-size: 32px;
+    padding-bottom: 3%;
+  }
 
   .post-details {
-    margin-top: 2%;
+    color: #4e555b;
+    font-size: 20px;
+    padding-bottom: 5%;
+  }
+
+  .end-alignment {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .twitter-btn {
+    background-color: #3fb3a0;
+    border-color: #3fb3a0;
   }
 
   .post-actions {
@@ -527,11 +561,9 @@ html, body {
 
     .edit, .delete {
       color: #fff;
-      padding: 1%;
+      padding: 10px;
       margin: 1%;
       border-radius: 5px;
-      width: 10px;
-      height: 10px;
     }
 
     .edit {

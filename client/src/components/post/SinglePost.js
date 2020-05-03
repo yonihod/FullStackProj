@@ -65,23 +65,23 @@ const SinglePost = (props) => {
     return (
         <div className={"post-container"}>
             <div>
-                <h1>{post.title}</h1>
+                <h1 className={"post-title"}>{post.title}</h1>
                 <div>
                     {post.tags.map(t => <Badge className="mr-1" variant={"primary"} key={t}>{t}</Badge>)}
                 </div>
                 <div className={"post-details"}>
-                    <h4>Owner: {post.owner?.name}</h4>
-                    <h4>Due Date: {new Date(post.dueDate).toLocaleDateString()}</h4>
-                    <h4>Description: {post.desc}</h4>
+                    <div>Owner: {post.owner?.name}</div>
+                    <div>Due Date: {new Date(post.dueDate).toLocaleDateString()}</div>
+                    <div>Description: {post.desc}</div>
                 </div>
-                <div>
-                    <Button className={'m-2'} onClick={publish} disabled={disableTwitButton}>
+                <div className={"end-alignment"}>
+                    <Button className={"m-2 twitter-btn"} onClick={publish} disabled={disableTwitButton}>
                         {postToTwitter()}
                         {spinner()}
                     </Button>
                 </div>
             </div>
-            {isBelongToUser(post.owner?.email) && <div className={"post-actions"}>
+            {isBelongToUser(post.owner?.email) && <div className={"post-actions end-alignment"}>
                 <Link className={"edit"} to={`/edit-post/${props.match.params.id}`}>
                     <i className={"fa fa-edit"}/>
                 </Link>

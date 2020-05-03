@@ -20,8 +20,8 @@ export default class Charts extends Component {
             yLabelPosition: 'top'
         };
         this.colorScale = {
-            from: '#a6cee3',
-            to: '#b15928'
+            from: '#74c7ba',
+            to: '#49515a'
         }
     }
 

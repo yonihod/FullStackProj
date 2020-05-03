@@ -5,7 +5,7 @@ import {useAuth0} from "../../reactAuth0";
 
 const PostBox = (props) => {
     const {user} = useAuth0();
-    const classList = props?.classList ? props.classList : 'w-25 m-2';
+    const classList = props?.classList ? props.classList : 'w-30 m-2';
 
     function isBelongToUser(userEmail) {
         return userEmail && userEmail === user?.email
@@ -28,7 +28,7 @@ const PostBox = (props) => {
                         {props.obj.title}
                     </Card.Title>
                     <div>
-                        {props.obj?.tags?.map(t => <Badge className="mr-1" variant={"primary"} key={t}>{t}</Badge>)}
+                        {props.obj?.tags?.map(t => <Badge className="mr-1 badge" key={t}>{t}</Badge>)}
                     </div>
                     <Card.Text>
                         {props.obj.description}
