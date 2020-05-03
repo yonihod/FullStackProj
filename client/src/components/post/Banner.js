@@ -5,7 +5,7 @@ import UserService from "../../services/Users";
 
 const Banner = (props) => {
     const { isAuthenticated, user } = useAuth0();
-    const [hasSkills, showBanner] = useState(false);
+    const [hasSkills, showBanner] = useState(true);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -21,9 +21,9 @@ const Banner = (props) => {
         <>
             {!hasSkills && isAuthenticated &&
                 <div className="banner">
-                    Service providers with skills are more likely to find a Task!
+                    Join us as a service provider! Let us know what are your skills and you're in!
                     <Link className={"banner-link"} to={`/profile`}>
-                        Add skills now!
+                        Add Skills
                     </Link>
                 </div>
             }
