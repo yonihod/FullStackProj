@@ -41,12 +41,23 @@ const Profile = () => {
 
     const updateSkills = (newSkill) => {
         let skill = {name: newSkill};
+        let joined;
+
         if (skills) {
-            var joined = skills.concat(skill);
-            setSkills(joined);
+            joined = skills.concat(skill);
         } else {
-            setSkills([skill]);
+            joined = [skill];
         }
+
+        setSkills(joined);
+
+        console.log(joined);
+        UserService.EditUser(user.email, {"skills": joined}).then((res) => {
+            console.log("added");
+        }).catch((err) => {
+            console.log(err)
+        });
+
     };
 
     return (
