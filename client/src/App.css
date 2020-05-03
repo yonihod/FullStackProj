@@ -256,6 +256,9 @@ body {
   text-align: left;
   color: #3fb3a0;
 }
+.profile h5 {
+  text-align: left;
+}
 .profile img {
   width: 250px;
   border-color: #3fb3a0;

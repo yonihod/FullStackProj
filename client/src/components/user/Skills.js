@@ -1,8 +1,8 @@
-import React, {Component, useState} from "react";
+import React, {Component, useEffect, useState} from "react";
 import {Badge} from "react-bootstrap";
 import Autosuggest from 'react-autosuggest';
 import SkillsService from "../../services/Skills";
-
+import PostsService from "../../services/Posts";
 
 
 const Skills = () => {
@@ -11,14 +11,13 @@ const Skills = () => {
     const [suggestions, setSuggestions] = useState([]);
     const [value, setValue] = useState('');
 
-    SkillsService.getSkills().then(res => {
-        setSkills(res);
-        return res;
-    }).catch(err => {
-        console.log(err);
-        return [];
-    });
-
+    useEffect(() => {
+        SkillsService.getSkills().then(res => {
+            setSkills(res);
+        }).catch(err => {
+            console.log(err);
+        });
+    }, [skills.length]);
 
     const escapeRegexCharacters = (str) => {
         return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -45,16 +44,16 @@ const Skills = () => {
         );
     }
 
-    const onChange = (event, { newValue, method }) => {
+    const onChange = (event, {newValue, method}) => {
         setValue(newValue);
     };
 
-    const onSuggestionsFetchRequested = ({ value }) => {
-            setSuggestions(getSuggestions(value));
+    const onSuggestionsFetchRequested = ({value}) => {
+        setSuggestions(getSuggestions(value));
     };
 
     const onSuggestionsClearRequested = () => {
-            setSuggestions([]);
+        setSuggestions([]);
     };
 
     const inputProps = {
@@ -70,7 +69,7 @@ const Skills = () => {
                 onSuggestionsClearRequested={onSuggestionsClearRequested}
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={renderSuggestion}
-                inputProps={inputProps} />
+                inputProps={inputProps}/>
         </div>
     );
 }

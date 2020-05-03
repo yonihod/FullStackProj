@@ -8,7 +8,7 @@ import {Button, Spinner, Badge} from 'react-bootstrap';
 const SinglePost = (props) => {
     const {user} = useAuth0();
 
-    const [post, setPost] = useState(null);
+    const [post, setPost] = useState({});
 
     const [disableTwitButton, setDisableTwitButton] = useState(false);
 
@@ -24,7 +24,7 @@ const SinglePost = (props) => {
         }).catch(err => {
             console.log(err)
         });
-    });
+    },[post.id]);
 
     function isBelongToUser(userEmail) {
         return userEmail && userEmail === user?.email
@@ -59,7 +59,7 @@ const SinglePost = (props) => {
         });
     }
 
-    if (!post)
+    if (!post || Object.keys(post).length === 0)
         return null;
 
     return (
