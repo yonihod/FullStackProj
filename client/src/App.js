@@ -45,6 +45,7 @@ function App() {
                             <Route exact path="/" component={Home}/>
                             <Route path="/posts/:id" component={SinglePost}/>
                             <Route path="/posts" component={ListPosts}/>
+                            <Route path="/service-providers" component={ListUsers}/>
                             <PrivateRoute authed={isAuthenticated} path="/create-post" component={CreatePost} user={user}/>
                             <PrivateRoute authed={isAuthenticated} currentUser={user} path="/edit-post/:id" component={EditPost}/>
                             <PrivateRoute authed={isAuthenticated} currentUser={user} path="/edit-user/:id" component={EditUser}/>
