@@ -78,7 +78,7 @@ export default class CreateUser extends Component {
                     <Form.Control type="text"/>
                 </Form.Group>
 
-                <Button variant="danger" size="lg" block="block" type="submit">
+                <Button variant="secondary" size="lg" block="block" type="submit">
                     Create User
                 </Button>
 
