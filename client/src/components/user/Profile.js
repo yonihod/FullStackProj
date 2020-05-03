@@ -13,18 +13,18 @@ const Profile = () => {
     const {loading, user} = useAuth0();
 
     UserService.getUserByEmail(user.email).then(res => {
-            setUserFromDB(res);
-            return res;
-        }).catch(err => {
-            console.log(err);
-            return [];
-        });
+        setUserFromDB(res);
+        return res;
+    }).catch(err => {
+        console.log(err);
+        return [];
+    });
 
 
     if (loading || !userFromDB) {
         return   (
             <div className={"spinner"}>
-                <Spinner animation="border" variant="primary" />
+                <Spinner animation="border" variant="primary"/>
             </div>
         );
     }
@@ -32,18 +32,18 @@ const Profile = () => {
 
     const dataBox = () => {
         if (userFromDB.posts?.length) {
-            return userFromDB.posts.map((post,index)=> {
-                return <PostBox obj={post} key={index}/>;
+            return userFromDB.posts.map((post, index) => {
+                return <PostBox obj={post} key={index} classList={"w-30 m-2"}/>;
             });
         }
     };
 
     return (
-          <div className="profile">
+        <div className="profile">
             <header>
                 <h1>My Profile</h1>
             </header>
-              <div className="flex-container">
+            <div className="flex-container">
                 <div id="user-details">
                     <div className="profile-image">
                         <img src={user.picture} alt="Profile"/>
@@ -51,11 +51,11 @@ const Profile = () => {
                     <div>
                         <h2>{userFromDB.name}</h2>
                         <h4>{user.email}</h4>
-                        {userFromDB.skills?.length > 0  &&
+                        {userFromDB.skills?.length > 0 &&
                         (
                             <div id="tags">
-                           {userFromDB.skills.map(t => <Badge className="mr-1" variant={"primary"}
-                                                               key={t.name}>{t.name}</Badge>)}
+                                {userFromDB.skills.map(t => <Badge className="mr-1" variant={"primary"}
+                                                                   key={t.name}>{t.name}</Badge>)}
                             </div>
                         )}
                         {userFromDB.skills?.length == 0 &&
@@ -68,16 +68,17 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className="user-posts">
                     <h3>My Posts</h3>
                     <div id="cards-container">
-                        <h1> </h1>
+                        <h1></h1>
                         {dataBox()}
                     </div>
                 </div>
-            </div>}
+            </div>
+            }
         </div>
-         );
+    );
 };
 
 export default Profile;
