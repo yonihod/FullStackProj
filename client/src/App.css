@@ -408,28 +408,19 @@ body {
 .about .head {
   padding-top: 5%;
   padding-bottom: 5%;
-  background-position: right;
-  background-size: cover;
-  background-repeat: no-repeat;
   display: flex;
   justify-content: space-between;
 }
 .about .head img {
-  height: 360px;
-  width: 860px;
+  height: 320px;
+  width: 735px;
 }
 .about .head h1 {
-  left: 10rem;
-  top: 2rem;
   font-size: 65px;
-  position: absolute;
   color: white;
   text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
 }
 .about .head .body_text {
-  left: 13rem;
-  top: 14.5rem;
-  position: absolute;
   color: #49515a;
 }
 .about #our-team h1 {
