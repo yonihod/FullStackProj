@@ -58,7 +58,6 @@ const Skills = () => {
     };
 
     const inputProps = {
-        placeholder: "blabbbb",
         value,
         onChange: onChange
     };

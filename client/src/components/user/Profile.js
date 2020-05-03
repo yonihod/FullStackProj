@@ -21,7 +21,7 @@ const Profile = () => {
         });
 
 
-    if (loading || userFromDB.length ==0 ) {
+    if (loading || !userFromDB) {
         return   (
             <div className={"spinner"}>
                 <Spinner animation="border" variant="primary" />
