@@ -106,7 +106,7 @@ export default class CreatePost extends Component {
                                 <Form.Control value={this.state.description} onChange={e => this.handleChange(e)}
                                               name="description" as="textarea" rows={"4"}/>
                             </Form.Group>
-                            <Button type="submit" variant="info" size="lg" block="block">
+                            <Button type="submit" variant="secondary" size="lg" block="block">
                                 Create Post
                             </Button>
                         </Form>)
