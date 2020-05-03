@@ -8,7 +8,7 @@ import Spinner from "react-bootstrap/Spinner";
 
 const Profile = () => {
 
-    const [userFromDB, setUserFromDB] = useState({});
+    const [userFromDB, setUserFromDB] = useState(false);
     const [skills, setSkills] = useState([]);
     const {loading, user} = useAuth0();
 
