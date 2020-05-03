@@ -1,26 +1,27 @@
 import React from 'react'
-import { Card, Button, Badge } from 'react-bootstrap'
-import { Link } from "react-router-dom";
-import { useAuth0 } from "../../reactAuth0";
+import {Card, Button, Badge} from 'react-bootstrap'
+import {Link} from "react-router-dom";
+import {useAuth0} from "../../reactAuth0";
 
 const PostBox = (props) => {
-    const { user } = useAuth0();
+    const {user} = useAuth0();
     const classList = props?.classList ? props.classList : 'w-25 m-2';
+
     function isBelongToUser(userEmail) {
-        return userEmail === (user?.email)
+        return userEmail && userEmail === user?.email
     }
 
     return (
         <Card className={classList}>
-                {isBelongToUser(props.obj?.owner?.email) &&
-                <div className={"manage-post"}>
-                    <Link className={"edit"} to={`/edit-post/${props.obj._id}`}>
-                        <i className={"fa fa-edit"}></i>
-                    </Link>
-                    <Link className={"delete"} to={`/edit-post/${props.obj._id}`}>
-                        <i className={"fa fa-trash-alt"}></i>
-                    </Link>
-                </div>}
+            {isBelongToUser(props.obj?.owner?.email) &&
+            <div className={"manage-post"}>
+                <Link className={"edit"} to={`/edit-post/${props.obj._id}`}>
+                    <i className={"fa fa-edit"}></i>
+                </Link>
+                <Link className={"delete"} to={`/edit-post/${props.obj._id}`}>
+                    <i className={"fa fa-trash-alt"}></i>
+                </Link>
+            </div>}
             <Link className={"card-link"} to={`/posts/${props.obj._id}`}>
                 <Card.Body>
                     <Card.Title>

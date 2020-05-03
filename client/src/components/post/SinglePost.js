@@ -27,7 +27,7 @@ const SinglePost = (props) => {
     });
 
     function isBelongToUser(userEmail) {
-        return user?.email === userEmail
+        return userEmail && userEmail === user?.email
     }
 
     function postToTwitter() {
@@ -61,7 +61,7 @@ const SinglePost = (props) => {
 
     if (!post)
         return null;
-    
+
     return (
         <div className={"post-container"}>
             <div>
