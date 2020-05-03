@@ -8,13 +8,7 @@ import {Button, Spinner, Badge} from 'react-bootstrap';
 const SinglePost = (props) => {
     const {user} = useAuth0();
 
-    const [post, setPost] = useState({
-        title: 'Post title',
-        desc: 'Post desc',
-        owner: 'Post owner',
-        dueDate: 'Post date',
-        tags: [],
-    });
+    const [post, setPost] = useState(null);
 
     const [disableTwitButton, setDisableTwitButton] = useState(false);
 
@@ -65,6 +59,9 @@ const SinglePost = (props) => {
         });
     }
 
+    if (!post)
+        return null;
+    
     return (
         <div className={"post-container"}>
             <div>
