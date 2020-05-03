@@ -32,8 +32,8 @@ const Profile = () => {
 
     const dataBox = () => {
         if (userFromDB.posts?.length) {
-            return userFromDB.posts.map((post, index) => {
-                return <PostBox obj={post} key={index} classList={"w-30 m-2"}/>;
+            return userFromDB.posts.map((post,index)=> {
+                return <PostBox obj={post} key={index} classList={"w-50"} />;
             });
         }
     };
@@ -41,13 +41,13 @@ const Profile = () => {
     return (
         <div className="profile">
             <header>
-                <h1>My Profile</h1>
+                <h1>{userFromDB.name}'s Profile</h1>
             </header>
             <div className="flex-container">
+                <div className="profile-image">
+                    <img src={user.picture} alt="Profile"/>
+                </div>
                 <div id="user-details">
-                    <div className="profile-image">
-                        <img src={user.picture} alt="Profile"/>
-                    </div>
                     <div>
                         <h2>{userFromDB.name}</h2>
                         <h4>{user.email}</h4>
@@ -69,9 +69,8 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="user-posts">
-                    <h3>My Posts</h3>
+                    <h3>My Recent Posts</h3>
                     <div id="cards-container">
-                        <h1></h1>
                         {dataBox()}
                     </div>
                 </div>
