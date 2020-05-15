@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from 'react'
-import {Link} from "react-router-dom";
-import {useAuth0} from "../../reactAuth0";
+import React, { useEffect, useState } from 'react'
+import { Link } from "react-router-dom";
+import { useAuth0 } from "../../reactAuth0";
 import PostsService from "../../services/Posts";
+import UsersService from "../../services/Users";
 import TwitterService from "../../services/Twitter"
-import {Button, Spinner, Badge} from 'react-bootstrap';
+import { Button, Spinner, Badge } from 'react-bootstrap';
 
 const SinglePost = (props) => {
-    const {user} = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
 
     const [post, setPost] = useState({});
 
@@ -24,7 +25,7 @@ const SinglePost = (props) => {
         }).catch(err => {
             console.log(err)
         });
-    },[post.id]);
+    }, [post.id]);
 
     function isBelongToUser(userEmail) {
         return userEmail && userEmail === user?.email
@@ -34,7 +35,7 @@ const SinglePost = (props) => {
         if (!disableTwitButton) {
             return (
                 <span> Post To Twitter
-                    <span className={'ml-2'}><i className={"fab fa-twitter"}/></span>
+                    <span className={'ml-2'}><i className={"fab fa-twitter"} /></span>
                 </span>
             );
         }
@@ -45,7 +46,7 @@ const SinglePost = (props) => {
             return (
                 <span>
                     <Spinner as="span" animation="border" size="sm" role="status"
-                             aria-hidden="true" className={"mr-2"}/>
+                        aria-hidden="true" className={"mr-2"} />
                     Posting...
                 </span>
             );
@@ -54,9 +55,20 @@ const SinglePost = (props) => {
 
     function publish() {
         setDisableTwitButton(true);
-        TwitterService.postTwit({title: post.title}).then((res) => {
+        TwitterService.postTwit({ title: post.title }).then((res) => {
             setDisableTwitButton(false);
         });
+    }
+
+    function apply() {
+        if (isAuthenticated) {
+            return <Button onClick={() => {
+                UsersService.getUserByEmail(user.email).then(u => {
+                    PostsService.ApplyTask(props.match.params.id, u._id);
+                })}}>
+                <div>Apply for this task!</div>
+            </Button>
+        }
     }
 
     if (!post || Object.keys(post).length === 0)
@@ -83,12 +95,13 @@ const SinglePost = (props) => {
             </div>
             {isBelongToUser(post.owner?.email) && <div className={"post-actions end-alignment"}>
                 <Link className={"edit"} to={`/edit-post/${props.match.params.id}`}>
-                    <i className={"fa fa-edit"}/>
+                    <i className={"fa fa-edit"} />
                 </Link>
                 <Link className={"delete"} to={`/edit-post/${props.match.params.id}`}>
-                    <i className={"fa fa-trash-alt"}/>
+                    <i className={"fa fa-trash-alt"} />
                 </Link>
             </div>}
+            {apply()}
         </div>
     );
 };
