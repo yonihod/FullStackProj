@@ -21,6 +21,7 @@ import About from "./components/common/About";
 import Footer from "./components/common/Footer";
 import Spinner from "react-bootstrap/Spinner"
 import EditUser from "./components/user/EditUser";
+import Room from  "./components/room/room";
 
 function App() {
     const {isAuthenticated, loading, user} = useAuth0();
@@ -51,6 +52,7 @@ function App() {
                             <PrivateRoute authed={isAuthenticated} currentUser={user} path="/edit-user/:id" component={EditUser}/>
                             <Route path="/about-us" component={About}/>
                             <PrivateRoute authed={isAuthenticated} path="/profile" component={Profile}/>
+                            <PrivateRoute authed={isAuthenticated} path="/rooms" component={Room}/>
                         </Switch>
                     </div>
                 </Container>
