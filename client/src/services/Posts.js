@@ -47,4 +47,13 @@ export default class PostsService {
                 console.log(error)
             });
     }
+
+    static ApplyTask(postId, userId) {
+        return axios.put(`${this.POSTS_API}/apply`, { postId, userId })
+        .then((response) => {
+            return response.data;
+        }).catch((error) => {
+            console.log(error)
+        });
+    }
 }

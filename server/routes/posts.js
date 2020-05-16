@@ -21,6 +21,22 @@ function isEmpty(obj) {
 }
 
 module.exports = (app) => {
+
+    app.route('/posts/apply')
+        .put((req, res) => {
+            Post.findOneAndUpdate({ _id: req.body.postId },
+                { $push: { appliedUsers: req.body.userId } },
+                { new: true, upsert: true },
+                function (error, success) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        console.log(success);
+                         res.status(200).json('success');
+                    }
+                });
+        });
+
     app.route('/posts')
         .get((req, res) => {
             let filter = {};
@@ -43,12 +59,12 @@ module.exports = (app) => {
                         User.findOneAndUpdate({_id: postOwner._id},
                             {$push: {posts: data._id}},
                             {upsert : true},function (error,success) {
-                            if(error){
-                                console.log(error)
-                            } else {
-                                console.log(success)
-                            }
-                        });
+                                if(error){
+                                    console.log(error)
+                                } else {
+                                    console.log(success)
+                                }
+                            });
                     });
                     io().emit('newPost', data);
                     res.status(201).json(data);
