@@ -13,6 +13,8 @@ const SinglePost = (props) => {
 
     const [disableTwitButton, setDisableTwitButton] = useState(false);
 
+    const [disableApplyButton, setDisableApplyButton] = useState(false);
+
     useEffect(() => {
         PostsService.getPost(props.match.params.id).then(data => {
             setPost({
@@ -20,12 +22,14 @@ const SinglePost = (props) => {
                 desc: data.description,
                 owner: data.owner,
                 dueDate: data.dueDate,
-                tags: data.tags
+                tags: data.tags,
+                applied: data.appliedUsers
             })
         }).catch(err => {
             console.log(err)
         });
     }, [post.id]);
+
 
     function isBelongToUser(userEmail) {
         return userEmail && userEmail === user?.email
@@ -60,12 +64,21 @@ const SinglePost = (props) => {
         });
     }
 
+
     function apply() {
-        if (isAuthenticated) {
-            return <Button onClick={() => {
+        const userId = user.sub.split('|')[1];
+        console.log("userID " + userId);
+        console.log("owner " + post.owner._id);
+
+        if (isAuthenticated && !disableApplyButton && (!(userId === post.owner?._id)) &&
+            (!post.applied?.includes(userId))) {
+            return <Button
+                onClick={() => {
                 UsersService.getUserByEmail(user.email).then(u => {
                     PostsService.ApplyTask(props.match.params.id, u._id);
-                })}}>
+                    setDisableApplyButton(true);
+                });}}
+            disabled={disableApplyButton}>
                 <div>Apply for this task!</div>
             </Button>
         }

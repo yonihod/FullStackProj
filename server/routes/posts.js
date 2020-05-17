@@ -43,11 +43,12 @@ module.exports = (app) => {
             if(typeof  req.query.filter !== 'undefined' && !isEmpty(req.query.filter)){
                 filter = JSON.parse(req.query.filter);
             }
-            Post.find(filter).populate('owner').then((data) => {
+            Post.find(filter).populate('owner').populate('appliedUsers').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);
             });
+
         })
         .post((req, res) => {
             classify(req.body.title).then(tags => {
