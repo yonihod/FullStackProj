@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const ObjectId = mongoose.Schema.ObjectId;
 
 const roomSchema = mongoose.Schema({
@@ -7,7 +8,7 @@ const roomSchema = mongoose.Schema({
         ref: 'User'
     }],
     messages: [{
-      type: Array
+        type: Array
     }],
     post: {
         type: ObjectId,
