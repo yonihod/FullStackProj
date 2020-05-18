@@ -20,7 +20,7 @@ const SinglePost = (props) => {
                 owner: data.owner,
                 dueDate: data.dueDate,
                 tags: data.tags,
-                applied: data.appliedUsers
+                appliedUsers: data.appliedUsers
             })
         }).catch(err => {
             console.log(err)
@@ -70,16 +70,28 @@ const SinglePost = (props) => {
     function apply() {
         if (!isAuthenticated ||
             !userId ||
-            userId === post.owner?._id ||
-            post.applied?.includes(userId))
+            userId === post.owner?._id)
             return;
+
+        if (post.appliedUsers?.includes(userId)) {
+            return <>
+                <div>You have successfully applied for this task</div>
+                <Button onClick={() => {
+                    PostsService.CancelApplication(props.match.params.id, userId).then((updatedPost) => {
+                        setPost(updatedPost);
+                    });
+                }}>
+                Cancel application</Button>
+            </>
+        }
 
         return <Button
             onClick={() => {
-                PostsService.ApplyTask(props.match.params.id, userId);
-                setDisableApplyButton(true);
+                PostsService.ApplyTask(props.match.params.id, userId).then((updatedPost) => {
+                    setPost(updatedPost);
+                });
             }}>
-            <div>Apply for this task!</div>
+            Apply for this task!
         </Button>
     }
 
