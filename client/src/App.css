@@ -457,17 +457,13 @@ body {
   text-shadow: 2px 2px #c7d8ea;
 }
 .about .chart {
-  padding-top: 2%;
+  padding-top: 4%;
 }
 .about .chart div {
   color: #4e555b;
   font-size: 15px;
-  padding-bottom: 2%;
+  padding-bottom: 3%;
   text-decoration: underline;
-}
-.about #myCanvas {
-  width: 300px;
-  height: 100px;
 }
 .list-users #advanced-search-container.toggle-advanced-search .advanced-search {
   height: 400px !important;
