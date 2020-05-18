@@ -32,62 +32,62 @@ module.exports = (app) => {
 
                     res.status(201).json(data);
                 }).catch((err) => {
-                    console.log(err);
-                });
+                console.log(err);
+            });
         });
 
     app.route('/activeUsersPosts')
         .get((req, res) => {
             const data = Post.aggregate([
-                {
-                    // make sure that the post has owner property
-                    $match: {
-                        "owner": {
-                            "$exists": true,
-                            "$ne": null
-                        },
-                        "owner.name": {
-                            "$ne": 'System'
-                        }
-                    }
-                },
-                {
-                    // populate owner from users
-                    $lookup:
                     {
-                        from: 'users',
-                        localField: 'owner',
-                        foreignField: '_id',
-                        as: 'owner'
+                        // make sure that the post has owner property
+                        $match: {
+                            "owner": {
+                                "$exists": true,
+                                "$ne": null
+                            },
+                            "owner.name": {
+                                "$ne": 'System'
+                            }
+                        }
+                    },
+                    {
+                        // populate owner from users
+                        $lookup:
+                            {
+                                from: 'users',
+                                localField: 'owner',
+                                foreignField: '_id',
+                                as: 'owner'
+                            }
+                    },
+                    {
+                        $unwind: '$owner'
+                    },
+                    {
+                        // group the post by user
+                        $group: {
+                            _id: {'owner': "$owner"},
+                            count: {$sum: 1}
+                        }
+                    },
+                    {
+                        // sort in descending order
+                        $sort: {count: -1}
+                    },
+                    {
+                        // take first 6 (5 + System user)
+                        $limit: 6
                     }
-                },
-                {
-                    $unwind: '$owner'
-                },
-                {
-                    // group the post by user
-                    $group: {
-                        _id: { 'owner': "$owner" },
-                        count: { $sum: 1 }
-                    }
-                },
-                {
-                    // sort in descending order
-                    $sort: { count: -1 }
-                },
-                {
-                    // take first 6 (5 + System user)
-                    $limit: 6
-                }
-            ]
+                ]
             ).exec().then(users => {
                 const data = users.filter(user => user._id.owner.name !== 'System')
-                .map(function (user) {
-                    return {
-                        label: user._id.owner.name,
-                        value: user.count
-                    }
-                });
+                    .map(function (user) {
+                        return {
+                            label: user._id.owner.name,
+                            value: user.count
+                        }
+                    });
 
                 res.status(201).json(data);
             }).catch((err) => {
