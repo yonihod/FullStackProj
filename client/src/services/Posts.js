@@ -56,4 +56,13 @@ export default class PostsService {
             console.log(error)
         });
     }
+
+    static CancelApplication(postId, userId) {
+        return axios.put(`${this.POSTS_API}/cancel`, { postId, userId })
+        .then((response) => {
+            return response.data;
+        }).catch((error) => {
+            console.log(error)
+        });
+    }
 }
