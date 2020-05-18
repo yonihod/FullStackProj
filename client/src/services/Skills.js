@@ -11,5 +11,4 @@ export default class SkillsService {
                 console.log(error)
             });
     }
-
 }

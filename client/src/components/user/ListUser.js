@@ -60,9 +60,8 @@ export default class UserList extends Component {
     };
 
     render() {
-
         const {search} = this.state;
-        var filteredUsers = [];
+        let filteredUsers = [];
         if (this.state?.users && this.state.users.length) {
             filteredUsers = this.state.users.filter((user => {
                 if (user.name.toLowerCase().indexOf(search.toLowerCase()) !== -1 || user.email.toLowerCase().indexOf(search.toLowerCase()) !== -1) {
