@@ -3,9 +3,9 @@ import axios from 'axios';
 export default class RoomsService {
     static ROOMS_API = `${process.env.REACT_APP_API_URL}/rooms`;
 
-    // get all the rooms and messages that belongs to the current user
+    // get all the rooms and messages that belongs a user
     static getCurrentUserRooms(userId) {
-        return axios.get(`${this.ROOMS_API}/${userId}`, userId)
+        return axios.get(`${this.ROOMS_API}/list/${userId}`, userId)
             .then((response) => {
                 return response.data;
             }).catch((error) => {
