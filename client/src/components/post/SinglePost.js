@@ -8,12 +8,9 @@ import { Button, Spinner, Badge } from 'react-bootstrap';
 
 const SinglePost = (props) => {
     const { user, isAuthenticated } = useAuth0();
-
+    const [userId, setUserId] = useState();
     const [post, setPost] = useState({});
-
     const [disableTwitButton, setDisableTwitButton] = useState(false);
-
-    const [disableApplyButton, setDisableApplyButton] = useState(false);
 
     useEffect(() => {
         PostsService.getPost(props.match.params.id).then(data => {
@@ -25,6 +22,12 @@ const SinglePost = (props) => {
                 tags: data.tags,
                 applied: data.appliedUsers
             })
+        }).catch(err => {
+            console.log(err)
+        });
+
+        UsersService.getUserByEmail(user.email).then(u => {
+            setUserId(u._id);
         }).catch(err => {
             console.log(err)
         });
@@ -64,25 +67,22 @@ const SinglePost = (props) => {
         });
     }
 
-
     function apply() {
-        const userId = user.sub.split('|')[1];
-        console.log("userID " + userId);
-        console.log("owner " + post.owner._id);
+        if (!isAuthenticated ||
+            !userId ||
+            userId === post.owner?._id ||
+            post.applied?.includes(userId))
+            return;
 
-        if (isAuthenticated && !disableApplyButton && (!(userId === post.owner?._id)) &&
-            (!post.applied?.includes(userId))) {
-            return <Button
-                onClick={() => {
-                UsersService.getUserByEmail(user.email).then(u => {
-                    PostsService.ApplyTask(props.match.params.id, u._id);
-                    setDisableApplyButton(true);
-                });}}
-            disabled={disableApplyButton}>
-                <div>Apply for this task!</div>
-            </Button>
-        }
+        return <Button
+            onClick={() => {
+                PostsService.ApplyTask(props.match.params.id, userId);
+                setDisableApplyButton(true);
+            }}>
+            <div>Apply for this task!</div>
+        </Button>
     }
+
 
     if (!post || Object.keys(post).length === 0)
         return null;
