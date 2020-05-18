@@ -1,19 +1,30 @@
-import React from "react";
+import React, {useState} from "react";
 import Form from "react-bootstrap/Form";
 
 
-const SendInput = () => {
-
+const SendInput = (props) => {
+    const [message,setMessage] = useState("");
     const handleSubmit = (e) => {
-        // fire submit event here
         e.preventDefault();
-        console.log("text message was sent")
+        props.handler(message);
+        setMessage("");
+    };
+
+    const handleChange = (e) => {
+      setMessage(e.target.value);
+    };
+
+    const onEnterPress = (e) => {
+        if(e.keyCode == 13 && e.shiftKey == false) {
+            e.preventDefault();
+            handleSubmit(e)
+        }
     };
 
     return (
         <div className={"p-4"}>
-            <Form onSubmit={handleSubmit.bind(this)}>
-                <Form.Control type="text" placeholder="Enter Your Message" />
+            <Form onSubmit={handleSubmit}>
+                <Form.Control value={message} as="textarea" rows="5" placeholder="Enter Your Message" onChange={handleChange} onKeyDown={onEnterPress} />
             </Form>
         </div>
     )
