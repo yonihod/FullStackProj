@@ -8,7 +8,8 @@ const roomSchema = mongoose.Schema({
         ref: 'User'
     }],
     messages: [{
-        type: Array
+        type: ObjectId,
+        ref: 'Message',
     }],
     post: {
         type: ObjectId,
