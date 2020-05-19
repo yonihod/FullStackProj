@@ -20,7 +20,8 @@ const SinglePost = (props) => {
                 owner: data.owner,
                 dueDate: data.dueDate,
                 tags: data.tags,
-                appliedUsers: data.appliedUsers
+                appliedUsers: data.appliedUsers,
+                assignedUser: data.assignedUser
             })
         }).catch(err => {
             console.log(err)
@@ -70,7 +71,9 @@ const SinglePost = (props) => {
     function apply() {
         if (!isAuthenticated ||
             !userId ||
-            userId === post.owner?._id)
+            userId === post.owner?._id ||
+            !post ||
+            post.assignedUser)
             return;
 
         if (post.appliedUsers?.includes(userId)) {
@@ -95,6 +98,34 @@ const SinglePost = (props) => {
         </Button>
     }
 
+    function applicantsList() {
+        if (!isAuthenticated ||
+            !userId ||
+            userId !== post.owner?._id ||
+            !post ||
+            post.assignedUser)
+            return;
+
+        return <div>
+            <h3>Applicants</h3>
+            <hr />
+            {post.appliedUsers.map(u => {
+                return <div key={u._id} className="applicant">
+                    {u.picture && <img src={u.picture} alt="userImg" className="avatar" />}
+                    <div> {u.name}
+                        <Link to={`/rooms`}>Contact Provider</Link>
+                        <Button onClick={() => assign(u._id)}>Assign Me!</Button>
+                    </div>
+                </div>
+            })}
+        </div>
+    }
+
+    function assign(applicantId){
+        PostsService.AssignApplicant(props.match.params.id, applicantId).then((updatedPost) => {
+            setPost(updatedPost);
+        });
+    }
 
     if (!post || Object.keys(post).length === 0)
         return null;
@@ -110,6 +141,7 @@ const SinglePost = (props) => {
                     <div>Owner: {post.owner?.name}</div>
                     <div>Due Date: {new Date(post.dueDate).toLocaleDateString()}</div>
                     <div>Description: {post.desc}</div>
+                    <div>Assigned Provider: {post.assignedUser?.name}</div>
                 </div>
                 <div className={"end-alignment"}>
                     <Button className={"m-2 twitter-btn"} onClick={publish} disabled={disableTwitButton}>
@@ -127,6 +159,7 @@ const SinglePost = (props) => {
                 </Link>
             </div>}
             {apply()}
+            {applicantsList()}
         </div>
     );
 };

@@ -34,7 +34,12 @@ let postSchema = mongoose.Schema({
     appliedUsers: [{
         type: ObjectId,
         ref: 'User'
-    }]
+    }],
+    assignedUser: {
+        type: ObjectId,
+        ref: 'User',
+        required: true
+    },
 });
 
 module.exports = mongoose.model('Post', postSchema);
