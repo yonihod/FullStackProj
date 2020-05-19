@@ -111,11 +111,11 @@ const SinglePost = (props) => {
             <hr />
             {post.appliedUsers.map(u => {
                 return <div key={u._id} className="applicant">
-                    {u.picture && <img src={u.picture} alt="userImg" className="avatar" />}
-                    <div> {u.name}
-                        <Link to={`/rooms`}>Contact Provider</Link>
-                        <Button onClick={() => assign(u._id)}>Assign Me!</Button>
-                    </div>
+                    {u.name}
+                    <span className="applicant-actions"> 
+                        <Link to={`/rooms`}>Contact</Link>
+                        <Button onClick={() => assign(u._id)}>Assign!</Button>
+                    </span>
                 </div>
             })}
         </div>
