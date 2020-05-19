@@ -38,7 +38,7 @@ let postSchema = mongoose.Schema({
     assignedUser: {
         type: ObjectId,
         ref: 'User',
-        required: true
+        required: false
     },
 });
 
