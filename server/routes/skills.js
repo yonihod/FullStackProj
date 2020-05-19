@@ -8,20 +8,5 @@ module.exports = (app) => {
             }).catch((err) => {
                 console.log(err)
             });
-
         })
-        // .post((req, res) => {
-
-        // });
-
-    // app.route('/skills/:id')
-    //     .get((req, res) => {
-    //
-    //     })
-    //     .put((req, res) => {
-    //
-    //     })
-    //     .delete((req, res) => {
-    //
-    //     })
 };

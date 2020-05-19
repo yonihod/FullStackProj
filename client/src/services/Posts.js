@@ -47,4 +47,31 @@ export default class PostsService {
                 console.log(error)
             });
     }
+
+    static ApplyTask(postId, userId) {
+        return axios.put(`${this.POSTS_API}/apply`, { postId, userId })
+        .then((response) => {
+            return response.data;
+        }).catch((error) => {
+            console.log(error)
+        });
+    }
+
+    static CancelApplication(postId, userId) {
+        return axios.put(`${this.POSTS_API}/cancel`, { postId, userId })
+        .then((response) => {
+            return response.data;
+        }).catch((error) => {
+            console.log(error)
+        });
+    }
+
+    static AssignApplicant(postId, userId) {
+        return axios.put(`${this.POSTS_API}/assign`, { postId, userId })
+        .then((response) => {
+            return response.data;
+        }).catch((error) => {
+            console.log(error)
+        });
+    }
 }

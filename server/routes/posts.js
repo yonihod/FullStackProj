@@ -21,17 +21,62 @@ function isEmpty(obj) {
 }
 
 module.exports = (app) => {
+
+    app.route('/posts/assign')
+        .put((req, res) => {
+            Post.findOneAndUpdate({_id: req.body.postId},
+                {assignedUser : req.body.userId},
+                {new: true, upsert: true})
+                .populate('owner appliedUsers assignedUser')
+                .exec( function (error, success) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        res.status(200).json(success);
+                    }
+                });
+        });
+
+    app.route('/posts/apply')
+        .put((req, res) => {
+            Post.findOneAndUpdate({_id: req.body.postId},
+                {$push: {appliedUsers: req.body.userId}},
+                {new: true, upsert: true},
+                function (error, success) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        res.status(200).json(success);
+                    }
+                });
+        });
+
+    app.route('/posts/cancel')
+        .put((req, res) => {
+            Post.findOneAndUpdate({_id: req.body.postId},
+                {$pull: {appliedUsers: req.body.userId}},
+                {new: true},
+                function (error, success) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        res.status(200).json(success);
+                    }
+                });
+        });
+
     app.route('/posts')
         .get((req, res) => {
             let filter = {};
-            if(typeof  req.query.filter !== 'undefined' && !isEmpty(req.query.filter)){
+            if (typeof req.query.filter !== 'undefined' && !isEmpty(req.query.filter)) {
                 filter = JSON.parse(req.query.filter);
             }
-            Post.find(filter).populate('owner').then((data) => {
+            Post.find(filter).populate('owner appliedUsers').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);
             });
+
         })
         .post((req, res) => {
             classify(req.body.title).then(tags => {
@@ -39,16 +84,16 @@ module.exports = (app) => {
 
                 Post.create(req.body).then((data) => {
                     //push created posts to his posts array
-                    let postOwner = User.findById(req.body.owner).populate('posts').then( (postOwner) =>{
+                    let postOwner = User.findById(req.body.owner).populate('posts').then((postOwner) => {
                         User.findOneAndUpdate({_id: postOwner._id},
                             {$push: {posts: data._id}},
-                            {upsert : true},function (error,success) {
-                            if(error){
-                                console.log(error)
-                            } else {
-                                console.log(success)
-                            }
-                        });
+                            {upsert: true}, function (error, success) {
+                                if (error) {
+                                    console.log(error)
+                                } else {
+                                    console.log(success)
+                                }
+                            });
                     });
                     io().emit('newPost', data);
                     res.status(201).json(data);
@@ -60,7 +105,8 @@ module.exports = (app) => {
 
     app.route('/posts/:id')
         .get((req, res) => {
-            Post.findById(req.params.id).populate('owner').then((data) => {
+            Post.findById(req.params.id).populate('owner appliedUsers assignedUser')
+            .then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);

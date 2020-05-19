@@ -1,10 +1,6 @@
-import React, {Component, useEffect, useState} from "react";
-import {Badge} from "react-bootstrap";
+import React, {useEffect, useState} from "react";
 import Autosuggest from 'react-autosuggest';
 import SkillsService from "../../services/Skills";
-import PostsService from "../../services/Posts";
-import UserService from "../../services/Users";
-
 
 const Skills = (props) => {
 

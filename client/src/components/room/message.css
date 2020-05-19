@@ -1,0 +1,133 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OUuhs.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
+}
+.message-list {
+  background: #edeff0;
+}
+.message-list-items {
+  height: 55vh;
+  overflow-y: auto;
+}
+.other {
+  position: relative;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding: 1.25rem;
+  background-color: #ffffff;
+  width: 400px;
+  height: fit-content;
+  text-align: left;
+  font: 400 0.9em 'Open Sans', sans-serif;
+  border: 1px solid #97C6E3;
+  border-radius: 10px;
+}
+.other:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 15px solid #ffffff;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  top: 0;
+  left: -15px;
+}
+.other:before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 17px solid #97C6E3;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  top: -1px;
+  left: -17px;
+}
+.current {
+  position: relative;
+  margin-bottom: 10px;
+  margin-left: calc(100% - 440px);
+  padding: 1.25rem;
+  background-color: #A8DDFD;
+  width: 400px;
+  height: fit-content;
+  text-align: left;
+  font: 400 0.9em 'Open Sans', sans-serif;
+  border: 1px solid #839BFD;
+  border-radius: 10px;
+}
+.current:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-bottom: 15px solid #A8DDFD;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  bottom: 0;
+  right: -15px;
+}
+.current:before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-bottom: 17px solid #839BFD;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  bottom: -1px;
+  right: -17px;
+}
+.message-timestamp-other {
+  position: absolute;
+  font-size: 0.85em;
+  font-weight: 300;
+  bottom: 5px;
+  right: 5px;
+}
+.message-timestamp-current {
+  position: absolute;
+  font-size: 0.85em;
+  font-weight: 300;
+  bottom: 5px;
+  left: 5px;
+}
+.message-header {
+  background: #ccc;
+}
+.message-header h6 {
+  margin: 0;
+}
+.message-content {
+  word-wrap: break-word;
+}
+.room-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.room-list ul .room-item {
+  padding: 2rem;
+  border: solid 1px #d1dadf;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #fff;
+  transition: 0.1s;
+}
+.room-list ul .room-item:hover {
+  color: #3fb3a0;
+}
+.room-list ul .users {
+  font-weight: bold ;
+}
+/*# sourceMappingURL=message.css.map */

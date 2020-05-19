@@ -44,16 +44,16 @@ export default class Charts extends Component {
     render() {
         return (
             <>
-                {this.state && this.state.barsData &&
-                <div className="chart">
-                    <div>Most Common Posts Tags</div>
-                    <BarChart data={this.state.barsData} axisConfig={this.axisConfig} colorScale={this.colorScale}/>
-                </div>
-                }
                 {this.state && this.state.pieData &&
                 <div className="chart">
                     <div>Most Active Users By Posts Number</div>
                     <PieChart data={this.state.pieData} colorScale={this.colorScale}/>
+                </div>
+                }
+                {this.state && this.state.barsData &&
+                <div className="chart">
+                    <div>Most Common Posts Tags</div>
+                    <BarChart data={this.state.barsData} axisConfig={this.axisConfig} colorScale={this.colorScale}/>
                 </div>
                 }
             </>

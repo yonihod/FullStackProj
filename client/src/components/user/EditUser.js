@@ -1,17 +1,11 @@
 import React, {Component} from "react";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import axios from 'axios'
 import UserService from "../../services/Users";
 
 export default class EditUser extends Component {
     constructor(props) {
         super(props);
-        
-        // this.onChangeUserName = this.onChangeUserName.bind(this);
-        // this.onChangeUserEmail = this.onChangeUserEmail.bind(this);
-        // this.onChangeUserRollno = this.onChangeUserRollno.bind(this);
-        // this.onSubmit = this.onSubmit.bind(this);
 
         this.onChangeUserName = () => { console.log("onChangeUserName"); };
         this.onChangeUserEmail = () => { console.log("onChangeUserEmail"); };
@@ -35,9 +29,6 @@ export default class EditUser extends Component {
         }).catch((err) => {
             console.log(err)
         });
-
-        // Redirect to users list
-        //this.props.history.push('/list-user')
     }
 
     render() {

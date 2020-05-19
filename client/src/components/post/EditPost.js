@@ -16,7 +16,7 @@ function Delete(prop) {
     return (
         <>
             <Button onClick={handleShow} className="delete" size={"lg"} variant={'danger'}>
-                <i className={"fa fa-trash-alt"}></i>
+                <i className={"fa fa-trash-alt"}/>
             </Button>
 
             <Modal show={show} onHide={handleClose}>
@@ -80,6 +80,13 @@ export default class EditPost extends Component {
             e.preventDefault();
             // need to inject owner here (current active user)
             this.setState({updatedAt: Date.now()});
+
+            if (this.checkValidity() === false) {
+                e.preventDefault();
+                e.stopPropagation();
+                return;
+            }
+
             const post = {
                 title: this.state.title,
                 description: this.state.description,
@@ -87,7 +94,6 @@ export default class EditPost extends Component {
                 tags: this.state.tags,
                 owner: this.state.owner._id
             };
-            console.log(this.state);
 
             PostsService.EditPost(this.state.id, post).then((res) => {
                 this.props.history.push({
@@ -123,8 +129,13 @@ export default class EditPost extends Component {
         }
     };
 
+    checkValidity = () => {
+        return this.state.dueDate && this.state.dueDate > new Date(Date.now()).toISOString().slice(0, 10) &&
+            this.state.title.trim() !== "" && this.state.description.trim() !== "";
+    };
+
     userHasWritePrivileges = () => {
-        this.setState({canWrite: this.props?.currentUser?.email === this.state?.owner?.email})
+        this.setState({canWrite: this.props?.currentUser?.email === this.state?.owner?.email});
         return this.state.canWrite;
     };
 
@@ -138,19 +149,31 @@ export default class EditPost extends Component {
                         <Form.Group controlId="title">
                             <Form.Label>Title</Form.Label>
                             <Form.Control value={this.state.title} onChange={e => this.handleChange(e)} name="title"
+                                          isInvalid={this.state.title.trim() === ""}
                                           type="text"/>
+                            <Form.Control.Feedback type="invalid">
+                                Please fill title field.
+                            </Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group controlId="dueDate">
                             <Form.Label>Due Date (Optional) </Form.Label>
                             <Form.Control data-date-format="DD MMMM YYYY" value={this.state.dueDate}
+                                          isInvalid={this.state.dueDate && this.state.dueDate < new Date(Date.now()).toISOString().slice(0, 10)}
                                           onChange={e => this.handleChange(e)} name="dueDate" type="date"/>
+                            <Form.Control.Feedback type="invalid">
+                                Please provide a valid date, Due date must be older than today.
+                            </Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group controlId="description">
                             <Form.Label>Description</Form.Label>
                             <Form.Control value={this.state.description} onChange={e => this.handleChange(e)}
-                                          name="description" as="textarea" rows={"4"}/>
+                                          name="description" as="textarea" rows={"4"}
+                                          isInvalid={this.state.description.trim() === ""}/>
+                            <Form.Control.Feedback type="invalid">
+                                Please fill description field.
+                            </Form.Control.Feedback>
                         </Form.Group>
 
                         <Button type="submit" variant="danger" size="lg" block="block">
