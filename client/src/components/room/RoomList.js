@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 
 const RoomItem = (props) => {
     return (
-        <li className={"room-item"}>
+        <li className={"room-item"} onClick={() => props.handler(props.room)}>
             {props.room.users.map( (user,index) => {
                 return (
                     <div className={"users"} key={index}>
@@ -25,8 +25,9 @@ const RoomList = (props) => {
         setRooms(props.rooms);
     });
 
-    const handleRoomSelection = () => {
-        console.log("Room Selection");
+    const handleRoomSelection = (room) => {
+        props.handler(room);
+
     };
 
     return (
@@ -34,7 +35,7 @@ const RoomList = (props) => {
             <ul>
                 {rooms.map( (room,index) => {
                     return (
-                        <RoomItem room={room} key={index}/>
+                        <RoomItem room={room} key={index} handler={handleRoomSelection}/>
                     )
                 })}
             </ul>

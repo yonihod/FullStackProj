@@ -8,7 +8,7 @@ let messageSchema = mongoose.Schema({
         ref: 'User',
         required: true
     },
-    timeSent: {
+    createdAt: {
         type: Date,
         required: true,
         default: Date.now
