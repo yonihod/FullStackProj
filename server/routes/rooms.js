@@ -1,4 +1,5 @@
 const Room = require('../models/room');
+const mongoose = require('mongoose');
 
 module.exports = (app) => {
     app.route('/rooms')
@@ -19,7 +20,7 @@ module.exports = (app) => {
 
     app.route('/rooms/:id')
         .get((req, res) => {
-            Room.findById(req.params.id).populate('messages').then((data) => {
+            Room.findById(req.params.id).populate('users messages').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);
@@ -43,13 +44,18 @@ module.exports = (app) => {
             });
         });
 
-    app.route('/rooms/list/:user_id')
-        // TODO: filter by user id
+    app.route('/rooms/list/:id')
         .get((req, res) => {
-            Room.find().populate('messages').then((data) => {
+            try {
+                var query = { users: mongoose.Types.ObjectId(req.params.user_id) };
+            }catch (e) {
+                console.log(e);
+            }
+            Room.find(query).populate('messages').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);
             });
+
         })
 };
