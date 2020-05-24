@@ -5,7 +5,13 @@ export default class RoomsService {
 
     // get all the rooms and messages that belongs a user
     static getCurrentUserRooms(userId) {
-        return axios.get(`${this.ROOMS_API}/list/${userId}`, userId)
+        // return axios.get(`${this.ROOMS_API}/list/${userId}`, userId)
+        //     .then((response) => {
+        //         return response.data;
+        //     }).catch((error) => {
+        //         console.log(error)
+        //     });
+        return axios.get(this.ROOMS_API)
             .then((response) => {
                 return response.data;
             }).catch((error) => {
