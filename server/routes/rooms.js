@@ -1,5 +1,6 @@
-const Room = require('../models/room');
 const mongoose = require('mongoose');
+const Room = require('../models/room');
+const User = require('../models/user');
 
 module.exports = (app) => {
     app.route('/rooms')
@@ -8,6 +9,7 @@ module.exports = (app) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log(err);
+                res.status(500).json();
             });
         })
         .post((req, res) => {
@@ -44,18 +46,25 @@ module.exports = (app) => {
             });
         });
 
-    app.route('/rooms/list/:id')
-        .get((req, res) => {
+    app.route('/rooms/list/:userEmail')
+        .get(async (req, res) => {
             try {
-                var query = { users: mongoose.Types.ObjectId(req.params.user_id) };
-            }catch (e) {
+                const {userEmail} = req.params;
+                const user = await User.findOne({email: userEmail});
+                const userRooms = await Room.find({users: user._id}).populate([{
+                    path: 'messages',
+                    populate: {
+                        path: 'sender',
+                        select: 'name email'
+                    }
+                }, {
+                    path: 'users',
+                    select: 'name email'
+                }]);
+                res.status(200).json(userRooms);
+            } catch (e) {
                 console.log(e);
+                res.status(500).json({});
             }
-            Room.find(query).populate('messages').then((data) => {
-                res.status(200).json(data);
-            }).catch((err) => {
-                console.log(err);
-            });
-
-        })
+        });
 };

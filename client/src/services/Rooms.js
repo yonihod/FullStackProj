@@ -4,14 +4,8 @@ export default class RoomsService {
     static ROOMS_API = `${process.env.REACT_APP_API_URL}/rooms`;
 
     // get all the rooms and messages that belongs a user
-    static getCurrentUserRooms(userId) {
-        // return axios.get(`${this.ROOMS_API}/list/${userId}`, userId)
-        //     .then((response) => {
-        //         return response.data;
-        //     }).catch((error) => {
-        //         console.log(error)
-        //     });
-        return axios.get(this.ROOMS_API)
+    static getCurrentUserRooms(userEmail) {
+        return axios.get(`${this.ROOMS_API}/list/${userEmail}`)
             .then((response) => {
                 return response.data;
             }).catch((error) => {
@@ -21,7 +15,7 @@ export default class RoomsService {
 
     // get a specific room with messages
     static getRoom(roomId) {
-        return axios.get(`${this.ROOMS_API}/${roomId}`, roomId)
+        return axios.get(`${this.ROOMS_API}/${roomId}`)
             .then((response) => {
                 return response.data;
             }).catch((error) => {

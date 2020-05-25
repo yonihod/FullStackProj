@@ -21,7 +21,7 @@ import About from "./components/common/About";
 import Footer from "./components/common/Footer";
 import Spinner from "react-bootstrap/Spinner"
 import EditUser from "./components/user/EditUser";
-import Room from  "./components/room/room";
+import Room from "./components/room/RoomPage";
 
 function App() {
     const {isAuthenticated, loading, user} = useAuth0();
