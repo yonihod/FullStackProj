@@ -28,7 +28,7 @@ const Room = (props) => {
         //     }
         // });
 
-        const newMessageArray = [...messages, {id: 1, sender: {email: 'chen.eini000@gmail.com'}, text: msg}];
+        const newMessageArray = [...messages, {id: 1, sender: {email: user.email}, text: msg}];
         setMessages(newMessageArray);
     };
     const handleRoomSelection = (room) => {
