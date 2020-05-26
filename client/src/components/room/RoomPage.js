@@ -5,7 +5,6 @@ import SendInput from "./SendInput";
 import RoomsService from "../../services/Rooms";
 import {useAuth0} from "../../reactAuth0";
 import RoomList from "./RoomList";
-import MessagesService from "../../services/Messages";
 
 const Room = (props) => {
     const {user} = useAuth0();
@@ -22,18 +21,15 @@ const Room = (props) => {
     }, []);
 
     const handleNewMessage = (msg) => {
-        // MessagesService.addMessage(msg,user.email).then((result) => {
-        //     if(result){
-        //         setMessages([...messages,result]);
-        //     }
-        // });
-
-        const newMessageArray = [...messages, {id: 1, sender: {email: user.email}, text: msg}];
-        setMessages(newMessageArray);
+        RoomsService.addNewMessage(currentRoom._id,msg,user.email).then( (res) => {
+            const newMessageArray = [...messages, res];
+            setMessages(newMessageArray);
+        })
     };
     const handleRoomSelection = (room) => {
         console.log("Room Selected");
         const newMessageArray = [...room.messages];
+        setRoom(room);
         setMessages(newMessageArray);
     };
 

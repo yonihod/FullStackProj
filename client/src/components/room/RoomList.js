@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 const RoomItem = (props) => {
     return (
         <li className={"room-item"} onClick={() => props.handler(props.room)}>
-            {props.room.users.map( (user,index) => {
+            {props.room.users?.map( (user,index) => {
                 return (
                     <div className={"users"} key={index}>
                         {user.name}
@@ -11,7 +11,7 @@ const RoomItem = (props) => {
                 )
             })}
             <div className={"last-msg"}>
-                {props.room.messages[props.room.messages.length-1].text}
+                {props.room.messages[props.room.messages.length-1]?.text}
             </div>
         </li>
     )
@@ -33,7 +33,7 @@ const RoomList = (props) => {
     return (
         <div className={"room-list w-25"}>
             <ul>
-                {rooms.map( (room,index) => {
+                {rooms?.map( (room,index) => {
                     return (
                         <RoomItem room={room} key={index} handler={handleRoomSelection}/>
                     )

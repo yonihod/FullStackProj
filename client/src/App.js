@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-import React from "react";
+import React, {useState} from "react";
 import Container from "react-bootstrap/Container";
 import {Router, Route, Switch} from "react-router-dom";
 
@@ -22,43 +22,63 @@ import Footer from "./components/common/Footer";
 import Spinner from "react-bootstrap/Spinner"
 import EditUser from "./components/user/EditUser";
 import Room from "./components/room/RoomPage";
+import UserContext from "./context/AppContext";
+import UserService from "./services/Users";
 
 function App() {
     const {isAuthenticated, loading, user} = useAuth0();
+    const [dbUser, setDbUser] = useState([]);
+    const value = {dbUser, setDbUser};
 
     if (loading) {
-        return   (
+        return (
             <div className={"spinner"}>
-                <Spinner animation="border" variant="primary" />
+                <Spinner animation="border" variant="primary"/>
             </div>
-            );
+        );
     }
 
+    if (user && isAuthenticated) {
+        UserService.getUserByEmail(user.email).then(res => {
+            setDbUser(res);
+            return res;
+        }).catch(err => {
+            console.log(err);
+            return [];
+        });
+    }
+
+
     return (
-        <div className="App">
-            <Router history={history}>
-                <header>
-                    <NavBar/>
-                </header>
-                <Container>
-                    <div className="wrapper">
-                        <Switch>
-                            <Route exact path="/" component={Home}/>
-                            <Route path="/posts/:id" component={SinglePost}/>
-                            <Route path="/posts" component={ListPosts}/>
-                            <Route path="/service-providers" component={ListUsers}/>
-                            <PrivateRoute authed={isAuthenticated} path="/create-post" component={CreatePost} user={user}/>
-                            <PrivateRoute authed={isAuthenticated} currentUser={user} path="/edit-post/:id" component={EditPost}/>
-                            <PrivateRoute authed={isAuthenticated} currentUser={user} path="/edit-user/:id" component={EditUser}/>
-                            <Route path="/about-us" component={About}/>
-                            <PrivateRoute authed={isAuthenticated} path="/profile" component={Profile}/>
-                            <PrivateRoute authed={isAuthenticated} path="/rooms" component={Room}/>
-                        </Switch>
-                    </div>
-                </Container>
-                <Footer/>
-            </Router>
-        </div>
+        <UserContext.Provider value={value}>
+            <div className="App">
+                <Router history={history}>
+                    <header>
+                        <NavBar/>
+                    </header>
+                    <Container>
+                        <div className="wrapper">
+                            <Switch>
+                                <Route exact path="/" component={Home}/>
+                                <Route path="/posts/:id" component={SinglePost}/>
+                                <Route path="/posts" component={ListPosts}/>
+                                <Route path="/service-providers" component={ListUsers}/>
+                                <PrivateRoute authed={isAuthenticated} path="/create-post" component={CreatePost}
+                                              user={user}/>
+                                <PrivateRoute authed={isAuthenticated} currentUser={user} path="/edit-post/:id"
+                                              component={EditPost}/>
+                                <PrivateRoute authed={isAuthenticated} currentUser={user} path="/edit-user/:id"
+                                              component={EditUser}/>
+                                <Route path="/about-us" component={About}/>
+                                <PrivateRoute authed={isAuthenticated} path="/profile" component={Profile}/>
+                                <PrivateRoute authed={isAuthenticated} path="/rooms" component={Room}/>
+                            </Switch>
+                        </div>
+                    </Container>
+                    <Footer/>
+                </Router>
+            </div>
+        </UserContext.Provider>
     );
 }
 

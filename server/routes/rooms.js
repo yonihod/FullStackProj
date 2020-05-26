@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Room = require('../models/room');
 const User = require('../models/user');
+const Message = require('../models/message');
 
 module.exports = (app) => {
     app.route('/rooms')
@@ -44,6 +45,21 @@ module.exports = (app) => {
             }).catch(err => {
                 console.log(err);
             });
+        });
+    app.route('/rooms/new-message/:id')
+        .put((req, res) => {
+            console.log('new message received:' + req.params.id);
+            //create new message
+            Message.create({text:req.body.msg,sender:req.body.sender}).then( (res) =>{
+                Room.findByIdAndUpdate(req.params.id, {$push: {messages: res._id}},{
+                    upsert: true
+                }).then(data => {
+                    res.status(200).json(data);
+                }).catch(err => {
+                    console.log(err);
+                });
+            });
+
         });
 
     app.route('/rooms/list/:userEmail')
