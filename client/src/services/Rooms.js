@@ -23,7 +23,7 @@ export default class RoomsService {
             });
     }
 
-    static AddRoom(room) {
+    static addRoom(room) {
         return axios.post(this.ROOMS_API, room)
             .then((response) => {
                 return response.data;
@@ -32,7 +32,7 @@ export default class RoomsService {
             });
     }
 
-    static DeleteRoom(roomId) {
+    static deleteRoom(roomId) {
         return axios.delete(`${this.ROOMS_API}/${roomId}`, roomId)
             .then((response) => {
                 return response.data;
