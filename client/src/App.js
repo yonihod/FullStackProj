@@ -38,7 +38,7 @@ function App() {
         );
     }
 
-    if (user && isAuthenticated) {
+    if (user && isAuthenticated && dbUser == "") {
         UserService.getUserByEmail(user.email).then(res => {
             setDbUser(res);
             return res;
