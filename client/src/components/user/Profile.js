@@ -1,29 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState,useContext} from "react";
 import {useAuth0} from "../../reactAuth0";
 import UserService from "../../services/Users";
 import PostBox from "../post/PostBox";
 import {Badge} from "react-bootstrap";
 import Skills from "../user/Skills";
 import Spinner from "react-bootstrap/Spinner";
+import UserContext from "../../context/AppContext";
 
 const Profile = () => {
 
-    const [userFromDB, setUserFromDB] = useState({});
+    const {dbUser, setDbUser} = useContext(UserContext);
     const [skills, setSkills] = useState([]);
     const {loading, user} = useAuth0();
 
     useEffect(() => {
-        UserService.getUserByEmail(user.email).then(res => {
-            setUserFromDB(res);
-            setSkills(res.skills);
-            return res;
-        }).catch(err => {
-            console.log(err);
-            return [];
-        });
-    }, [userFromDB.id]);
+        setSkills(dbUser.skills);
+    }, [dbUser]);
 
-    if (loading || !userFromDB) {
+    if (loading || !dbUser) {
         return (
             <div className={"spinner"}>
                 <Spinner animation="border" variant="primary"/>
@@ -32,19 +26,19 @@ const Profile = () => {
     }
 
     const dataBox = () => {
-        if (userFromDB.posts?.length) {
-            return userFromDB.posts.map((post, index) => {
+        if (dbUser.posts?.length) {
+            return dbUser.posts.map((post, index) => {
                 return <PostBox obj={post} key={index} classList={"w-30 m-2"}/>;
             });
         }
     };
 
     const updateSkills = (newSkill) => {
-        let user = userFromDB;
+        let user = dbUser;
         user.skills.push(newSkill);
 
         UserService.EditUser(user.email, user).then(res => {
-            setUserFromDB(res);
+            setDbUser(res);
             setSkills(res.skills);
         }).catch(err => {
             console.log(err);
@@ -54,7 +48,7 @@ const Profile = () => {
     return (
         <div className="profile">
             <header>
-                <h1>{userFromDB.name}'s Profile</h1>
+                <h1>{dbUser.name}'s Profile</h1>
             </header>
             <div className="flex-container">
                 <div className="profile-image">
@@ -62,7 +56,7 @@ const Profile = () => {
                 </div>
                 <div id="user-details">
                     <div>
-                        <h2>{userFromDB.name}</h2>
+                        <h2>{dbUser.name}</h2>
                         <h4>{user.email}</h4>
                         {skills?.length > 0 &&
                         (<div id="tags">
