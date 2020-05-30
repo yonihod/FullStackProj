@@ -1,28 +1,30 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import MessageList from "./MessageList";
 import "./message.css";
 import SendInput from "./SendInput";
 import RoomsService from "../../services/Rooms";
-import {useAuth0} from "../../reactAuth0";
 import RoomList from "./RoomList";
+import UserContext from "../../context/AppContext";
 
 const Room = (props) => {
-    const {user} = useAuth0();
+    const {dbUser} = useContext(UserContext);
     const [rooms, setRooms] = useState([]); // all rooms per user -> /room/:userId
     const [messages, setMessages] = useState([]);
     const [currentRoom, setRoom] = useState(0);
 
     useEffect(() => {
-        RoomsService.getCurrentUserRooms(user.email).then(data => {
-            setRooms(data)
-        }).catch(err => {
-            console.log(err)
-        });
+        if(dbUser) {
+            RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
+                setRooms(data)
+            }).catch(err => {
+                console.log(err)
+            });
+        }
     }, []);
 
     const handleNewMessage = (msg) => {
-        RoomsService.addNewMessage(currentRoom._id,msg,user.email).then( (res) => {
-            const newMessageArray = [...messages, res];
+        RoomsService.addNewMessage(currentRoom._id,msg,dbUser._id).then( (res) => {
+            const newMessageArray = [...res.messages];
             setMessages(newMessageArray);
         })
     };
@@ -41,7 +43,7 @@ const Room = (props) => {
             <div className={"d-flex"}>
                 <RoomList rooms={rooms} handler={handleRoomSelection}/>
                 <div className={"message-list w-75"}>
-                    <MessageList currentUserEmail={user.email} messages={messages}/>
+                    <MessageList currentUserEmail={dbUser.email} messages={messages}/>
                     <SendInput handler={handleNewMessage}/>
                 </div>
             </div>

@@ -47,20 +47,26 @@ module.exports = (app) => {
             });
         });
     app.route('/rooms/new-message/:id')
-        .put((req, res) => {
+        .put(async (req, res) => {
             console.log('new message received:' + req.params.id);
             //create new message
-            Message.create({text:req.body.msg,sender:req.body.sender}).then( (res) =>{
-                Room.findByIdAndUpdate(req.params.id, {$push: {messages: res._id}},{
-                    upsert: true
-                }).then(data => {
-                    res.status(200).json(data);
-                }).catch(err => {
-                    console.log(err);
-                });
-            });
+            const newMessage = await Message.create({text:req.body.msg,sender:req.body.sender});
+            const userRoom = await Room.findByIdAndUpdate(req.params.id, {$push: {messages: newMessage._id}},{
+                    upsert: true,
+                    new: true,
+                }).populate([{
+                    path: 'messages',
+                    populate: {
+                        path: 'sender',
+                        select: 'name email'
+                    }
+                }, {
+                    path: 'users',
+                    select: 'name email'
+                }]);
 
-        });
+            res.status(200).json(userRoom);
+            });
 
     app.route('/rooms/list/:userEmail')
         .get(async (req, res) => {
