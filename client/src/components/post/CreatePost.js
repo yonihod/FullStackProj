@@ -3,20 +3,10 @@ import PostsService from "../../services/Posts";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import UserService from "../../services/Users";
-import {highlight, languages} from "prismjs/components/prism-core";
-import Editor from "react-simple-code-editor";
-import 'prismjs/components/prism-clike';
-import 'prismjs/components/prism-javascript';
-import codeEditor from "./codeEditor";
 
-const code = `function add(a, b) {
-  return a + b;
-}
-`;
 
 export default class CreatePost extends Component {
-
-
+    
     constructor(props) {
         super(props);
         this.user = props.user;
