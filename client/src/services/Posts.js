@@ -74,4 +74,13 @@ export default class PostsService {
             console.log(error)
         });
     }
+
+    static cancelProviderAssignment(postId, userId) {
+        return axios.put(`${this.POSTS_API}/cancelProviderAssignment`, { postId, userId })
+        .then((response) => {
+            return response.data;
+        }).catch((error) => {
+            console.log(error)
+        });
+    }
 }

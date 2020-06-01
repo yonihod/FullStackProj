@@ -102,8 +102,8 @@ const SinglePost = (props) => {
     function applicantsList() {
         if (!isAuthenticated ||
             !userId ||
-            userId !== post.owner?._id ||
             !post ||
+            userId !== post.owner?._id ||
             post.assignedUser)
             return;
 
@@ -128,6 +128,22 @@ const SinglePost = (props) => {
         });
     }
 
+    function cancelProviderAssignment() {
+        if (isAuthenticated &&
+            userId &&
+            post &&
+            post.assignedUser &&
+            userId === post.owner?._id)
+            return <Button
+                onClick={() => {
+                    PostsService.cancelProviderAssignment(props.match.params.id, post.assignedUser)
+                        .then((updatedPost) => {
+                            setPost(updatedPost);
+                        });
+                }}>
+                Cancel Assignment</Button>;
+    }
+
     if (!post || Object.keys(post).length === 0)
         return null;
 
@@ -143,7 +159,7 @@ const SinglePost = (props) => {
                     <div>Due Date: {new Date(post.dueDate).toLocaleDateString()}</div>
                     <div>Description: {post.desc}</div>
                     <div>Code: {post.codeEditor} </div>
-                    <div>Assigned Provider: {post.assignedUser?.name}</div>
+                    <div>Assigned Provider: {post.assignedUser?.name} {cancelProviderAssignment()}</div>
                 </div>
                 <div className={"end-alignment"}>
                     <Button className={"m-2 twitter-btn"} onClick={publish} disabled={disableTwitButton}>

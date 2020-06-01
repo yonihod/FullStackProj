@@ -24,11 +24,26 @@ module.exports = (app) => {
 
     app.route('/posts/assign')
         .put((req, res) => {
-            Post.findOneAndUpdate({_id: req.body.postId},
-                {assignedUser : req.body.userId},
-                {new: true, upsert: true})
+            Post.findOneAndUpdate({ _id: req.body.postId },
+                { assignedUser: req.body.userId },
+                { new: true, upsert: true })
                 .populate('owner appliedUsers assignedUser')
-                .exec( function (error, success) {
+                .exec(function (error, success) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        res.status(200).json(success);
+                    }
+                });
+        });
+
+    app.route('/posts/cancelProviderAssignment')
+        .put((req, res) => {
+            Post.findOneAndUpdate({ _id: req.body.postId },
+                { assignedUser: null },
+                { new: true })
+                .populate('owner appliedUsers assignedUser')
+                .exec(function (error, success) {
                     if (error) {
                         console.log(error);
                     } else {
