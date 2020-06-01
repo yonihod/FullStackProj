@@ -21,7 +21,8 @@ const SinglePost = (props) => {
                 dueDate: data.dueDate,
                 tags: data.tags,
                 appliedUsers: data.appliedUsers,
-                assignedUser: data.assignedUser
+                assignedUser: data.assignedUser,
+                codeEditor: data.codeEditor
             })
         }).catch(err => {
             console.log(err)
@@ -141,6 +142,7 @@ const SinglePost = (props) => {
                     <div>Owner: {post.owner?.name}</div>
                     <div>Due Date: {new Date(post.dueDate).toLocaleDateString()}</div>
                     <div>Description: {post.desc}</div>
+                    <div>Code: {post.codeEditor} </div>
                     <div>Assigned Provider: {post.assignedUser?.name}</div>
                 </div>
                 <div className={"end-alignment"}>
