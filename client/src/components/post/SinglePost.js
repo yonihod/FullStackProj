@@ -77,7 +77,7 @@ const SinglePost = (props) => {
             post.assignedUser)
             return;
 
-        if (post.appliedUsers?.includes(userId)) {
+        if (post.appliedUsers.map(u => u._id).includes(userId)) {
             return <>
                 <div>You have successfully applied for this task</div>
                 <Button onClick={() => {
