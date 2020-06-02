@@ -73,8 +73,9 @@ const SinglePost = (props) => {
     }
 
     function apply() {
-        if (!isAuthenticated || userId === post.owner?._id || !post || post.assignedUser)
-            return;
+        if (!isAuthenticated || userId === post.owner?._id || !post || post.assignedUser) return;
+
+        if (post.owner?.name === "System") return;
 
         if (post.appliedUsers.map(u => u._id).includes(userId)) {
             return <>
