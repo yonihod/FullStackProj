@@ -40,6 +40,12 @@ let postSchema = mongoose.Schema({
         ref: 'User',
         required: false
     },
+    codeEditor: {
+        type: String,
+        required: false,
+        trim: true
+    },
+
 });
 
 module.exports = mongoose.model('Post', postSchema);

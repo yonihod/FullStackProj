@@ -1,10 +1,12 @@
-import React, {Component} from "react";
+import React, {Component, useEffect, useRef, useState} from "react";
 import PostsService from "../../services/Posts";
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import UserService from "../../services/Users";
 
+
 export default class CreatePost extends Component {
+    
     constructor(props) {
         super(props);
         this.user = props.user;
@@ -15,9 +17,12 @@ export default class CreatePost extends Component {
             tags: [],
             owner: "",
             validated: false,
+            codeEditor: "",
             done: false
         };
+
     }
+
 
     handleChange = e => {
         this.setState({
@@ -32,7 +37,8 @@ export default class CreatePost extends Component {
             description: this.state.description,
             dueDate: this.state.dueDate,
             tags: this.state.tags,
-            owner: this.state.owner
+            owner: this.state.owner,
+            codeEditor: this.state.codeEditor
         };
         console.log(this.state);
 
@@ -43,7 +49,7 @@ export default class CreatePost extends Component {
         }
 
         PostsService.AddPost(post).then((res) => {
-            this.setState({title: '', description: '', dueDate: '', owner: '', done: true});
+            this.setState({title: '', description: '', dueDate: '', owner: '', codeEditor: '', done: true});
             this.props.history.push({
                 pathname: '/posts',
                 state: {done: true, msg: "Post Created Successfully", alertType: "success"}
@@ -80,6 +86,7 @@ export default class CreatePost extends Component {
             });
     }
 
+
     render() {
         return (
             <div className={"w-50 mt-4 ml-auto mr-auto"}>
@@ -106,13 +113,23 @@ export default class CreatePost extends Component {
                                 <Form.Control value={this.state.description} onChange={e => this.handleChange(e)}
                                               name="description" as="textarea" rows={"4"}/>
                             </Form.Group>
+
+                            <Form.Group controlId="codeEditor">
+                                <Form.Label>Code Editor </Form.Label>
+                                <Form.Control value={this.state.codeEditor} onChange={e => this.handleChange(e)}
+                                              name="codeEditor" as="textarea" rows={"4"}/>
+
+                            </Form.Group>
+
                             <Button type="submit" variant="secondary" size="lg" block="block">
                                 Create Post
                             </Button>
                         </Form>)
+
                     }
                 </div>
             </div>
         );
     }
 }
+

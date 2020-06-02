@@ -68,6 +68,7 @@ const Skills = (props) => {
     const onSuggestionSelected = (event, data) => {
         props.updateSkills(data.suggestion);
         setValue('');
+
     };
 
     const inputProps = {

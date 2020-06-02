@@ -21,7 +21,8 @@ const SinglePost = (props) => {
                 dueDate: data.dueDate,
                 tags: data.tags,
                 appliedUsers: data.appliedUsers,
-                assignedUser: data.assignedUser
+                assignedUser: data.assignedUser,
+                codeEditor: data.codeEditor
             })
         }).catch(err => {
             console.log(err)
@@ -76,7 +77,7 @@ const SinglePost = (props) => {
             post.assignedUser)
             return;
 
-        if (post.appliedUsers?.includes(userId)) {
+        if (post.appliedUsers.map(u => u._id).includes(userId)) {
             return <>
                 <div>You have successfully applied for this task</div>
                 <Button onClick={() => {
@@ -101,8 +102,8 @@ const SinglePost = (props) => {
     function applicantsList() {
         if (!isAuthenticated ||
             !userId ||
-            userId !== post.owner?._id ||
             !post ||
+            userId !== post.owner?._id ||
             post.assignedUser)
             return;
 
@@ -127,6 +128,22 @@ const SinglePost = (props) => {
         });
     }
 
+    function cancelProviderAssignment() {
+        if (isAuthenticated &&
+            userId &&
+            post &&
+            post.assignedUser &&
+            userId === post.owner?._id)
+            return <Button
+                onClick={() => {
+                    PostsService.cancelProviderAssignment(props.match.params.id, post.assignedUser)
+                        .then((updatedPost) => {
+                            setPost(updatedPost);
+                        });
+                }}>
+                Cancel Assignment</Button>;
+    }
+
     if (!post || Object.keys(post).length === 0)
         return null;
 
@@ -141,7 +158,8 @@ const SinglePost = (props) => {
                     <div>Owner: {post.owner?.name}</div>
                     <div>Due Date: {new Date(post.dueDate).toLocaleDateString()}</div>
                     <div>Description: {post.desc}</div>
-                    <div>Assigned Provider: {post.assignedUser?.name}</div>
+                    <div>Code: {post.codeEditor} </div>
+                    <div>Assigned Provider: {post.assignedUser?.name} {cancelProviderAssignment()}</div>
                 </div>
                 <div className={"end-alignment"}>
                     <Button className={"m-2 twitter-btn"} onClick={publish} disabled={disableTwitButton}>
