@@ -19,7 +19,7 @@ const Room = (props) => {
     const [otherUser,setOtherUser] = useState([]);
 
     const validityCheck = () => {
-        if(dbUser == "" || dbUser.length == 0){
+        if(typeof dbUser === 'undefined' || dbUser == "" || dbUser.length == 0){
             if(user && isAuthenticated){
                 //need to configure global dbUser state
                 setDbUser(user);
@@ -36,12 +36,14 @@ const Room = (props) => {
 
     useEffect(() => {
         validityCheck();
-        RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
-            setRooms(data)
-            setUpdated(true);
-        }).catch(err => {
-            console.log(err)
-        });
+        if(dbUser?.email) {
+            RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
+                setRooms(data)
+                setUpdated(true);
+            }).catch(err => {
+                console.log(err)
+            });
+        }
     }, [updated,messages,dbUser,otherUser]);
 
     if(typeof dbUser === 'undefined' || !dbUser){

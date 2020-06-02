@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types'
-
 const mongoose = require('mongoose');
 
 const ObjectId = mongoose.Schema.ObjectId;
