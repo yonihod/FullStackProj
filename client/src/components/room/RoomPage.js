@@ -15,10 +15,11 @@ const Room = (props) => {
     const [messages, setMessages] = useState([]);
     const [currentRoom, setRoom] = useState(0);
     const [behavior,setBehavior] = useState('smooth');
-    const [updated,setUpdated] = useState(false)
+    const [updated,setUpdated] = useState(false);
+    const [otherUser,setOtherUser] = useState([]);
 
     const validityCheck = () => {
-        if(dbUser == "" || dbUser.length == 0){
+        if(typeof dbUser === 'undefined' || dbUser == "" || dbUser.length == 0){
             if(user && isAuthenticated){
                 //need to configure global dbUser state
                 setDbUser(user);
@@ -35,13 +36,15 @@ const Room = (props) => {
 
     useEffect(() => {
         validityCheck();
-        RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
-            setRooms(data)
-            setUpdated(true);
-        }).catch(err => {
-            console.log(err)
-        });
-    }, [updated,messages,dbUser]);
+        if(dbUser?.email) {
+            RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
+                setRooms(data)
+                setUpdated(true);
+            }).catch(err => {
+                console.log(err)
+            });
+        }
+    }, [updated,messages,dbUser,otherUser]);
 
     if(typeof dbUser === 'undefined' || !dbUser){
         return (
@@ -50,6 +53,12 @@ const Room = (props) => {
             </div>
         );
     }
+
+    const compareAndGetOtherUser = (usersArray) => {
+      return usersArray.filter( (user) => {
+          return user._id != dbUser._id;
+      })
+    };
 
     const handleNewMessage = (msg) => {
         RoomsService.addNewMessage(currentRoom._id,msg,dbUser._id).then( (res) => {
@@ -64,14 +73,16 @@ const Room = (props) => {
         console.log("Room Selected");
         const newMessageArray = [...room.messages];
         setRoom(room);
+        const newUser = compareAndGetOtherUser(room.users);
+        setOtherUser(newUser[0]);
         setBehavior('auto');
         setMessages(newMessageArray);
     };
 
     return (
         <div className={"mt-4 p-2 room"}>
-            <div className={"message-header p-3 d-flex justify-content-left align-items-center"}>
-                <h5 className={"font-weight-bold m-0"} style={{color: "#3fb3a0"}}>Chat</h5>
+            <div className={"message-header p-3 d-flex justify-content-center align-items-center"}>
+                <h5 className={"title font-weight-bold m-0"}>{otherUser.name}</h5>
             </div>
             <div className={"d-flex"}>
                 <RoomList rooms={rooms} handler={handleRoomSelection}/>
