@@ -15,6 +15,7 @@ const Room = (props) => {
     const [messages, setMessages] = useState([]);
     const [currentRoom, setRoom] = useState(0);
     const [behavior,setBehavior] = useState('smooth');
+    const [updated,setUpdated] = useState(false)
 
     const validityCheck = () => {
         if(dbUser == "" || dbUser.length == 0){
@@ -36,10 +37,11 @@ const Room = (props) => {
         validityCheck();
         RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
             setRooms(data)
+            setUpdated(true);
         }).catch(err => {
             console.log(err)
         });
-    }, [rooms,messages,dbUser]);
+    }, [updated,messages,dbUser]);
 
     if(typeof dbUser === 'undefined' || !dbUser){
         return (
