@@ -60,31 +60,37 @@
     color: grey;
   }
 }
-
-.room-list {
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: left;
-    .room-item {
-      &:hover {
-        color: #3fb3a0;
+.room {
+  .title {
+    color: #3fb3a0;
+  }
+  .room-list {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      .room-item {
+        &:hover {
+          color: #3fb3a0;
+        }
+        padding: 2rem;
+        border: solid 1px #d1dadf;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #fff;
+        transition: .1s;
       }
-      padding: 2rem;
-      border: solid 1px #d1dadf;
-      border-radius: 5px;
-      cursor: pointer;
-      background: #fff;
-      transition: .1s;
-    }
-    .users {
-      font-weight: bold ;
+      .users {
+        font-weight: bold ;
+      }
     }
   }
 }
+
 
 #messageEnd {
   margin-top: -10rem;
   height: 50px;
 }
+
