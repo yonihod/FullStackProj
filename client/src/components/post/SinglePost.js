@@ -28,7 +28,7 @@ const SinglePost = (props) => {
             console.log(err)
         });
 
-        if (user) {
+        if (isAuthenticated) {
             UsersService.getUserByEmail(user.email).then(u => {
                 setUserId(u._id);
             }).catch(err => {
@@ -73,11 +73,7 @@ const SinglePost = (props) => {
     }
 
     function apply() {
-        if (!isAuthenticated ||
-            !userId ||
-            userId === post.owner?._id ||
-            !post ||
-            post.assignedUser)
+        if (!isAuthenticated || userId === post.owner?._id || !post || post.assignedUser)
             return;
 
         if (post.appliedUsers.map(u => u._id).includes(userId)) {
@@ -103,11 +99,7 @@ const SinglePost = (props) => {
     }
 
     function applicantsList() {
-        if (!isAuthenticated ||
-            !userId ||
-            !post ||
-            userId !== post.owner?._id ||
-            post.assignedUser)
+        if (userId !== post.owner?._id || post.assignedUser || post.appliedUsers.length === 0)
             return;
 
         return <div>
