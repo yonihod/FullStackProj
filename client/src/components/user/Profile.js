@@ -1,4 +1,4 @@
-import React, {useEffect, useState,useContext} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import {useAuth0} from "../../reactAuth0";
 import UserService from "../../services/Users";
 import PostBox from "../post/PostBox";
@@ -6,6 +6,7 @@ import {Badge} from "react-bootstrap";
 import Skills from "../user/Skills";
 import Spinner from "react-bootstrap/Spinner";
 import UserContext from "../../context/AppContext";
+import {Link} from "react-router-dom";
 
 const Profile = () => {
 
@@ -74,10 +75,9 @@ const Profile = () => {
                         {skills?.length === 0 &&
                         (<div>No skills added yet</div>)}
                     </div>
-                    <div id="add-skills">
-                        <h5>Add Skills</h5>
-                        <Skills updateSkills={updateSkills}/>
-                    </div>
+                    <Link className={"edit"} to={`/edit-user/${dbUser._id}`}>
+                        Edit Profile
+                    </Link>
                 </div>
                 <div className="user-posts">
                     <h3>My Recent Posts</h3>

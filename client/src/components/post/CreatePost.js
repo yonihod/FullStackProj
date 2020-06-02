@@ -48,6 +48,8 @@ export default class CreatePost extends Component {
             return;
         }
 
+        this.state.validated = true;
+
         PostsService.AddPost(post).then((res) => {
             this.setState({title: '', description: '', dueDate: '', owner: '', codeEditor: '', done: true});
             this.props.history.push({
@@ -60,7 +62,8 @@ export default class CreatePost extends Component {
     };
 
     checkValidity() {
-        return this.state.dueDate && this.state.dueDate > new Date(Date.now()).toISOString().slice(0, 10);
+        return this.state.dueDate && this.state.dueDate > new Date(Date.now()).toISOString().slice(0, 10) &&
+            this.state.title.trim() !== "" && this.state.description.trim() !== "";
     }
 
     componentDidMount() {
@@ -97,7 +100,12 @@ export default class CreatePost extends Component {
                             <Form.Group controlId="title">
                                 <Form.Label>Title</Form.Label>
                                 <Form.Control value={this.state.title} onChange={e => this.handleChange(e)} name="title"
+                                              isInvalid={this.state.title && this.state.title.trim() === ""}
+                                              required
                                               type="text"/>
+                                <Form.Control.Feedback type="invalid">
+                                    Please fill title field.
+                                </Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group controlId="dueDate">
                                 <Form.Label>Due Date (Optional)</Form.Label>
@@ -111,7 +119,11 @@ export default class CreatePost extends Component {
                             <Form.Group controlId="description">
                                 <Form.Label>Description</Form.Label>
                                 <Form.Control value={this.state.description} onChange={e => this.handleChange(e)}
-                                              name="description" as="textarea" rows={"4"}/>
+                                              name="description" as="textarea" rows={"4"}
+                                              required/>
+                                 <Form.Control.Feedback type="invalid">
+                                     Please fill description field.
+                                 </Form.Control.Feedback>
                             </Form.Group>
 
                             <Form.Group controlId="codeEditor">
