@@ -1,9 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
+import UserContext from "../../context/AppContext";
 
 const RoomItem = (props) => {
+    const {dbUser} = useContext(UserContext);
     return (
         <li className={"room-item"} onClick={() => props.handler(props.room)}>
             {props.room.users?.map( (user,index) => {
+                if(dbUser.name !== user.name)
                 return (
                     <div className={"users"} key={index}>
                         {user.name}

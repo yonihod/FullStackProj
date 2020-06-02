@@ -14,10 +14,10 @@ const Room = (props) => {
     const [rooms, setRooms] = useState([]); // all rooms per user -> /room/:userId
     const [messages, setMessages] = useState([]);
     const [currentRoom, setRoom] = useState(0);
+    const [behavior,setBehavior] = useState('smooth');
 
     const validityCheck = () => {
-
-        if(typeof dbUser === 'undefined' && !dbUser){
+        if(dbUser == "" || dbUser.length == 0){
             if(user && isAuthenticated){
                 //need to configure global dbUser state
                 setDbUser(user);
@@ -34,14 +34,12 @@ const Room = (props) => {
 
     useEffect(() => {
         validityCheck();
-        if(dbUser) {
-            RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
-                setRooms(data)
-            }).catch(err => {
-                console.log(err)
-            });
-        }
-    }, []);
+        RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
+            setRooms(data)
+        }).catch(err => {
+            console.log(err)
+        });
+    }, [rooms,messages,dbUser]);
 
     if(typeof dbUser === 'undefined' || !dbUser){
         return (
@@ -55,6 +53,7 @@ const Room = (props) => {
         RoomsService.addNewMessage(currentRoom._id,msg,dbUser._id).then( (res) => {
             if(typeof res !== 'undefined' && res.messages !== 'undefined') {
                 const newMessageArray = [...res.messages];
+                setBehavior('smooth');
                 setMessages(newMessageArray);
             }
         })
@@ -63,6 +62,7 @@ const Room = (props) => {
         console.log("Room Selected");
         const newMessageArray = [...room.messages];
         setRoom(room);
+        setBehavior('auto');
         setMessages(newMessageArray);
     };
 
@@ -74,7 +74,7 @@ const Room = (props) => {
             <div className={"d-flex"}>
                 <RoomList rooms={rooms} handler={handleRoomSelection}/>
                 <div className={"message-list w-75"}>
-                    <MessageList currentUserEmail={dbUser.email} messages={messages}/>
+                    <MessageList currentUserEmail={dbUser.email} messages={messages} behavior={behavior}/>
                     <SendInput handler={handleNewMessage}/>
                 </div>
             </div>

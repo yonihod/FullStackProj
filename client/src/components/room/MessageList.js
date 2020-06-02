@@ -5,24 +5,28 @@ const MessageList = (props) => {
     const [messages, setMessages] = useState([]);
     const messagesEndRef = useRef(null);
 
-    const scrollToBottom = () => {
-        messagesEndRef.current.scrollIntoView({behavior: "smooth"})
+    const scrollToBottom = (behavior) => {
+        if(messagesEndRef?.current?.scrollIntoView)
+            messagesEndRef.current.scrollIntoView({behavior: behavior})
     };
 
-    useEffect(() => {
-        setMessages(props.messages);
-        scrollToBottom()
-    });
+    useEffect(() => {setMessages(props.messages);
+        setTimeout(() => {
+            scrollToBottom(props.behavior);
+        },props.behavior == 'auto' ? 50 : 0);
+    },[props.messages]);
 
     return (
         <div className={"p-2 message-list-items"}>
             {messages.map((message, index) => {
                 return (
-                    <Message key={index} type={props.currentUserEmail === message.sender.email ? "current" : "other"}
-                             message={message}/>
+                    <Message key={index}
+                             type={props.currentUserEmail === message.sender.email ? "current" : "other"}
+                             message={message}
+                    />
                 )
             })}
-            <div ref={messagesEndRef}/>
+            <div id={"messageEnd"} ref={messagesEndRef}/>
         </div>
     );
 };
