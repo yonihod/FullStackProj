@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom";
-import { useAuth0 } from "../../reactAuth0";
+import React, {useEffect, useState} from 'react'
+import {Link} from "react-router-dom";
+import {useAuth0} from "../../reactAuth0";
 import PostsService from "../../services/Posts";
 import UsersService from "../../services/Users";
 import TwitterService from "../../services/Twitter"
-import { Button, Spinner, Badge } from 'react-bootstrap';
+import {Button, Spinner, Badge} from 'react-bootstrap';
 
 const SinglePost = (props) => {
-    const { user, isAuthenticated } = useAuth0();
+    const {user, isAuthenticated} = useAuth0();
     const [userId, setUserId] = useState();
     const [post, setPost] = useState({});
     const [disableTwitButton, setDisableTwitButton] = useState(false);
@@ -28,11 +28,14 @@ const SinglePost = (props) => {
             console.log(err)
         });
 
-        UsersService.getUserByEmail(user.email).then(u => {
-            setUserId(u._id);
-        }).catch(err => {
-            console.log(err)
-        });
+        if (user) {
+            UsersService.getUserByEmail(user.email).then(u => {
+                setUserId(u._id);
+            }).catch(err => {
+                console.log(err)
+            });
+        }
+
     }, [post.id]);
 
 
@@ -44,7 +47,7 @@ const SinglePost = (props) => {
         if (!disableTwitButton) {
             return (
                 <span> Post To Twitter
-                    <span className={'ml-2'}><i className={"fab fa-twitter"} /></span>
+                    <span className={'ml-2'}><i className={"fab fa-twitter"}/></span>
                 </span>
             );
         }
@@ -55,7 +58,7 @@ const SinglePost = (props) => {
             return (
                 <span>
                     <Spinner as="span" animation="border" size="sm" role="status"
-                        aria-hidden="true" className={"mr-2"} />
+                             aria-hidden="true" className={"mr-2"}/>
                     Posting...
                 </span>
             );
@@ -64,7 +67,7 @@ const SinglePost = (props) => {
 
     function publish() {
         setDisableTwitButton(true);
-        TwitterService.postTwit({ title: post.title }).then((res) => {
+        TwitterService.postTwit({title: post.title}).then((res) => {
             setDisableTwitButton(false);
         });
     }
@@ -85,7 +88,7 @@ const SinglePost = (props) => {
                         setPost(updatedPost);
                     });
                 }}>
-                Cancel application</Button>
+                    Cancel application</Button>
             </>
         }
 
@@ -109,7 +112,7 @@ const SinglePost = (props) => {
 
         return <div>
             <h3>Applicants</h3>
-            <hr />
+            <hr/>
             {post.appliedUsers.map(u => {
                 return <div key={u._id} className="applicant">
                     {u.name}
@@ -122,7 +125,7 @@ const SinglePost = (props) => {
         </div>
     }
 
-    function assign(applicantId){
+    function assign(applicantId) {
         PostsService.AssignApplicant(props.match.params.id, applicantId).then((updatedPost) => {
             setPost(updatedPost);
         });
@@ -170,10 +173,10 @@ const SinglePost = (props) => {
             </div>
             {isBelongToUser(post.owner?.email) && <div className={"post-actions end-alignment"}>
                 <Link className={"edit"} to={`/edit-post/${props.match.params.id}`}>
-                    <i className={"fa fa-edit"} />
+                    <i className={"fa fa-edit"}/>
                 </Link>
                 <Link className={"delete"} to={`/edit-post/${props.match.params.id}`}>
-                    <i className={"fa fa-trash-alt"} />
+                    <i className={"fa fa-trash-alt"}/>
                 </Link>
             </div>}
             {apply()}
