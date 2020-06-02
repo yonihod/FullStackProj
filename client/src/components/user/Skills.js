@@ -13,7 +13,11 @@ const Skills = (props) => {
 
     useEffect(() => {
         SkillsService.getSkills().then(res => {
-            setSkills(res);
+            if(typeof res !== 'undefined') {
+                setSkills(res);
+            }else {
+                setSkills([]);
+            }
         }).catch(err => {
             console.log(err);
         });
@@ -21,7 +25,7 @@ const Skills = (props) => {
             setUserEmail(props.userEmail);
             setUserSkills(props.userSkills);
         }
-        }, [skills.length]);
+    }, [skills.length]);
 
 
     const escapeRegexCharacters = (str) => {

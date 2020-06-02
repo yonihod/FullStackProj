@@ -5,6 +5,7 @@ import SendInput from "./SendInput";
 import RoomsService from "../../services/Rooms";
 import RoomList from "./RoomList";
 import UserContext from "../../context/AppContext";
+import Spinner from "react-bootstrap/Spinner";
 
 const Room = (props) => {
     const {dbUser} = useContext(UserContext);
@@ -12,7 +13,19 @@ const Room = (props) => {
     const [messages, setMessages] = useState([]);
     const [currentRoom, setRoom] = useState(0);
 
+    const validityCheck = () => {
+        if(typeof dbUser === 'undefined' && !dbUser){
+            return (
+                <div className={"spinner"}>
+                    <Spinner animation="border" variant="primary"/>
+                </div>
+            );
+        }
+    };
+
+
     useEffect(() => {
+        validityCheck();
         if(dbUser) {
             RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
                 setRooms(data)
@@ -22,10 +35,20 @@ const Room = (props) => {
         }
     }, []);
 
+    if(typeof dbUser === 'undefined' || !dbUser){
+        return (
+            <div className={"spinner"}>
+                <Spinner animation="border" variant="primary"/>
+            </div>
+        );
+    }
+
     const handleNewMessage = (msg) => {
         RoomsService.addNewMessage(currentRoom._id,msg,dbUser._id).then( (res) => {
-            const newMessageArray = [...res.messages];
-            setMessages(newMessageArray);
+            if(typeof res !== 'undefined' && res.messages !== 'undefined') {
+                const newMessageArray = [...res.messages];
+                setMessages(newMessageArray);
+            }
         })
     };
     const handleRoomSelection = (room) => {

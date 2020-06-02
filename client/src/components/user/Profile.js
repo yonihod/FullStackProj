@@ -13,20 +13,25 @@ const Profile = () => {
     const [skills, setSkills] = useState([]);
     const {loading, user} = useAuth0();
 
+    const validityCheck = () => {
+        if(loading || !dbUser){
+            return (
+                <div className={"spinner"}>
+                    <Spinner animation="border" variant="primary"/>
+                </div>
+            );
+        }
+    };
+
     useEffect(() => {
-        setSkills(dbUser.skills);
+        validityCheck();
+        if(dbUser?.skills) {
+            setSkills(dbUser.skills);
+        }
     }, [dbUser]);
 
-    if (loading || !dbUser) {
-        return (
-            <div className={"spinner"}>
-                <Spinner animation="border" variant="primary"/>
-            </div>
-        );
-    }
-
     const dataBox = () => {
-        if (dbUser.posts?.length) {
+        if (dbUser?.posts?.length) {
             return dbUser.posts.map((post, index) => {
                 return <PostBox obj={post} key={index} classList={"w-30 m-2"}/>;
             });
@@ -48,7 +53,7 @@ const Profile = () => {
     return (
         <div className="profile">
             <header>
-                <h1>{dbUser.name}'s Profile</h1>
+                <h1>{dbUser?.name}'s Profile</h1>
             </header>
             <div className="flex-container">
                 <div className="profile-image">
@@ -56,8 +61,8 @@ const Profile = () => {
                 </div>
                 <div id="user-details">
                     <div>
-                        <h2>{dbUser.name}</h2>
-                        <h4>{user.email}</h4>
+                        <h2>{dbUser?.name}</h2>
+                        <h4>{dbUser?.email}</h4>
                         {skills?.length > 0 &&
                         (<div id="tags">
                             {skills.map(t => <Badge className="mr-1 badge" key={t.name}>{t.name}</Badge>)}
