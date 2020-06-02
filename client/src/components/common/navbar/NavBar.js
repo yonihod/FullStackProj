@@ -1,15 +1,17 @@
 import "./NavBar.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-import React from "react";
+import React, {useContext} from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import {useAuth0} from "../../../reactAuth0";
 import {Link} from "react-router-dom";
 import {MdMessage} from 'react-icons/md'
+import UserContext from "../../../context/AppContext";
 
 const NavBar = () => {
     const {isAuthenticated, loginWithRedirect, logout, user} = useAuth0();
+    const {dbUser} = useContext(UserContext);
 
     return (
         <Navbar bg="dark" variant="dark">
@@ -19,9 +21,9 @@ const NavBar = () => {
             <Nav><Link to={"/service-providers"} className="nav-link">Service providers</Link></Nav>
             <Nav><Link to={"/about-us"} className="nav-link">About</Link></Nav>
             <Nav className="user-bar ml-auto">
-                {isAuthenticated && <Link to={"/rooms"} className={"nav-link"}><div className={"msg"}><MdMessage/></div></Link>}
+                {isAuthenticated && dbUser && <Link to={"/rooms"} className={"nav-link"}><div className={"msg"}><MdMessage/></div></Link>}
                 {!isAuthenticated && <div className="nav-link" onClick={() => loginWithRedirect({})}>Log in</div>}
-                {isAuthenticated && <Link title={user.name} className="nav-link" to="/profile"><img src={user.picture} alt="Logo" className="avatar"/></Link>}
+                {isAuthenticated && dbUser && <Link title={user.name} className="nav-link" to="/profile"><img src={user.picture} alt="Logo" className="avatar"/></Link>}
                 {isAuthenticated && <div className="nav-link" onClick={() => logout({returnTo: window.location.origin})}>Log out</div>}
             </Nav>
         </Navbar>

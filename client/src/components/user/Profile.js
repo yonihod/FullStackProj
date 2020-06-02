@@ -11,9 +11,13 @@ const Profile = () => {
 
     const {dbUser, setDbUser} = useContext(UserContext);
     const [skills, setSkills] = useState([]);
-    const {loading, user} = useAuth0();
+    const {loading, user, isAuthenticated} = useAuth0();
 
     const validityCheck = () => {
+        if(user && isAuthenticated && !dbUser ) {
+            // set dbuser
+            setDbUser(user);
+        }
         if(loading || !dbUser){
             return (
                 <div className={"spinner"}>

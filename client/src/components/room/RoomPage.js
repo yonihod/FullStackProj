@@ -6,20 +6,28 @@ import RoomsService from "../../services/Rooms";
 import RoomList from "./RoomList";
 import UserContext from "../../context/AppContext";
 import Spinner from "react-bootstrap/Spinner";
+import {useAuth0} from "../../reactAuth0";
 
 const Room = (props) => {
-    const {dbUser} = useContext(UserContext);
+    const {dbUser,setDbUser} = useContext(UserContext);
+    const {isAuthenticated, user} = useAuth0();
     const [rooms, setRooms] = useState([]); // all rooms per user -> /room/:userId
     const [messages, setMessages] = useState([]);
     const [currentRoom, setRoom] = useState(0);
 
     const validityCheck = () => {
+
         if(typeof dbUser === 'undefined' && !dbUser){
-            return (
-                <div className={"spinner"}>
-                    <Spinner animation="border" variant="primary"/>
-                </div>
-            );
+            if(user && isAuthenticated){
+                //need to configure global dbUser state
+                setDbUser(user);
+            }else {
+                return (
+                    <div className={"spinner"}>
+                        <Spinner animation="border" variant="primary"/>
+                    </div>
+                );
+            }
         }
     };
 
