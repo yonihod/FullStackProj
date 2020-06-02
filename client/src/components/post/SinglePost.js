@@ -81,8 +81,17 @@ const SinglePost = (props) => {
             return <>
                 <div>You have successfully applied for this task</div>
                 <Button onClick={() => {
-                    PostsService.CancelApplication(props.match.params.id, userId).then((updatedPost) => {
-                        setPost(updatedPost);
+                    PostsService.CancelApplication(props.match.params.id, userId).then((data) => {
+                        setPost({
+                            title: data.title,
+                            desc: data.description,
+                            owner: data.owner,
+                            dueDate: data.dueDate,
+                            tags: data.tags,
+                            appliedUsers: data.appliedUsers,
+                            assignedUser: data.assignedUser,
+                            codeEditor: data.codeEditor
+                        })
                     });
                 }}>
                     Cancel application
@@ -92,8 +101,17 @@ const SinglePost = (props) => {
 
         return <Button
             onClick={() => {
-                PostsService.ApplyTask(props.match.params.id, userId).then((updatedPost) => {
-                    setPost(updatedPost);
+                PostsService.ApplyTask(props.match.params.id, userId).then((data) => {
+                    setPost({
+                        title: data.title,
+                        desc: data.description,
+                        owner: data.owner,
+                        dueDate: data.dueDate,
+                        tags: data.tags,
+                        appliedUsers: data.appliedUsers,
+                        assignedUser: data.assignedUser,
+                        codeEditor: data.codeEditor
+                    })
                 });
             }}>
             Apply for this task!

@@ -26,9 +26,9 @@ module.exports = (app) => {
 
     app.route('/posts/assign')
         .put((req, res) => {
-            Post.findOneAndUpdate({ _id: req.body.postId },
-                { assignedUser: req.body.userId },
-                { new: true, upsert: true })
+            Post.findOneAndUpdate({_id: req.body.postId},
+                {assignedUser: req.body.userId},
+                {new: true, upsert: true})
                 .populate('owner appliedUsers assignedUser')
                 .exec(async function (error, post) {
                     let existingRooms = await Room.find({
@@ -54,9 +54,9 @@ module.exports = (app) => {
 
     app.route('/posts/cancelProviderAssignment')
         .put((req, res) => {
-            Post.findOneAndUpdate({ _id: req.body.postId },
-                { assignedUser: null },
-                { new: true })
+            Post.findOneAndUpdate({_id: req.body.postId},
+                {assignedUser: null},
+                {new: true})
                 .populate('owner appliedUsers assignedUser')
                 .exec(function (error, success) {
                     if (error) {
@@ -72,12 +72,12 @@ module.exports = (app) => {
             Post.findOneAndUpdate({_id: req.body.postId},
                 {$push: {appliedUsers: req.body.userId}},
                 {new: true, upsert: true})
-                .populate('appliedUsers')
-                .exec(function(err, post){
-                    if (err)
-                        console.log(err);
-                    else res.json(post);
-                });
+                .populate('appliedUsers owner')
+                .then((data) => {
+                    res.status(200).json(data);
+                }).catch((err) => {
+                console.log(err);
+            });
         });
 
     app.route('/posts/cancel')
@@ -85,12 +85,12 @@ module.exports = (app) => {
             Post.findOneAndUpdate({_id: req.body.postId},
                 {$pull: {appliedUsers: req.body.userId}},
                 {new: true})
-                .populate('appliedUsers')
-                .exec(function(err, post){
-                    if (err)
-                        console.log(err);
-                    else res.json(post);
-                });;
+                .populate('appliedUsers owner')
+                .then((data) => {
+                    res.status(200).json(data);
+                }).catch((err) => {
+                console.log(err);
+            });
         });
 
     app.route('/posts')
@@ -107,7 +107,7 @@ module.exports = (app) => {
 
         })
         .post((req, res) => {
-            classify(req.body.title).then(tags => {ד
+            classify(req.body.title).then(tags => {
                 req.body.tags = tags.map(x => x.label);
 
                 Post.create(req.body).then((data) => {
@@ -134,9 +134,9 @@ module.exports = (app) => {
     app.route('/posts/:id')
         .get((req, res) => {
             Post.findById(req.params.id).populate('owner appliedUsers assignedUser')
-            .then((data) => {
-                res.status(200).json(data);
-            }).catch((err) => {
+                .then((data) => {
+                    res.status(200).json(data);
+                }).catch((err) => {
                 console.log(err);
             });
         })
