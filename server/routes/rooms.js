@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
 const Room = require('../models/room');
 const User = require('../models/user');
 const Message = require('../models/message');
+const {io} = require('../lib/socketio');
 
 module.exports = (app) => {
     app.route('/rooms')
@@ -16,6 +16,7 @@ module.exports = (app) => {
         .post((req, res) => {
             Room.create(req.body).then((data) => {
                 res.status(201).json(data);
+                io().emit('newRoom', data);
             }).catch(err => {
                 console.log(err);
             });
@@ -51,6 +52,7 @@ module.exports = (app) => {
             console.log('new message received:' + req.params.id);
             //create new message
             const newMessage = await Message.create({text:req.body.msg,sender:req.body.sender});
+            io().emit('newMessage', newMessage);
             const userRoom = await Room.findByIdAndUpdate(req.params.id, {$push: {messages: newMessage._id}},{
                     upsert: true,
                     new: true,
