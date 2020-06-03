@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useAuth0 } from "../../reactAuth0";
-import { Link } from "react-router-dom";
+import React, {useEffect, useState} from 'react'
+import {useAuth0} from "../../reactAuth0";
+import {Link} from "react-router-dom";
 import UserService from "../../services/Users";
 
 const Banner = (props) => {
-    const { isAuthenticated, user } = useAuth0();
+    const {isAuthenticated, user} = useAuth0();
     const [hasSkills, showBanner] = useState(true);
 
     useEffect(() => {
@@ -20,12 +20,12 @@ const Banner = (props) => {
     return (
         <>
             {!hasSkills && isAuthenticated &&
-                <div className="banner">
-                    Join us as a service provider! Let us know what are your skills and you're in!
-                    <Link className={"banner-link"} to={`/profile`}>
-                        Add Skills
-                    </Link>
-                </div>
+            <div className="banner">
+                Join us as a service provider! Let us know what are your skills and you're in!
+                <Link className={"banner-link"} to={`/profile`}>
+                    Add Skills
+                </Link>
+            </div>
             }
         </>
     );

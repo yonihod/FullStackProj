@@ -6,7 +6,9 @@ const Message = (props) => {
         <div className={props.type + ' message'}>
             <div>
                 <p className={"message-content"}>{props.message.text}</p>
-                <div className={"date text-right"}><small>{time.toLocaleTimeString('en-GB',{hour: '2-digit', minute: '2-digit'})}</small></div>
+                <div className={"date text-right"}>
+                    <small>{time.toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'})}</small>
+                </div>
             </div>
         </div>
     );

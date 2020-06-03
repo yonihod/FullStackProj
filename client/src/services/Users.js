@@ -4,7 +4,7 @@ export default class UserService {
     static USERS_API = `${process.env.REACT_APP_API_URL}/users`;
 
     static getUsers(filter) {
-        return axios.get(this.USERS_API,{ params : {filter:filter }})
+        return axios.get(this.USERS_API, {params: {filter: filter}})
             .then((response) => {
                 return response.data;
             }).catch((error) => {

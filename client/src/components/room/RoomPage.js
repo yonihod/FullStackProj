@@ -96,6 +96,7 @@ const Room = (props) => {
             if (room.users.map(x => x.email).includes(user.email))
                 setRooms([...rooms, room]);
         });
+
     }, [updated, messages, dbUser, otherUser]);
 
     if (typeof dbUser === 'undefined' || !dbUser) {

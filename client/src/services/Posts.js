@@ -4,7 +4,7 @@ export default class PostsService {
     static POSTS_API = `${process.env.REACT_APP_API_URL}/posts`;
 
     static getPosts(filter) {
-        return axios.get(this.POSTS_API, { params : {filter:filter }})
+        return axios.get(this.POSTS_API, {params: {filter: filter}})
             .then((response) => {
                 return response.data;
             }).catch((error) => {
@@ -49,38 +49,38 @@ export default class PostsService {
     }
 
     static ApplyTask(postId, userId) {
-        return axios.put(`${this.POSTS_API}/apply`, { postId, userId })
-        .then((response) => {
-            return response.data;
-        }).catch((error) => {
-            console.log(error)
-        });
+        return axios.put(`${this.POSTS_API}/apply`, {postId, userId})
+            .then((response) => {
+                return response.data;
+            }).catch((error) => {
+                console.log(error)
+            });
     }
 
     static CancelApplication(postId, userId) {
-        return axios.put(`${this.POSTS_API}/cancel`, { postId, userId })
-        .then((response) => {
-            return response.data;
-        }).catch((error) => {
-            console.log(error)
-        });
+        return axios.put(`${this.POSTS_API}/cancel`, {postId, userId})
+            .then((response) => {
+                return response.data;
+            }).catch((error) => {
+                console.log(error)
+            });
     }
 
     static AssignApplicant(postId, userId) {
-        return axios.put(`${this.POSTS_API}/assign`, { postId, userId })
-        .then((response) => {
-            return response.data;
-        }).catch((error) => {
-            console.log(error)
-        });
+        return axios.put(`${this.POSTS_API}/assign`, {postId, userId})
+            .then((response) => {
+                return response.data;
+            }).catch((error) => {
+                console.log(error)
+            });
     }
 
     static cancelProviderAssignment(postId, userId) {
-        return axios.put(`${this.POSTS_API}/cancelProviderAssignment`, { postId, userId })
-        .then((response) => {
-            return response.data;
-        }).catch((error) => {
-            console.log(error)
-        });
+        return axios.put(`${this.POSTS_API}/cancelProviderAssignment`, {postId, userId})
+            .then((response) => {
+                return response.data;
+            }).catch((error) => {
+                console.log(error)
+            });
     }
 }

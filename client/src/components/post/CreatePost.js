@@ -6,7 +6,7 @@ import UserService from "../../services/Users";
 
 
 export default class CreatePost extends Component {
-    
+
     constructor(props) {
         super(props);
         this.user = props.user;
@@ -22,7 +22,6 @@ export default class CreatePost extends Component {
         };
 
     }
-
 
     handleChange = e => {
         this.setState({
@@ -86,7 +85,6 @@ export default class CreatePost extends Component {
             });
     }
 
-
     render() {
         return (
             <div className={"w-50 mt-4 ml-auto mr-auto"}>
@@ -124,9 +122,7 @@ export default class CreatePost extends Component {
                             <Button type="submit" variant="secondary" size="lg" block="block">
                                 Create Post
                             </Button>
-                        </Form>)
-
-                    }
+                        </Form>)}
                 </div>
             </div>
         );
