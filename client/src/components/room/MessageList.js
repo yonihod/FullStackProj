@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useRef} from "react";
 import Message from "./Message";
-import SocketService from "../../services/Socket";
 
 const MessageList = (props) => {
     const [messages, setMessages] = useState([]);
@@ -11,14 +10,10 @@ const MessageList = (props) => {
             messagesEndRef.current.scrollIntoView({behavior: behavior})
     };
 
-    SocketService.on('newMessage', data => {
-        setMessages([...messages, data]);
-    });
-
     useEffect(() => {setMessages(props.messages);
         setTimeout(() => {
             scrollToBottom(props.behavior);
-        },props.behavior == 'auto' ? 50 : 0);
+        },props.behavior === 'auto' ? 50 : 0);
     },[props.messages]);
 
     return (

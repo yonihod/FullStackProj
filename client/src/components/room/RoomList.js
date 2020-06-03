@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
 import UserContext from "../../context/AppContext";
-import SocketService from "../../services/Socket";
 
 const RoomItem = (props) => {
     const {dbUser} = useContext(UserContext);
@@ -22,11 +21,6 @@ const RoomItem = (props) => {
 };
 
 const RoomList = (props) => {
-
-    SocketService.on('newRoom', data => {
-        setRooms([...rooms, data]);
-    });
-
     const [rooms,setRooms] = useState([]);
     const [currentRoom,setRoom] = useState([]);
 

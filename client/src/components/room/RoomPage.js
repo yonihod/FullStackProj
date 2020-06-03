@@ -7,11 +7,12 @@ import RoomList from "./RoomList";
 import UserContext from "../../context/AppContext";
 import Spinner from "react-bootstrap/Spinner";
 import {useAuth0} from "../../reactAuth0";
+import SocketService from "../../services/Socket";
 
 const Room = (props) => {
     const {dbUser, setDbUser} = useContext(UserContext);
     const {isAuthenticated, user} = useAuth0();
-    const [rooms, setRooms] = useState([]); // all rooms per user -> /room/:userId
+    const [rooms, setRooms] = useState([]);
     const [messages, setMessages] = useState([]);
     const [currentRoom, setRoom] = useState(0);
     const [behavior, setBehavior] = useState('smooth');
@@ -79,6 +80,22 @@ const Room = (props) => {
                 console.log(err)
             });
         }
+
+        SocketService.on('newRoomMessage', room => {
+            if (rooms.map(x => x._id).includes(room._id)) {
+                const index = rooms.findIndex((value) => {
+                    return value._id === room._id
+                });
+                rooms[index] = room;
+                setRooms(rooms);
+                if (rooms[currentRoom]) setMessages(rooms[currentRoom].messages);
+            }
+        });
+
+        SocketService.on('newRoom', room => {
+            if (room.users.map(x => x.email).includes(user.email))
+                setRooms([...rooms, room]);
+        });
     }, [updated, messages, dbUser, otherUser]);
 
     if (typeof dbUser === 'undefined' || !dbUser) {

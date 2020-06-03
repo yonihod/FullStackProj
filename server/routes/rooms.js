@@ -52,7 +52,6 @@ module.exports = (app) => {
             console.log('new message received:' + req.params.id);
             //create new message
             const newMessage = await Message.create({text:req.body.msg,sender:req.body.sender});
-            io().emit('newMessage', newMessage);
             const userRoom = await Room.findByIdAndUpdate(req.params.id, {$push: {messages: newMessage._id}},{
                     upsert: true,
                     new: true,
@@ -66,7 +65,7 @@ module.exports = (app) => {
                     path: 'users',
                     select: 'name email'
                 }]);
-
+            io().emit('newRoomMessage', userRoom);
             res.status(200).json(userRoom);
             });
 
