@@ -17,6 +17,7 @@ const Room = (props) => {
     const [behavior,setBehavior] = useState('smooth');
     const [updated,setUpdated] = useState(false);
     const [otherUser,setOtherUser] = useState([]);
+    const [firstLoad,setFirstLoad] = useState(true);
 
     const validityCheck = () => {
         if(typeof dbUser === 'undefined' || dbUser == "" || dbUser.length == 0){
@@ -61,9 +62,18 @@ const Room = (props) => {
         validityCheck();
         if(dbUser?.email) {
             RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
+                // sort rooms by recent message received
+                data = data.sort( (room1,room2) => {
+                    let lastMsgRoom1Date = new Date(room1.messages[room1.messages.length-1].createdAt).getTime();
+                    let lastMsgRoom2Date = new Date(room2.messages[room2.messages.length-1].createdAt).getTime();
+                    return lastMsgRoom2Date - lastMsgRoom1Date;
+                });
                 setRooms(data);
                 setUpdated(true);
-                handleRoomSelection(data[0]);
+                if(firstLoad) {
+                    handleRoomSelection(data[0]);
+                    setFirstLoad(false);
+                }
             }).catch(err => {
                 console.log(err)
             });
