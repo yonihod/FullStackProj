@@ -32,32 +32,10 @@ const Room = (props) => {
             }
         }
     };
-
-
-    useEffect(() => {
-        validityCheck();
-        if(dbUser?.email) {
-            RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
-                setRooms(data);
-                setUpdated(true);
-            }).catch(err => {
-                console.log(err)
-            });
-        }
-    }, [updated,messages,dbUser,otherUser]);
-
-    if(typeof dbUser === 'undefined' || !dbUser){
-        return (
-            <div className={"spinner"}>
-                <Spinner animation="border" variant="primary"/>
-            </div>
-        );
-    }
-
     const compareAndGetOtherUser = (usersArray) => {
-      return usersArray.filter( (user) => {
-          return user._id != dbUser._id;
-      })
+        return usersArray.filter( (user) => {
+            return user._id != dbUser._id;
+        })
     };
 
     const handleNewMessage = (msg) => {
@@ -78,6 +56,27 @@ const Room = (props) => {
         setBehavior('auto');
         setMessages(newMessageArray);
     };
+
+    useEffect(() => {
+        validityCheck();
+        if(dbUser?.email) {
+            RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
+                setRooms(data);
+                setUpdated(true);
+                handleRoomSelection(data[0]);
+            }).catch(err => {
+                console.log(err)
+            });
+        }
+    }, [updated,messages,dbUser,otherUser]);
+
+    if(typeof dbUser === 'undefined' || !dbUser){
+        return (
+            <div className={"spinner"}>
+                <Spinner animation="border" variant="primary"/>
+            </div>
+        );
+    }
 
     return (
         <div className={"mt-4 room"}>
