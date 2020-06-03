@@ -177,7 +177,6 @@ const SinglePost = (props) => {
                     <div>Owner: {post.owner?.name}</div>
                     <div>Due Date: {new Date(post.dueDate).toLocaleDateString()}</div>
                     <div>Description: {post.desc}</div>
-                    <div>Status : {post.post_status}</div>
                     {post.assignedUser &&
                     <div>Assigned Provider: {post.assignedUser?.name}{cancelProviderAssignment()}</div>}
                 </div>
