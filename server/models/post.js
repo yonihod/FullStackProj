@@ -44,7 +44,7 @@ let postSchema = mongoose.Schema({
         type: String,
         enum: ['PRIVATE', 'ACTIVE', 'ASSIGNED', 'EXPIRED'],
         default: function() {
-            if (postSchema.assignedUser == "")
+            if (postSchema.assignedUser == null)
                 return 'ACTIVE';
             else
                 return 'ASSIGNED';
