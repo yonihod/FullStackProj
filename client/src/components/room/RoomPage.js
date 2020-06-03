@@ -38,7 +38,7 @@ const Room = (props) => {
         validityCheck();
         if(dbUser?.email) {
             RoomsService.getCurrentUserRooms(dbUser.email).then(data => {
-                setRooms(data)
+                setRooms(data);
                 setUpdated(true);
             }).catch(err => {
                 console.log(err)
@@ -80,12 +80,12 @@ const Room = (props) => {
     };
 
     return (
-        <div className={"mt-4 p-2 room"}>
-            <div className={"message-header p-3 d-flex justify-content-center align-items-center"}>
+        <div className={"mt-4 room"}>
+            <div className={"message-header w-75 p-3 d-flex justify-content-start align-items-center"}>
                 <h5 className={"title font-weight-bold m-0"}>{otherUser.name}</h5>
             </div>
             <div className={"d-flex"}>
-                <RoomList rooms={rooms} handler={handleRoomSelection}/>
+                <RoomList rooms={rooms} currentRoom={currentRoom} handler={handleRoomSelection}/>
                 <div className={"message-list w-75"}>
                     <MessageList currentUserEmail={dbUser.email} messages={messages} behavior={behavior}/>
                     <SendInput handler={handleNewMessage}/>

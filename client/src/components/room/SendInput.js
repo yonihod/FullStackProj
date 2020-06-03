@@ -23,7 +23,7 @@ const SendInput = (props) => {
     return (
         <div className={"p-4"}>
             <Form onSubmit={handleSubmit}>
-                <Form.Control value={message} as="textarea" rows="5" placeholder="Enter Your Message"
+                <Form.Control value={message} as="textarea" rows="1" placeholder="Type a message..."
                               onChange={handleChange} onKeyDown={onEnterPress}/>
             </Form>
         </div>
