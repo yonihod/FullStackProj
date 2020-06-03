@@ -16,15 +16,15 @@ const NavBar = () => {
     return (
         <Navbar bg="dark" variant="dark">
             <Navbar.Brand className={"brand"}><Link to={"/"}><img id="logo" src="/logo.png" alt="logo"/></Link></Navbar.Brand>
-            <Nav><Link to={"/posts"} className="nav-link">Posts</Link></Nav>
-            <Nav><Link to={"/create-post"} className="nav-link">Create a post</Link></Nav>
-            <Nav><Link to={"/service-providers"} className="nav-link">Service providers</Link></Nav>
-            <Nav><Link to={"/about-us"} className="nav-link">About</Link></Nav>
+            <Nav className={"hvr-float-shadow"}><Link to={"/posts"} className="nav-link">Posts</Link></Nav>
+            <Nav className={"hvr-float-shadow"}><Link to={"/create-post"} className="nav-link">Create a post</Link></Nav>
+            <Nav className={"hvr-float-shadow"}><Link to={"/service-providers"} className="nav-link">Service providers</Link></Nav>
+            <Nav className={"hvr-float-shadow"}><Link to={"/about-us"} className="nav-link">About</Link></Nav>
             <Nav className="user-bar ml-auto">
-                {isAuthenticated && dbUser && <Link to={"/rooms"} className={"nav-link"}><div className={"msg"}><MdMessage/></div></Link>}
-                {!isAuthenticated && <div className="nav-link" onClick={() => loginWithRedirect({})}>Log in</div>}
-                {isAuthenticated && dbUser && <Link title={user.name} className="nav-link" to="/profile"><img src={user.picture} alt="Logo" className="avatar"/></Link>}
-                {isAuthenticated && <div className="nav-link" onClick={() => logout({returnTo: window.location.origin})}>Log out</div>}
+                {isAuthenticated && dbUser && <Link to={"/rooms"} className={"nav-link"}><div className={"msg hvr-float-shadow"}><MdMessage/></div></Link>}
+                {!isAuthenticated && <div className="nav-link hvr-float-shadow" onClick={() => loginWithRedirect({})}>Log in</div>}
+                {isAuthenticated && dbUser && <Link title={user.name} className="nav-link hvr-float-shadow" to="/profile"><img src={user.picture} alt="Logo" className="avatar"/></Link>}
+                {isAuthenticated && <div className="nav-link hvr-float-shadow" onClick={() => logout({returnTo: window.location.origin})}>Log out</div>}
             </Nav>
         </Navbar>
     );

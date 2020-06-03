@@ -92,6 +92,7 @@
   border-top: solid 1px #d1dadf;
 }
 .room .room-list ul .room-item {
+  margin-top: 0.4rem;
   padding: 0.5rem 1rem 3.5rem 1rem;
   border-bottom: solid 1px #d1dadf;
   border-radius: 5px;
@@ -100,12 +101,11 @@
   transition: 0.1s;
 }
 .room .room-list ul .room-item.selected {
-  background: #1c4456;
-  color: #fff;
+  box-shadow: 0 0 5px 1px #0066ff;
 }
 .room .room-list ul .room-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 5px 1px #d1dadf;
+  transform: scale(1.04);
+  box-shadow: 0 0 5px 1px #0066ff;
 }
 .room .room-list ul .room-item .last-msg {
   font-size: 0.75em;
