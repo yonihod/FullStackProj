@@ -12,6 +12,7 @@ const SinglePost = (props) => {
     const [post, setPost] = useState({});
     const [disableTwitButton, setDisableTwitButton] = useState(false);
 
+
     useEffect(() => {
         PostsService.getPost(props.match.params.id).then(data => {
             setPost({
@@ -139,8 +140,11 @@ const SinglePost = (props) => {
 
     function assign(applicantId) {
         PostsService.AssignApplicant(props.match.params.id, applicantId).then((updatedPost) => {
+
             setPost(updatedPost);
+
         });
+
     }
 
     function cancelProviderAssignment() {
