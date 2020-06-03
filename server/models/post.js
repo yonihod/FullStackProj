@@ -40,11 +40,12 @@ let postSchema = mongoose.Schema({
         ref: 'User',
         required: false
     },
-    codeEditor: {
+    post_status: {
         type: String,
-        required: false,
-        trim: true
-    },
+        enum: ['PRIVATE', 'ACTIVE', 'ASSIGNED', 'EXPIRED'],
+        default: 'ACTIVE',
+        required: true
+    }
 
 });
 

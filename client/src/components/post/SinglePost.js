@@ -22,7 +22,7 @@ const SinglePost = (props) => {
                 tags: data.tags,
                 appliedUsers: data.appliedUsers,
                 assignedUser: data.assignedUser,
-                codeEditor: data.codeEditor
+                post_status: data.post_status,
             })
         }).catch(err => {
             console.log(err)
@@ -90,7 +90,7 @@ const SinglePost = (props) => {
                             tags: data.tags,
                             appliedUsers: data.appliedUsers,
                             assignedUser: data.assignedUser,
-                            codeEditor: data.codeEditor
+                            post_status: data.post_status,
                         })
                     });
                 }}>
@@ -110,7 +110,7 @@ const SinglePost = (props) => {
                         tags: data.tags,
                         appliedUsers: data.appliedUsers,
                         assignedUser: data.assignedUser,
-                        codeEditor: data.codeEditor
+                        post_status: data.post_status
                     })
                 });
             }}>
@@ -173,7 +173,7 @@ const SinglePost = (props) => {
                     <div>Owner: {post.owner?.name}</div>
                     <div>Due Date: {new Date(post.dueDate).toLocaleDateString()}</div>
                     <div>Description: {post.desc}</div>
-                    {post.codeEditor && <div>Code: {post.codeEditor} </div>}
+                    <div>Status : {post.post_status}</div>
                     {post.assignedUser &&
                     <div>Assigned Provider: {post.assignedUser?.name}{cancelProviderAssignment()}</div>}
                 </div>

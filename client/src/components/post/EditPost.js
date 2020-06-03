@@ -45,8 +45,7 @@ export default class EditPost extends Component {
             dueDate: "",
             tags: "",
             owner: "",
-            codeEditor: "",
-            done: false,
+           done: false,
             canWrite: true
         };
     }
@@ -63,7 +62,6 @@ export default class EditPost extends Component {
                     owner: data.owner,
                     dueDate: dueDate,
                     tags: data.tags,
-                    codeEditor: data.codeEditor,
                     done: false
                 });
         }).catch(err => {
@@ -94,8 +92,8 @@ export default class EditPost extends Component {
                 description: this.state.description,
                 dueDate: this.state.dueDate,
                 tags: this.state.tags,
-                owner: this.state.owner._id,
-                codeEditor: this.state.codeEditor
+                owner: this.state.owner._id
+
             };
 
             PostsService.EditPost(this.state.id, post).then((res) => {
@@ -120,8 +118,7 @@ export default class EditPost extends Component {
                     dueDate: "",
                     tags: "",
                     owner: "",
-                    codeEditor: "",
-                    done: true
+                   done: true
                 });
                 this.props.history.push({
                     pathname: '/posts',
@@ -180,15 +177,7 @@ export default class EditPost extends Component {
                             </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Form.Group controlId="codeEditor">
-                            <Form.Label>Code</Form.Label>
-                            <Form.Control value={this.state.codeEditor} onChange={e => this.handleChange(e)}
-                                          name="codeEditor" as="textarea" rows={"4"}
-                                          isInvalid={this.state.codeEditor === ""}/>
-                            <Form.Control.Feedback type="invalid">
-                                Please fill codeEditor field.
-                            </Form.Control.Feedback>
-                        </Form.Group>
+
 
                         <Button type="submit" variant="danger" size="lg" block="block">
                             Submit

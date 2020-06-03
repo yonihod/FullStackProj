@@ -17,7 +17,6 @@ export default class CreatePost extends Component {
             tags: [],
             owner: "",
             validated: false,
-            codeEditor: "",
             done: false
         };
 
@@ -37,7 +36,7 @@ export default class CreatePost extends Component {
             dueDate: this.state.dueDate,
             tags: this.state.tags,
             owner: this.state.owner,
-            codeEditor: this.state.codeEditor
+            post_status: this.state.post_status,
         };
         console.log(this.state);
 
@@ -45,6 +44,7 @@ export default class CreatePost extends Component {
             e.preventDefault();
             e.stopPropagation();
             return;
+
         }
 
         PostsService.AddPost(post).then((res) => {
@@ -110,13 +110,6 @@ export default class CreatePost extends Component {
                                 <Form.Label>Description</Form.Label>
                                 <Form.Control value={this.state.description} onChange={e => this.handleChange(e)}
                                               name="description" as="textarea" rows={"4"}/>
-                            </Form.Group>
-
-                            <Form.Group controlId="codeEditor">
-                                <Form.Label>Code Editor </Form.Label>
-                                <Form.Control value={this.state.codeEditor} onChange={e => this.handleChange(e)}
-                                              name="codeEditor" as="textarea" rows={"4"}/>
-
                             </Form.Group>
 
                             <Button type="submit" variant="secondary" size="lg" block="block">
