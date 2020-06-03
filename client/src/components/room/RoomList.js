@@ -1,10 +1,11 @@
 import React, {useContext, useEffect, useState} from "react";
 import UserContext from "../../context/AppContext";
+import SocketService from "../../services/Socket";
 
 const RoomItem = (props) => {
     const {dbUser} = useContext(UserContext);
     return (
-        <li className={"room-item"} onClick={() => props.handler(props.room)}>
+        <li className={`room-item ${props.current}`} onClick={() => props.handler(props.room)}>
             {props.room.users?.map( (user,index) => {
                 if(dbUser.name !== user.name)
                 return (
@@ -22,15 +23,24 @@ const RoomItem = (props) => {
 
 const RoomList = (props) => {
 
+    SocketService.on('newRoom', data => {
+        setRooms([...rooms, data]);
+    });
+
     const [rooms,setRooms] = useState([]);
+    const [currentRoom,setRoom] = useState([]);
 
     useEffect( ()=> {
         setRooms(props.rooms);
+        setRoom(props.currentRoom);
     });
 
     const handleRoomSelection = (room) => {
         props.handler(room);
+    };
 
+    const isCurrentRoom = (room) => {
+        return room?._id === currentRoom?._id ? 'selected' : '';
     };
 
     return (
@@ -38,7 +48,7 @@ const RoomList = (props) => {
             <ul>
                 {rooms?.map( (room,index) => {
                     return (
-                        <RoomItem room={room} key={index} handler={handleRoomSelection}/>
+                        <RoomItem room={room} current={isCurrentRoom(room)} key={index} handler={handleRoomSelection}/>
                     )
                 })}
             </ul>

@@ -1,4 +1,5 @@
 const Message = require('../models/message');
+const {io} = require('../lib/socketio');
 
 module.exports = (app) => {
     app.route('/messages')
@@ -12,6 +13,7 @@ module.exports = (app) => {
         .post((req, res) => {
             Message.create(req.body).then((data) => {
                 res.status(201).json(data);
+                io().emit('newMessage', data);
             }).catch(err => {
                 console.log(err);
             });

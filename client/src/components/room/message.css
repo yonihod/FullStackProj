@@ -10,12 +10,9 @@
   font-weight: 400;
   src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
 }
-.message-list {
-  background: #edeff0;
-}
 .message-list-items {
-  height: 55vh;
-  overflow-y: auto;
+  height: 65vh;
+  overflow-y: scroll;
 }
 .other {
   position: relative;
@@ -56,7 +53,7 @@
   left: 5px;
 }
 .message-header {
-  background: #ccc;
+  margin-left: auto;
 }
 .message-header h6 {
   margin: 0;
@@ -70,8 +67,20 @@
 .message .date {
   color: grey;
 }
+.room {
+  box-shadow: 0 0 8px 0px #3fb3a0;
+  background: url("/msg-tapet3.jpg");
+  background-size: 100% 100%;
+  background-attachment: fixed;
+}
 .room .title {
-  color: #3fb3a0;
+  color: #000;
+}
+.room .room-list {
+  background: rgba(63, 179, 160, 0.31);
+  padding: 0.65rem;
+  margin-bottom: 1.5rem;
+  margin-left: 0.5rem;
 }
 .room .room-list ul {
   list-style: none;
@@ -79,16 +88,28 @@
   margin: 0;
   text-align: left;
 }
+.room .room-list ul:first-child {
+  border-top: solid 1px #d1dadf;
+}
 .room .room-list ul .room-item {
-  padding: 2rem;
-  border: solid 1px #d1dadf;
+  margin-top: 0.4rem;
+  padding: 0.5rem 1rem 3.5rem 1rem;
+  border-bottom: solid 1px #d1dadf;
   border-radius: 5px;
   cursor: pointer;
   background: #fff;
   transition: 0.1s;
 }
+.room .room-list ul .room-item.selected {
+  box-shadow: 0 0 5px 1px #0066ff;
+}
 .room .room-list ul .room-item:hover {
-  color: #3fb3a0;
+  transform: scale(1.04);
+  box-shadow: 0 0 5px 1px #0066ff;
+}
+.room .room-list ul .room-item .last-msg {
+  font-size: 0.75em;
+  margin-top: 0.5rem;
 }
 .room .room-list ul .users {
   font-weight: bold ;
