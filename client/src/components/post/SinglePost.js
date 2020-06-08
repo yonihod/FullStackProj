@@ -128,8 +128,8 @@ const SinglePost = (props) => {
             <hr/>
             {post.appliedUsers.map(u => {
                 return <div key={u._id} className="applicant">
-                    {u.name}
                     <span className="applicant-actions"> 
+                        <Link to={`/profile/${u._id}`}>{u.name}</Link>
                         <Link to={`/rooms`}>Contact</Link>
                         <Button onClick={() => assign(u._id)}>Assign!</Button>
                     </span>

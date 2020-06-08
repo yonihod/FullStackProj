@@ -7,18 +7,17 @@ import Skills from "../user/Skills";
 import Spinner from "react-bootstrap/Spinner";
 import UserContext from "../../context/AppContext";
 
-const Profile = () => {
+const Profile = (props) => {
 
-    const {dbUser, setDbUser} = useContext(UserContext);
+    const [profile, setProfile] = useState();
     const [skills, setSkills] = useState([]);
     const {loading, user, isAuthenticated} = useAuth0();
 
     const validityCheck = () => {
-        if(user && isAuthenticated && !dbUser ) {
-            // set dbuser
-            setDbUser(user);
+        if(user && isAuthenticated && !profile ) {
+            setProfile(user);
         }
-        if(loading || !dbUser){
+        if(loading || !profile){
             return (
                 <div className={"spinner"}>
                     <Spinner animation="border" variant="primary"/>
@@ -27,27 +26,30 @@ const Profile = () => {
         }
     };
 
+    const getUser = (id) => {
+        UserService.getUser(id).then(u => {
+            setProfile(u);
+        });
+    }
+
     useEffect(() => {
-        validityCheck();
-        if(dbUser?.skills) {
-            setSkills(dbUser.skills);
-        }
-    }, [dbUser]);
+        getUser(props.match?.params.id);
+    }, [props.match?.params.id]);
 
     const dataBox = () => {
-        if (dbUser?.posts?.length) {
-            return dbUser.posts.map((post, index) => {
+        if (profile?.posts?.length) {
+            return profile.posts.map((post, index) => {
                 return <PostBox obj={post} key={index} classList={"w-30 m-2"}/>;
             });
         }
     };
 
     const updateSkills = (newSkill) => {
-        let user = dbUser;
+        let user = profile;
         user.skills.push(newSkill);
 
         UserService.EditUser(user.email, user).then(res => {
-            setDbUser(res);
+            setProfile(res);
             setSkills(res.skills);
         }).catch(err => {
             console.log(err);
@@ -57,16 +59,17 @@ const Profile = () => {
     return (
         <div className="profile">
             <header>
-                <h1>{dbUser?.name}'s Profile</h1>
+                <h1>{profile?.name}'s Profile</h1>
             </header>
             <div className="flex-container">
+                {profile?.picture && 
                 <div className="profile-image">
-                    <img src={user.picture} alt="Profile"/>
-                </div>
+                    <img src={profile?.picture} alt="Profile"/>
+                </div>}
                 <div id="user-details">
                     <div>
-                        <h2>{dbUser?.name}</h2>
-                        <h4>{dbUser?.email}</h4>
+                        <h2>{profile?.name}</h2>
+                        <h4>{profile?.email}</h4>
                         {skills?.length > 0 &&
                         (<div id="tags">
                             {skills.map(t => <Badge className="mr-1 badge" key={t.name}>{t.name}</Badge>)}
@@ -74,10 +77,11 @@ const Profile = () => {
                         {skills?.length === 0 &&
                         (<div>No skills added yet</div>)}
                     </div>
+                    {isAuthenticated && profile?.email === user.email &&
                     <div id="add-skills">
                         <h5>Add Skills</h5>
                         <Skills updateSkills={updateSkills}/>
-                    </div>
+                    </div>}
                 </div>
                 <div className="user-posts">
                     <h3>My Recent Posts</h3>

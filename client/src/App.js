@@ -70,7 +70,7 @@ function App() {
                                 <PrivateRoute authed={isAuthenticated} currentUser={user} path="/edit-user/:id"
                                               component={EditUser}/>
                                 <Route path="/about-us" component={About}/>
-                                <PrivateRoute authed={isAuthenticated} path="/profile" component={Profile}/>
+                                <Route path="/profile/:id" component={Profile}/>
                                 <PrivateRoute authed={isAuthenticated} path="/rooms" component={Room}/>
                             </Switch>
                         </div>
