@@ -5,7 +5,38 @@ import PostBox from "../post/PostBox";
 import {Badge} from "react-bootstrap";
 import Skills from "../user/Skills";
 import Spinner from "react-bootstrap/Spinner";
-import UserContext from "../../context/AppContext";
+//import UserContext from "../../context/AppContext";
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import moment from 'moment';
+
+const localizer = momentLocalizer(moment);
+const myEventsList = [
+    {
+        start: '2020-05-20',
+        end: '2020-06-02',
+        title: 'test event',
+        description: 'This is a test description of an event',
+    },
+    {
+        start: '2015-07-19',
+        end: '2015-07-25',
+        title: 'test event',
+        description: 'This is a test description of an event',
+     //   data: 'you can add what ever random data you may want to use later',
+    }
+];
+const MyCalendar = props => (
+    <div>
+        <Calendar
+            localizer={localizer}
+            events={myEventsList}
+            startAccessor="start"
+            endAccessor="end"
+            style={{ height: 500 }}
+        />
+    </div>
+);
 
 const Profile = (props) => {
 
@@ -62,7 +93,7 @@ const Profile = (props) => {
                 <h1>{profile?.name}'s Profile</h1>
             </header>
             <div className="flex-container">
-                {profile?.picture && 
+                {profile?.picture &&
                 <div className="profile-image">
                     <img src={profile?.picture} alt="Profile"/>
                 </div>}
@@ -88,6 +119,7 @@ const Profile = (props) => {
                     <div id="cards-container">
                         {dataBox()}
                     </div>
+                    <MyCalendar/>
                 </div>
             </div>
         </div>
