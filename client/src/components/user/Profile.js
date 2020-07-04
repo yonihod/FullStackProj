@@ -5,20 +5,22 @@ import PostBox from "../post/PostBox";
 import {Badge} from "react-bootstrap";
 import Skills from "../user/Skills";
 import Spinner from "react-bootstrap/Spinner";
-//import UserContext from "../../context/AppContext";
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
+import { useHistory } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 const myEventsList = [
     {
+        id: '5edd35d87029e4303d50d878',
         start: '2020-05-20',
         end: '2020-06-02',
         title: 'test event',
         description: 'This is a test description of an event',
     },
     {
+        id: '5edd35d87029e4303d50d878',
         start: '2015-07-19',
         end: '2015-07-25',
         title: 'test event',
@@ -26,42 +28,43 @@ const myEventsList = [
      //   data: 'you can add what ever random data you may want to use later',
     }
 ];
-const MyCalendar = props => (
-    <div>
-        <Calendar
-            localizer={localizer}
-            events={myEventsList}
-            startAccessor="start"
-            endAccessor="end"
-            style={{ height: 500 }}
-        />
-    </div>
-);
 
 const Profile = (props) => {
+    const history = useHistory();
+
+    const goToPost = (e) => {
+        let path = `/posts/${e.id}`;
+        history.push(path);
+    }
+
+    const MyCalendar = props => (
+        <div>
+            <Calendar
+                localizer={localizer}
+                events={myEventsList}
+                startAccessor="start"
+                endAccessor="end"
+                style={{ height: 500 }}
+                onSelectEvent={event => goToPost(event)}
+            />
+        </div>
+    );
 
     const [profile, setProfile] = useState();
     const [skills, setSkills] = useState([]);
     const {loading, user, isAuthenticated} = useAuth0();
 
-    const validityCheck = () => {
-        if(user && isAuthenticated && !profile ) {
-            setProfile(user);
-        }
-        if(loading || !profile){
-            return (
-                <div className={"spinner"}>
-                    <Spinner animation="border" variant="primary"/>
-                </div>
-            );
-        }
-    };
-
     const getUser = (id) => {
         UserService.getUser(id).then(u => {
             setProfile(u);
         });
+    
     }
+
+    // const getUserTasks = (id) => {
+    // get users posts and assigned task
+    // and map it to the events list
+    // }
 
     useEffect(() => {
         getUser(props.match?.params.id);
