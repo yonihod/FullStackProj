@@ -39,7 +39,7 @@ module.exports = (app) => {
                     if (!existingRooms || existingRooms.length === 0) {
                         var message = await new Message({
                             sender: "5eafeaad99644f1a1fe77fea", // system user
-                            text: "Task Assigned! Good Luck!"
+                            text: "System Message: Task Assigned! Good Luck!"
                         }).save();
 
                         await new Room({
@@ -156,5 +156,16 @@ module.exports = (app) => {
             }).catch(err => {
                 console.log(err);
             });
-        })
+        });
+
+    app.route('/posts/getUserTasks/:userId')
+        .get((req, res) => {
+            console.log(req.params.userId);
+            Post.find({ $or: [{ owner: {_id: req.params.userId }}, { assignedUser: { _id: req.params.userId } }]})
+                .then((data) => {
+                    res.status(200).json(data);
+                }).catch((err) => {
+                    console.log(err);
+                });
+        });
 };

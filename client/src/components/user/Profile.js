@@ -1,36 +1,23 @@
 import React, {useEffect, useState,useContext} from "react";
 import {useAuth0} from "../../reactAuth0";
 import UserService from "../../services/Users";
+import PostService from "../../services/Posts";
 import PostBox from "../post/PostBox";
 import {Badge} from "react-bootstrap";
 import Skills from "../user/Skills";
-import Spinner from "react-bootstrap/Spinner";
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
 import { useHistory } from "react-router-dom";
 
-const localizer = momentLocalizer(moment);
-const myEventsList = [
-    {
-        id: '5edd35d87029e4303d50d878',
-        start: '2020-05-20',
-        end: '2020-06-02',
-        title: 'test event',
-        description: 'This is a test description of an event',
-    },
-    {
-        id: '5edd35d87029e4303d50d878',
-        start: '2015-07-19',
-        end: '2015-07-25',
-        title: 'test event',
-        description: 'This is a test description of an event',
-     //   data: 'you can add what ever random data you may want to use later',
-    }
-];
 
 const Profile = (props) => {
     const history = useHistory();
+    const localizer = momentLocalizer(moment);
+    const [profile, setProfile] = useState();
+    const [skills, setSkills] = useState([]);
+    const [tasks, setTasks] = useState([]);
+    const {user, isAuthenticated} = useAuth0();
 
     const goToPost = (e) => {
         let path = `/posts/${e.id}`;
@@ -41,7 +28,7 @@ const Profile = (props) => {
         <div>
             <Calendar
                 localizer={localizer}
-                events={myEventsList}
+                events={tasks}
                 startAccessor="start"
                 endAccessor="end"
                 style={{ height: 500 }}
@@ -50,10 +37,6 @@ const Profile = (props) => {
         </div>
     );
 
-    const [profile, setProfile] = useState();
-    const [skills, setSkills] = useState([]);
-    const {loading, user, isAuthenticated} = useAuth0();
-
     const getUser = (id) => {
         UserService.getUser(id).then(u => {
             setProfile(u);
@@ -61,13 +44,26 @@ const Profile = (props) => {
     
     }
 
-    // const getUserTasks = (id) => {
-    // get users posts and assigned task
-    // and map it to the events list
-    // }
+    const getUserTasks = (id) => {
+        PostService.getUserTasks(id).then(userTasks => {
+            console.log(userTasks);
+
+            let events = userTasks.map(function(task) {
+                return {
+                    id: task._id,
+                    start: new Date(task.createdAt).toISOString().substring(0, 10),
+                    end: new Date(task.dueDate).toISOString().substring(0, 10),
+                    title: task.title 
+                }
+            });
+
+            setTasks(events);
+        });
+    }
 
     useEffect(() => {
         getUser(props.match?.params.id);
+        getUserTasks(props.match?.params.id);
     }, [props.match?.params.id]);
 
     const dataBox = () => {
