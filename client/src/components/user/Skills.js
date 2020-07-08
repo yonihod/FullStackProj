@@ -1,92 +1,58 @@
-import React, {useEffect, useState} from "react";
-import Autosuggest from 'react-autosuggest';
+import React, { useEffect, useState } from "react";
 import SkillsService from "../../services/Skills";
+import MultiSelect from "react-multi-select-component";
+import { Badge } from "react-bootstrap";
 
 const Skills = (props) => {
+    const preSelected = props.userSkills.map(function (s) {
+        return { label: s.name, value: s._id }
+    });
 
     const [skills, setSkills] = useState([]);
-    const [suggestions, setSuggestions] = useState([]);
-    const [value, setValue] = useState('');
-   // const [chosen, setChosen] = useState('');
-    const [userEmail, setUserEmail] = useState('');
-    const [userSkills, setUserSkills] = useState([])
+    const [selected, setSelected] = useState(preSelected);
 
     useEffect(() => {
         SkillsService.getSkills().then(res => {
-            if(typeof res !== 'undefined') {
-                setSkills(res);
-            }else {
+            if (typeof res !== 'undefined') {
+                const selectSkills = res.map(function (skill) {
+                    return { label: skill.name, value: skill._id }
+                });
+                setSkills(selectSkills);
+            } else {
                 setSkills([]);
             }
         }).catch(err => {
             console.log(err);
         });
-        if (props !== undefined) {
-            setUserEmail(props.userEmail);
-            setUserSkills(props.userSkills);
-        }
-    }, [skills.length]);
+    }, [selected]);
 
-
-    const escapeRegexCharacters = (str) => {
-        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    };
-
-    const getSuggestions = (value) => {
-        const escapedValue = escapeRegexCharacters(value.trim());
-
-        if (escapedValue === '') {
-            return [];
-        }
-        const regex = new RegExp('^' + escapedValue, 'i');
-
-        return skills.filter(skill => regex.test(skill.name));
-    };
-
-    const getSuggestionValue = (suggestion) => {
-        return suggestion.name;
-    };
-
-    const renderSuggestion = (suggestion) => {
-        return (
-            <span>{suggestion.name}</span>
-        );
-    };
-
-    const onChange = (event, {newValue, method}) => {
-        setValue(newValue);
-    };
-
-    const onSuggestionsFetchRequested = ({value}) => {
-        setSuggestions(getSuggestions(value));
-    };
-
-    const onSuggestionsClearRequested = () => {
-        setSuggestions([]);
-    };
-
-    const onSuggestionSelected = (event, data) => {
-        props.updateSkills(data.suggestion);
-        setValue('');
-
-    };
-
-    const inputProps = {
-        value,
-        onChange: onChange
-    };
+    async function updateUserSkills(selectedSkills) {
+        setSelected(selectedSkills);
+        const skillsIds = selectedSkills.map(x => x.value);
+        await SkillsService.setSkills(props.userId, skillsIds);
+    }
 
     return (
-        <div id="auto-suggest">
-            <Autosuggest
-                suggestions={suggestions}
-                onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-                onSuggestionsClearRequested={onSuggestionsClearRequested}
-                getSuggestionValue={getSuggestionValue}
-                onSuggestionSelected={onSuggestionSelected}
-                renderSuggestion={renderSuggestion}
-                inputProps={inputProps}/>
-        </div>
+        <>
+            <div id="auto-suggest">
+                <div id="tags">
+                    {!!selected &&
+                        selected.map(function (tag) {
+                            return <Badge className="mr-1 badge" key={tag.label}>{tag.label}</Badge>
+                        })
+                    }
+                </div>
+                {!!skills &&
+                    <MultiSelect
+                        options={skills}
+                        hasSelectAll={false}
+                        value={selected}
+                        onChange={updateUserSkills}
+                        labelledBy={"Select"}
+                    />
+                }
+            </div>
+        </>
     );
 };
 

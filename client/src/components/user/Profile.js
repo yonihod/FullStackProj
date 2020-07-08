@@ -3,7 +3,6 @@ import {useAuth0} from "../../reactAuth0";
 import UserService from "../../services/Users";
 import PostService from "../../services/Posts";
 import PostBox from "../post/PostBox";
-import {Badge} from "react-bootstrap";
 import Skills from "../user/Skills";
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -15,7 +14,6 @@ const Profile = (props) => {
     const history = useHistory();
     const localizer = momentLocalizer(moment);
     const [profile, setProfile] = useState();
-    const [skills, setSkills] = useState([]);
     const [tasks, setTasks] = useState([]);
     const {user, isAuthenticated} = useAuth0();
 
@@ -41,7 +39,6 @@ const Profile = (props) => {
         UserService.getUser(id).then(u => {
             setProfile(u);
         });
-    
     }
 
     const getUserTasks = (id) => {
@@ -74,18 +71,6 @@ const Profile = (props) => {
         }
     };
 
-    const updateSkills = (newSkill) => {
-        let user = profile;
-        user.skills.push(newSkill);
-
-        UserService.EditUser(user.email, user).then(res => {
-            setProfile(res);
-            setSkills(res.skills);
-        }).catch(err => {
-            console.log(err);
-        });
-    };
-
     return (
         <div className="profile">
             <header>
@@ -100,17 +85,11 @@ const Profile = (props) => {
                     <div>
                         <h2>{profile?.name}</h2>
                         <h4>{profile?.email}</h4>
-                        {skills?.length > 0 &&
-                        (<div id="tags">
-                            {skills.map(t => <Badge className="mr-1 badge" key={t.name}>{t.name}</Badge>)}
-                        </div>)}
-                        {skills?.length === 0 &&
-                        (<div>No skills added yet</div>)}
                     </div>
                     {isAuthenticated && profile?.email === user.email &&
                     <div id="add-skills">
                         <h5>Add Skills</h5>
-                        <Skills updateSkills={updateSkills}/>
+                        <Skills userId={profile._id} userSkills={profile.skills}/>
                     </div>}
                 </div>
                 <div className="user-posts">

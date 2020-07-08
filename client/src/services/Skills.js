@@ -11,4 +11,14 @@ export default class SkillsService {
                 console.log(error)
             });
     }
+    static setSkills(userId, skills) {
+        const body = {userId, skills};
+        
+        return axios.put(this.SKILLS_API, body)
+            .then((response) => {
+                return response.data;
+            }).catch((error) => {
+                console.log(error)
+            });
+    }
 }
