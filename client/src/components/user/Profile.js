@@ -8,7 +8,8 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
 import { useHistory } from "react-router-dom";
-
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 const Profile = (props) => {
     const history = useHistory();
@@ -29,7 +30,7 @@ const Profile = (props) => {
                 events={tasks}
                 startAccessor="start"
                 endAccessor="end"
-                style={{ height: 500 }}
+                style={{ height: 400 }}
                 onSelectEvent={event => goToPost(event)}
             />
         </div>
@@ -43,12 +44,11 @@ const Profile = (props) => {
 
     const getUserTasks = (id) => {
         PostService.getUserTasks(id).then(userTasks => {
-            console.log(userTasks);
 
             let events = userTasks.map(function(task) {
                 return {
                     id: task._id,
-                    start: new Date(task.createdAt).toISOString().substring(0, 10),
+                    start: new Date(task.dueDate).toISOString().substring(0, 10),
                     end: new Date(task.dueDate).toISOString().substring(0, 10),
                     title: task.title 
                 }
@@ -88,18 +88,27 @@ const Profile = (props) => {
                     </div>
                     {isAuthenticated && profile?.email === user.email &&
                     <div id="add-skills">
-                        <h5>Add Skills</h5>
                         <Skills userId={profile._id} userSkills={profile.skills}/>
                     </div>}
                 </div>
-                <div className="user-posts">
-                    <h3>My Recent Posts</h3>
-                    <div id="cards-container">
-                        {dataBox()}
-                    </div>
-                    <MyCalendar/>
-                </div>
             </div>
+            <Tabs>
+                <TabList>
+                <Tab>My Posts</Tab>
+                { isAuthenticated && profile?.email === user.email && <Tab>Calander</Tab> }
+                </TabList>
+                <TabPanel>
+                    <div className="user-posts">
+                        <h3>My Recent Posts</h3>
+                        <div id="cards-container">
+                            {dataBox()}
+                        </div>
+                    </div>
+                </TabPanel>
+                <TabPanel>
+                    <MyCalendar/>
+                </TabPanel>
+            </Tabs>
         </div>
     );
 };

@@ -32,9 +32,25 @@ const Skills = (props) => {
         await SkillsService.setSkills(props.userId, skillsIds);
     }
 
+    const customValueRenderer = (selected, _options) => {
+        return selected.length
+          ? "Edit Skills"
+          : "😶 No Skills Selected";
+      };
+
     return (
         <>
             <div id="auto-suggest">
+                {!!skills &&
+                    <MultiSelect
+                        options={skills}
+                        hasSelectAll={false}
+                        valueRenderer= {customValueRenderer}
+                        value={selected}
+                        onChange={updateUserSkills}
+                        labelledBy={"Select"}
+                    />
+                }
                 <div id="tags">
                     {!!selected &&
                         selected.map(function (tag) {
@@ -42,15 +58,6 @@ const Skills = (props) => {
                         })
                     }
                 </div>
-                {!!skills &&
-                    <MultiSelect
-                        options={skills}
-                        hasSelectAll={false}
-                        value={selected}
-                        onChange={updateUserSkills}
-                        labelledBy={"Select"}
-                    />
-                }
             </div>
         </>
     );
