@@ -15,7 +15,8 @@ const Profile = (props) => {
     const history = useHistory();
     const localizer = momentLocalizer(moment);
     const [profile, setProfile] = useState();
-    const [tasks, setTasks] = useState([]);
+    const [assignedTasks, setAssignedTasks] = useState([]);
+    const [publishedTasks, setPublishedTasks] = useState([]);
     const {user, isAuthenticated} = useAuth0();
 
     const goToPost = (e) => {
@@ -23,39 +24,35 @@ const Profile = (props) => {
         history.push(path);
     }
 
-    const MyCalendar = props => (
-        <div>
-            <Calendar
-                localizer={localizer}
-                events={tasks}
-                startAccessor="start"
-                endAccessor="end"
-                style={{ height: 400 }}
-                onSelectEvent={event => goToPost(event)}
-            />
-        </div>
-    );
-
     const getUser = (id) => {
         UserService.getUser(id).then(u => {
             setProfile(u);
         });
     }
 
-    const getUserTasks = (id) => {
-        PostService.getUserTasks(id).then(userTasks => {
+    const getUserTasks = async (id) => {
+        const data = await PostService.getUserTasks(id);
 
-            let events = userTasks.map(function(task) {
-                return {
-                    id: task._id,
-                    start: new Date(task.dueDate).toISOString().substring(0, 10),
-                    end: new Date(task.dueDate).toISOString().substring(0, 10),
-                    title: task.title 
-                }
-            });
-
-            setTasks(events);
+        let userTasks = data.myTasks.map(function (task) {
+            return {
+                id: task._id,
+                start: new Date(task.dueDate).toISOString().substring(0, 10),
+                end: new Date(task.dueDate).toISOString().substring(0, 10),
+                title: task.title
+            }
         });
+
+        let userPosts = data.myPosts.map(function (task) {
+            return {
+                id: task._id,
+                start: new Date(task.dueDate).toISOString().substring(0, 10),
+                end: new Date(task.dueDate).toISOString().substring(0, 10),
+                title: task.title
+            }
+        });
+
+        setAssignedTasks(userTasks);
+        setPublishedTasks(userPosts);
     }
 
     useEffect(() => {
@@ -95,7 +92,12 @@ const Profile = (props) => {
             <Tabs>
                 <TabList>
                 <Tab>My Posts</Tab>
-                { isAuthenticated && profile?.email === user.email && <Tab>Calander</Tab> }
+                { isAuthenticated && profile?.email === user.email &&
+                 <>
+                 {/* find better titles */}
+                    <Tab>Published Tasks</Tab>
+                    <Tab>Assigned Tasks</Tab>
+                 </>}
                 </TabList>
                 <TabPanel>
                     <div className="user-posts">
@@ -106,7 +108,24 @@ const Profile = (props) => {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <MyCalendar/>
+                    <Calendar
+                        localizer={localizer}
+                        events={publishedTasks}
+                        startAccessor="start"
+                        endAccessor="end"
+                        style={{ height: 400 }}
+                        onSelectEvent={event => goToPost(event)}
+                    />
+                </TabPanel>
+                <TabPanel>
+                    <Calendar
+                        localizer={localizer}
+                        events={assignedTasks}
+                        startAccessor="start"
+                        endAccessor="end"
+                        style={{ height: 400 }}
+                        onSelectEvent={event => goToPost(event)}
+                    />
                 </TabPanel>
             </Tabs>
         </div>

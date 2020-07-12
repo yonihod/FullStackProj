@@ -159,13 +159,14 @@ module.exports = (app) => {
         });
 
     app.route('/posts/getUserTasks/:userId')
-        .get((req, res) => {
-            console.log(req.params.userId);
-            Post.find({ $or: [{ owner: {_id: req.params.userId }}, { assignedUser: { _id: req.params.userId } }]})
-                .then((data) => {
-                    res.status(200).json(data);
-                }).catch((err) => {
-                    console.log(err);
-                });
+        .get(async (req, res) => {
+            try {
+                const myPosts = await Post.find({ $and: [{ owner: { _id: req.params.userId } }, { assignedUser: { $ne: null } }], });
+                const myTasks = await Post.find({ assignedUser: { _id: req.params.userId } });
+                const data = { myPosts, myTasks };
+                res.status(200).json(data);
+            } catch (error) {
+                console.log(error);
+            }
         });
 };
