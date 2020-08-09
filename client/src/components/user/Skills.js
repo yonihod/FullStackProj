@@ -39,8 +39,8 @@ const Skills = (props) => {
       };
 
     return (
-        <>
-            <div id="auto-suggest">
+        <div>
+            <div id="auto-suggest" className={"w-25 p-2"}>
                 {!!skills &&
                     <MultiSelect
                         options={skills}
@@ -51,15 +51,15 @@ const Skills = (props) => {
                         labelledBy={"Select"}
                     />
                 }
-                <div id="tags">
-                    {!!selected &&
-                        selected.map(function (tag) {
-                            return <Badge className="mr-1 badge" key={tag.label}>{tag.label}</Badge>
-                        })
-                    }
-                </div>
             </div>
-        </>
+            <div id="tags" className={"d-flex flex-wrap p-2"}>
+                {!!selected &&
+                selected.map(function (tag) {
+                    return <Badge className="mr-1 badge m-1" key={tag.label}>{tag.label}</Badge>
+                })
+                }
+            </div>
+        </div>
     );
 };
 

@@ -79,7 +79,7 @@ const Profile = (props) => {
                     <img src={profile?.picture} alt="Profile"/>
                 </div>}
                 <div id="user-details">
-                    <div>
+                    <div className={"p-2"}>
                         <h2>{profile?.name}</h2>
                         <h4>{profile?.email}</h4>
                     </div>
