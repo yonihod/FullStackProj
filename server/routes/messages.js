@@ -1,6 +1,9 @@
 const Message = require('../models/message');
 const {io} = require('../lib/socketio');
-
+/**
+ * TODO : IS THIS EVEN USED?
+ * @param app
+ */
 module.exports = (app) => {
     app.route('/messages')
         .get((req, res) => {
