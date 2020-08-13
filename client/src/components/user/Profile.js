@@ -107,6 +107,8 @@ const Profile = (props) => {
                         </div>
                     </div>
                 </TabPanel>
+                { isAuthenticated && profile?.email === user.email &&
+                 <>
                 <TabPanel>
                     <Calendar
                         localizer={localizer}
@@ -117,6 +119,9 @@ const Profile = (props) => {
                         onSelectEvent={event => goToPost(event)}
                     />
                 </TabPanel>
+                </>}
+                { isAuthenticated && profile?.email === user.email &&
+                 <>
                 <TabPanel>
                     <Calendar
                         localizer={localizer}
@@ -127,6 +132,7 @@ const Profile = (props) => {
                         onSelectEvent={event => goToPost(event)}
                     />
                 </TabPanel>
+                </>}
             </Tabs>
         </div>
     );

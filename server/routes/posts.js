@@ -2,7 +2,7 @@ const Post = require('../models/post');
 const User = require('../models/user');
 const Room = require('../models/room');
 const Message = require('../models/message');
-const {io} = require('../lib/socketio');
+const { io } = require('../lib/socketio');
 const natural = require('natural');
 
 function classify(title) {
@@ -26,9 +26,9 @@ module.exports = (app) => {
 
     app.route('/posts/assign')
         .put((req, res) => {
-            Post.findOneAndUpdate({_id: req.body.postId},
-                {assignedUser: req.body.userId},
-                {new: true, upsert: true})
+            Post.findOneAndUpdate({ _id: req.body.postId },
+                { assignedUser: req.body.userId },
+                { new: true, upsert: true })
                 .populate('owner appliedUsers assignedUser')
                 .exec(async function (error, post) {
                     let existingRooms = await Room.find({
@@ -54,9 +54,9 @@ module.exports = (app) => {
 
     app.route('/posts/cancelProviderAssignment')
         .put((req, res) => {
-            Post.findOneAndUpdate({_id: req.body.postId},
-                {assignedUser: null},
-                {new: true})
+            Post.findOneAndUpdate({ _id: req.body.postId },
+                { assignedUser: null },
+                { new: true })
                 .populate('owner appliedUsers assignedUser')
                 .exec(function (error, success) {
                     if (error) {
@@ -69,28 +69,28 @@ module.exports = (app) => {
 
     app.route('/posts/apply')
         .put((req, res) => {
-            Post.findOneAndUpdate({_id: req.body.postId},
-                {$push: {appliedUsers: req.body.userId}},
-                {new: true, upsert: true})
+            Post.findOneAndUpdate({ _id: req.body.postId },
+                { $push: { appliedUsers: req.body.userId } },
+                { new: true, upsert: true })
                 .populate('appliedUsers owner')
                 .then((data) => {
                     res.status(200).json(data);
                 }).catch((err) => {
-                console.log(err);
-            });
+                    console.log(err);
+                });
         });
 
     app.route('/posts/cancel')
         .put((req, res) => {
-            Post.findOneAndUpdate({_id: req.body.postId},
-                {$pull: {appliedUsers: req.body.userId}},
-                {new: true})
+            Post.findOneAndUpdate({ _id: req.body.postId },
+                { $pull: { appliedUsers: req.body.userId } },
+                { new: true })
                 .populate('appliedUsers owner')
                 .then((data) => {
                     res.status(200).json(data);
                 }).catch((err) => {
-                console.log(err);
-            });
+                    console.log(err);
+                });
         });
 
     app.route('/posts')
@@ -113,9 +113,9 @@ module.exports = (app) => {
                 Post.create(req.body).then((data) => {
                     //push created posts to his posts array
                     let postOwner = User.findById(req.body.owner).populate('posts').then((postOwner) => {
-                        User.findOneAndUpdate({_id: postOwner._id},
-                            {$push: {posts: data._id}},
-                            {upsert: true}, function (error, success) {
+                        User.findOneAndUpdate({ _id: postOwner._id },
+                            { $push: { posts: data._id } },
+                            { upsert: true }, function (error, success) {
                                 if (error) {
                                     console.log(error)
                                 } else {
@@ -137,11 +137,11 @@ module.exports = (app) => {
                 .then((data) => {
                     res.status(200).json(data);
                 }).catch((err) => {
-                console.log(err);
-            });
+                    console.log(err);
+                });
         })
         .put((req, res) => {
-            Post.findByIdAndUpdate({_id: req.params.id}, req.body, {
+            Post.findByIdAndUpdate({ _id: req.params.id }, req.body, {
                 new: true,
                 upsert: true
             }).populate("owner").then(data => {
@@ -168,5 +168,15 @@ module.exports = (app) => {
             } catch (error) {
                 console.log(error);
             }
+        });
+
+    app.route('/posts/updateStatus')
+        .put((req, res) => {
+            Post.findOneAndUpdate({ _id: req.body.postId },
+                { post_status: 'ALON' },
+                { new: true, upsert: true })
+                .populate('owner appliedUsers assignedUser').then(data => {
+                    res.status(200).json(data);
+                });
         });
 };

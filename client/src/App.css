@@ -338,6 +338,9 @@ body {
   color: #fff;
   border-radius: 5px;
 }
+.profile #auto-suggest {
+  min-width: 240px;
+}
 .advanced-search {
   background: #f5f5f5;
 }
@@ -581,4 +584,3 @@ body {
 .post-container .post-actions .delete {
   background: #dc3545;
 }
-/*# sourceMappingURL=App.css.map */

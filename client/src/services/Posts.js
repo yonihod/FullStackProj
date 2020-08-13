@@ -92,4 +92,14 @@ export default class PostsService {
                 console.log(error)
             });
     }
+
+    static finishTask(postId) {
+        const status = 4; // pending
+        return axios.put(`${this.POSTS_API}/updateStatus`, {postId, status})
+            .then((response) => {
+                return response.data;
+            }).catch((error) => {
+                console.log(error)
+            });
+    }
 }

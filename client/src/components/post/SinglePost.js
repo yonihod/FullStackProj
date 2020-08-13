@@ -44,6 +44,10 @@ const SinglePost = (props) => {
         return userEmail && userEmail === user?.email
     }
 
+    function isAssignedToUser() {
+        return userId && userId === post?.assignedUser._id;
+    }
+
     function postToTwitter() {
         if (!disableTwitButton) {
             return (
@@ -140,11 +144,8 @@ const SinglePost = (props) => {
 
     function assign(applicantId) {
         PostsService.AssignApplicant(props.match.params.id, applicantId).then((updatedPost) => {
-
             setPost(updatedPost);
-
         });
-
     }
 
     function cancelProviderAssignment() {
@@ -165,6 +166,17 @@ const SinglePost = (props) => {
 
     if (!post || Object.keys(post).length === 0)
         return null;
+
+    function finishTask(){
+        return <Button
+            onClick={() => {
+                PostsService.finishTask(post._id).then((res)=>{
+                    console.log(res);
+                });
+            }}>
+            Finish Task
+        </Button>
+    } 
 
     return (
         <div className={"post-container"}>
@@ -198,6 +210,7 @@ const SinglePost = (props) => {
             </div>}
             {apply()}
             {applicantsList()}
+            {isAssignedToUser() && finishTask()}
         </div>
     );
 };
