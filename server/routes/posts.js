@@ -24,6 +24,16 @@ function isEmpty(obj) {
 
 module.exports = (app) => {
 
+    app.route('/posts/updateStatus')
+        .put((req, res) => {
+            Post.findOneAndUpdate({ _id: req.body.postId },
+                { post_status: 'ALON' },
+                { new: true, upsert: true })
+                .populate('owner appliedUsers assignedUser').then(data => {
+                res.status(200).json(data);
+            });
+        });
+
     app.route('/posts/assign')
         .put((req, res) => {
             Post.findOneAndUpdate({ _id: req.body.postId },
@@ -168,15 +178,5 @@ module.exports = (app) => {
             } catch (error) {
                 console.log(error);
             }
-        });
-
-    app.route('/posts/updateStatus')
-        .put((req, res) => {
-            Post.findOneAndUpdate({ _id: req.body.postId },
-                { post_status: 'ALON' },
-                { new: true, upsert: true })
-                .populate('owner appliedUsers assignedUser').then(data => {
-                    res.status(200).json(data);
-                });
         });
 };

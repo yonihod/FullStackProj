@@ -95,7 +95,7 @@ export default class PostsService {
 
     static finishTask(postId) {
         const status = 4; // pending
-        return axios.put(`${this.POSTS_API}/updateStatus`, {postId, status})
+        return axios.put(`${this.POSTS_API}/updateStatus`, {postId: postId, status: status})
             .then((response) => {
                 return response.data;
             }).catch((error) => {

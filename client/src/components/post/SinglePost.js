@@ -24,6 +24,7 @@ const SinglePost = (props) => {
                 appliedUsers: data.appliedUsers,
                 assignedUser: data.assignedUser,
                 post_status: data.post_status,
+                _id: data._id
             })
         }).catch(err => {
             console.log(err)
@@ -45,7 +46,7 @@ const SinglePost = (props) => {
     }
 
     function isAssignedToUser() {
-        return userId && userId === post?.assignedUser._id;
+        return userId && userId === post?.assignedUser?._id;
     }
 
     function postToTwitter() {
@@ -170,6 +171,7 @@ const SinglePost = (props) => {
     function finishTask(){
         return <Button
             onClick={() => {
+                debugger;
                 PostsService.finishTask(post._id).then((res)=>{
                     console.log(res);
                 });
