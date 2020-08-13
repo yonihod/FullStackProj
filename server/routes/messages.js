@@ -13,7 +13,7 @@ module.exports = (app) => {
         .post((req, res) => {
             Message.create(req.body).then((data) => {
                 res.status(201).json(data);
-                io().emit('newMessage', data);
+                io().emit('newRoomMessage', data);
             }).catch(err => {
                 console.log(err);
             });
