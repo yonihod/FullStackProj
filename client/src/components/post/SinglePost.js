@@ -94,7 +94,8 @@ const SinglePost = (props) => {
     }
 
     function apply() {
-        if (!isAuthenticated || userId === post.owner?._id || !post || post.assignedUser) return;
+        if (!isAuthenticated || userId === post.owner?._id || !post || post.assignedUser ||
+            post?.post_status ==='PENDING' || post?.post_status ==='COMPLETED' ) return;
 
         if (post.owner?.name === "System") return;
 

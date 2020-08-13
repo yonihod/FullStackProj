@@ -113,8 +113,8 @@ export default class ListPost extends Component {
         var filteredPosts = [];
         if(this.state?.posts && this.state.posts.length) {
                 filteredPosts = this.state.posts.filter((post => {
-                return post.title.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
-                    post.description.toLowerCase().indexOf(search.toLowerCase()) !== -1
+                return post?.title?.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+                    post?.description?.toLowerCase().indexOf(search.toLowerCase()) !== -1
             })).sort(orderBy);
         }
         
