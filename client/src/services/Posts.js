@@ -94,7 +94,17 @@ export default class PostsService {
     }
 
     static finishTask(postId) {
-        const status = 4; // pending
+        const status = 'PENDING'; // pending
+        return axios.put(`${this.POSTS_API}/updateStatus`, {postId: postId, status: status})
+            .then((response) => {
+                return response.data;
+            }).catch((error) => {
+                console.log(error)
+            });
+    }
+
+    static approveFinished(postId) {
+        const status = 'COMPLETED'; // pending
         return axios.put(`${this.POSTS_API}/updateStatus`, {postId: postId, status: status})
             .then((response) => {
                 return response.data;

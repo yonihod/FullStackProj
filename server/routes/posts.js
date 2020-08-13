@@ -27,7 +27,7 @@ module.exports = (app) => {
     app.route('/posts/updateStatus')
         .put((req, res) => {
             Post.findOneAndUpdate({ _id: req.body.postId },
-                { post_status: 'ALON' },
+                { post_status: req.body.status },
                 { new: true, upsert: true })
                 .populate('owner appliedUsers assignedUser').then(data => {
                 res.status(200).json(data);

@@ -49,6 +49,21 @@ const SinglePost = (props) => {
         return userId && userId === post?.assignedUser?._id;
     }
 
+    function approveFinished() {
+        if(post?.post_status === 'PENDING') {
+            return (
+                <Button
+                    onClick={() => {
+                        PostsService.approveFinished(post._id).then((res) => {
+                            setPost(res);
+                        });
+                    }}>
+                    Approve Finished
+                </Button>
+            )
+        }
+    }
+
     function postToTwitter() {
         if (!disableTwitButton) {
             return (
@@ -169,15 +184,25 @@ const SinglePost = (props) => {
         return null;
 
     function finishTask(){
-        return <Button
-            onClick={() => {
-                debugger;
-                PostsService.finishTask(post._id).then((res)=>{
-                    console.log(res);
-                });
-            }}>
-            Finish Task
-        </Button>
+        if(post.post_status !== 'PENDING'){
+            return <Button
+                onClick={() => {
+                    PostsService.finishTask(post._id).then((res) => {
+                        setPost(res);
+                    });
+                }}>
+                Finish Task
+            </Button>
+        }else { // is pending
+            return <Button
+                onClick={() => {
+                    PostsService.finishTask(post._id).then((res) => {
+                        setPost(res);
+                    });
+                }} disabled>
+                Pending Approval
+            </Button>
+        }
     } 
 
     return (
@@ -213,6 +238,7 @@ const SinglePost = (props) => {
             {apply()}
             {applicantsList()}
             {isAssignedToUser() && finishTask()}
+            {isBelongToUser(post.owner?.email) && approveFinished()}
         </div>
     );
 };
