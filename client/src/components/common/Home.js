@@ -3,7 +3,7 @@ import PostsService from "../../services/Posts";
 import SocketService from '../../services/Socket';
 import PostBox from "../post/PostBox";
 import Success from "../post/Success";
-// import "../../App.css";
+import "../../App.css";
 import Typist from 'react-typist';
 import {InputGroup,FormControl,Dropdown,DropdownButton} from "react-bootstrap"
 
@@ -92,7 +92,18 @@ export default class Home extends Component {
             }
             return date1_ - date2_;
         }
+
+
     };
+    sortByViews = (post) => {
+        if (this.state.posts.length) {
+            var topPosts: [];
+            this.state.posts.filter((post => {
+                return post.views > 10
+            }));
+
+        }
+    }
 
     setOrderBy = ( (order) => {
         this.setState({orderBy:order})
@@ -110,11 +121,13 @@ export default class Home extends Component {
     render() {
         const {orderBy} = this.state;
         const {search} = this.state;
+
         var filteredPosts = [];
         if(this.state?.posts && this.state.posts.length) {
             filteredPosts = this.state.posts.filter((post => {
-                return post?.title?.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
-                    post?.description?.toLowerCase().indexOf(search.toLowerCase()) !== -1
+                return post.views > 1
+                // return post?.title?.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+                //     post?.description?.toLowerCase().indexOf(search.toLowerCase()) !== -1
             })).sort(orderBy);
         }
 
@@ -133,6 +146,33 @@ export default class Home extends Component {
                     {/*</video>*/}
                 </div>
 
+
+                {/*<div id="posts-container">*/}
+                {/*    <div className="profile-img"></div>*/}
+                {/*    <h1>*/}
+                {/*        Maddie*/}
+                {/*    </h1>*/}
+                {/*    <div className="description">*/}
+                {/*        Maddie is a front end web developer in New York. She has worked in the field for 10 years now.*/}
+                {/*        Check out her projects in the links below. She is available for hire as well.*/}
+                {/*    </div>*/}
+                {/*    <div className="social">*/}
+                {/*        <a>GitHub</a>*/}
+                {/*        <a>Twitter</a>*/}
+                {/*        <a>LinkedIn</a>*/}
+                {/*    </div>*/}
+                {/*    <button>Hire Me</button>*/}
+                {/*    <footer>*/}
+                {/*        <div className="likes">*/}
+                {/*            <p><i className='fa fa-heart'></i></p>*/}
+                {/*            <p>1.5K</p>*/}
+                {/*        </div>*/}
+                {/*        <div className="projects">*/}
+                {/*            <p>Projects</p>*/}
+                {/*            <p>154</p>*/}
+                {/*        </div>*/}
+                {/*    </footer>*/}
+                {/*</div>*/}
 
                 <div id="cards-container">
                     {filteredPosts.map ((post,index)=>{
