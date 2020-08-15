@@ -5,13 +5,13 @@ import PostsService from "../../services/Posts";
 import UsersService from "../../services/Users";
 import TwitterService from "../../services/Twitter"
 import {Button, Spinner, Badge} from 'react-bootstrap';
+import SocketService from "../../services/Socket";
 
 const SinglePost = (props) => {
     const {user, isAuthenticated} = useAuth0();
     const [userId, setUserId] = useState();
     const [post, setPost] = useState({});
     const [disableTwitButton, setDisableTwitButton] = useState(false);
-
 
     useEffect(() => {
         PostsService.getPost(props.match.params.id).then(data => {
@@ -24,7 +24,8 @@ const SinglePost = (props) => {
                 appliedUsers: data.appliedUsers,
                 assignedUser: data.assignedUser,
                 post_status: data.post_status,
-                _id: data._id
+                _id: data._id,
+                views: data.views
             })
         }).catch(err => {
             console.log(err)
@@ -94,6 +95,7 @@ const SinglePost = (props) => {
     }
 
     function apply() {
+
         if (!isAuthenticated || userId === post.owner?._id || !post || post.assignedUser ||
             post?.post_status ==='PENDING' || post?.post_status ==='COMPLETED' ) return;
 
@@ -113,13 +115,15 @@ const SinglePost = (props) => {
                             appliedUsers: data.appliedUsers,
                             assignedUser: data.assignedUser,
                             post_status: data.post_status,
-                        })
+                            views: data.views,
+                    })
                     });
                 }}>
                     Cancel application
                 </Button>
             </>
         }
+
 
         return <Button
             onClick={() => {
@@ -132,7 +136,9 @@ const SinglePost = (props) => {
                         tags: data.tags,
                         appliedUsers: data.appliedUsers,
                         assignedUser: data.assignedUser,
-                        post_status: data.post_status
+                        post_status: data.post_status,
+                        views : data.views
+
                     })
                 });
             }}>
@@ -204,9 +210,10 @@ const SinglePost = (props) => {
                 Pending Approval
             </Button>
         }
-    } 
+    }
 
     return (
+
         <div className={"post-container"}>
             <div>
                 <h1 className={"post-title"}>{post.title}</h1>
@@ -216,6 +223,8 @@ const SinglePost = (props) => {
                 <div className={"post-details"}>
                     <div>Owner: {post.owner?.name}</div>
                     <div>Due Date: {new Date(post.dueDate).toLocaleDateString()}</div>
+                    <div>Views: {post.views}</div>
+
                     <div>Description: {post.desc}</div>
                     <div>Status : {post.post_status}</div>
                     {post.assignedUser &&

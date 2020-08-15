@@ -32,6 +32,7 @@ const PostBox = (props) => {
                     </div>
                     <Card.Text>
                         {props.obj.description}
+
                     </Card.Text>
 
                 </Card.Body>
