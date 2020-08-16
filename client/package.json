@@ -13,7 +13,6 @@
     "bootstrap": "^4.4.1",
     "google-maps-react": "^2.0.2",
     "jquery": "^3.5.1",
-    "less": "^3.12.2",
     "mobx-react": "^6.1.8",
     "moment": "^2.26.0",
     "ngx-slick-carousel": "^0.5.1",
@@ -68,6 +67,7 @@
     ]
   },
   "devDependencies": {
+    "less": "^3.12.2",
     "react-tag-list-editor": "^1.0.1"
   }
 }

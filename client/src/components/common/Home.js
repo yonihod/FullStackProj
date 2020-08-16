@@ -15,6 +15,7 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import CardContext from "react-bootstrap/cjs/CardContext";
 import {Link} from "react-router-dom";
+import Background from '../../images/Home-Background.png';
 
 
 export default class Home extends Component {
@@ -154,10 +155,13 @@ export default class Home extends Component {
             slidesToScroll: 1
         };
         return (
-            <Container className={"post-page"}>
+            <div className="home-page">
+                <div id="background">
+                    <img src="https://freedesignfile.com/upload/2016/11/Light-blue-wavy-abstract-background-vector-04.jpg" className="stretch" alt=""/>
+                </div>
                 {this.state.done ? <Success value={this.state}/> : null}
                 <div className={"writer-container"}>
-                    <h1>
+                    <h1 class="home-title">
                         Welcome To Developi
                         {/*{isAuthenticated ? user.given_name : "To Developi"}!*/}
                     </h1>
@@ -166,7 +170,7 @@ export default class Home extends Component {
                     {/*</video>*/}
                 </div>
 
-                <div class="popularPosts mt-5 mb-2">
+                <div id="cards-container mt-5 mb-2">
                     <h4 className="float-left">Most Popular</h4>
                     <Link className="float-right text-uppercase" to="/">see all</Link>
                 </div>
@@ -206,7 +210,7 @@ export default class Home extends Component {
                     </Slider>
                 </Container>
 
-            </Container> );
+            </div> );
     }
 
 }
