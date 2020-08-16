@@ -49,4 +49,13 @@ export default class UserService {
                 console.log(error)
             });
     }
+    
+    static rateUser(email, rating) {
+        return axios.put(`${this.USERS_API}/rateUser`, {email, rating})
+            .then((response) => {
+                return response.data;
+            }).catch((error) => {
+                console.log(error)
+            });
+    }
 }

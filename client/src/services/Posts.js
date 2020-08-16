@@ -21,6 +21,13 @@ export default class PostsService {
             });
     }
 
+    static setViews(postId){
+            return axios.put(`${this.POSTS_API}/${postId}`)
+                .then((response) => {
+                    return response.data.views + 1 ;
+                });
+    }
+
     static AddPost(post) {
         return axios.post(this.POSTS_API, post)
             .then((response) => {

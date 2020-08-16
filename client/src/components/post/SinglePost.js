@@ -5,14 +5,17 @@ import PostsService from "../../services/Posts";
 import UsersService from "../../services/Users";
 import TwitterService from "../../services/Twitter"
 import {Button, Spinner, Badge} from 'react-bootstrap';
+import Rating from "../post/Rating";
+import SocketService from "../../services/Socket";
 
 const SinglePost = (props) => {
     const {user, isAuthenticated} = useAuth0();
     const [userId, setUserId] = useState();
     const [post, setPost] = useState({});
     const [disableTwitButton, setDisableTwitButton] = useState(false);
-
-
+    const [showRating, setShowRating] = useState(false);
+    const [showThanks, setShowThanks] = useState(false);
+    
     useEffect(() => {
         PostsService.getPost(props.match.params.id).then(data => {
             setPost({
@@ -24,7 +27,8 @@ const SinglePost = (props) => {
                 appliedUsers: data.appliedUsers,
                 assignedUser: data.assignedUser,
                 post_status: data.post_status,
-                _id: data._id
+                _id: data._id,
+                views: data.views
             })
         }).catch(err => {
             console.log(err)
@@ -38,7 +42,7 @@ const SinglePost = (props) => {
             });
         }
 
-    }, [post.id]);
+    }, [post.id, showRating, showThanks]);
 
 
     function isBelongToUser(userEmail) {
@@ -56,6 +60,7 @@ const SinglePost = (props) => {
                     onClick={() => {
                         PostsService.approveFinished(post._id).then((res) => {
                             setPost(res);
+                            setShowRating(true);
                         });
                     }}>
                     Approve Finished
@@ -94,6 +99,7 @@ const SinglePost = (props) => {
     }
 
     function apply() {
+
         if (!isAuthenticated || userId === post.owner?._id || !post || post.assignedUser ||
             post?.post_status ==='PENDING' || post?.post_status ==='COMPLETED' ) return;
 
@@ -113,13 +119,15 @@ const SinglePost = (props) => {
                             appliedUsers: data.appliedUsers,
                             assignedUser: data.assignedUser,
                             post_status: data.post_status,
-                        })
+                            views: data.views,
+                    })
                     });
                 }}>
                     Cancel application
                 </Button>
             </>
         }
+
 
         return <Button
             onClick={() => {
@@ -132,7 +140,9 @@ const SinglePost = (props) => {
                         tags: data.tags,
                         appliedUsers: data.appliedUsers,
                         assignedUser: data.assignedUser,
-                        post_status: data.post_status
+                        post_status: data.post_status,
+                        views : data.views
+
                     })
                 });
             }}>
@@ -194,19 +204,39 @@ const SinglePost = (props) => {
                 }}>
                 Finish Task
             </Button>
-        }else { // is pending
-            return <Button
-                onClick={() => {
-                    PostsService.finishTask(post._id).then((res) => {
-                        setPost(res);
-                    });
-                }} disabled>
+        }else {
+            return <Button disabled>
                 Pending Approval
             </Button>
         }
-    } 
+    }
+
+    function rating(){
+        if (showRating)
+            return <div>
+                <div>How do you like {post?.assignedUser?.name} service?</div>
+                <Rating rateServiceProvider={rateServiceProvider}/>
+            </div>
+    }
+
+    function rateServiceProvider(newRating){
+        setShowRating(false);
+        debugger;
+        UsersService.rateUser(post.assignedUser.email, newRating).then((result) =>{
+            debugger;
+            setShowThanks(true);
+        });
+    }
+
+    function thanks(){
+        if (showThanks)
+            return <div>
+                Thank you for rating! ☺
+            </div>
+    }
 
     return (
+
         <div className={"post-container"}>
             <div>
                 <h1 className={"post-title"}>{post.title}</h1>
@@ -216,6 +246,8 @@ const SinglePost = (props) => {
                 <div className={"post-details"}>
                     <div>Owner: {post.owner?.name}</div>
                     <div>Due Date: {new Date(post.dueDate).toLocaleDateString()}</div>
+                    <div>Views: {post.views}</div>
+
                     <div>Description: {post.desc}</div>
                     <div>Status : {post.post_status}</div>
                     {post.assignedUser &&
@@ -240,6 +272,8 @@ const SinglePost = (props) => {
             {applicantsList()}
             {isAssignedToUser() && finishTask()}
             {isBelongToUser(post.owner?.email) && approveFinished()}
+            {rating()}
+            {thanks()}
         </div>
     );
 };

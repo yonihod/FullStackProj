@@ -40,6 +40,11 @@ let postSchema = mongoose.Schema({
         ref: 'User',
         required: false
     },
+    views: {
+        type: Number,
+        // required: false,
+        default: 0
+    },
     post_status: {
         type: String,
         enum: ['PRIVATE', 'ACTIVE', 'ASSIGNED', 'EXPIRED', 'PENDING','COMPLETED'],
@@ -51,7 +56,7 @@ let postSchema = mongoose.Schema({
         },
         required: true
     }
-
+    
 });
 
 module.exports = mongoose.model('Post', postSchema);

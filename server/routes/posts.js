@@ -143,12 +143,20 @@ module.exports = (app) => {
 
     app.route('/posts/:id')
         .get((req, res) => {
-            Post.findById(req.params.id).populate('owner appliedUsers assignedUser')
+            Post.findById(req.params.id)
                 .then((data) => {
-                    res.status(200).json(data);
+                    const views = data.views ? data.views + 1 : 1;
+                    Post.findOneAndUpdate({_id: req.params.id}, {$set:{views:views}}, {new: true})
+                        .populate('owner appliedUsers assignedUser')
+                        .then((_data) => {
+                            res.status(200).json(_data);
+                        }).catch((err) => {
+                        console.log(err);
+                    });
                 }).catch((err) => {
                     console.log(err);
                 });
+
         })
         .put((req, res) => {
             Post.findByIdAndUpdate({ _id: req.params.id }, req.body, {
