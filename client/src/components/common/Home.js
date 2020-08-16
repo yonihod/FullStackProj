@@ -184,8 +184,10 @@ export default class Home extends Component {
                                     <Col>
                                         <Card className="slider-card">
 
+
                                             <Link className={"card-link"} to={`/posts/${post._id}`}>
                                                 <Card.Body>
+
                                                     <Card.Title>
                                                         <h5>{post.title}</h5>
                                                         <h6><i className='far fa-eye'></i>{post.views}</h6>

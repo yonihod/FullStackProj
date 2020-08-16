@@ -265,6 +265,11 @@ body {
   -moz-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
   box-shadow: 0 0 10px 3px rgba(168, 170, 173);
 }
+
+.home-page .card {
+  background-image: url("https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=");
+
+}
 .home-page h1 {
   /*position: relative;*/
   /*left: 0;*/
@@ -582,6 +587,7 @@ body {
   text-align: left;
 }
 .post-container .post-title {
+  text-align: center;
   color: #3fb3a0;
   font-size: 32px;
   padding-bottom: 3%;
