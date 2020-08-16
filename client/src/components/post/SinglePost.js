@@ -6,6 +6,7 @@ import UsersService from "../../services/Users";
 import TwitterService from "../../services/Twitter"
 import {Button, Spinner, Badge} from 'react-bootstrap';
 import Rating from "../post/Rating";
+import User from "../user/User";
 import SocketService from "../../services/Socket";
 
 const SinglePost = (props) => {
@@ -160,7 +161,7 @@ const SinglePost = (props) => {
             {post.appliedUsers.map(u => {
                 return <div key={u._id} className="applicant">
                     <span className="applicant-actions"> 
-                        <Link to={`/profile/${u._id}`}>{u.name}</Link>
+                        <User user={u}></User>
                         <Link to={`/rooms`}>Contact</Link>
                         <Button onClick={() => assign(u._id)}>Assign!</Button>
                     </span>
@@ -240,18 +241,19 @@ const SinglePost = (props) => {
         <div className={"post-container"}>
             <div>
                 <h1 className={"post-title"}>{post.title}</h1>
-                <div>
-                    {post.tags.map(t => <Badge className="mr-1 badge" key={t}>{t}</Badge>)}
-                </div>
+                
                 <div className={"post-details"}>
-                    <div>Owner: {post.owner?.name}</div>
+                    Owner: <User user={post.owner}></User>
+                    <div>
+                    {post.tags.map(t => <Badge className="mr-1 badge" key={t}>{t}</Badge>)}
+                    </div>
                     <div>Due Date: {new Date(post.dueDate).toLocaleDateString()}</div>
                     <div>Views: {post.views}</div>
 
                     <div>Description: {post.desc}</div>
                     <div>Status : {post.post_status}</div>
                     {post.assignedUser &&
-                    <div>Assigned Provider: {post.assignedUser?.name}{cancelProviderAssignment()}</div>}
+                    <div>Assigned Provider: <User user={post.assignedUser}></User> {cancelProviderAssignment()}</div>}
                 </div>
                 <div className={"end-alignment"}>
                     <Button className={"m-2 twitter-btn"} onClick={publish} disabled={disableTwitButton}>
