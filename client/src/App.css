@@ -199,6 +199,8 @@ body {
 #cards-container .card {
   position: relative;
   color: #49515a;
+  background-image: url("https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=");
+
 }
 #cards-container .card .manage-post {
   position: absolute;
@@ -232,7 +234,7 @@ body {
 }
 #cards-container .card .card-link .card-body .card-title {
   margin-top: 0.75rem;
-  color: #3fb3a0;
+  color: dodgerblue;
 }
 #cards-container .card .card-link .card-body .card-text {
   height: 150px;
@@ -396,7 +398,7 @@ body {
 }
 .writer-container .writer h1 {
   color: white;
-  text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
+  text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
 }
 .post-page #advanced-search-container.toggle-advanced-search .advanced-search {
   height: 500px !important;
@@ -497,13 +499,13 @@ body {
 .about .head h1 {
   font-size: 65px;
   color: white;
-  text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
+  text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
 }
 .about .head .body_text {
-  color: #49515a;
+  color: dimgrey;
 }
 .about #our-team h1 {
-  color: #3fb3a0;
+  color: dodgerblue;
   padding-top: 5%;
   padding-bottom: 1%;
   font-family: 'Dancing Script';
@@ -516,7 +518,7 @@ body {
   justify-content: center;
 }
 .about #our-team #team-container h5 {
-  color: #49515a;
+  color: dodgerblue;
 }
 .about #our-team #team-container > div {
   width: 15%;
@@ -529,7 +531,7 @@ body {
   border-radius: 5%;
 }
 .about .title {
-  color: #3fb3a0;
+  color: dodgerblue;
   padding-top: 7%;
   font-family: 'Dancing Script';
   font-size: 40px;
@@ -539,7 +541,7 @@ body {
   padding-top: 4%;
 }
 .about .chart div {
-  color: #4e555b;
+  color: deepskyblue;
   font-size: 15px;
   padding-bottom: 3%;
   text-decoration: underline;

@@ -20,7 +20,7 @@ export default class Charts extends Component {
             yLabelPosition: 'top'
         };
         this.colorScale = {
-            from: '#74c7ba',
+            from: 'dodgerblue',
             to: '#49515a'
         }
     }
