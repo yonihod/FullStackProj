@@ -5,14 +5,16 @@ import PostsService from "../../services/Posts";
 import UsersService from "../../services/Users";
 import TwitterService from "../../services/Twitter"
 import {Button, Spinner, Badge} from 'react-bootstrap';
+import Rating from "../post/Rating";
 
 const SinglePost = (props) => {
     const {user, isAuthenticated} = useAuth0();
     const [userId, setUserId] = useState();
     const [post, setPost] = useState({});
     const [disableTwitButton, setDisableTwitButton] = useState(false);
-
-
+    const [showRating, setShowRating] = useState(false);
+    const [showThanks, setShowThanks] = useState(false);
+    
     useEffect(() => {
         PostsService.getPost(props.match.params.id).then(data => {
             setPost({
@@ -38,7 +40,7 @@ const SinglePost = (props) => {
             });
         }
 
-    }, [post.id]);
+    }, [post.id, showRating, showThanks]);
 
 
     function isBelongToUser(userEmail) {
@@ -56,6 +58,7 @@ const SinglePost = (props) => {
                     onClick={() => {
                         PostsService.approveFinished(post._id).then((res) => {
                             setPost(res);
+                            setShowRating(true);
                         });
                     }}>
                     Approve Finished
@@ -194,17 +197,36 @@ const SinglePost = (props) => {
                 }}>
                 Finish Task
             </Button>
-        }else { // is pending
-            return <Button
-                onClick={() => {
-                    PostsService.finishTask(post._id).then((res) => {
-                        setPost(res);
-                    });
-                }} disabled>
+        }else {
+            return <Button disabled>
                 Pending Approval
             </Button>
         }
     } 
+
+    function rating(){
+        if (showRating)
+            return <div>
+                <div>How do you like {post?.assignedUser?.name} service?</div>
+                <Rating rateServiceProvider={rateServiceProvider}/>
+            </div>
+    }
+
+    function rateServiceProvider(newRating){
+        setShowRating(false);
+        debugger;
+        UsersService.rateUser(post.assignedUser.email, newRating).then((result) =>{
+            debugger;
+            setShowThanks(true);
+        });
+    }
+
+    function thanks(){
+        if (showThanks)
+            return <div>
+                Thank you for rating! ☺
+            </div>
+    }
 
     return (
         <div className={"post-container"}>
@@ -240,6 +262,8 @@ const SinglePost = (props) => {
             {applicantsList()}
             {isAssignedToUser() && finishTask()}
             {isBelongToUser(post.owner?.email) && approveFinished()}
+            {rating()}
+            {thanks()}
         </div>
     );
 };

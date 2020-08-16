@@ -7,11 +7,11 @@ function isEmpty(obj) {
 async function getUsers(filter) {
     let users;
     if (filter['skills']) {
-        let skillsFilter = {$regex: filter['skills'], $options: 'i'};
+        let skillsFilter = { $regex: filter['skills'], $options: 'i' };
         delete filter.skills;
         users = await User.find(filter).populate({
             path: 'skills',
-            match: {name: skillsFilter}
+            match: { name: skillsFilter }
         });
         users = users.filter(function (user) {
             return user.skills.length;
@@ -24,6 +24,33 @@ async function getUsers(filter) {
 }
 
 module.exports = (app) => {
+    app.route('/users/rateUser')
+        .put((req, res) => {
+            User.findOne({ email: req.body.email })
+                .then((data) => {
+                    const oldReviews = data.reviews ? data.reviews : 0;
+                    const newReviews = oldReviews + 1;
+                    const oldRating = data.rating ? data.rating : 0;
+                    const newRating = oldReviews == 0 ?
+                        req.body.rating :
+                        (req.body.rating + (oldRating * oldReviews)) / (newReviews);
+
+                    User.findOneAndUpdate({ email: req.body.email },
+                        { $set: { rating: newRating, reviews: newReviews } },
+                        {
+                            new: true,
+                            upsert: true
+                        }).populate('skills posts').then(data => {
+                            res.status(200).json(data);
+                        }).catch(err => {
+                            console.log(err);
+                        });
+                }).catch((err) => {
+                    console.log(err);
+                });
+        });
+
+
     app.route('/users')
         .get(async (req, res) => {
             let filter = {};
@@ -69,14 +96,14 @@ module.exports = (app) => {
 
     app.route('/users/email/:email')
         .get((req, res) => {
-            User.findOne({email: req.params.email}).populate('skills posts').then((data) => {
+            User.findOne({ email: req.params.email }).populate('skills posts').then((data) => {
                 res.status(200).json(data);
             }).catch((err) => {
                 console.log("server " + err);
             });
         })
         .put((req, res) => {
-            User.findOneAndUpdate({email: req.params.email}, req.body, {
+            User.findOneAndUpdate({ email: req.params.email }, req.body, {
                 new: true,
                 upsert: true
             }).populate('skills posts').then(data => {
@@ -86,10 +113,10 @@ module.exports = (app) => {
             });
         })
         .delete((req, res) => {
-            User.findOneAndRemove({email: req.params.email}).then(data => {
+            User.findOneAndRemove({ email: req.params.email }).then(data => {
                 res.status(200).json(data);
             }).catch(err => {
                 console.log(err);
             });
-        })
+        });
 };

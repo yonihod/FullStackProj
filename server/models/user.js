@@ -14,6 +14,14 @@ const userSchema = mongoose.Schema({
     password: {
         type: String
     },
+    rating: {
+        type: Number,
+        default: 0
+    },
+    reviews: {
+        type: Number,
+        default: 0
+    },
     skills: [{
         type: ObjectId,
         ref: 'Skill'
