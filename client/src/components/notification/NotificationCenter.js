@@ -1,44 +1,45 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Notification from "./Notification";
 import  Style from "./notification.css"
 import SocketService from "../../services/Socket";
+import {useAuth0} from "../../reactAuth0";
+import UserContext from "../../context/AppContext";
 
 
 const NotificationCenter = (props) => {
     const [notificationArr, setNotificationArr] = useState([]);
-    /**
-     * TODO: Create new notification model
-     *      notification model will look like this
-     *      {
-     *          userId,notificationType,
-     *          notificationText,notificationLink
-     *      }
-     *      on notification center mount,
-     *      get the last 8 notifications and display them
-     *      then we listen on upcoming notifications
-     *      when new notification received we add it to the array
-     *      update the view and update counter
-     *      if the number of notifications exceed 8
-     *      we delete the oldest one from the array
-     *      we will support this notifications
-     *      applyToTask- a user applied to a task i published
-     *      assignedUser - i got the job
-     *      cancel assigment
-     *      pending finish request - owner get notified
-     *      completed notification - SP notified
-     *      new message notification
-     */
+    const {dbUser} = useContext(UserContext);
     useEffect(()=> {
+
+        /**
+         * we check if need to notify, means that user exists in room and is not the sender
+         * @param users - participating users
+         * @param newMessage - new received message
+         */
+
+        const shouldNotify = (users,newMessage) => {
+            const filteredUsers = users.filter( (user) => {
+                return (user.email === dbUser.email && dbUser._id !== newMessage.sender._id)
+            });
+            return filteredUsers.length;
+        };
 
         SocketService.on('newRoomMessage', room => {
             // create new notification
-            const newMessageText = room.messages[room.messages.length -1].text;
+            // show notification if i'm not the one who is sending
+            const newMessage  = room.messages[room.messages.length -1];
+            const newMessageText = newMessage.text;
             const notification = {
                 img: "/notification/new-msg.jpg",
                 text: `You received a new message ${newMessageText}`,
                 link: "/rooms"
             };
-            setNotificationArr([...notificationArr, notification]);
+
+            if(shouldNotify(room.users,newMessage)) {
+                setNotificationArr([notification, ...notificationArr]);
+                props.onNotify();
+            }
+
         });
 
         SocketService.on('newRoom', room => {
@@ -49,9 +50,9 @@ const NotificationCenter = (props) => {
 
     return (
         <div id={"notification-center"}>
-            {notificationArr.map( (notification,index)=> {
+            {notificationArr.length ? notificationArr.map( (notification,index)=> {
                 return <Notification key={index} data={notification}/>
-            })}
+            }): <Notification data={{img: "/notification/sad404.svg", text: "Nothing To See Here", link: "/home"}}/>}
         </div>
     )
 };

@@ -15,9 +15,16 @@ const NavBar = () => {
     const {isAuthenticated, loginWithRedirect, logout, user} = useAuth0();
     const {dbUser} = useContext(UserContext);
     const [showNotification,toggleNotification] = useState(false);
+    const [notificationCounter, setNotificationCounter] = useState(0);
 
     const notificationButtonClick = () => {
         toggleNotification(!showNotification);
+        setNotificationCounter("");
+    };
+
+    const onNotify = () => {
+        const newCounter = parseInt( notificationCounter + 1 ) ;
+        setNotificationCounter(newCounter);
     };
     
     return (
@@ -33,11 +40,11 @@ const NavBar = () => {
                     <div id={"notification-container"}>
                         <div className={"icon notification-icon hvr-float-shadow"} onClick={notificationButtonClick}>
                             <FaBell/>
-                            <span className={"notification-cnt"}>11</span>
+                            {notificationCounter && notificationCounter > 0 ? <span className={"notification-cnt"}>{notificationCounter}</span> : null}
                         </div>
                         <div className={showNotification ? "notification-center-wrapper open" : "notification-center-wrapper"}>
                             <div className={"beeper"}></div>
-                            <NotificationCenter />
+                            <NotificationCenter onNotify = {onNotify} />
                         </div>
                     </div>
                 }
