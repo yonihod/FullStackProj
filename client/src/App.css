@@ -11,6 +11,14 @@
   font-weight: 400;
   src: local('Kalam'), local('Kalam-Regular'), url(https://fonts.gstatic.com/s/kalam/v10/YA9dr0Wd4kDdMthROCI.ttf) format('truetype');
 }
+
+@font-face {
+  font-family: 'Cookie';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Cookie'), url(http://fonts.googleapis.com/css?family=Cookie) format('truetype');
+}
+
 @keyframes fadeOut {
   0% {
     visibility: visible;
@@ -397,6 +405,7 @@ body {
   color: #49515a;
 }
 .writer-container .writer h1 {
+  font-family: 'Cookie', Helvetica, sans-serif;;
   color: white;
   text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
 }
@@ -607,7 +616,7 @@ body {
   justify-content: flex-end;
 }
 .post-container .twitter-btn {
-  background-color: #3fb3a0;
+  background-color: dodgerblue;
   border-color: #3fb3a0;
 }
 .post-container .post-actions {
