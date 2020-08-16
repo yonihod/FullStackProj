@@ -3,9 +3,19 @@ import PostsService from "../../services/Posts";
 import SocketService from '../../services/Socket';
 import PostBox from "../post/PostBox";
 import Success from "../post/Success";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "../../App.css";
 import Typist from 'react-typist';
 import {InputGroup,FormControl,Dropdown,DropdownButton} from "react-bootstrap"
+
+import Slider from 'react-slick';
+import Card, {CardBody, CardTitle} from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
+import CardContext from "react-bootstrap/cjs/CardContext";
+import {Link} from "react-router-dom";
+
 
 export default class Home extends Component {
     // const {isAuthenticated, user} = useAuth0();
@@ -54,40 +64,40 @@ export default class Home extends Component {
     };
 
     onChange = e => {
-        this.setState({search: e.target.value })
+        this.setState({search: e.target.value})
     };
 
-    onKeyPress  = e => {
-        if(!this.state.toggleAdvancedSearch && e.target.value === ""){
+    onKeyPress = e => {
+        if (!this.state.toggleAdvancedSearch && e.target.value === "") {
             this.getPosts();
         }
     };
 
-    renderPost = (post,index) => {
+    renderPost = (post, index) => {
         if (this.state.posts.length) {
             return <PostBox obj={post} key={index}/>
         }
     };
-    sortByDueDate = (date1,date2) => {
-        if(this.state.posts.length) {
-            let date1_ = new Date(date1.dueDate) , date2_ = new Date(date2.dueDate);
-            if(isNaN(date1_)){
+    sortByDueDate = (date1, date2) => {
+        if (this.state.posts.length) {
+            let date1_ = new Date(date1.dueDate), date2_ = new Date(date2.dueDate);
+            if (isNaN(date1_)) {
                 date1_ = 0;
             }
-            if(isNaN(date2_)){
+            if (isNaN(date2_)) {
                 date2_ = 0
             }
-            return date2_-date1_;
+            return date2_ - date1_;
         }
     };
 
-    sortByCreatedAt = (date1,date2) => {
-        if(this.state.posts.length) {
+    sortByCreatedAt = (date1, date2) => {
+        if (this.state.posts.length) {
             let date1_ = new Date(date1.createdAt).getTime(), date2_ = new Date(date2.createdAt).getTime();
-            if(isNaN(date1_)){
+            if (isNaN(date1_)) {
                 date1_ = 0;
             }
-            if(isNaN(date2_)){
+            if (isNaN(date2_)) {
                 date2_ = 0
             }
             return date1_ - date2_;
@@ -105,36 +115,46 @@ export default class Home extends Component {
         }
     }
 
-    setOrderBy = ( (order) => {
-        this.setState({orderBy:order})
+    setOrderBy = ((order) => {
+        this.setState({orderBy: order})
     });
 
-    handleAdvancedSearch = (filter) =>{
-        this.setState({toggleAdvancedSearch:false});
-        PostsService.getPosts(filter).then( (res) => {
+    handleAdvancedSearch = (filter) => {
+        this.setState({toggleAdvancedSearch: false});
+        PostsService.getPosts(filter).then((res) => {
             this.setState({posts: res});
-        }).catch( (err) => {
+        }).catch((err) => {
             console.log(err)
         })
     };
+
 
     render() {
         const {orderBy} = this.state;
         const {search} = this.state;
 
         var filteredPosts = [];
-        if(this.state?.posts && this.state.posts.length) {
+        if (this.state?.posts && this.state.posts.length) {
             filteredPosts = this.state.posts.filter((post => {
                 return post.views > 1
                 // return post?.title?.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
                 //     post?.description?.toLowerCase().indexOf(search.toLowerCase()) !== -1
             })).sort(orderBy);
+
+
+            console.clear();
         }
 
-        return (
+        const settings = {
 
-
-            <div className={"post-page"}>
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll: 1
+        };
+    return (
+            <Container className={"post-page"}>
                 {this.state.done ? <Success value={this.state}/> : null}
                 <div className={"writer-container"}>
                     <h1>
@@ -146,43 +166,96 @@ export default class Home extends Component {
                     {/*</video>*/}
                 </div>
 
-
-                {/*<div id="posts-container">*/}
-                {/*    <div className="profile-img"></div>*/}
-                {/*    <h1>*/}
-                {/*        Maddie*/}
-                {/*    </h1>*/}
-                {/*    <div className="description">*/}
-                {/*        Maddie is a front end web developer in New York. She has worked in the field for 10 years now.*/}
-                {/*        Check out her projects in the links below. She is available for hire as well.*/}
-                {/*    </div>*/}
-                {/*    <div className="social">*/}
-                {/*        <a>GitHub</a>*/}
-                {/*        <a>Twitter</a>*/}
-                {/*        <a>LinkedIn</a>*/}
-                {/*    </div>*/}
-                {/*    <button>Hire Me</button>*/}
-                {/*    <footer>*/}
-                {/*        <div className="likes">*/}
-                {/*            <p><i className='fa fa-heart'></i></p>*/}
-                {/*            <p>1.5K</p>*/}
-                {/*        </div>*/}
-                {/*        <div className="projects">*/}
-                {/*            <p>Projects</p>*/}
-                {/*            <p>154</p>*/}
-                {/*        </div>*/}
-                {/*    </footer>*/}
-                {/*</div>*/}
-
-                <div id="cards-container">
-                    {filteredPosts.map ((post,index)=>{
-                        return this.renderPost(post,index)
-                    })}
+                <div class="popularPosts">
+                    <h4 className="float-left">Most Popular</h4>
+                    <Link className="float-right" to="/">see all</Link>
                 </div>
-            </div>
-        );
+                <br/>
+                <Slider {... settings}>
+                    {filteredPosts.map(function (post) {
+                        console.log(post);
+                        return (
+                            <React.Fragment>
+                                <Col>
+                                    <Card>
+                                        <h6>{post.title}</h6>
+                                        <p>{post.description}</p>
+
+                                    </Card>
+
+                                </Col>
+
+                            </React.Fragment>
+                        );
+                    })}
+
+
+                </Slider>
+            </Container> );
     }
+
 }
+
+        {/*<div id="posts-container">*/}
+        {/*    <div className="profile-img"></div>*/}
+        {/*    <h1>*/}
+        {/*        Maddie*/}
+        {/*    </h1>*/}
+        {/*    <div className="description">*/}
+        {/*        Maddie is a front end web developer in New York. She has worked in the field for 10 years now.*/}
+        {/*        Check out her projects in the links below. She is available for hire as well.*/}
+        {/*    </div>*/}
+        {/*    <div className="social">*/}
+        {/*        <a>GitHub</a>*/}
+        {/*        <a>Twitter</a>*/}
+        {/*        <a>LinkedIn</a>*/}
+        {/*    </div>*/}
+        {/*    <button>Hire Me</button>*/}
+        {/*    <footer>*/}
+        {/*        <div className="likes">*/}
+        {/*            <p><i className='fa fa-heart'></i></p>*/}
+        {/*            <p>1.5K</p>*/}
+        {/*        </div>*/}
+        {/*        <div className="projects">*/}
+        {/*            <p>Projects</p>*/}
+        {/*            <p>154</p>*/}
+        {/*        </div>*/}
+        {/*    </footer>*/}
+        {/*</div>*/}
+
+        {/*<Carousel*/}
+        {/*    swipeable={false}*/}
+        {/*    draggable={false}*/}
+        {/*    showDots={true}*/}
+        {/*    responsive={this.responsive}*/}
+        {/*    ssr={true} // means to render carousel on server-side.*/}
+        {/*    infinite={true}*/}
+        {/*    autoPlay={this.props.deviceType !== "mobile" ? true : false}*/}
+        {/*    autoPlaySpeed={1000}*/}
+        {/*    keyBoardControl={true}*/}
+        {/*    customTransition="all .5"*/}
+        {/*    transitionDuration={500}*/}
+        {/*    containerClass="carousel-container"*/}
+        {/*    removeArrowOnDeviceType={["tablet", "mobile"]}*/}
+        {/*    deviceType={this.props.deviceType}*/}
+        {/*    dotListClass="custom-dot-list-style"*/}
+        {/*    itemClass="carousel-item-padding-40-px"*/}
+
+
+        {/*>*/}
+        {/*    <div>item 1</div>*/}
+        {/*    <div>item 1</div>*/}
+        {/*    <div>item 1</div>*/}
+        {/*    <div>item 1</div>*/}
+        {/*</Carousel>;*/}
+
+// <div id="cards-container">
+//     {filteredPosts.map((post, index) => {
+//         return this.renderPost(post, index)
+//     })}
+// </div>
+
+
 
 
 

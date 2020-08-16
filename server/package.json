@@ -20,6 +20,7 @@
     "morgan": "~1.9.1",
     "natural": "^0.6.3",
     "nodemon": "^2.0.2",
+    "react-carousel-slider": "^2.0.13",
     "socket.io": "^2.3.0",
     "twit": "^2.2.11"
   }
