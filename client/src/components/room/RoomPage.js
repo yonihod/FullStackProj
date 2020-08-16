@@ -83,6 +83,7 @@ const Room = (props) => {
 
         SocketService.on('newRoomMessage', room => {
             if (rooms.map(x => x._id).includes(room._id)) {
+
                 const index = rooms.findIndex((value) => {
                     return value._id === room._id
                 });
