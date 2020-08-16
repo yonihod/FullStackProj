@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../App.css";
 import Typist from 'react-typist';
-import {InputGroup,FormControl,Dropdown,DropdownButton} from "react-bootstrap"
+import {InputGroup, FormControl, Dropdown, DropdownButton, Badge} from "react-bootstrap"
 
 import Slider from 'react-slick';
 import Card, {CardBody, CardTitle} from "react-bootstrap/Card";
@@ -153,7 +153,7 @@ export default class Home extends Component {
             slidesToShow: 4,
             slidesToScroll: 1
         };
-    return (
+        return (
             <Container className={"post-page"}>
                 {this.state.done ? <Success value={this.state}/> : null}
                 <div className={"writer-container"}>
@@ -166,9 +166,9 @@ export default class Home extends Component {
                     {/*</video>*/}
                 </div>
 
-                <div class="popularPosts">
+                <div class="popularPosts mt-5 mb-2">
                     <h4 className="float-left">Most Popular</h4>
-                    <Link className="float-right" to="/">see all</Link>
+                    <Link className="float-right text-uppercase" to="/">see all</Link>
                 </div>
                 <br/>
                 <Slider {... settings}>
@@ -178,9 +178,24 @@ export default class Home extends Component {
                             <React.Fragment>
                                 <Col>
                                     <Card>
-                                        <h6>{post.title}</h6>
-                                        <p>{post.description}</p>
+                                        <Link className={"card-link"} to={`/posts/${post._id}`}>
+                                            <Card.Body>
+                                                <Card.Title>
+                                                    <h5>{post.title}</h5>
+                                                    <h6><i className='far fa-eye'></i>{post.views}</h6>
+                                                </Card.Title>
+                                                <p>
+                                                    {post.tags?.map(t => <Badge className="mr-1 badge" key={t}>{t}</Badge>)}
+                                                </p>
+                                                <Card.Text>
+                                                    <div className="card-description">
+                                                        {post.description}
+                                                    </div>
+                                                </Card.Text>
 
+
+                                            </Card.Body>
+                                        </Link>
                                     </Card>
 
                                 </Col>
@@ -196,58 +211,58 @@ export default class Home extends Component {
 
 }
 
-        {/*<div id="posts-container">*/}
-        {/*    <div className="profile-img"></div>*/}
-        {/*    <h1>*/}
-        {/*        Maddie*/}
-        {/*    </h1>*/}
-        {/*    <div className="description">*/}
-        {/*        Maddie is a front end web developer in New York. She has worked in the field for 10 years now.*/}
-        {/*        Check out her projects in the links below. She is available for hire as well.*/}
-        {/*    </div>*/}
-        {/*    <div className="social">*/}
-        {/*        <a>GitHub</a>*/}
-        {/*        <a>Twitter</a>*/}
-        {/*        <a>LinkedIn</a>*/}
-        {/*    </div>*/}
-        {/*    <button>Hire Me</button>*/}
-        {/*    <footer>*/}
-        {/*        <div className="likes">*/}
-        {/*            <p><i className='fa fa-heart'></i></p>*/}
-        {/*            <p>1.5K</p>*/}
-        {/*        </div>*/}
-        {/*        <div className="projects">*/}
-        {/*            <p>Projects</p>*/}
-        {/*            <p>154</p>*/}
-        {/*        </div>*/}
-        {/*    </footer>*/}
-        {/*</div>*/}
+{/*<div id="posts-container">*/}
+{/*    <div className="profile-img"></div>*/}
+{/*    <h1>*/}
+{/*        Maddie*/}
+{/*    </h1>*/}
+{/*    <div className="description">*/}
+{/*        Maddie is a front end web developer in New York. She has worked in the field for 10 years now.*/}
+{/*        Check out her projects in the links below. She is available for hire as well.*/}
+{/*    </div>*/}
+{/*    <div className="social">*/}
+{/*        <a>GitHub</a>*/}
+{/*        <a>Twitter</a>*/}
+{/*        <a>LinkedIn</a>*/}
+{/*    </div>*/}
+{/*    <button>Hire Me</button>*/}
+{/*    <footer>*/}
+{/*        <div className="likes">*/}
+{/*            <p><i className='fa fa-heart'></i></p>*/}
+{/*            <p>1.5K</p>*/}
+{/*        </div>*/}
+{/*        <div className="projects">*/}
+{/*            <p>Projects</p>*/}
+{/*            <p>154</p>*/}
+{/*        </div>*/}
+{/*    </footer>*/}
+{/*</div>*/}
 
-        {/*<Carousel*/}
-        {/*    swipeable={false}*/}
-        {/*    draggable={false}*/}
-        {/*    showDots={true}*/}
-        {/*    responsive={this.responsive}*/}
-        {/*    ssr={true} // means to render carousel on server-side.*/}
-        {/*    infinite={true}*/}
-        {/*    autoPlay={this.props.deviceType !== "mobile" ? true : false}*/}
-        {/*    autoPlaySpeed={1000}*/}
-        {/*    keyBoardControl={true}*/}
-        {/*    customTransition="all .5"*/}
-        {/*    transitionDuration={500}*/}
-        {/*    containerClass="carousel-container"*/}
-        {/*    removeArrowOnDeviceType={["tablet", "mobile"]}*/}
-        {/*    deviceType={this.props.deviceType}*/}
-        {/*    dotListClass="custom-dot-list-style"*/}
-        {/*    itemClass="carousel-item-padding-40-px"*/}
+{/*<Carousel*/}
+{/*    swipeable={false}*/}
+{/*    draggable={false}*/}
+{/*    showDots={true}*/}
+{/*    responsive={this.responsive}*/}
+{/*    ssr={true} // means to render carousel on server-side.*/}
+{/*    infinite={true}*/}
+{/*    autoPlay={this.props.deviceType !== "mobile" ? true : false}*/}
+{/*    autoPlaySpeed={1000}*/}
+{/*    keyBoardControl={true}*/}
+{/*    customTransition="all .5"*/}
+{/*    transitionDuration={500}*/}
+{/*    containerClass="carousel-container"*/}
+{/*    removeArrowOnDeviceType={["tablet", "mobile"]}*/}
+{/*    deviceType={this.props.deviceType}*/}
+{/*    dotListClass="custom-dot-list-style"*/}
+{/*    itemClass="carousel-item-padding-40-px"*/}
 
 
-        {/*>*/}
-        {/*    <div>item 1</div>*/}
-        {/*    <div>item 1</div>*/}
-        {/*    <div>item 1</div>*/}
-        {/*    <div>item 1</div>*/}
-        {/*</Carousel>;*/}
+{/*>*/}
+{/*    <div>item 1</div>*/}
+{/*    <div>item 1</div>*/}
+{/*    <div>item 1</div>*/}
+{/*    <div>item 1</div>*/}
+{/*</Carousel>;*/}
 
 // <div id="cards-container">
 //     {filteredPosts.map((post, index) => {
