@@ -149,7 +149,7 @@ export default class Home extends Component {
 
             dots: true,
             infinite: true,
-            speed: 500,
+            speed: 400,
             slidesToShow: 4,
             slidesToScroll: 1
         };
@@ -171,41 +171,41 @@ export default class Home extends Component {
                     <Link className="float-right text-uppercase" to="/">see all</Link>
                 </div>
                 <br/>
-                <Slider {... settings}>
-                    {filteredPosts.map(function (post) {
-                        console.log(post);
-                        return (
-                            <React.Fragment>
-                                <Col>
-                                    <Card>
-                                        <Link className={"card-link"} to={`/posts/${post._id}`}>
-                                            <Card.Body>
-                                                <Card.Title>
-                                                    <h5>{post.title}</h5>
-                                                    <h6><i className='far fa-eye'></i>{post.views}</h6>
-                                                </Card.Title>
-                                                <p>
-                                                    {post.tags?.map(t => <Badge className="mr-1 badge" key={t}>{t}</Badge>)}
-                                                </p>
-                                                <Card.Text>
-                                                    <div className="card-description">
-                                                        {post.description}
-                                                    </div>
-                                                </Card.Text>
+                <Container className="slider-show ml-5 float-left" >
+                    <Slider {... settings} class="float-left">
+                        {filteredPosts.map(function (post) {
+                            console.log(post);
+                            return (
+                                <React.Fragment>
+                                    <Col>
+                                        <Card className="slider-card">
+
+                                            <Link className={"card-link"} to={`/posts/${post._id}`}>
+                                                <Card.Body>
+                                                    <Card.Title>
+                                                        <h5>{post.title}</h5>
+                                                        <h6><i className='far fa-eye'></i>{post.views}</h6>
+                                                    </Card.Title>
+
+                                                    <Card.Text>
+                                                        <div className="card-description">
+                                                            {post.description}
+                                                        </div>
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Link>
+                                        </Card>
+
+                                    </Col>
+
+                                </React.Fragment>
+                            );
+                        })}
 
 
-                                            </Card.Body>
-                                        </Link>
-                                    </Card>
+                    </Slider>
+                </Container>
 
-                                </Col>
-
-                            </React.Fragment>
-                        );
-                    })}
-
-
-                </Slider>
             </Container> );
     }
 
