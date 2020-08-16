@@ -87,7 +87,11 @@ export default class CreatePost extends Component {
 
     render() {
         return (
+
             <div className={"w-50 mt-4 ml-auto mr-auto"}>
+                <div id="create-post-background">
+                    <img src="https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=" className="stretch" alt=""/>
+                </div>
                 <h1>Submit Form</h1>
                 <div className="form-wrapper">
                     {!this.state.done && (
