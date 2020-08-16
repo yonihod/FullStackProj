@@ -137,7 +137,7 @@ export default class Home extends Component {
         var filteredPosts = [];
         if (this.state?.posts && this.state.posts.length) {
             filteredPosts = this.state.posts.filter((post => {
-                return post.views > 1
+                return post.views > 5
                 // return post?.title?.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
                 //     post?.description?.toLowerCase().indexOf(search.toLowerCase()) !== -1
             })).sort(orderBy);
