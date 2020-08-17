@@ -89,7 +89,7 @@ export default class CreatePost extends Component {
         return (
 
             <div className="create-post w-50 mt-4 ml-auto mr-auto">
-                <h1>Submit Form</h1>
+                <h1>Create Post</h1>
                 <div className="form-wrapper">
                     {!this.state.done && (
                         <Form validated={this.state.validated} onSubmit={this.handleSubmit.bind(this)}>
@@ -114,7 +114,7 @@ export default class CreatePost extends Component {
                             </Form.Group>
 
                             <Button type="submit" variant="secondary" size="lg" block="block">
-                                Create Post
+                                Create
                             </Button>
                         </Form>)}
                 </div>

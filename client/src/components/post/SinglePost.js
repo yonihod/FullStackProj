@@ -191,6 +191,8 @@ const SinglePost = (props) => {
             userId &&
             post &&
             post.assignedUser &&
+            post.post_status !== "PENDING" &&
+            post.post_status !== "COMPLETED" &&
             userId === post.owner?._id)
             return <Button
                 onClick={() => {

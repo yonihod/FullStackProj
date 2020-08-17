@@ -31,7 +31,7 @@ const NavBar = () => {
         <Navbar bg="dark" variant="dark">
             <Navbar.Brand className={"brand"}><Link to={"/"}><img id="logo" src="/logo.png" alt="logo"/></Link></Navbar.Brand>
             <Nav className={"hvr-float-shadow"}><Link to={"/posts"} className="nav-link">Posts</Link></Nav>
-            <Nav className={"hvr-float-shadow"}><Link to={"/create-post"} className="nav-link">Create a post</Link></Nav>
+            <Nav className={"hvr-float-shadow"}><Link to={"/create-post"} className="nav-link">Create Post</Link></Nav>
             <Nav className={"hvr-float-shadow"}><Link to={"/service-providers"} className="nav-link">Service providers</Link></Nav>
             <Nav className={"hvr-float-shadow"}><Link to={"/about-us"} className="nav-link">About</Link></Nav>
             <Nav className="user-bar ml-auto">
