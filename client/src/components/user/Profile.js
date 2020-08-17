@@ -70,9 +70,6 @@ const Profile = (props) => {
 
     return (
         <div className="profile">
-            <div id="background">
-                <img src="https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=" className="stretch" alt=""/>
-            </div>
             <header>
                 <h1>{profile?.name}'s Profile</h1>
             </header>

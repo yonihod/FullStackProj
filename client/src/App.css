@@ -11,14 +11,6 @@
   font-weight: 400;
   src: local('Kalam'), local('Kalam-Regular'), url(https://fonts.gstatic.com/s/kalam/v10/YA9dr0Wd4kDdMthROCI.ttf) format('truetype');
 }
-
-@font-face {
-  font-family: 'Cookie';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Cookie'), url(http://fonts.googleapis.com/css?family=Cookie) format('truetype');
-}
-
 @keyframes fadeOut {
   0% {
     visibility: visible;
@@ -207,8 +199,6 @@ body {
 #cards-container .card {
   position: relative;
   color: #49515a;
-  background-image: url("https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=");
-
 }
 #cards-container .card .manage-post {
   position: absolute;
@@ -242,7 +232,7 @@ body {
 }
 #cards-container .card .card-link .card-body .card-title {
   margin-top: 0.75rem;
-  color: dodgerblue;
+  color: #3fb3a0;
 }
 #cards-container .card .card-link .card-body .card-text {
   height: 150px;
@@ -269,81 +259,45 @@ body {
   pointer-events: initial;
   z-index: 1;
 }
-
-.home-page .card:hover{
-  -webkit-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
-  box-shadow: 0 0 10px 3px rgba(168, 170, 173);
-}
-
-.home-page .card {
-  background-image: url("https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=");
-
-}
-.home-page h1 {
-  /*position: relative;*/
-  /*left: 0;*/
-  /*z-index: 1;*/
-  /*margin: auto;*/
-  /*color: #ffffff;*/
-  /*width: fit-content;*/
-  /*padding-bottom: 30px;*/
-  /*border-radius: 0 0 5px 5px;*/
+.home h1 {
+  position: relative;
+  left: 0;
+  z-index: 1;
+  margin: auto;
+  color: #ffffff;
+  width: fit-content;
+  padding-bottom: 30px;
+  border-radius: 0 0 5px 5px;
   font-family: 'Dancing Script';
   font-size: 6.5rem;
-  /*text-shadow: 4px 2px #3fb3a0;*/
-  position: relative;
-  font-size: 70px;
-  /*font-family: 'Lobster', helvetica, arial;*/
-  text-decoration: none;
-  color: #666;
-
-  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), color-stop(50%, rgba(0,0,0,.5)), to(rgba(0,0,0,1)));
-
-
+  text-shadow: 4px 2px #3fb3a0;
 }
-
-
-/*.home-page{*/
-/*  background-image: url("https://cutewallpaper.org/21/hd-website-backgrounds/Hd-Images-For-Website-Background-Best-Background-Images-.png");*/
-/*  background-repeat: no-repeat;*/
-/*  background-size: cover;*/
-/*  */
-
-/*}*/
-
-.home-page #background {
-  width: 100%;
-  height: 100%;
+.home #home-video {
   position: fixed;
-  left: 0px;
-  top: 0px;
-  z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
-}
-
-.home-page #background .stretch {
-  width:100%;
-  height:100%;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 .profile header h1 {
-  text-align: center;
+  text-align: left;
   padding-top: 1rem;
   padding-bottom: 3rem;
   color: white;
-  text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
+  text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
 }
 .profile h2 {
   text-align: left;
-  color: dodgerblue;
+  color: #3fb3a0;
 }
 .profile h3 {
-  color: dodgerblue;
-  background-color: lightgrey;
+  color: white;
+  background-color: #3fb3a0;
   padding: 0.5rem;
 }
 .profile h4 {
   text-align: left;
-  color: dodgerblue;
+  color: #3fb3a0;
 }
 .profile h5 {
   text-align: left;
@@ -405,12 +359,8 @@ body {
   color: #49515a;
 }
 .writer-container .writer h1 {
-  font-family: 'Cookie', Helvetica, sans-serif;;
   color: white;
-  text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
-}
-.writer-container .writer h4 {
-  color: dimgrey;
+  text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
 }
 .post-page #advanced-search-container.toggle-advanced-search .advanced-search {
   height: 500px !important;
@@ -511,13 +461,13 @@ body {
 .about .head h1 {
   font-size: 65px;
   color: white;
-  text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
+  text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
 }
 .about .head .body_text {
-  color: dimgrey;
+  color: #49515a;
 }
 .about #our-team h1 {
-  color: dodgerblue;
+  color: #3fb3a0;
   padding-top: 5%;
   padding-bottom: 1%;
   font-family: 'Dancing Script';
@@ -530,7 +480,7 @@ body {
   justify-content: center;
 }
 .about #our-team #team-container h5 {
-  color: dodgerblue;
+  color: #49515a;
 }
 .about #our-team #team-container > div {
   width: 15%;
@@ -543,7 +493,7 @@ body {
   border-radius: 5%;
 }
 .about .title {
-  color: dodgerblue;
+  color: #3fb3a0;
   padding-top: 7%;
   font-family: 'Dancing Script';
   font-size: 40px;
@@ -553,7 +503,7 @@ body {
   padding-top: 4%;
 }
 .about .chart div {
-  color: deepskyblue;
+  color: #4e555b;
   font-size: 15px;
   padding-bottom: 3%;
   text-decoration: underline;
@@ -596,27 +546,94 @@ body {
   margin-right: 1rem;
 }
 .post-container {
+  background: #e0ffff;
+  padding: 2rem 1.5rem;
   width: 70%;
   margin: 2% auto;
   text-align: left;
 }
 .post-container .post-title {
-  text-align: center;
-  color: dodgerblue;
+  color: #3fb3a0;
   font-size: 32px;
   padding-bottom: 3%;
+}
+.post-container .applicants-container {
+  display: flex;
+  gap: 2rem;
+}
+.post-container .applicants-container .applicant-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  flex-wrap: wrap;
+}
+.post-container .applicants-container .applicant-actions .user-link {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+.post-container .applicants-container .applicant-actions .actions-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.post-container .applicants-container .applicant-actions .actions-container .contact,
+.post-container .applicants-container .applicant-actions .actions-container .assign {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.post-container .applicants-container .applicant-actions .actions-container .assign {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
 }
 .post-container .post-details {
   color: #4e555b;
   font-size: 20px;
-  padding-bottom: 5%;
+  flex-wrap: wrap;
+}
+.post-container .post-details .user-link {
+  width: 100%;
+}
+.post-container .post-details .small {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 1.24rem;
+  flex-wrap: wrap;
+  font-size: 0.75em;
+  background: #343a40;
+  border-radius: 4px;
+  padding: 6px 0;
+  color: #fff;
+}
+.post-container .post-details .small .post-status {
+  box-sizing: content-box;
+}
+.post-container .post-details .small .active {
+  color: #28a745;
+}
+.post-container .post-details .small .pending {
+  color: orange;
+}
+.post-container .post-details .small .completed {
+  color: #0066ff;
+}
+.post-container .post-details .tags {
+  margin: 1.25rem;
+  display: flex;
+  text-align: center;
+}
+.post-container .desc {
+  overflow-y: auto;
+  min-height: 15vh;
+  padding: 10px;
+  line-height: 32px;
 }
 .post-container .end-alignment {
   display: flex;
   justify-content: flex-end;
 }
 .post-container .twitter-btn {
-  background-color: dodgerblue;
+  background-color: #3fb3a0;
   border-color: #3fb3a0;
 }
 .post-container .post-actions {
@@ -635,105 +652,26 @@ body {
 .post-container .post-actions .delete {
   background: #dc3545;
 }
-/*# sourceMappingURL=App.css.map */
-
-.slider-card{
-  margin: 1rem;
+.MyCarousel {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex: 1;
+  justifyContent: center;
+  alignItems: middle;
+}
+.MyCarousel {
+  height: 200px;
   width: 200px;
-  height: 300px;
-  /*padding: .5rem 1rem;*/
-  /*background-color: #f9f9f9;*/
-  /*!*border-radius: 8px;*!*/
-  /*box-shadow: 0 12px 32px 4px;*/
-  /*display: flex;*/
-  /*!*flex-direction: column;*!*/
-  /*!*justify-content: center;*!*/
-  /*!*align-items: center;*!*/
-  /*transition: .2s;*/
+  paddingTop: 80px;
+  textAlign: center;
+  background: #52C0F5;
+  color: #FFF;
+  fontFamily: sans-serif;
+  fontSize: 12px;
+  textTransform: uppercase;
+  borderRadius: 10px;
+  boxSizing: border-box;
 }
-#create-post-background{
-
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
-}
-
-#create-post-background .stretch {
-  width:100%;
-  height:100%;
-}
-
-.post-page #background{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
-}
-
-.post-page #background .stretch {
-  width:100%;
-  height:100%;
-}
-
-
-.about #background{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
-}
-
-.about #background .stretch {
-  width:100%;
-  height:100%;
-}
-
-.list-users #background{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
-}
-.list-users #background .stretch {
-  width:100%;
-  height:100%;
-}
-
-.profile #background{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
-}
-.profile #background .stretch {
-  width:100%;
-  height:100%;
-}
-
-.post-container #background{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
-}
-.post-container #background .stretch {
-  width:100%;
-  height:100%;
-}
-
-.create-post h1{
-  color: dodgerblue;
-}
+/*# sourceMappingURL=App.css.map */

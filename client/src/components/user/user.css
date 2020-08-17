@@ -1,0 +1,65 @@
+.user-link {
+  text-decoration: none;
+}
+.user-link:hover {
+  text-decoration: none;
+}
+.user-link a {
+  text-decoration: none;
+}
+.user-link a:hover {
+  text-decoration: none;
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 1.25rem;
+  border-radius: 15px;
+  width: min-content;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 1px solid;
+}
+.user.sm img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.user.sm h5 {
+  margin-left: 10px;
+}
+
+.user.md {
+  width: 100%;
+  background: #343a40;
+  padding: 0.75rem 1rem;
+  border: none;
+  box-shadow: none;
+}
+.user.md img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.user.md h5 {
+  margin-top: 25px;
+  color: #ffffff;
+}
+
+.user.xs {
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  gap: 10px;
+}
+.user.xs img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+/*# sourceMappingURL=user.css.map */

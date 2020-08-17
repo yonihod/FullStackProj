@@ -651,6 +651,8 @@ html, body {
 }
 
 .post-container {
+  background: #e0ffff;
+  padding: 2rem 1.5rem;
   width: 70%;
   margin: 2% auto;
   text-align: left;
@@ -661,10 +663,76 @@ html, body {
     padding-bottom: 3%;
   }
 
+  .applicants-container {
+    display: flex;
+    gap: 2rem;
+    .applicant-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      flex-wrap: wrap;
+      .user-link {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+      .actions-container {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        .contact,.assign {
+          padding: 8px 10px;
+          cursor: pointer;
+        }
+        .assign {
+          color: #fff;
+          background-color: #28a745;
+          border-color: #28a745;
+        }
+      }
+    }
+  }
+
   .post-details {
     color: #4e555b;
     font-size: 20px;
-    padding-bottom: 5%;
+    flex-wrap: wrap;
+    .user-link {
+      width: 100%;
+    }
+    .small {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      gap: 1.24rem;
+      flex-wrap: wrap;
+      font-size: 0.75em;
+      background: #343a40;
+      border-radius: 4px;
+      padding: 6px 0;
+      color: #fff;
+      .post-status {
+        box-sizing: content-box;
+      }
+      .active {
+        color: #28a745;
+      }
+      .pending {
+        color: orange;
+      }
+      .completed {
+        color: #0066ff;
+      }
+    }
+    .tags {
+      margin: 1.25rem;
+      display: flex;
+      text-align: center;
+    }
+  }
+  .desc {
+    overflow-y: auto;
+    min-height: 15vh;
+    padding: 10px;
+    line-height: 32px;
   }
 
   .end-alignment {
@@ -713,7 +781,7 @@ html, body {
 }
 
 
-.MyCarousel .CARD_STYLE() {
+.MyCarousel {
   height: 200px;
   width: 200px;
   paddingTop: 80px;

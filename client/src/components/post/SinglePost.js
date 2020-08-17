@@ -158,15 +158,25 @@ const SinglePost = (props) => {
         return <div>
             <h3>Applicants</h3>
             <hr/>
-            {post.appliedUsers.map(u => {
-                return <div key={u._id} className="applicant">
-                    <span className="applicant-actions"> 
-                        <User user={u}></User>
-                        <Link to={`/rooms`}>Contact</Link>
-                        <Button onClick={() => assign(u._id)}>Assign!</Button>
-                    </span>
-                </div>
-            })}
+            <div className={"applicants-container"}>
+                {post.appliedUsers.map(u => {
+                    return <div key={u._id} className="applicant">
+                        <span className="applicant-actions">
+                            <User user={u}></User>
+                            <div className={"actions-container"}>
+                                <Link to={`/rooms`}>
+                                <Button className={"contact"} variant={"primary"}>
+                                    <i className="fas fa-phone"></i>
+                                </Button>
+                            </Link>
+                            <Button className={"assign"} onClick={() => assign(u._id)}>
+                                <i className="fas fa-check"></i>
+                            </Button>
+                            </div>
+                        </span>
+                    </div>
+                })}
+            </div>
         </div>
     }
 
@@ -239,22 +249,24 @@ const SinglePost = (props) => {
     return (
 
         <div className={"post-container"}>
-            <div id="background">
-                <img src="https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=" className="stretch" alt=""/>
-            </div>
             <div>
                 <h1 className={"post-title"}>{post.title}</h1>
                 
                 <div className={"post-details"}>
-                    Owner: <User user={post.owner}></User>
-                    <div>
-                    {post.tags.map(t => <Badge className="mr-1 badge" key={t}>{t}</Badge>)}
+                    <User user={post.owner} size={"md"}></User>
+                    <div className={"small"}>
+                        <div><small><strong>Due Date: {new Date(post.dueDate).toLocaleDateString()}</strong></small></div>
+                        <div><small>Views: {post.views}</small></div>
+                        <div className={post.post_status.toLowerCase() + " post-status"}><small><span className={"status"}>{post.post_status}</span></small></div>
                     </div>
-                    <div>Due Date: {new Date(post.dueDate).toLocaleDateString()}</div>
-                    <div>Views: {post.views}</div>
-
-                    <div>Description: {post.desc}</div>
-                    <div>Status : {post.post_status}</div>
+                    <div className={"tags"}>
+                        <small>
+                            {post.tags.map(t => <Badge className="mr-1 badge" variant={"primary"} key={t}>{t}</Badge>)}
+                        </small>
+                    </div>
+                </div>
+                <div className={"post-body"}>
+                    <div className={"desc"}>Description: {post.desc}</div>
                     {post.assignedUser &&
                     <div>Assigned Provider: <User user={post.assignedUser}></User> {cancelProviderAssignment()}</div>}
                 </div>
