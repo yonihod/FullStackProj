@@ -113,6 +113,7 @@ export default class UserList extends Component {
                         <th>Email</th>
                         <th>Skills</th>
                         <th>Rating</th>
+                        <th>Reviews</th>
                     </tr>
                     </thead>
                     <tbody>

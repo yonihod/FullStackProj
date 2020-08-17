@@ -12,7 +12,8 @@ export default class UserTableRow extends Component {
                 </td>
                 <td>{this.props.obj.email}</td>
                 <td>{this.props.obj.skills.map(x => x.name).join(', ')}</td>
-                <td>{this.props.obj.rating ? this.props.obj.rating.toFixed(1) : 0}</td>
+                <td>{this.props.obj.rating ? this.props.obj.rating.toFixed(1) : 0}⭐</td>
+                <td>{this.props.obj.rating ? this.props.obj.reviews : 0}</td>
             </tr>
         )
     }
