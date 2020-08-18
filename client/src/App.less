@@ -138,11 +138,15 @@ html, body {
 }
 
 .footer {
-  bottom: 0;
-  position: absolute;
+
   height: 2.5rem;
   color: #f3f3f3d1;
   line-height: 2.5rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 
 .react-autosuggest__container {
@@ -307,6 +311,7 @@ html, body {
     //font-family: 'Dancing Script';
     //font-size: 6.5rem;
     //text-shadow: 4px 2px red;
+    top: 30px;
     font-family: 'Dancing Script';
     font-size: 6.5rem;
     /*text-shadow: 4px 2px #3fb3a0;*/
@@ -341,6 +346,13 @@ html, body {
     width:100%;
     height:100%;
   }
+  .more-details{
+    position: relative;
+    top: 100px;
+    right: 0px;
+  }
+
+
   .card {
     background-image: url("https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=");
   }
@@ -461,6 +473,9 @@ html, body {
     }
   }
 
+  #auto-suggest {
+    min-width: 240px;
+  }
 
 
   .post-page {
@@ -770,6 +785,7 @@ html, body {
 }
 
 .slider-card{
+  top: 20px;
   margin: 1rem;
   width: 300px;
   height: 400px;
@@ -977,3 +993,12 @@ html, body {
 
 }
 
+.home-page .more-details{
+
+  height:auto;
+  padding:1%;
+
+
+  .left {float:left;width:45px;}
+  .right {float:left;}
+}
