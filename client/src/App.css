@@ -476,66 +476,6 @@ body {
   color: #3fb3a0;
   border-radius: 5px;
 }
-.profile .about .head {
-  padding-top: 5%;
-  padding-bottom: 5%;
-  display: flex;
-  justify-content: space-between;
-}
-.profile .about .head img {
-  height: 320px;
-  width: 735px;
-}
-.profile .about .head h1 {
-  font-size: 65px;
-  color: white;
-  text-shadow: 1px 1px 2px royalblue, 0 0 25px royalblue, 0 0 5px #3fb3a0;
-}
-.profile .about .head .body_text {
-  color: dimgrey;
-}
-.profile .about #our-team h1 {
-  color: royalblue;
-  padding-top: 5%;
-  padding-bottom: 1%;
-  font-family: 'Dancing Script';
-  font-size: 40px;
-  text-shadow: 2px 2px #c7d8ea;
-}
-.profile .about #our-team #team-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.profile .about #our-team #team-container h5 {
-  color: royalblue;
-}
-.profile .about #our-team #team-container > div {
-  width: 15%;
-  margin-right: 2rem;
-}
-.profile .about #our-team #team-container > div img {
-  width: 180px;
-  height: 200px;
-  margin-right: 20px;
-  border-radius: 5%;
-}
-.profile .about .title {
-  color: royalblue;
-  padding-top: 7%;
-  font-family: 'Dancing Script';
-  font-size: 40px;
-  text-shadow: 2px 2px #c7d8ea;
-}
-.profile .about .chart {
-  padding-top: 4%;
-}
-.profile .about .chart div {
-  color: #4e555b;
-  font-size: 15px;
-  padding-bottom: 3%;
-  text-decoration: underline;
-}
 .profile .list-users #advanced-search-container.toggle-advanced-search .advanced-search {
   height: 400px !important;
   visibility: visible;
@@ -748,7 +688,67 @@ body {
   width: 100%;
   height: 100%;
 }
-.list-users #background {
+.about .head {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+.about .head img {
+  height: 320px;
+  width: 735px;
+}
+.about .head h1 {
+  font-size: 65px;
+  color: white;
+  text-shadow: 1px 1px 2px royalblue, 0 0 25px royalblue, 0 0 5px #3fb3a0;
+}
+.about .head .body_text {
+  color: dimgrey;
+}
+.about #our-team h1 {
+  color: royalblue;
+  padding-top: 5%;
+  padding-bottom: 1%;
+  font-family: 'Dancing Script';
+  font-size: 40px;
+  text-shadow: 2px 2px #c7d8ea;
+}
+.about #our-team #team-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.about #our-team #team-container h5 {
+  color: royalblue;
+}
+.about #our-team #team-container > div {
+  width: 15%;
+  margin-right: 2rem;
+}
+.about #our-team #team-container > div img {
+  width: 180px;
+  height: 200px;
+  margin-right: 20px;
+  border-radius: 5%;
+}
+.about .title {
+  color: royalblue;
+  padding-top: 7%;
+  font-family: 'Dancing Script';
+  font-size: 40px;
+  text-shadow: 2px 2px #c7d8ea;
+}
+.about .chart {
+  padding-top: 4%;
+}
+.about .chart div {
+  color: #4e555b;
+  font-size: 15px;
+  padding-bottom: 3%;
+  text-decoration: underline;
+}
+.about .list-users #background {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -757,23 +757,23 @@ body {
   z-index: -1;
   /* Ensure div tag stays behind content; -999 might work, too. */
 }
-.list-users #background .stretch {
+.about .list-users #background .stretch {
   width: 100%;
   height: 100%;
 }
-.list-users .writer-container {
+.about .list-users .writer-container {
   margin: 2rem 0 1rem 0;
 }
-.list-users .writer-container .writer {
+.about .list-users .writer-container .writer {
   height: 180px;
   color: #49515a;
 }
-.list-users .writer-container .writer h1 {
+.about .list-users .writer-container .writer h1 {
   font-family: 'Cookie', Helvetica, sans-serif;
   color: white;
   text-shadow: 1px 1px 2px royalblue, 0 0 25px royalblue, 0 0 5px #3fb3a0;
 }
-.post-container #background {
+.about .post-container #background {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -782,11 +782,11 @@ body {
   z-index: -1;
   /* Ensure div tag stays behind content; -999 might work, too. */
 }
-.post-container #background .stretch {
+.about .post-container #background .stretch {
   width: 100%;
   height: 100%;
 }
-.create-post h1 {
+.about .create-post h1 {
   color: royalblue;
 }
 /*# sourceMappingURL=App.css.map */
