@@ -132,11 +132,14 @@ body {
   padding-bottom: 2.5rem;
 }
 .footer {
-  bottom: 0;
-  position: absolute;
   height: 2.5rem;
   color: #f3f3f3d1;
   line-height: 2.5rem;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 .react-autosuggest__container {
   position: relative;
