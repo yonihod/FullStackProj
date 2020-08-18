@@ -128,7 +128,7 @@ export default class ListPost extends Component {
                 <div className="writer-container">
                     <div className="writer">
                         <Typist>
-                            <h1>Choose your next challenge</h1> <br/>
+                            <p className="list-title">Choose your next challenge</p> <br/>
                             <h4>A single place, millions of creative development tasks<br/>Improve your skills and help others
                             </h4>
                         </Typist>
