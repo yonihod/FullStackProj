@@ -137,7 +137,7 @@ export default class Home extends Component {
         var filteredPosts = [];
         if (this.state?.posts && this.state.posts.length) {
             filteredPosts = this.state.posts.filter((post => {
-                return post.views > 5
+                return post.views > 15
                 // return post?.title?.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
                 //     post?.description?.toLowerCase().indexOf(search.toLowerCase()) !== -1
             })).sort(orderBy);
@@ -158,6 +158,7 @@ export default class Home extends Component {
             <div className="home-page">
                 <div id="background">
                     <img src="https://freedesignfile.com/upload/2016/11/Light-blue-wavy-abstract-background-vector-04.jpg" className="stretch" alt=""/>
+
                 </div>
                 {this.state.done ? <Success value={this.state}/> : null}
                 <div className={"writer-container"}>

@@ -298,25 +298,38 @@ body {
   -moz-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
   box-shadow: 0 0 10px 3px rgba(168, 170, 173);
 }
+.profile #background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  /* Ensure div tag stays behind content; -999 might work, too. */
+}
+.profile #background .stretch {
+  width: 100%;
+  height: 100%;
+}
 .profile header h1 {
-  text-align: left;
+  text-align: center;
   padding-top: 1rem;
   padding-bottom: 3rem;
   color: white;
-  text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
+  text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
 }
 .profile h2 {
   text-align: left;
-  color: #3fb3a0;
+  color: dodgerblue;
 }
 .profile h3 {
-  color: white;
-  background-color: #3fb3a0;
+  color: dodgerblue;
+  background-color: lightgrey;
   padding: 0.5rem;
 }
 .profile h4 {
   text-align: left;
-  color: #3fb3a0;
+  color: dodgerblue;
 }
 .profile h5 {
   text-align: left;
@@ -357,44 +370,44 @@ body {
   color: #fff;
   border-radius: 5px;
 }
-.profile #auto-suggest {
+.profile .edit-post #auto-suggest {
   min-width: 240px;
 }
-.advanced-search {
+.profile .advanced-search {
   background: #f5f5f5;
 }
-.advanced-search .duo-date {
+.profile .advanced-search .duo-date {
   z-index: 1;
 }
-.advanced-search .search-wrapper {
+.profile .advanced-search .search-wrapper {
   display: flex;
   justify-content: space-around;
 }
-.writer-container {
+.profile .writer-container {
   margin: 2rem 0 1rem 0;
 }
-.writer-container .writer {
+.profile .writer-container .writer {
   height: 180px;
   color: #49515a;
 }
-.writer-container .writer h1 {
+.profile .writer-container .writer h1 {
   color: white;
   text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
 }
-.post-page #advanced-search-container.toggle-advanced-search .advanced-search {
+.profile .post-page #advanced-search-container.toggle-advanced-search .advanced-search {
   height: 500px !important;
   visibility: visible;
   opacity: 1;
   transition: opacity 1s, visibility 0.5s, height 0.5s ease;
 }
-.post-page #advanced-search-container .advanced-search {
+.profile .post-page #advanced-search-container .advanced-search {
   position: relative;
   transition: opacity 0.2s, visibility 0.2s, height 1s ease;
   visibility: hidden;
   height: 0 !important;
   opacity: 0;
 }
-.post-page #advanced-search-container .advanced-search .close {
+.profile .post-page #advanced-search-container .advanced-search .close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -408,19 +421,19 @@ body {
   outline: none !important;
   box-shadow: none;
 }
-.post-page #advanced-search-container .advanced-search .close span {
+.profile .post-page #advanced-search-container .advanced-search .close span {
   vertical-align: text-top;
   line-height: 1.2rem;
   margin-left: 1px;
   border: none;
 }
-.post-page #advanced-search-container .advanced-search #advanced-submit-button {
+.profile .post-page #advanced-search-container .advanced-search #advanced-submit-button {
   margin-right: 2rem;
   margin-top: 2rem;
 }
-.post-page .success,
-.post-page .danger,
-.post-page .warning {
+.profile .post-page .success,
+.profile .post-page .danger,
+.profile .post-page .warning {
   position: absolute;
   top: 150px;
   right: 50px;
@@ -433,24 +446,24 @@ body {
   transition: opacity 2s;
   animation: 8s fadeOut;
 }
-.post-page .success {
+.profile .post-page .success {
   background: #28a745;
 }
-.post-page .danger {
+.profile .post-page .danger {
   background: #dc3545;
 }
-.post-page .warning {
+.profile .post-page .warning {
   background: #ffc107;
   color: #212529;
 }
-.post-page .posts_img {
+.profile .post-page .posts_img {
   max-width: 100%;
   width: 80%;
   left: calc(50% - 80% / 2);
   max-height: 500px;
   position: absolute;
 }
-.post-page .banner {
+.profile .post-page .banner {
   background: rgba(63, 179, 160, 0.5);
   color: white;
   margin-top: 10px;
@@ -460,32 +473,32 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.post-page .banner .banner-link {
+.profile .post-page .banner .banner-link {
   background-color: white;
   text-decoration: none;
   padding: 5px;
   color: #3fb3a0;
   border-radius: 5px;
 }
-.about .head {
+.profile .about .head {
   padding-top: 5%;
   padding-bottom: 5%;
   display: flex;
   justify-content: space-between;
 }
-.about .head img {
+.profile .about .head img {
   height: 320px;
   width: 735px;
 }
-.about .head h1 {
+.profile .about .head h1 {
   font-size: 65px;
   color: white;
   text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
 }
-.about .head .body_text {
+.profile .about .head .body_text {
   color: #49515a;
 }
-.about #our-team h1 {
+.profile .about #our-team h1 {
   color: #3fb3a0;
   padding-top: 5%;
   padding-bottom: 1%;
@@ -493,47 +506,47 @@ body {
   font-size: 40px;
   text-shadow: 2px 2px #c7d8ea;
 }
-.about #our-team #team-container {
+.profile .about #our-team #team-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.about #our-team #team-container h5 {
+.profile .about #our-team #team-container h5 {
   color: #49515a;
 }
-.about #our-team #team-container > div {
+.profile .about #our-team #team-container > div {
   width: 15%;
   margin-right: 2rem;
 }
-.about #our-team #team-container > div img {
+.profile .about #our-team #team-container > div img {
   width: 180px;
   height: 200px;
   margin-right: 20px;
   border-radius: 5%;
 }
-.about .title {
+.profile .about .title {
   color: #3fb3a0;
   padding-top: 7%;
   font-family: 'Dancing Script';
   font-size: 40px;
   text-shadow: 2px 2px #c7d8ea;
 }
-.about .chart {
+.profile .about .chart {
   padding-top: 4%;
 }
-.about .chart div {
+.profile .about .chart div {
   color: #4e555b;
   font-size: 15px;
   padding-bottom: 3%;
   text-decoration: underline;
 }
-.list-users #advanced-search-container.toggle-advanced-search .advanced-search {
+.profile .list-users #advanced-search-container.toggle-advanced-search .advanced-search {
   height: 400px !important;
   visibility: visible;
   opacity: 1;
   transition: opacity 1s, visibility 0.5s, height 0.5s ease;
 }
-.list-users #advanced-search-container .advanced-search {
+.profile .list-users #advanced-search-container .advanced-search {
   position: relative;
   transition: opacity 0.2s, visibility 0.2s, height 1s ease;
   visibility: hidden;
@@ -541,7 +554,7 @@ body {
   opacity: 0;
   padding: 0;
 }
-.list-users #advanced-search-container .advanced-search .close {
+.profile .list-users #advanced-search-container .advanced-search .close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -555,64 +568,64 @@ body {
   outline: none !important;
   box-shadow: none;
 }
-.list-users #advanced-search-container .advanced-search .close span {
+.profile .list-users #advanced-search-container .advanced-search .close span {
   vertical-align: text-top;
   line-height: 1rem;
   margin-left: 1px;
   border: none;
 }
-.list-users #advanced-search-container .advanced-search #advanced-submit-button {
+.profile .list-users #advanced-search-container .advanced-search #advanced-submit-button {
   margin-right: 1rem;
 }
-.post-container {
+.profile .post-container {
   background: #e0ffff;
   padding: 2rem 1.5rem;
   width: 70%;
   margin: 2% auto;
   text-align: left;
 }
-.post-container .post-title {
+.profile .post-container .post-title {
   color: #3fb3a0;
   font-size: 32px;
   padding-bottom: 3%;
 }
-.post-container .applicants-container {
+.profile .post-container .applicants-container {
   display: flex;
   gap: 2rem;
 }
-.post-container .applicants-container .applicant-actions {
+.profile .post-container .applicants-container .applicant-actions {
   display: grid;
   grid-template-columns: 1fr;
   flex-wrap: wrap;
 }
-.post-container .applicants-container .applicant-actions .user-link {
+.profile .post-container .applicants-container .applicant-actions .user-link {
   grid-column-start: 1;
   grid-column-end: 3;
 }
-.post-container .applicants-container .applicant-actions .actions-container {
+.profile .post-container .applicants-container .applicant-actions .actions-container {
   display: flex;
   gap: 1rem;
   justify-content: center;
 }
-.post-container .applicants-container .applicant-actions .actions-container .contact,
-.post-container .applicants-container .applicant-actions .actions-container .assign {
+.profile .post-container .applicants-container .applicant-actions .actions-container .contact,
+.profile .post-container .applicants-container .applicant-actions .actions-container .assign {
   padding: 8px 10px;
   cursor: pointer;
 }
-.post-container .applicants-container .applicant-actions .actions-container .assign {
+.profile .post-container .applicants-container .applicant-actions .actions-container .assign {
   color: #fff;
   background-color: #28a745;
   border-color: #28a745;
 }
-.post-container .post-details {
+.profile .post-container .post-details {
   color: #4e555b;
   font-size: 20px;
   flex-wrap: wrap;
 }
-.post-container .post-details .user-link {
+.profile .post-container .post-details .user-link {
   width: 100%;
 }
-.post-container .post-details .small {
+.profile .post-container .post-details .small {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -624,73 +637,119 @@ body {
   padding: 6px 0;
   color: #fff;
 }
-.post-container .post-details .small .post-status {
+.profile .post-container .post-details .small .post-status {
   box-sizing: content-box;
 }
-.post-container .post-details .small .active {
+.profile .post-container .post-details .small .active {
   color: #28a745;
 }
-.post-container .post-details .small .pending {
+.profile .post-container .post-details .small .pending {
   color: orange;
 }
-.post-container .post-details .small .completed {
+.profile .post-container .post-details .small .completed {
   color: #0066ff;
 }
-.post-container .post-details .tags {
+.profile .post-container .post-details .tags {
   margin: 1.25rem;
   display: flex;
   text-align: center;
 }
-.post-container .desc {
+.profile .post-container .desc {
   overflow-y: auto;
   min-height: 15vh;
   padding: 10px;
   line-height: 32px;
 }
-.post-container .end-alignment {
+.profile .post-container .end-alignment {
   display: flex;
   justify-content: flex-end;
 }
-.post-container .twitter-btn {
+.profile .post-container .twitter-btn {
   background-color: #3fb3a0;
   border-color: #3fb3a0;
 }
-.post-container .post-actions {
+.profile .post-container .post-actions {
   margin: 2% auto;
 }
-.post-container .post-actions .edit,
-.post-container .post-actions .delete {
+.profile .post-container .post-actions .edit,
+.profile .post-container .post-actions .delete {
   color: #fff;
   padding: 10px;
   margin: 1%;
   border-radius: 5px;
 }
-.post-container .post-actions .edit {
+.profile .post-container .post-actions .edit {
   background: #ffc107;
 }
-.post-container .post-actions .delete {
+.profile .post-container .post-actions .delete {
   background: #dc3545;
 }
-.MyCarousel {
-  position: relative;
-  height: 100vh;
+.create-post #background {
   width: 100%;
-  display: flex;
-  flex: 1;
-  justifyContent: center;
-  alignItems: middle;
+  height: 100%;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  /* Ensure div tag stays behind content; -999 might work, too. */
 }
-.MyCarousel {
-  height: 200px;
-  width: 200px;
-  paddingTop: 80px;
-  textAlign: center;
-  background: #52C0F5;
-  color: #FFF;
-  fontFamily: sans-serif;
-  fontSize: 12px;
-  textTransform: uppercase;
-  borderRadius: 10px;
-  boxSizing: border-box;
+.create-post #create-post-background .stretch {
+  width: 100%;
+  height: 100%;
+}
+.create-post .post-page #background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  /* Ensure div tag stays behind content; -999 might work, too. */
+}
+.create-post .post-page #background .stretch {
+  width: 100%;
+  height: 100%;
+}
+.create-post .about #background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  /* Ensure div tag stays behind content; -999 might work, too. */
+}
+.create-post .about #background .stretch {
+  width: 100%;
+  height: 100%;
+}
+.create-post .list-users #background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  /* Ensure div tag stays behind content; -999 might work, too. */
+}
+.create-post .list-users #background .stretch {
+  width: 100%;
+  height: 100%;
+}
+.create-post .post-container #background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  /* Ensure div tag stays behind content; -999 might work, too. */
+}
+.create-post .post-container #background .stretch {
+  width: 100%;
+  height: 100%;
+}
+.create-post .create-post h1 {
+  color: dodgerblue;
 }
 /*# sourceMappingURL=App.css.map */

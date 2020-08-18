@@ -251,6 +251,7 @@ const SinglePost = (props) => {
     return (
 
         <div className={"post-container"}>
+
             <div>
                 <h1 className={"post-title"}>{post.title}</h1>
                 
