@@ -377,31 +377,31 @@ body {
 .profile .edit-post #auto-suggest {
   min-width: 240px;
 }
-.profile .advanced-search {
+.advanced-search {
   background: #f5f5f5;
 }
-.profile .advanced-search .duo-date {
+.advanced-search .duo-date {
   z-index: 1;
 }
-.profile .advanced-search .search-wrapper {
+.advanced-search .search-wrapper {
   display: flex;
   justify-content: space-around;
 }
-.profile .post-page #advanced-search-container.toggle-advanced-search .advanced-search {
+.post-page #advanced-search-container.toggle-advanced-search .advanced-search {
   height: 500px !important;
   visibility: visible;
   opacity: 1;
   transition: opacity 1s, visibility 0.5s, height 0.5s ease;
   padding-top: 10%;
 }
-.profile .post-page #advanced-search-container .advanced-search {
+.post-page #advanced-search-container .advanced-search {
   position: relative;
   transition: opacity 0.2s, visibility 0.2s, height 1s ease;
   visibility: hidden;
   height: 0 !important;
   opacity: 0;
 }
-.profile .post-page #advanced-search-container .advanced-search .close {
+.post-page #advanced-search-container .advanced-search .close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -415,22 +415,22 @@ body {
   outline: none !important;
   box-shadow: none;
 }
-.profile .post-page #advanced-search-container .advanced-search .close span {
+.post-page #advanced-search-container .advanced-search .close span {
   vertical-align: text-top;
   line-height: 1.2rem;
   margin-left: 1px;
   border: none;
 }
-.profile .post-page #advanced-search-container .advanced-search #advanced-submit-button {
+.post-page #advanced-search-container .advanced-search #advanced-submit-button {
   margin-right: 2rem;
   margin-top: 2rem;
 }
-.profile .post-page #advanced-search-container h5 {
+.post-page #advanced-search-container h5 {
   color: #4e555b;
 }
-.profile .post-page .success,
-.profile .post-page .danger,
-.profile .post-page .warning {
+.post-page .success,
+.post-page .danger,
+.post-page .warning {
   position: absolute;
   top: 150px;
   right: 50px;
@@ -443,24 +443,24 @@ body {
   transition: opacity 2s;
   animation: 8s fadeOut;
 }
-.profile .post-page .success {
+.post-page .success {
   background: #28a745;
 }
-.profile .post-page .danger {
+.post-page .danger {
   background: #dc3545;
 }
-.profile .post-page .warning {
+.post-page .warning {
   background: #ffc107;
   color: #212529;
 }
-.profile .post-page .posts_img {
+.post-page .posts_img {
   max-width: 100%;
   width: 80%;
   left: calc(50% - 80% / 2);
   max-height: 500px;
   position: absolute;
 }
-.profile .post-page .banner {
+.post-page .banner {
   background: rgba(63, 179, 160, 0.5);
   color: white;
   margin-top: 10px;
@@ -470,20 +470,20 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.profile .post-page .banner .banner-link {
+.post-page .banner .banner-link {
   background-color: white;
   text-decoration: none;
   padding: 5px;
   color: #3fb3a0;
   border-radius: 5px;
 }
-.profile .list-users #advanced-search-container.toggle-advanced-search .advanced-search {
+.list-users #advanced-search-container.toggle-advanced-search .advanced-search {
   height: 400px !important;
   visibility: visible;
   opacity: 1;
   transition: opacity 1s, visibility 0.5s, height 0.5s ease;
 }
-.profile .list-users #advanced-search-container .advanced-search {
+.list-users #advanced-search-container .advanced-search {
   position: relative;
   transition: opacity 0.2s, visibility 0.2s, height 1s ease;
   visibility: hidden;
@@ -491,7 +491,7 @@ body {
   opacity: 0;
   padding: 0;
 }
-.profile .list-users #advanced-search-container .advanced-search .close {
+.list-users #advanced-search-container .advanced-search .close {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -505,67 +505,67 @@ body {
   outline: none !important;
   box-shadow: none;
 }
-.profile .list-users #advanced-search-container .advanced-search .close span {
+.list-users #advanced-search-container .advanced-search .close span {
   vertical-align: text-top;
   line-height: 1rem;
   margin-left: 1px;
   border: none;
 }
-.profile .list-users #advanced-search-container .advanced-search #advanced-submit-button {
+.list-users #advanced-search-container .advanced-search #advanced-submit-button {
   margin-right: 1rem;
 }
-.profile .list-users #advanced-search-container h5 {
+.list-users #advanced-search-container h5 {
   color: royalblue;
 }
-.profile .post-container {
+.post-container {
   background: #e0ffff;
   padding: 2rem 1.5rem;
   width: 70%;
   margin: 2% auto;
   text-align: left;
 }
-.profile .post-container .post-title {
+.post-container .post-title {
   color: royalblue;
   font-size: 32px;
   padding-bottom: 3%;
 }
-.profile .post-container .applicants-container {
+.post-container .applicants-container {
   display: flex;
   gap: 2rem;
 }
-.profile .post-container .applicants-container .applicant-actions {
+.post-container .applicants-container .applicant-actions {
   display: grid;
   grid-template-columns: 1fr;
   flex-wrap: wrap;
 }
-.profile .post-container .applicants-container .applicant-actions .user-link {
+.post-container .applicants-container .applicant-actions .user-link {
   grid-column-start: 1;
   grid-column-end: 3;
 }
-.profile .post-container .applicants-container .applicant-actions .actions-container {
+.post-container .applicants-container .applicant-actions .actions-container {
   display: flex;
   gap: 1rem;
   justify-content: center;
 }
-.profile .post-container .applicants-container .applicant-actions .actions-container .contact,
-.profile .post-container .applicants-container .applicant-actions .actions-container .assign {
+.post-container .applicants-container .applicant-actions .actions-container .contact,
+.post-container .applicants-container .applicant-actions .actions-container .assign {
   padding: 8px 10px;
   cursor: pointer;
 }
-.profile .post-container .applicants-container .applicant-actions .actions-container .assign {
+.post-container .applicants-container .applicant-actions .actions-container .assign {
   color: #fff;
   background-color: #28a745;
   border-color: #28a745;
 }
-.profile .post-container .post-details {
+.post-container .post-details {
   color: #4e555b;
   font-size: 20px;
   flex-wrap: wrap;
 }
-.profile .post-container .post-details .user-link {
+.post-container .post-details .user-link {
   width: 100%;
 }
-.profile .post-container .post-details .small {
+.post-container .post-details .small {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -577,51 +577,51 @@ body {
   padding: 6px 0;
   color: #fff;
 }
-.profile .post-container .post-details .small .post-status {
+.post-container .post-details .small .post-status {
   box-sizing: content-box;
 }
-.profile .post-container .post-details .small .active {
+.post-container .post-details .small .active {
   color: #28a745;
 }
-.profile .post-container .post-details .small .pending {
+.post-container .post-details .small .pending {
   color: orange;
 }
-.profile .post-container .post-details .small .completed {
+.post-container .post-details .small .completed {
   color: #0066ff;
 }
-.profile .post-container .post-details .tags {
+.post-container .post-details .tags {
   margin: 1.25rem;
   display: flex;
   text-align: center;
 }
-.profile .post-container .desc {
+.post-container .desc {
   overflow-y: auto;
   min-height: 15vh;
   padding: 10px;
   line-height: 32px;
 }
-.profile .post-container .end-alignment {
+.post-container .end-alignment {
   display: flex;
   justify-content: flex-end;
 }
-.profile .post-container .twitter-btn {
+.post-container .twitter-btn {
   background-color: #3fb3a0;
   border-color: #3fb3a0;
 }
-.profile .post-container .post-actions {
+.post-container .post-actions {
   margin: 2% auto;
 }
-.profile .post-container .post-actions .edit,
-.profile .post-container .post-actions .delete {
+.post-container .post-actions .edit,
+.post-container .post-actions .delete {
   color: #fff;
   padding: 10px;
   margin: 1%;
   border-radius: 5px;
 }
-.profile .post-container .post-actions .edit {
+.post-container .post-actions .edit {
   background: #ffc107;
 }
-.profile .post-container .post-actions .delete {
+.post-container .post-actions .delete {
   background: #dc3545;
 }
 .create-post #create-post-background {
