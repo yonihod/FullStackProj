@@ -197,6 +197,7 @@ body {
   clear: both;
 }
 #cards-container .card {
+  background-image: url("https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=");
   position: relative;
   color: #49515a;
   margin: 1rem;
@@ -386,18 +387,6 @@ body {
   display: flex;
   justify-content: space-around;
 }
-.profile .writer-container {
-  margin: 2rem 0 1rem 0;
-}
-.profile .writer-container .writer {
-  height: 180px;
-  color: #49515a;
-}
-.profile .writer-container .writer h1 {
-  font-family: 'Cookie', Helvetica, sans-serif;
-  color: white;
-  text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
-}
 .profile .post-page #advanced-search-container.toggle-advanced-search .advanced-search {
   height: 500px !important;
   visibility: visible;
@@ -434,6 +423,9 @@ body {
 .profile .post-page #advanced-search-container .advanced-search #advanced-submit-button {
   margin-right: 2rem;
   margin-top: 2rem;
+}
+.profile .post-page #advanced-search-container h5 {
+  color: #4e555b;
 }
 .profile .post-page .success,
 .profile .post-page .danger,
@@ -581,6 +573,9 @@ body {
 .profile .list-users #advanced-search-container .advanced-search #advanced-submit-button {
   margin-right: 1rem;
 }
+.profile .list-users #advanced-search-container h5 {
+  color: dodgerblue;
+}
 .profile .post-container {
   background: #e0ffff;
   padding: 2rem 1.5rem;
@@ -727,6 +722,18 @@ body {
 .post-page #background .stretch {
   width: 100%;
   height: 100%;
+}
+.post-page .writer-container {
+  margin: 2rem 0 1rem 0;
+}
+.post-page .writer-container .writer {
+  height: 180px;
+  color: #49515a;
+}
+.post-page .writer-container .writer h1 {
+  font-family: 'Cookie', Helvetica, sans-serif;
+  color: white;
+  text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
 }
 .about #background {
   width: 100%;

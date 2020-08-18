@@ -125,7 +125,7 @@ export default class ListPost extends Component {
                 </div>
                 {this.state.done ? <Success value={this.state}/> : null}
                 <Banner/>
-                <div className={"writer-container"}>
+                <div className="writer-container">
                     <div className="writer">
                         <Typist>
                             <h1>Choose your next challenge</h1> <br/>
