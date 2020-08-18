@@ -151,7 +151,7 @@ export default class Home extends Component {
             dots: true,
             infinite: true,
             speed: 400,
-            slidesToShow: 4,
+            slidesToShow: 3,
             slidesToScroll: 1
         };
         return (
