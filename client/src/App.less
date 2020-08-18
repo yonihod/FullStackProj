@@ -215,6 +215,9 @@ html, body {
   .card {
     position: relative;
     color: #49515a;
+    margin: 1rem;
+    width: 300px;
+    height: 500px;
 
 
     .manage-post {
@@ -585,20 +588,19 @@ html, body {
         width: 735px;
       }
 
-      .title {
+      h1 {
         font-size: 65px;
-        color: dodgerblue;
-        text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
+        color: white;
+        text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
       }
 
       .body_text {
-        color: dodgerblue;
-      }
+        color: dimgrey;      }
     }
 
     #our-team {
       h1 {
-        color: #3fb3a0;
+        color: dodgerblue;
         padding-top: 5%;
         padding-bottom: 1%;
         font-family: 'Dancing Script';
@@ -648,7 +650,6 @@ html, body {
       }
     }
   }
-
   .list-users {
     #advanced-search-container {
       &.toggle-advanced-search {
@@ -698,19 +699,7 @@ html, body {
   }
 
   .post-container {
-    #background {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0px;
-      top: 0px;
-      z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
-    }
 
-    #background .stretch {
-      width: 100%;
-      height: 100%;
-    }
     background: #e0ffff;
     padding: 2rem 1.5rem;
     width: 70%;
