@@ -490,13 +490,13 @@ body {
   height: 320px;
   width: 735px;
 }
-.profile .about .head h1 {
+.profile .about .head .title {
   font-size: 65px;
-  color: white;
+  color: dodgerblue;
   text-shadow: 1px 1px 2px #3fb3a0, 0 0 25px #3fb3a0, 0 0 5px #3fb3a0;
 }
 .profile .about .head .body_text {
-  color: #49515a;
+  color: dodgerblue;
 }
 .profile .about #our-team h1 {
   color: #3fb3a0;
@@ -512,7 +512,7 @@ body {
   justify-content: center;
 }
 .profile .about #our-team #team-container h5 {
-  color: #49515a;
+  color: dodgerblue;
 }
 .profile .about #our-team #team-container > div {
   width: 15%;
@@ -525,7 +525,7 @@ body {
   border-radius: 5%;
 }
 .profile .about .title {
-  color: #3fb3a0;
+  color: dodgerblue;
   padding-top: 7%;
   font-family: 'Dancing Script';
   font-size: 40px;
@@ -583,6 +583,19 @@ body {
   width: 70%;
   margin: 2% auto;
   text-align: left;
+}
+.profile .post-container #background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  /* Ensure div tag stays behind content; -999 might work, too. */
+}
+.profile .post-container #background .stretch {
+  width: 100%;
+  height: 100%;
 }
 .profile .post-container .post-title {
   color: #3fb3a0;
@@ -684,7 +697,7 @@ body {
 .profile .post-container .post-actions .delete {
   background: #dc3545;
 }
-.create-post #background {
+.create-post #create-post-background {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -697,7 +710,21 @@ body {
   width: 100%;
   height: 100%;
 }
-.create-post .post-page #background {
+.slider-card {
+  margin: 1rem;
+  width: 200px;
+  height: 300px;
+  /*padding: .5rem 1rem;*/
+  /*background-color: #f9f9f9;*/
+  /*!*border-radius: 8px;*!*/
+  /*box-shadow: 0 12px 32px 4px;*/
+  /*display: flex;*/
+  /*!*flex-direction: column;*!*/
+  /*!*justify-content: center;*!*/
+  /*!*align-items: center;*!*/
+  /*transition: .2s;*/
+}
+.post-page #background {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -706,24 +733,11 @@ body {
   z-index: -1;
   /* Ensure div tag stays behind content; -999 might work, too. */
 }
-.create-post .post-page #background .stretch {
+.post-page #background .stretch {
   width: 100%;
   height: 100%;
 }
-.create-post .about #background {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: -1;
-  /* Ensure div tag stays behind content; -999 might work, too. */
-}
-.create-post .about #background .stretch {
-  width: 100%;
-  height: 100%;
-}
-.create-post .list-users #background {
+.about #background {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -732,11 +746,11 @@ body {
   z-index: -1;
   /* Ensure div tag stays behind content; -999 might work, too. */
 }
-.create-post .list-users #background .stretch {
+.about #background .stretch {
   width: 100%;
   height: 100%;
 }
-.create-post .post-container #background {
+.list-users #background {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -745,11 +759,24 @@ body {
   z-index: -1;
   /* Ensure div tag stays behind content; -999 might work, too. */
 }
-.create-post .post-container #background .stretch {
+.list-users #background .stretch {
   width: 100%;
   height: 100%;
 }
-.create-post .create-post h1 {
+.post-container #background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  /* Ensure div tag stays behind content; -999 might work, too. */
+}
+.post-container #background .stretch {
+  width: 100%;
+  height: 100%;
+}
+.create-post h1 {
   color: dodgerblue;
 }
 /*# sourceMappingURL=App.css.map */
