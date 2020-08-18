@@ -259,25 +259,44 @@ body {
   pointer-events: initial;
   z-index: 1;
 }
-.home h1 {
-  position: relative;
-  left: 0;
-  z-index: 1;
-  margin: auto;
-  color: #ffffff;
-  width: fit-content;
-  padding-bottom: 30px;
-  border-radius: 0 0 5px 5px;
+.home-page h1 {
   font-family: 'Dancing Script';
   font-size: 6.5rem;
-  text-shadow: 4px 2px #3fb3a0;
+  /*text-shadow: 4px 2px #3fb3a0;*/
+  position: relative;
+  font-size: 70px;
+  /*font-family: 'Lobster', helvetica, arial;*/
+  text-decoration: none;
+  color: #666;
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#000000), color-stop(50%, rgba(0, 0, 0, 0.5)), to(#000000));
 }
-.home #home-video {
+.home-page #home-video {
   position: fixed;
   right: 0;
   bottom: 0;
   min-width: 100%;
   min-height: 100%;
+}
+.home-page #background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: -1;
+  /* Ensure div tag stays behind content; -999 might work, too. */
+}
+.home-page #background .stretch {
+  width: 100%;
+  height: 100%;
+}
+.home-page .card {
+  background-image: url("https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=");
+}
+.home-page .card:hover {
+  -webkit-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 0 10px 3px rgba(168, 170, 173);
 }
 .profile header h1 {
   text-align: left;
