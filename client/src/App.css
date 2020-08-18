@@ -748,7 +748,7 @@ body {
   padding-bottom: 3%;
   text-decoration: underline;
 }
-.about .list-users #background {
+.list-users #background {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -757,23 +757,23 @@ body {
   z-index: -1;
   /* Ensure div tag stays behind content; -999 might work, too. */
 }
-.about .list-users #background .stretch {
+.list-users #background .stretch {
   width: 100%;
   height: 100%;
 }
-.about .list-users .writer-container {
+.list-users .writer-container {
   margin: 2rem 0 1rem 0;
 }
-.about .list-users .writer-container .writer {
+.list-users .writer-container .writer {
   height: 180px;
   color: #49515a;
 }
-.about .list-users .writer-container .writer h1 {
+.list-users .writer-container .writer h1 {
   font-family: 'Cookie', Helvetica, sans-serif;
   color: white;
   text-shadow: 1px 1px 2px royalblue, 0 0 25px royalblue, 0 0 5px #3fb3a0;
 }
-.about .post-container #background {
+.post-container #background {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -782,11 +782,11 @@ body {
   z-index: -1;
   /* Ensure div tag stays behind content; -999 might work, too. */
 }
-.about .post-container #background .stretch {
+.post-container #background .stretch {
   width: 100%;
   height: 100%;
 }
-.about .create-post h1 {
+.create-post h1 {
   color: royalblue;
 }
 /*# sourceMappingURL=App.css.map */
