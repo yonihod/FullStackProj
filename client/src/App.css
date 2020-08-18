@@ -171,7 +171,7 @@ body {
   background-color: lightblue;
   font-family: Helvetica, sans-serif;
   font-weight: 300;
-  color: dodgerblue;
+  color: royalblue;
   font-style: italic;
   font-size: 16px;
   border-bottom-left-radius: 4px;
@@ -236,7 +236,7 @@ body {
 }
 #cards-container .card .card-link .card-body .card-title {
   margin-top: 0.75rem;
-  color: #3fb3a0;
+  color: royalblue;
 }
 #cards-container .card .card-link .card-body .card-text {
   height: 150px;
@@ -320,20 +320,20 @@ body {
   padding-top: 1rem;
   padding-bottom: 3rem;
   color: white;
-  text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
+  text-shadow: 1px 1px 2px royalblue, 0 0 25px royalblue, 0 0 5px #3fb3a0;
 }
 .profile h2 {
   text-align: left;
-  color: dodgerblue;
+  color: royalblue;
 }
 .profile h3 {
-  color: dodgerblue;
+  color: royalblue;
   background-color: lightgrey;
   padding: 0.5rem;
 }
 .profile h4 {
   text-align: left;
-  color: dodgerblue;
+  color: royalblue;
 }
 .profile h5 {
   text-align: left;
@@ -489,13 +489,13 @@ body {
 .profile .about .head h1 {
   font-size: 65px;
   color: white;
-  text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
+  text-shadow: 1px 1px 2px royalblue, 0 0 25px royalblue, 0 0 5px #3fb3a0;
 }
 .profile .about .head .body_text {
   color: dimgrey;
 }
 .profile .about #our-team h1 {
-  color: dodgerblue;
+  color: royalblue;
   padding-top: 5%;
   padding-bottom: 1%;
   font-family: 'Dancing Script';
@@ -508,7 +508,7 @@ body {
   justify-content: center;
 }
 .profile .about #our-team #team-container h5 {
-  color: dodgerblue;
+  color: royalblue;
 }
 .profile .about #our-team #team-container > div {
   width: 15%;
@@ -521,7 +521,7 @@ body {
   border-radius: 5%;
 }
 .profile .about .title {
-  color: dodgerblue;
+  color: royalblue;
   padding-top: 7%;
   font-family: 'Dancing Script';
   font-size: 40px;
@@ -574,7 +574,7 @@ body {
   margin-right: 1rem;
 }
 .profile .list-users #advanced-search-container h5 {
-  color: dodgerblue;
+  color: royalblue;
 }
 .profile .post-container {
   background: #e0ffff;
@@ -584,7 +584,7 @@ body {
   text-align: left;
 }
 .profile .post-container .post-title {
-  color: #3fb3a0;
+  color: royalblue;
   font-size: 32px;
   padding-bottom: 3%;
 }
@@ -733,7 +733,7 @@ body {
 .post-page .writer-container .writer h1 {
   font-family: 'Cookie', Helvetica, sans-serif;
   color: white;
-  text-shadow: 1px 1px 2px royalblue, 0 0 25px dodgerblue, 0 0 5px #3fb3a0;
+  text-shadow: 1px 1px 2px royalblue, 0 0 25px royalblue, 0 0 5px #3fb3a0;
 }
 .about #background {
   width: 100%;
@@ -775,6 +775,6 @@ body {
   height: 100%;
 }
 .create-post h1 {
-  color: dodgerblue;
+  color: royalblue;
 }
 /*# sourceMappingURL=App.css.map */
