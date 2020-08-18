@@ -214,15 +214,7 @@ export default class Home extends Component {
                     </Slider>
                 </Container>
 
-                <Container className="more-details">
-                    <div className="float-right">
-                        <img src="https://jobs.theguardian.com/getasset/435be89e-e7c4-403b-a468-4e9700f0ebab/"/>
-                    </div>
-                    <div className="left">
-                        <i className="far fa-check-circle"></i> <br/>
-                        <i className="far fa-check-circle"></i>
-                    </div>
-                </Container>
+
             </div> );
     }
 
