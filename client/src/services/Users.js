@@ -25,7 +25,6 @@ export default class UserService {
     static getUserByEmail(email) {
         return axios.get(`${this.USERS_API}/email/${email}`)
             .then((response) => {
-                console.log(response.data);
                 return response.data;
             }).catch((error) => {
                 console.log(error)

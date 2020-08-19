@@ -59,6 +59,21 @@
     color: grey;
   }
 }
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lightcyan;
+}
+
 .room {
   box-shadow: 0 0 8px 0px #3fb3a0;
   background: url("/msg-tapet3.jpg");
@@ -72,6 +87,27 @@
     padding: 0.65rem;
     margin-bottom: 1.5rem;
     margin-left: 0.5rem;
+    overflow-y: scroll;
+    height: 70vh;
+    /* width */
+    ::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
     ul {
       list-style: none;
       padding: 0;
