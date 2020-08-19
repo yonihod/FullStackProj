@@ -49,7 +49,7 @@ const NavBar = () => {
                     </div>
                 }
                 {!isAuthenticated && <div className="nav-link hvr-float-shadow" onClick={() => loginWithRedirect({})}>Log in</div>}
-                {isAuthenticated && dbUser && <Link title={user.name} className="nav-link hvr-float-shadow" to={`/profile/${dbUser._id}`}><img src={user.picture} alt="Logo" className="avatar"/></Link>}
+                {isAuthenticated && dbUser && <Link title={user.name} className="nav-link hvr-float-shadow" to={`/profile/${dbUser._id}`}><img src={user.picture} alt="Logo" referrerPolicy="no-referrer" className="avatar"/></Link>}
                 {isAuthenticated && <div className="nav-link hvr-float-shadow" onClick={() => logout({returnTo: window.location.origin})}>Log out</div>}
             </Nav>
         </Navbar>
