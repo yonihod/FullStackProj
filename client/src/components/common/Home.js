@@ -102,16 +102,12 @@ export default class Home extends Component {
             }
             return date1_ - date2_;
         }
-
-
     };
     sortByViews = (post) => {
         if (this.state.posts.length) {
-            var topPosts: [];
             this.state.posts.filter((post => {
                 return post.views > 10
             }));
-
         }
     }
 
@@ -137,12 +133,7 @@ export default class Home extends Component {
         if (this.state?.posts && this.state.posts.length) {
             filteredPosts = this.state.posts.filter((post => {
                 return post.views > 15
-                // return post?.title?.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
-                //     post?.description?.toLowerCase().indexOf(search.toLowerCase()) !== -1
             })).sort(orderBy);
-
-
-            console.clear();
         }
 
         const settings = {
@@ -161,7 +152,7 @@ export default class Home extends Component {
                 </div>
                 {this.state.done ? <Success value={this.state}/> : null}
                 <div className={"writer-container"}>
-                    <h1 class="home-title">
+                    <h1>
                         Welcome To Developi
                     </h1>
                 </div>
@@ -171,11 +162,10 @@ export default class Home extends Component {
                 <br/>
                 <Link className="see-all float-right" to="/posts">See All</Link>
                 <Container className="slider-show ml-5 float-left" >
-                    <Slider {... settings} class="float-left">
+                    <Slider {... settings}>
                         {filteredPosts.map(function (post) {
-                            console.log(post);
                             return (
-                                <React.Fragment>
+                                <React.Fragment key={post._id}>
                                     <Col>
                                         <Card className="slider-card">
 
@@ -186,11 +176,8 @@ export default class Home extends Component {
                                                         <h5>{post.title}</h5>
                                                         <h6><i className='far fa-eye'></i>{post.views}</h6>
                                                     </Card.Title>
-
                                                     <Card.Text>
-                                                        <div className="card-description">
                                                             {post.description}
-                                                        </div>
                                                     </Card.Text>
                                                 </Card.Body>
                                             </Link>
