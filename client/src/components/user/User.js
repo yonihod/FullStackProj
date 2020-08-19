@@ -15,7 +15,7 @@ const User = (props) => {
             props.user &&
             <Link className={"user-link"} to={`/profile/${props.user._id}`}>
                 <div className={`user ${size}`}>
-                    <img src={img} referrerpolicy="no-referrer" onError={(e) => onError(e)} />
+                    <img src={img} referrerPolicy="no-referrer" onError={(e) => onError(e)} />
                     <h5>{props.user.name}</h5>
                 </div>
             </Link>
