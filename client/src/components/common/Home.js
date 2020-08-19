@@ -19,14 +19,13 @@ import Background from '../../images/Home-Background.png';
 
 
 export default class Home extends Component {
-    // const {isAuthenticated, user} = useAuth0();
 
     constructor(props) {
-
         super(props);
         var done = false;
         var alertType = 'success';
         var msg = "";
+
         if (typeof props.location !== 'undefined' && typeof props.location.state != 'undefined' && typeof props.location.state.done != "undefined") {
             done = props.location.state.done;
         }
@@ -164,18 +163,12 @@ export default class Home extends Component {
                 <div className={"writer-container"}>
                     <h1 class="home-title">
                         Welcome To Developi
-                        {/*{isAuthenticated ? user.given_name : "To Developi"}!*/}
                     </h1>
-                    {/*<video autoPlay muted loop id="home-video">*/}
-                    {/*    <source src="home-video.mp4" type="video/mp4"/>*/}
-                    {/*</video>*/}
                 </div>
 
-                <div id="cards-container mt-5 mb-2">
+                <div id="cards-container mt-5 mb-2"></div>
 
-                </div>
                 <br/>
-                <h4 className="most-popular float-left">Most Popular</h4>
                 <Link className="see-all float-right text-uppercase" to="/">see all</Link>
                 <Container className="slider-show ml-5 float-left" >
                     <Slider {... settings} class="float-left">
@@ -185,7 +178,6 @@ export default class Home extends Component {
                                 <React.Fragment>
                                     <Col>
                                         <Card className="slider-card">
-
 
                                             <Link className={"card-link"} to={`/posts/${post._id}`}>
                                                 <Card.Body>
@@ -203,83 +195,12 @@ export default class Home extends Component {
                                                 </Card.Body>
                                             </Link>
                                         </Card>
-
                                     </Col>
-
                                 </React.Fragment>
                             );
                         })}
-
-
                     </Slider>
                 </Container>
-
-
             </div> );
     }
-
 }
-
-{/*<div id="posts-container">*/}
-{/*    <div className="profile-img"></div>*/}
-{/*    <h1>*/}
-{/*        Maddie*/}
-{/*    </h1>*/}
-{/*    <div className="description">*/}
-{/*        Maddie is a front end web developer in New York. She has worked in the field for 10 years now.*/}
-{/*        Check out her projects in the links below. She is available for hire as well.*/}
-{/*    </div>*/}
-{/*    <div className="social">*/}
-{/*        <a>GitHub</a>*/}
-{/*        <a>Twitter</a>*/}
-{/*        <a>LinkedIn</a>*/}
-{/*    </div>*/}
-{/*    <button>Hire Me</button>*/}
-{/*    <footer>*/}
-{/*        <div className="likes">*/}
-{/*            <p><i className='fa fa-heart'></i></p>*/}
-{/*            <p>1.5K</p>*/}
-{/*        </div>*/}
-{/*        <div className="projects">*/}
-{/*            <p>Projects</p>*/}
-{/*            <p>154</p>*/}
-{/*        </div>*/}
-{/*    </footer>*/}
-{/*</div>*/}
-
-{/*<Carousel*/}
-{/*    swipeable={false}*/}
-{/*    draggable={false}*/}
-{/*    showDots={true}*/}
-{/*    responsive={this.responsive}*/}
-{/*    ssr={true} // means to render carousel on server-side.*/}
-{/*    infinite={true}*/}
-{/*    autoPlay={this.props.deviceType !== "mobile" ? true : false}*/}
-{/*    autoPlaySpeed={1000}*/}
-{/*    keyBoardControl={true}*/}
-{/*    customTransition="all .5"*/}
-{/*    transitionDuration={500}*/}
-{/*    containerClass="carousel-container"*/}
-{/*    removeArrowOnDeviceType={["tablet", "mobile"]}*/}
-{/*    deviceType={this.props.deviceType}*/}
-{/*    dotListClass="custom-dot-list-style"*/}
-{/*    itemClass="carousel-item-padding-40-px"*/}
-
-
-{/*>*/}
-{/*    <div>item 1</div>*/}
-{/*    <div>item 1</div>*/}
-{/*    <div>item 1</div>*/}
-{/*    <div>item 1</div>*/}
-{/*</Carousel>;*/}
-
-// <div id="cards-container">
-//     {filteredPosts.map((post, index) => {
-//         return this.renderPost(post, index)
-//     })}
-// </div>
-
-
-
-
-
