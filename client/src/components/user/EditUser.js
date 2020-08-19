@@ -7,12 +7,17 @@ export default class EditUser extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeUserName = () => { console.log("onChangeUserName"); };
-        this.onChangeUserEmail = () => { console.log("onChangeUserEmail"); };
-        this.onChangeUserRollno = () => { console.log("onChangeUserRollno"); };
-        this.onSubmit = function(e) { 
+        this.onChangeUserName = () => {
+            console.log("onChangeUserName");
+        };
+        this.onChangeUserEmail = () => {
+            console.log("onChangeUserEmail");
+        };
+        this.onChangeUserRollno = () => {
+            console.log("onChangeUserRollno");
+        };
+        this.onSubmit = function (e) {
             e.prevantDefualt();
-            console.log("On Submit"); 
         };
 
         // State
@@ -34,7 +39,7 @@ export default class EditUser extends Component {
     render() {
         return (<div className="form-wrapper">
             <Form onSubmit={this.onSubmit}>
-            <Form.Group controlId="Name">
+                <Form.Group controlId="Name">
                     <Form.Label>Name</Form.Label>
                     <Form.Control type="text" value={this.state.name} onChange={this.onChangeUserName}/>
                 </Form.Group>
