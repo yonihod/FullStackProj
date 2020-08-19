@@ -22,7 +22,7 @@ const Banner = (props) => {
             {!hasSkills && isAuthenticated &&
             <div className="banner">
                 Join us as a service provider! Let us know what are your skills and you're in!
-                <Link className={"banner-link"} to={`/profile`}>
+                <Link className={"banner-link"} to={`/profile/${user.sub.split('|')[1]}`}>
                     Add Skills
                 </Link>
             </div>

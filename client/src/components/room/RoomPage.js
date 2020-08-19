@@ -51,7 +51,6 @@ const Room = (props) => {
         })
     };
     const handleRoomSelection = (room) => {
-        console.log("Room Selected");
         const newMessageArray = [...room.messages];
         setRoom(room);
         const newUser = compareAndGetOtherUser(room.users);
