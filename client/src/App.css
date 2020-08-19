@@ -359,7 +359,6 @@ body {
 .profile .flex-container {
   display: flex;
   justify-content: left;
-  flex-wrap: wrap;
 }
 .profile .user-posts {
   flex: 0 0 100%;
