@@ -392,9 +392,6 @@ body {
   line-height: 55px;
   color: royalblue;
 }
-.user-skills div {
-  flex: 1;
-}
 .advanced-search {
   background: #f5f5f5;
 }
