@@ -81,7 +81,7 @@ const Profile = (props) => {
             <div className="flex-container">
                 {profile?.picture &&
                 <div className="profile-image">
-                    <img src={profile?.picture} alt="Profile"/>
+                    <img src={profile?.picture} referrerPolicy="no-referrer" alt="Profile"/>
                 </div>}
                 <div id="user-details">
                     <div className={"p-2"}>
