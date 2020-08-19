@@ -193,6 +193,9 @@ body {
 .react-autosuggest__suggestion--highlighted {
   background-color: #ddd;
 }
+.card-link {
+  height: 100%;
+}
 #cards-container {
   display: flex;
   justify-content: center;
@@ -236,6 +239,7 @@ body {
 }
 #cards-container .card .card-link .card-body {
   position: relative;
+  color: #3aade2;
 }
 #cards-container .card .card-link .card-body .card-title {
   margin-top: 0.75rem;
@@ -269,10 +273,9 @@ body {
 .home-page h1 {
   font-family: 'Dancing Script';
   font-size: 6.5rem;
-  /*text-shadow: 4px 2px #3fb3a0;*/
   position: relative;
+  margin-top: 20px;
   font-size: 70px;
-  /*font-family: 'Lobster', helvetica, arial;*/
   text-decoration: none;
   color: #666;
   -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#000000), color-stop(50%, rgba(0, 0, 0, 0.5)), to(#000000));
@@ -297,8 +300,14 @@ body {
   width: 100%;
   height: 100%;
 }
+.home-page .see-all {
+  color: #3aade2;
+}
 .home-page .card {
   background-image: url("https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=");
+}
+.home-page .card-body {
+  color: #3aade2;
 }
 .home-page .card:hover {
   -webkit-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
@@ -627,6 +636,9 @@ body {
 .post-container .post-actions .delete {
   background: #dc3545;
 }
+.fa-eye {
+  margin: 0 3px;
+}
 .create-post #create-post-background {
   width: 100%;
   height: 100%;
@@ -644,15 +656,6 @@ body {
   margin: 1rem;
   width: 300px;
   height: 400px;
-  /*padding: .5rem 1rem;*/
-  /*background-color: #f9f9f9;*/
-  /*!*border-radius: 8px;*!*/
-  /*box-shadow: 0 12px 32px 4px;*/
-  /*display: flex;*/
-  /*!*flex-direction: column;*!*/
-  /*!*justify-content: center;*!*/
-  /*!*align-items: center;*!*/
-  /*transition: .2s;*/
 }
 .post-page #background {
   width: 100%;

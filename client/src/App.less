@@ -211,6 +211,10 @@ html, body {
   background-color: #ddd;
 }
 
+.card-link {
+  height: 100%;
+}
+
 #cards-container {
   display: flex;
   justify-content: center;
@@ -224,7 +228,6 @@ html, body {
     margin: 1rem;
     width: 300px;
     height: 500px;
-
 
     .manage-post {
       position: absolute;
@@ -260,6 +263,7 @@ html, body {
 
       .card-body {
         position: relative;
+        color: #3aade2;
 
         .card-title {
           margin-top: 0.75rem;
@@ -302,23 +306,11 @@ html, body {
 
 .home-page {
   h1 {
-    //position: relative;
-    //left: 0;
-    //z-index: 1;
-    //margin: auto;
-    //color: royalblue;
-    //width: fit-content;
-    //padding-bottom: 30px;
-    //border-radius: 0 0 5px 5px;
-    //font-family: 'Dancing Script';
-    //font-size: 6.5rem;
-    //text-shadow: 4px 2px red;
     font-family: 'Dancing Script';
     font-size: 6.5rem;
-    /*text-shadow: 4px 2px #3fb3a0;*/
     position: relative;
+    margin-top: 20px;
     font-size: 70px;
-    /*font-family: 'Lobster', helvetica, arial;*/
     text-decoration: none;
     color: #666;
 
@@ -348,8 +340,16 @@ html, body {
     height: 100%;
   }
 
+  .see-all {
+    color: #3aade2;
+  }
+
   .card {
     background-image: url("https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=");
+  }
+
+  .card-body {
+    color: #3aade2;
   }
 
   .card:hover {
@@ -763,6 +763,9 @@ html, body {
   }
 }
 
+.fa-eye {
+  margin: 0 3px;
+}
 
 .create-post #create-post-background {
   width: 100%;
@@ -782,15 +785,6 @@ html, body {
   margin: 1rem;
   width: 300px;
   height: 400px;
-  /*padding: .5rem 1rem;*/
-  /*background-color: #f9f9f9;*/
-  /*!*border-radius: 8px;*!*/
-  /*box-shadow: 0 12px 32px 4px;*/
-  /*display: flex;*/
-  /*!*flex-direction: column;*!*/
-  /*!*justify-content: center;*!*/
-  /*!*align-items: center;*!*/
-  /*transition: .2s;*/
 }
 
 .post-page #background {

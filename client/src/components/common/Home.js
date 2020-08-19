@@ -169,7 +169,7 @@ export default class Home extends Component {
                 <div id="cards-container mt-5 mb-2"></div>
 
                 <br/>
-                <Link className="see-all float-right text-uppercase" to="/posts">see all</Link>
+                <Link className="see-all float-right" to="/posts">See All</Link>
                 <Container className="slider-show ml-5 float-left" >
                     <Slider {... settings} class="float-left">
                         {filteredPosts.map(function (post) {
