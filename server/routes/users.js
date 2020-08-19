@@ -6,7 +6,10 @@ function isEmpty(obj) {
 
 async function getUsers(filter) {
     let users;
-    if (filter['skills']) {
+    if(typeof filter['name'] == 'undefined' && typeof filter['skills'] == 'undefined'){
+        users = User.find({}).populate('skills');
+    }
+    else if (filter['skills']) {
         let skillsFilter = { $regex: filter['skills'], $options: 'i' };
         delete filter.skills;
         users = await User.find(filter).populate({
@@ -17,7 +20,13 @@ async function getUsers(filter) {
             return user.skills.length;
         })
     } else {
-        users = await User.find(filter).populate('skills');
+        let userFilter = { name: { $regex: filter['name'], $options: '$i' } };
+            try {
+            users = await User.find(userFilter).populate('skills');
+        }catch (e) {
+            console.log(e);
+        }
+
     }
 
     return users;
