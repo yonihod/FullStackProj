@@ -87,12 +87,11 @@ const Profile = (props) => {
                     <div className={"p-2"}>
                         <h2>{profile?.name}</h2>
                         <h4>{profile?.email}</h4>
-                        {isAuthenticated && profile?.email === user.email &&
-                        <div className="user-skills">
-                            <div>Edit Skills:</div>
-                            <Skills userId={profile._id} userSkills={profile.skills}/>
-                        </div>}
                     </div>
+                    {isAuthenticated && profile?.email === user.email &&
+                    <div className="user-skills">
+                        <Skills userId={profile._id} userSkills={profile.skills}/>
+                    </div>}
                 </div>
             </div>
             <Tabs>
