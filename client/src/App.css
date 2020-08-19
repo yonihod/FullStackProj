@@ -386,8 +386,18 @@ body {
   color: #fff;
   border-radius: 5px;
 }
-.profile .edit-post #auto-suggest {
-  min-width: 240px;
+#auto-suggest {
+  min-width: 300px !important;
+}
+.user-skills {
+  display: flex;
+}
+.user-skills div:first-child {
+  line-height: 55px;
+  color: royalblue;
+}
+.user-skills div {
+  flex: 1;
 }
 .advanced-search {
   background: #f5f5f5;
@@ -617,8 +627,8 @@ body {
   justify-content: flex-end;
 }
 .post-container .twitter-btn {
-  background-color: #3fb3a0;
-  border-color: #3fb3a0;
+  background-color: royalblue;
+  border-color: royalblue;
 }
 .post-container .post-actions {
   margin: 2% auto;

@@ -1,14 +1,14 @@
-import React, {useEffect, useState,useContext} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import {useAuth0} from "../../reactAuth0";
 import UserService from "../../services/Users";
 import PostService from "../../services/Posts";
 import PostBox from "../post/PostBox";
 import Skills from "../user/Skills";
-import { Calendar, momentLocalizer } from 'react-big-calendar';
+import {Calendar, momentLocalizer} from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
-import { useHistory } from "react-router-dom";
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import {useHistory} from "react-router-dom";
+import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const Profile = (props) => {
@@ -71,7 +71,9 @@ const Profile = (props) => {
     return (
         <div className="profile">
             <div id="background">
-                <img src="https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI=" className="stretch" alt=""/>
+                <img
+                    src="https://media.istockphoto.com/vectors/white-grey-gradient-studio-room-background-vector-eps-10-vector-id1145390344?k=6&m=1145390344&s=170667a&w=0&h=Ww4KTAjK12ftThBgMaYUQamE3DPFkyD-uEfdFXll2iI="
+                    className="stretch" alt=""/>
             </div>
             <header>
                 <h1>{profile?.name}'s Profile</h1>
@@ -85,22 +87,23 @@ const Profile = (props) => {
                     <div className={"p-2"}>
                         <h2>{profile?.name}</h2>
                         <h4>{profile?.email}</h4>
+                        {isAuthenticated && profile?.email === user.email &&
+                        <div className="user-skills">
+                            <div>Edit Skills:</div>
+                            <Skills userId={profile._id} userSkills={profile.skills}/>
+                        </div>}
                     </div>
-                    {isAuthenticated && profile?.email === user.email &&
-                    <div id="add-skills">
-                        <Skills userId={profile._id} userSkills={profile.skills}/>
-                    </div>}
                 </div>
             </div>
             <Tabs>
                 <TabList>
-                <Tab>My Posts</Tab>
-                { isAuthenticated && profile?.email === user.email &&
-                 <>
-                 {/* find better titles */}
-                    <Tab>Published Tasks</Tab>
-                    <Tab>Assigned Tasks</Tab>
-                 </>}
+                    <Tab>My Posts</Tab>
+                    {isAuthenticated && profile?.email === user.email &&
+                    <>
+                        {/* find better titles */}
+                        <Tab>Published Tasks</Tab>
+                        <Tab>Assigned Tasks</Tab>
+                    </>}
                 </TabList>
                 <TabPanel>
                     <div className="user-posts">
@@ -110,31 +113,31 @@ const Profile = (props) => {
                         </div>
                     </div>
                 </TabPanel>
-                { isAuthenticated && profile?.email === user.email &&
-                 <>
-                <TabPanel>
-                    <Calendar
-                        localizer={localizer}
-                        events={publishedTasks}
-                        startAccessor="start"
-                        endAccessor="end"
-                        style={{ height: 400 }}
-                        onSelectEvent={event => goToPost(event)}
-                    />
-                </TabPanel>
+                {isAuthenticated && profile?.email === user.email &&
+                <>
+                    <TabPanel>
+                        <Calendar
+                            localizer={localizer}
+                            events={publishedTasks}
+                            startAccessor="start"
+                            endAccessor="end"
+                            style={{height: 400}}
+                            onSelectEvent={event => goToPost(event)}
+                        />
+                    </TabPanel>
                 </>}
-                { isAuthenticated && profile?.email === user.email &&
-                 <>
-                <TabPanel>
-                    <Calendar
-                        localizer={localizer}
-                        events={assignedTasks}
-                        startAccessor="start"
-                        endAccessor="end"
-                        style={{ height: 400 }}
-                        onSelectEvent={event => goToPost(event)}
-                    />
-                </TabPanel>
+                {isAuthenticated && profile?.email === user.email &&
+                <>
+                    <TabPanel>
+                        <Calendar
+                            localizer={localizer}
+                            events={assignedTasks}
+                            startAccessor="start"
+                            endAccessor="end"
+                            style={{height: 400}}
+                            onSelectEvent={event => goToPost(event)}
+                        />
+                    </TabPanel>
                 </>}
             </Tabs>
         </div>
