@@ -164,11 +164,11 @@ const SinglePost = (props) => {
                         <span className="applicant-actions">
                             <User user={u}></User>
                             <div className={"actions-container"}>
-                                <Link to={`/rooms`}>
+                                {/* <Link to={`/rooms`}>
                                 <Button className={"contact"} variant={"primary"}>
                                     <i className="fas fa-phone"></i>
                                 </Button>
-                            </Link>
+                            </Link> */}
                             <Button className={"assign"} onClick={() => assign(u._id)}>
                                 <i className="fas fa-check"></i>
                             </Button>
