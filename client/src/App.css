@@ -15,9 +15,9 @@
 @font-face {
   font-family: 'Comfortaa';
   font-style: normal;
-  font-weight: 300;
+  font-weight: 500;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/comfortaa/v29/1Pt_g8LJRfWJmhDAuUsSQamb1W0lwk4S4TbMPrQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/comfortaa/v29/1Pt_g8LJRfWJmhDAuUsSQamb1W0lwk4S4VrMPrQ.ttf) format('truetype');
 }
 @keyframes fadeOut {
   0% {
@@ -96,6 +96,7 @@ body {
   text-align: center;
   position: relative;
   min-height: 100vh;
+  font-family: 'Comfortaa';
 }
 #logo {
   max-height: 75px;
@@ -116,7 +117,7 @@ body {
   color: white;
 }
 .App-link {
-  color: #3fb3a0;
+  color: royalblue;
 }
 .badge {
   color: #49515a;
@@ -156,7 +157,7 @@ body {
   width: 240px;
   height: 30px;
   padding: 10px 20px;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Comfortaa';
   font-weight: 300;
   font-size: 16px;
   border: 1px solid #aaa;
@@ -180,7 +181,7 @@ body {
   width: 280px;
   border: 1px solid #aaa;
   background-color: lightblue;
-  font-family: Helvetica, sans-serif;
+  font-family: 'Comfortaa';
   font-weight: 300;
   color: royalblue;
   font-style: italic;
@@ -344,9 +345,9 @@ body {
   opacity: 0.85;
 }
 .home-page #homepage-container #recommended-users h4 {
-  font-family: 'Dancing Script';
+  font-family: 'Comfortaa';
   position: relative;
-  font-size: 34px;
+  font-size: 30px;
   text-decoration: none;
   color: #fff;
   font-weight: 600;
@@ -387,11 +388,10 @@ body {
   color: #ffffff;
 }
 .home-page h1 {
-  font-family: 'Dancing Script';
+  font-family: 'Comfortaa';
   font-size: 6.5rem;
   position: relative;
-  margin: 25px auto 65px auto;
-  font-size: 120px;
+  margin: 35px auto 65px auto;
   text-decoration: none;
   color: #fff;
   -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#000000), color-stop(50%, rgba(0, 0, 0, 0.5)), to(#000000));
@@ -417,10 +417,17 @@ body {
   height: 100%;
 }
 .home-page .see-all {
-  color: #3aade2;
+  color: white;
+  font-weight: bolder;
+  font-size: 15px;
 }
 .home-page .card-body {
-  color: #3aade2;
+  color: #4b4b4b;
+  font-size: 1.1em;
+}
+.home-page .card-body h5 {
+  padding: 4px 0;
+  font-size: 1.3em;
 }
 .home-page .card:hover {
   -webkit-box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.75);
@@ -465,7 +472,7 @@ body {
 }
 .profile img {
   width: 250px;
-  border-color: #3fb3a0;
+  border-color: royalblue;
   border-style: double;
   border-radius: 4%;
 }
@@ -598,7 +605,7 @@ body {
   background-color: white;
   text-decoration: none;
   padding: 5px;
-  color: #3fb3a0;
+  color: royalblue;
   border-radius: 5px;
 }
 .list-users #advanced-search-container.toggle-advanced-search .advanced-search {
@@ -790,7 +797,7 @@ body {
   color: #49515a;
 }
 .post-page .writer-container .writer .list-title {
-  font-family: 'Cookie', Helvetica, sans-serif;
+  font-family: 'Comfortaa';
   font-size: 50px;
   color: white;
   text-shadow: 1px 1px 2px royalblue, 0 0 25px royalblue, 0 0 5px #3fb3a0;
@@ -830,7 +837,7 @@ body {
   color: royalblue;
   padding-top: 5%;
   padding-bottom: 1%;
-  font-family: 'Dancing Script';
+  font-family: 'Comfortaa';
   font-size: 40px;
   text-shadow: 2px 2px #c7d8ea;
 }
@@ -854,7 +861,7 @@ body {
 .about .title {
   color: royalblue;
   padding-top: 7%;
-  font-family: 'Dancing Script';
+  font-family: 'Comfortaa';
   font-size: 40px;
   text-shadow: 2px 2px #c7d8ea;
 }
@@ -888,7 +895,7 @@ body {
   color: #49515a;
 }
 .list-users .writer-container .writer h1 {
-  font-family: 'Cookie', Helvetica, sans-serif;
+  font-family: 'Comfortaa';
   color: white;
   text-shadow: 1px 1px 2px royalblue, 0 0 25px royalblue, 0 0 5px #3fb3a0;
 }

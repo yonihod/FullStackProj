@@ -158,7 +158,7 @@ export default class Home extends Component {
 
                     <div id={"recommended-users"}>
                         <h4>
-                            Meet Our Awesome Service Providers!
+                            Meet Our Awesome Service Providers
                         </h4>
                         <div className="users-container">
                             {this.state.users.map((user, key) => {

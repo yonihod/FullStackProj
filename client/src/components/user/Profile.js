@@ -76,7 +76,7 @@ const Profile = (props) => {
                     className="stretch" alt=""/>
             </div>
             <header>
-                <h1>{profile?.name}'s Profile</h1>
+                <h1>My Profile</h1>
             </header>
             <div className="flex-container">
                 {profile?.picture &&
