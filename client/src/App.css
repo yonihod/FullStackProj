@@ -321,6 +321,8 @@ body {
 }
 .home-page #homepage-container .slider-container .see-all {
   float: right;
+  z-index: 1;
+  position: relative;
 }
 .home-page #homepage-container .slider-container .see-all:after {
   content: "";
