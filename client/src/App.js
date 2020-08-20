@@ -56,10 +56,10 @@ function App() {
                     <header>
                         <NavBar/>
                     </header>
+                    <Route exact path="/" component={Home}/>
                     <Container>
                         <div className="wrapper">
                             <Switch>
-                                <Route exact path="/" component={Home}/>
                                 <Route path="/posts/:id" component={SinglePost}/>
                                 <Route path="/posts" component={ListPosts}/>
                                 <Route path="/service-providers" component={ListUsers}/>

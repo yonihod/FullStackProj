@@ -47,6 +47,7 @@ export default class ListPost extends Component {
 
     getPosts = () => {
         PostsService.getPosts().then(res => {
+            res = res.reverse();
             this.setState({posts: res});
         }).catch(err => {
             console.log(err)

@@ -269,14 +269,118 @@ body {
   pointer-events: initial;
   z-index: 1;
 }
+.home-page ::-webkit-scrollbar {
+  width: 5px;
+}
+.home-page ::-webkit-scrollbar-track {
+  background: transparent;
+}
+.home-page ::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+.home-page:before {
+  content: "";
+  position: absolute;
+  filter: blur(3rem);
+  background-color: black;
+  width: 100%;
+  height: 120%;
+  top: -3rem;
+  right: -3rem;
+  z-index: -1;
+  opacity: 0.65;
+}
+.home-page #homepage-container {
+  width: 85%;
+  margin: auto;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+.home-page #homepage-container .slider-container:before {
+  content: "";
+  position: absolute;
+  filter: blur(3rem);
+  background-color: #343a40;
+  width: 30%;
+  height: 120%;
+  top: -3rem;
+  right: -3rem;
+  z-index: -1;
+  opacity: 0.65;
+}
+.home-page #homepage-container .slider-container .see-all {
+  float: right;
+}
+.home-page #homepage-container .slider-container .see-all:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.home-page #homepage-container #recommended-users .user-link {
+  width: 100%;
+}
+.home-page #homepage-container #recommended-users:before {
+  content: "";
+  position: absolute;
+  filter: blur(3rem);
+  background-color: #343a40;
+  width: 35%;
+  height: 120%;
+  top: -3rem;
+  left: -3rem;
+  z-index: -1;
+  opacity: 0.85;
+}
+.home-page #homepage-container #recommended-users h4 {
+  font-family: 'Dancing Script';
+  position: relative;
+  font-size: 34px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#000000), color-stop(50%, rgba(0, 0, 0, 0.5)), to(#000000));
+}
+.home-page #homepage-container #recommended-users .users-container {
+  max-height: 500px;
+  overflow-y: auto;
+}
+.home-page #homepage-container #get-work-done {
+  min-height: 550px;
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  grid-column-end: 3;
+  grid-column-start: 1;
+  background: lightcyan;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+  background-image: url("/work-done.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.home-page #homepage-container #get-work-done .txt {
+  margin: auto;
+  width: 25%;
+  height: 250px;
+  background: black;
+  padding: 1.5rem;
+  border-radius: 10px;
+  color: #ffffff;
+}
 .home-page h1 {
   font-family: 'Dancing Script';
   font-size: 6.5rem;
   position: relative;
-  margin-top: 20px;
-  font-size: 70px;
+  margin: 25px auto 65px auto;
+  font-size: 120px;
   text-decoration: none;
-  color: #666;
+  color: #fff;
   -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(#000000), color-stop(50%, rgba(0, 0, 0, 0.5)), to(#000000));
 }
 .home-page #home-video {

@@ -16,6 +16,8 @@ import Col from "react-bootstrap/Col";
 import CardContext from "react-bootstrap/cjs/CardContext";
 import {Link} from "react-router-dom";
 import Background from '../../images/Home-Background.png';
+import UserService from "../../services/Users";
+import User from "../user/User";
 
 
 export default class Home extends Component {
@@ -37,12 +39,13 @@ export default class Home extends Component {
         }
         this.state = {
             posts: [],
+            users :[],
             done: done,
             alertType: alertType,
             msg: msg,
             search: "",
             orderBy: undefined,
-            toggleAdvancedSearch: false
+            toggleAdvancedSearch: false,
         }
     }
 
@@ -53,6 +56,8 @@ export default class Home extends Component {
         });
 
         this.getPosts();
+
+        this.getUsers();
     }
 
     getPosts = () => {
@@ -60,6 +65,15 @@ export default class Home extends Component {
             this.setState({posts: res});
         }).catch(err => {
             console.log(err)
+        })
+    };
+
+    getUsers = () => {
+        UserService.getUsers({}).then( (res) => {
+            res.sort( (u1,u2) => {
+                return u2.rating - u1.rating;
+            });
+            this.setState({users: res});
         })
     };
 
@@ -109,7 +123,7 @@ export default class Home extends Component {
                 return post.views > 10
             }));
         }
-    }
+    };
 
     setOrderBy = ((order) => {
         this.setState({orderBy: order})
@@ -146,48 +160,75 @@ export default class Home extends Component {
         };
         return (
             <div className="home-page">
-                <div id="background">
-                    <img src="https://freedesignfile.com/upload/2016/11/Light-blue-wavy-abstract-background-vector-04.jpg" className="stretch" alt=""/>
-
-                </div>
                 {this.state.done ? <Success value={this.state}/> : null}
-                <div className={"writer-container"}>
-                    <h1>
-                        Welcome To Developi
-                    </h1>
-                </div>
+                <h1>
+                    Welcome To Developi
+                </h1>
 
                 <div id="cards-container mt-5 mb-2"></div>
 
-                <br/>
-                <Link className="see-all float-right" to="/posts">See All</Link>
-                <Container className="slider-show ml-5 float-left" >
-                    <Slider {... settings}>
-                        {filteredPosts.map(function (post) {
-                            return (
-                                <React.Fragment key={post._id}>
-                                    <Col>
-                                        <Card className="slider-card">
+                <div id={"homepage-container"}>
+                    <div id={"recommended-users"}>
+                        <h4>
+                            Meet Our Awesome Service Providers!
+                        </h4>
+                        <div className="users-container">
+                            {this.state.users.map( (user,key) => {
+                                return <User user={user} size={"md"} showRating={true}/>
+                            } )}
+                        </div>
+                    </div>
+                    <Container className={"slider-container"}>
+                        <Link className="see-all" to="/posts">See All</Link>
+                        <Slider {... settings}>
+                            {filteredPosts.map(function (post) {
+                                return (
+                                    <React.Fragment key={post._id}>
+                                        <Col>
+                                            <Card className="slider-card">
 
-                                            <Link className={"card-link"} to={`/posts/${post._id}`}>
-                                                <Card.Body>
+                                                <Link className={"card-link"} to={`/posts/${post._id}`}>
+                                                    <Card.Body>
 
-                                                    <Card.Title>
-                                                        <h5>{post.title}</h5>
-                                                        <h6><i className='far fa-eye'></i>{post.views}</h6>
-                                                    </Card.Title>
-                                                    <Card.Text>
+                                                        <Card.Title>
+                                                            <h5>{post.title}</h5>
+                                                            <h6><i className='far fa-eye'></i>{post.views}</h6>
+                                                        </Card.Title>
+                                                        <Card.Text>
                                                             {post.description}
-                                                    </Card.Text>
-                                                </Card.Body>
-                                            </Link>
-                                        </Card>
-                                    </Col>
-                                </React.Fragment>
-                            );
-                        })}
-                    </Slider>
-                </Container>
+                                                        </Card.Text>
+                                                    </Card.Body>
+                                                </Link>
+                                            </Card>
+                                        </Col>
+                                    </React.Fragment>
+                                );
+                            })}
+                        </Slider>
+                    </Container>
+                    <div id={"get-work-done"}>
+                        <div className={'txt'}>
+                            <h4 className={"text-center"}>Get work done faster, with confidence</h4>
+                            <br/>
+                            Payment protection, guaranteed
+                            Payment is released to the freelancer once you’re pleased and approve the work you get.
+                        </div>
+                        <div className={'txt'}>
+                            <h4 className={"text-center"}>
+                                Know the price up front
+                            </h4>
+                            <br/>
+                            Find any service within minutes and know exactly what you’ll pay. No hourly rates, just a fixed price.
+                        </div>
+                        <div className={'txt'}>
+                            <h4 className={"text-center"}>
+                                We’re here for you 24/7
+                            </h4>
+                            <br/>
+                            Reach out to us at any time! We have your back, from answering your questions to resolving issues.
+                        </div>
+                    </div>
+                </div>
             </div> );
     }
 }
