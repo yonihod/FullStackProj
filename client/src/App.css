@@ -6,10 +6,18 @@
   src: url(https://fonts.gstatic.com/s/dancingscript/v15/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7BMSo3Sup5.ttf) format('truetype');
 }
 @font-face {
-  font-family: 'Kalam';
+  font-family: 'Raleway';
   font-style: normal;
   font-weight: 400;
-  src: local('Kalam'), local('Kalam-Regular'), url(https://fonts.gstatic.com/s/kalam/v10/YA9dr0Wd4kDdMthROCI.ttf) format('truetype');
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/raleway/v17/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVvaooCP.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/comfortaa/v29/1Pt_g8LJRfWJmhDAuUsSQamb1W0lwk4S4TbMPrQ.ttf) format('truetype');
 }
 @keyframes fadeOut {
   0% {
@@ -294,9 +302,6 @@ body {
   width: 85%;
   margin: auto;
   justify-content: center;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
 }
 .home-page #homepage-container .slider-container:before {
   content: "";
@@ -317,6 +322,11 @@ body {
   content: "";
   display: table;
   clear: both;
+}
+.home-page #homepage-container #recommended-users {
+  margin-top: 5%;
+  width: 40em;
+  display: inline-block;
 }
 .home-page #homepage-container #recommended-users .user-link {
   width: 100%;
@@ -359,12 +369,15 @@ body {
   padding: 20px;
   border-radius: 10px;
   text-align: left;
-  background-image: url("/work-done.jpg");
+  background-image: url("/home-page-section.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .home-page #homepage-container #get-work-done .txt {
+  font-family: 'Comfortaa';
+  font-size: 18px;
+  letter-spacing: 1px;
   margin: auto;
   width: 25%;
   height: 250px;

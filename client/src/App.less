@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Kalam');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
 
 @keyframes fadeOut {
   0% {
@@ -307,6 +308,7 @@ html, body {
   ::-webkit-scrollbar {
     width: 5px;
   }
+
   ::-webkit-scrollbar-track {
     background: transparent;
   }
@@ -314,6 +316,7 @@ html, body {
   ::-webkit-scrollbar-thumb {
     background: transparent;
   }
+
   &:before {
     content: "";
     position: absolute;
@@ -326,13 +329,12 @@ html, body {
     z-index: -1;
     opacity: .65;
   }
+
   #homepage-container {
     width: 85%;
     margin: auto;
     justify-content: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+
     .slider-container {
       &:before {
         content: "";
@@ -346,8 +348,10 @@ html, body {
         z-index: -1;
         opacity: .65;
       }
+
       .see-all {
         float: right;
+
         &:after {
           content: "";
           display: table;
@@ -355,10 +359,16 @@ html, body {
         }
       }
     }
+
     #recommended-users {
+      margin-top: 5%;
+      width: 40em;
+      display: inline-block;
+
       .user-link {
         width: 100%;
       }
+
       &:before {
         content: "";
         position: absolute;
@@ -371,6 +381,7 @@ html, body {
         z-index: -1;
         opacity: .85;
       }
+
       h4 {
         font-family: 'Dancing Script';
         position: relative;
@@ -381,11 +392,13 @@ html, body {
 
         -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), color-stop(50%, rgba(0, 0, 0, .5)), to(rgba(0, 0, 0, 1)));
       }
+
       .users-container {
         max-height: 500px;
         overflow-y: auto;
       }
     }
+
     #get-work-done {
       min-height: 550px;
       margin-top: 2.5rem;
@@ -399,11 +412,15 @@ html, body {
       padding: 20px;
       border-radius: 10px;
       text-align: left;
-      background-image: url("/work-done.jpg");
+      background-image: url("/home-page-section.jpg");
       background-attachment: fixed;
       background-size: cover;
       background-repeat: no-repeat;
+
       .txt {
+        font-family: 'Comfortaa';
+        font-size: 18px;
+        letter-spacing: 1px;
         margin: auto;
         width: 25%;
         height: 250px;
@@ -414,6 +431,7 @@ html, body {
       }
     }
   }
+
   h1 {
     font-family: 'Dancing Script';
     font-size: 6.5rem;
@@ -424,7 +442,6 @@ html, body {
     color: #fff;
 
     -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), color-stop(50%, rgba(0, 0, 0, .5)), to(rgba(0, 0, 0, 1)));
-
   }
 
   #home-video {
