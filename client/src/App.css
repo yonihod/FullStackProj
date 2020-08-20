@@ -205,6 +205,9 @@ body {
 .card-link {
   height: 100%;
 }
+.card-body {
+  overflow: auto;
+}
 #cards-container {
   display: flex;
   justify-content: center;
